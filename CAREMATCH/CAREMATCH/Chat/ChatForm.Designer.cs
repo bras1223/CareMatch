@@ -32,7 +32,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnVerzenden = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -59,15 +59,15 @@
             this.listBox1.Size = new System.Drawing.Size(700, 407);
             this.listBox1.TabIndex = 2;
             // 
-            // button1
+            // btnVerzenden
             // 
-            this.button1.Location = new System.Drawing.Point(751, 425);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(97, 70);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Verzenden";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnVerzenden.Location = new System.Drawing.Point(751, 425);
+            this.btnVerzenden.Name = "btnVerzenden";
+            this.btnVerzenden.Size = new System.Drawing.Size(97, 70);
+            this.btnVerzenden.TabIndex = 3;
+            this.btnVerzenden.Text = "Verzenden";
+            this.btnVerzenden.UseVisualStyleBackColor = true;
+            this.btnVerzenden.Click += new System.EventHandler(this.btnVerzenden_Click_1);
             // 
             // pictureBox1
             // 
@@ -95,7 +95,7 @@
             this.ClientSize = new System.Drawing.Size(860, 513);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnVerzenden);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.textBox1);
             this.Name = "ChatForm";
@@ -111,7 +111,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnVerzenden;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
     }

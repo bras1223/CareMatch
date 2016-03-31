@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chat\Chatbericht.cs" />
     <Compile Include="Chat\ChatForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,10 +63,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="HulpvraagIndienenForm.cs">
+    <Compile Include="Gebruiker.cs" />
+    <Compile Include="Hulpvragen\HulpvraagIndienenForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HulpvraagIndienenForm.Designer.cs">
+    <Compile Include="Hulpvragen\HulpvraagIndienenForm.Designer.cs">
       <DependentUpon>HulpvraagIndienenForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -98,6 +100,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Agenda\" />
+    <Folder Include="Login\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

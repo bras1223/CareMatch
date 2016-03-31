@@ -20,10 +20,9 @@ namespace CAREMATCH
             gebruikersnaam = "Gebruiker";
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnVerzenden_Click_1(object sender, EventArgs e)
         {
-            listBox1.Items.Add(gebruikersnaam+": "+textBox1.Text);
-            textBox1.Text = "";
+
         }
     }
 }

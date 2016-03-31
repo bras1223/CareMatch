@@ -12,9 +12,18 @@ namespace CAREMATCH
 {
     public partial class ChatForm : Form
     {
+        string gebruikersnaam;
+
         public ChatForm()
         {
             InitializeComponent();
+            gebruikersnaam = "Gebruiker";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Add(gebruikersnaam+": "+textBox1.Text);
+            textBox1.Text = "";
         }
     }
 }

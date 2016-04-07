@@ -7,13 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using CAREMATCH;
 
 namespace Login
 {
-    class Loginn
+    class Login
     {
+        public Login()
+        {
+            Database database = new Database();
+        }
         //LoginCheck
-        public void LoginCheck(string naam, string wachtwoord, Start form1)
+        public void LoginCheck(string naam, string wachtwoord, LoginForm form1)
         {
 
              sql = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ferry\Documents\Login.mdf;Integrated Security=True;Connect Timeout=30");

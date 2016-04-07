@@ -18,7 +18,7 @@ namespace CAREMATCH
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Start());
+            Application.Run(new LoginForm());
         }
     }
 }

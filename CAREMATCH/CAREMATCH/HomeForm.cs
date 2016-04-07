@@ -25,12 +25,32 @@ namespace CAREMATCH
         {
             InitializeComponent();
             this.gebruiker = gebruiker;
+
+            if (gebruiker.rol == Enum.rol.hulpbehoevende)
+            {
+                btnAangenomenHulpvragen.Visible = false;
+
+                btnOngepasteBerichten.Visible = false;
+                btnAccountOverzicht.Visible = false;
+            }
+            else if (gebruiker.rol == Enum.rol.vrijwilliger)
+            {
+                btnHulpvraagIndienen.Visible = false;
+
+                btnOngepasteBerichten.Visible = false;
+                btnAccountOverzicht.Visible = false;
+            }
+            else
+            {
+                btnAangenomenHulpvragen.Visible = false;
+                btnHulpvraagIndienen.Visible = false;
+            }
         }
 
         private void btnHulpvraagIndienen_Click(object sender, EventArgs e)
         {
             this.Hide();
-            hulpvraagForm = new HulpvraagForm(gebruiker);
+            hulpvraagForm = new HulpvraagForm(gebruiker, true);
             hulpvraagForm.ShowDialog();
             if(hulpvraagForm.DialogResult == DialogResult.OK || hulpvraagForm.DialogResult == DialogResult.Cancel)
             {
@@ -98,6 +118,16 @@ namespace CAREMATCH
             DialogResult = DialogResult.OK;
             this.Dispose();
             this.Close();
+        }
+
+        private void btnOngepasteBerichten_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAccountOverzicht_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

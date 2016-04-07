@@ -12,14 +12,14 @@ using CAREMATCH;
 
 namespace Login
 {
-    public partial class Start : Form
+    public partial class LoginForm : Form
     {
-        private Loginn login;
+        private Login login;
         
-        public Start()
+        public LoginForm()
         {
             InitializeComponent();
-            login = new Loginn();
+            login = new Login();
             
         }
 

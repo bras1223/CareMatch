@@ -30,7 +30,7 @@ namespace CAREMATCH
         private void btnHulpvraagIndienen_Click(object sender, EventArgs e)
         {
             this.Hide();
-            hulpvraagForm = new HulpvraagForm();
+            hulpvraagForm = new HulpvraagForm(gebruiker);
             hulpvraagForm.ShowDialog();
             if(hulpvraagForm.DialogResult == DialogResult.OK)
             {
@@ -41,7 +41,7 @@ namespace CAREMATCH
         private void btnHulpvraagAannemen_Click(object sender, EventArgs e)
         {
             this.Hide();
-            hulpvraagOverzichtForm = new HulpvraagOverzichtForm();
+            hulpvraagOverzichtForm = new HulpvraagOverzichtForm(gebruiker);
             hulpvraagOverzichtForm.ShowDialog();
             if(hulpvraagOverzichtForm.DialogResult == DialogResult.OK)
             {
@@ -52,7 +52,7 @@ namespace CAREMATCH
         private void btnAangenomenHulpvragen_Click(object sender, EventArgs e)
         {
             this.Hide();
-            hulpvraagOverzichtForm = new HulpvraagOverzichtForm();
+            hulpvraagOverzichtForm = new HulpvraagOverzichtForm(gebruiker);
             hulpvraagOverzichtForm.ShowDialog();
             if (hulpvraagOverzichtForm.DialogResult == DialogResult.OK)
             {
@@ -63,7 +63,7 @@ namespace CAREMATCH
         private void btnAgenda_Click(object sender, EventArgs e)
         {
             this.Hide();
-            agendaForm = new AgendaForm();
+            agendaForm = new AgendaForm(gebruiker);
             agendaForm.ShowDialog();
             if (agendaForm.DialogResult == DialogResult.OK)
             {
@@ -74,7 +74,7 @@ namespace CAREMATCH
         private void btnBerichten_Click(object sender, EventArgs e)
         {
             this.Hide();
-            chatForm = new ChatForm();
+            chatForm = new ChatForm(gebruiker);
             chatForm.ShowDialog();
             if (chatForm.DialogResult == DialogResult.OK)
             {
@@ -85,7 +85,7 @@ namespace CAREMATCH
         private void btnProfiel_Click(object sender, EventArgs e)
         {
             this.Hide();
-            profielForm = new ProfielForm();
+            profielForm = new ProfielForm(gebruiker);
             profielForm.ShowDialog();
             if (profielForm.DialogResult == DialogResult.OK)
             {

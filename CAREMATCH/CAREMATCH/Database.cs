@@ -8,6 +8,10 @@ namespace CAREMATCH
 {
     class Database
     {
+        public Database()
+        {
+
+        }
         #region Hulpvragen Queries
         public void HulpvraagToevoegen()
         {
@@ -34,6 +38,7 @@ namespace CAREMATCH
 
         } 
         #endregion
+
         #region Agenda Queries
         public void AgendaOverzicht()
         {
@@ -60,6 +65,7 @@ namespace CAREMATCH
 
         }
         #endregion
+
         #region Chat Queries
         public void ChatInvoegen()
         {
@@ -79,7 +85,31 @@ namespace CAREMATCH
         {
 
         }
+        public void BAccountOverzicht()
+        {
+
+        }
+        public void BAccountActiveren()
+        {
+
+        }
+        public void BAccountVerwijderen()
+        {
+
+        }
         #endregion
+        public void ReactieToevoegen()
+        {
+
+        }
+        public void BeoordelingToevoegen()
+        {
+
+        }
+        public void AccountToevoegen()
+        {
+
+        }
         public void ProfielAanpassen()
         {
 

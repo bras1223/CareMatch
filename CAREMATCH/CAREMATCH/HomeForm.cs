@@ -32,7 +32,7 @@ namespace CAREMATCH
             this.Hide();
             hulpvraagForm = new HulpvraagForm(gebruiker);
             hulpvraagForm.ShowDialog();
-            if(hulpvraagForm.DialogResult == DialogResult.OK)
+            if(hulpvraagForm.DialogResult == DialogResult.OK || hulpvraagForm.DialogResult == DialogResult.Cancel)
             {
                 this.Show();
             }
@@ -43,7 +43,7 @@ namespace CAREMATCH
             this.Hide();
             hulpvraagOverzichtForm = new HulpvraagOverzichtForm(gebruiker);
             hulpvraagOverzichtForm.ShowDialog();
-            if(hulpvraagOverzichtForm.DialogResult == DialogResult.OK)
+            if(hulpvraagOverzichtForm.DialogResult == DialogResult.OK || hulpvraagOverzichtForm.DialogResult == DialogResult.Cancel)
             {
                 this.Show();
             }
@@ -54,7 +54,7 @@ namespace CAREMATCH
             this.Hide();
             hulpvraagOverzichtForm = new HulpvraagOverzichtForm(gebruiker);
             hulpvraagOverzichtForm.ShowDialog();
-            if (hulpvraagOverzichtForm.DialogResult == DialogResult.OK)
+            if (hulpvraagOverzichtForm.DialogResult == DialogResult.OK || hulpvraagOverzichtForm.DialogResult == DialogResult.Cancel)
             {
                 this.Show();
             }
@@ -65,7 +65,7 @@ namespace CAREMATCH
             this.Hide();
             agendaForm = new AgendaForm(gebruiker);
             agendaForm.ShowDialog();
-            if (agendaForm.DialogResult == DialogResult.OK)
+            if (agendaForm.DialogResult == DialogResult.OK || agendaForm.DialogResult == DialogResult.Cancel)
             {
                 this.Show();
             }
@@ -76,7 +76,7 @@ namespace CAREMATCH
             this.Hide();
             chatForm = new ChatForm(gebruiker);
             chatForm.ShowDialog();
-            if (chatForm.DialogResult == DialogResult.OK)
+            if (chatForm.DialogResult == DialogResult.OK || chatForm.DialogResult == DialogResult.Cancel)
             {
                 this.Show();
             }
@@ -87,7 +87,7 @@ namespace CAREMATCH
             this.Hide();
             profielForm = new ProfielForm(gebruiker);
             profielForm.ShowDialog();
-            if (profielForm.DialogResult == DialogResult.OK)
+            if (profielForm.DialogResult == DialogResult.OK || profielForm.DialogResult == DialogResult.Cancel)
             {
                 this.Show();
             }
@@ -95,8 +95,9 @@ namespace CAREMATCH
 
         private void btnUitloggen_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult = DialogResult.OK;
             this.Dispose();
+            this.Close();
         }
     }
 }

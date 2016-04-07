@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Beheerder\BeheerdersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Beheerder\BeheerdersForm.Designer.cs">
+      <DependentUpon>BeheerdersForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Chat\Chatbericht.cs" />
     <Compile Include="Chat\ChatForm.cs">
       <SubType>Form</SubType>
@@ -107,6 +113,9 @@
     <Compile Include="VrijwilligerSysteem\AgendaForm.Designer.cs">
       <DependentUpon>AgendaForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Beheerder\BeheerdersForm.resx">
+      <DependentUpon>BeheerdersForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Chat\ChatForm.resx">
       <DependentUpon>ChatForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -159,7 +168,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Agenda\" />
-    <Folder Include="Beheerder\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

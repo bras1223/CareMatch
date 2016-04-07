@@ -33,28 +33,42 @@ namespace Login
             Gebruiker vrijwilliger;
             Gebruiker hulpbehoevende;
             //login.LoginCheck(textBox1.Text, textBox2.Text, this);
+            //
+            //tijdelijk totdat we een datebase hebben
+            //
             if (textBox1.Text == "beheerder" && textBox2.Text == "beheerder")
             {
-                gebruiker = new Gebruiker("henk", "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.vrijwilliger);
+                gebruiker = new Gebruiker(textBox1.Text, "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.beheerder);
                 homeForm = new HomeForm(gebruiker);
-                homeForm.Show();
                 this.Hide();
-                
+                homeForm.ShowDialog();
+                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
+
             }
-            else if (textBox1.Text == "vrijwilliger" && textBox2.Text == "beheerder")
+            else if (textBox1.Text == "vrijwilliger" && textBox2.Text == "vrijwilliger")
             {
-                vrijwilliger = new Gebruiker("henk", "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.vrijwilliger);
+                vrijwilliger = new Gebruiker(textBox1.Text, "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.vrijwilliger);
                 homeForm = new HomeForm(vrijwilliger);
-                homeForm.Show();
                 this.Hide();
-                
+                homeForm.ShowDialog();
+                if(homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
             }
             else if (textBox1.Text == "hulpbehoevende" && textBox2.Text == "hulpbehoevende")
             {
-                hulpbehoevende = new Gebruiker("freek", "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.hulpbehoevende);
+                hulpbehoevende = new Gebruiker(textBox1.Text, "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.hulpbehoevende);
                 homeForm = new HomeForm(hulpbehoevende);
-                homeForm.Show();
                 this.Hide();
+                homeForm.ShowDialog();
+                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
             }
         }
 
@@ -93,6 +107,11 @@ namespace Login
         private void lbRegister_MouseEnter(object sender, EventArgs e)
         {
             lbRegister.Cursor = Cursors.Hand;
+        }
+
+        private void Start_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

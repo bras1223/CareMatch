@@ -13,7 +13,7 @@ namespace Login
     class Loginn
     {
         //LoginCheck
-        public void LoginCheck(string naam, string wachtwoord, Start form1)
+        public void LoginCheck(string naam, string wachtwoord, LoginForm form1)
         {
 
             SqlConnection sql = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ferry\Documents\Login.mdf;Integrated Security=True;Connect Timeout=30");

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Data.OleDb;
 
 namespace CAREMATCH
 {
@@ -15,6 +16,7 @@ namespace CAREMATCH
     {
         public Database()
         {
+            SqlConnection sql = new SqlConnection("DBI327544.CarematchDB");
 
         }
         #region Hulpvragen Queries

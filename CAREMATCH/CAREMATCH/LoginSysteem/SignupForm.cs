@@ -11,9 +11,9 @@ using System.Data.SqlClient;
 
 namespace Login
 {
-    public partial class SignUp : Form
+    public partial class SignupForm : Form
     {
-        public SignUp()
+        public SignupForm()
         {
             InitializeComponent();
             label4.Visible = false;

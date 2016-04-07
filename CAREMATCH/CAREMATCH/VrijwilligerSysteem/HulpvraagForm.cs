@@ -34,5 +34,15 @@ namespace CAREMATCH.VrijwilligerSysteem
         {
             rtxtReactieInhoud.Enabled = false;
         }
+
+        private void HulpvraagForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbUrgent_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

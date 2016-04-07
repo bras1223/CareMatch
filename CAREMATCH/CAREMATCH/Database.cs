@@ -29,6 +29,10 @@ namespace CAREMATCH
         {
 
         }
+        public void HulpvragenIngediend()
+        {
+
+        } 
         #endregion
         #region Agenda Queries
         public void AgendaOverzicht()
@@ -43,14 +47,42 @@ namespace CAREMATCH
         {
 
         }
-        public void AanpassenAgenda()
+        public void AgendaPuntToevoegen()
         {
 
         }
-        public void VerwijderenAgendaPunt()
+        public void AgendaPuntAanpassen()
+        {
+
+        }
+        public void AgendaPuntVerwijderen()
         {
 
         }
         #endregion
+        #region Chat Queries
+        public void ChatInvoegen()
+        {
+
+        }
+        public void ChatWeergeven()
+        {
+
+        }
+        #endregion
+        #region Beheerder Queries
+        public void BOverzichtOngepasteBerichten()
+        {
+            //Overzicht ongepaste hulpvragen - Recensies - Reacties
+        }
+        public void BVerwijderOngepasteBerichten()
+        {
+
+        }
+        #endregion
+        public void ProfielAanpassen()
+        {
+
+        }
     }
 }

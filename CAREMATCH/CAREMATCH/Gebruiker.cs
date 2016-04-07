@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CAREMATCH
 {
    
-    public class Gebruiker
+    class Gebruiker
     {
 
         //Fields
@@ -29,6 +29,7 @@ namespace CAREMATCH
         public string Email { get; private set; }
 
         public bool Goedgekeurd { get; private set; }
+
         public Enum.rol rol { get; private set; }
 
         //Constructor

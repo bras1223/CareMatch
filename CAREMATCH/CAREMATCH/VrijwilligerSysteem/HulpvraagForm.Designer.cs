@@ -32,7 +32,6 @@
             this.lblOmschrijving = new System.Windows.Forms.Label();
             this.lblHulpvrager = new System.Windows.Forms.Label();
             this.btnSluit = new System.Windows.Forms.Button();
-            this.btnReageer = new System.Windows.Forms.Button();
             this.lblReactie = new System.Windows.Forms.Label();
             this.rtxtReactieInhoud = new System.Windows.Forms.RichTextBox();
             this.btnSlaOp = new System.Windows.Forms.Button();
@@ -80,24 +79,13 @@
             // btnSluit
             // 
             this.btnSluit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSluit.Location = new System.Drawing.Point(22, 414);
+            this.btnSluit.Location = new System.Drawing.Point(34, 514);
             this.btnSluit.Name = "btnSluit";
             this.btnSluit.Size = new System.Drawing.Size(141, 64);
             this.btnSluit.TabIndex = 7;
             this.btnSluit.Text = "Hulpvraag Sluiten";
             this.btnSluit.UseVisualStyleBackColor = true;
             this.btnSluit.Click += new System.EventHandler(this.btnSluit_Click);
-            // 
-            // btnReageer
-            // 
-            this.btnReageer.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReageer.Location = new System.Drawing.Point(22, 205);
-            this.btnReageer.Name = "btnReageer";
-            this.btnReageer.Size = new System.Drawing.Size(141, 64);
-            this.btnReageer.TabIndex = 8;
-            this.btnReageer.Text = "Reageer";
-            this.btnReageer.UseVisualStyleBackColor = true;
-            this.btnReageer.Click += new System.EventHandler(this.btnReageer_Click);
             // 
             // lblReactie
             // 
@@ -111,17 +99,17 @@
             // 
             // rtxtReactieInhoud
             // 
-            this.rtxtReactieInhoud.Enabled = false;
             this.rtxtReactieInhoud.Location = new System.Drawing.Point(224, 385);
             this.rtxtReactieInhoud.Name = "rtxtReactieInhoud";
-            this.rtxtReactieInhoud.Size = new System.Drawing.Size(635, 136);
+            this.rtxtReactieInhoud.Size = new System.Drawing.Size(635, 196);
             this.rtxtReactieInhoud.TabIndex = 9;
             this.rtxtReactieInhoud.Text = "";
+            this.rtxtReactieInhoud.TextChanged += new System.EventHandler(this.rtxtReactieInhoud_TextChanged);
             // 
             // btnSlaOp
             // 
             this.btnSlaOp.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSlaOp.Location = new System.Drawing.Point(22, 319);
+            this.btnSlaOp.Location = new System.Drawing.Point(34, 419);
             this.btnSlaOp.Name = "btnSlaOp";
             this.btnSlaOp.Size = new System.Drawing.Size(141, 64);
             this.btnSlaOp.TabIndex = 10;
@@ -131,7 +119,6 @@
             // 
             // rtxtHulpvraag
             // 
-            this.rtxtHulpvraag.Enabled = false;
             this.rtxtHulpvraag.Location = new System.Drawing.Point(224, 205);
             this.rtxtHulpvraag.Name = "rtxtHulpvraag";
             this.rtxtHulpvraag.Size = new System.Drawing.Size(635, 136);
@@ -214,7 +201,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1015, 533);
+            this.ClientSize = new System.Drawing.Size(1015, 593);
             this.Controls.Add(this.lblUrgent);
             this.Controls.Add(this.cbUrgent);
             this.Controls.Add(this.txtFrequentie);
@@ -227,7 +214,6 @@
             this.Controls.Add(this.btnSlaOp);
             this.Controls.Add(this.rtxtReactieInhoud);
             this.Controls.Add(this.lblReactie);
-            this.Controls.Add(this.btnReageer);
             this.Controls.Add(this.btnSluit);
             this.Controls.Add(this.lblHulpvrager);
             this.Controls.Add(this.lblOmschrijving);
@@ -247,7 +233,6 @@
         private System.Windows.Forms.Label lblOmschrijving;
         private System.Windows.Forms.Label lblHulpvrager;
         private System.Windows.Forms.Button btnSluit;
-        private System.Windows.Forms.Button btnReageer;
         private System.Windows.Forms.Label lblReactie;
         private System.Windows.Forms.RichTextBox rtxtReactieInhoud;
         private System.Windows.Forms.Button btnSlaOp;

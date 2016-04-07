@@ -28,21 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbHulpvragen = new System.Windows.Forms.ListBox();
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Beschrijving", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Hulpbehoevende", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Vrijwilliger", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("Urgent", System.Windows.Forms.HorizontalAlignment.Left);
             this.btnBekijkHulpvraag = new System.Windows.Forms.Button();
             this.lblIngelogdAls = new System.Windows.Forms.Label();
             this.lblGebruikersnaam = new System.Windows.Forms.Label();
             this.btnSluiten = new System.Windows.Forms.Button();
+            this.lvHulpvragen = new System.Windows.Forms.ListView();
             this.SuspendLayout();
-            // 
-            // lbHulpvragen
-            // 
-            this.lbHulpvragen.FormattingEnabled = true;
-            this.lbHulpvragen.Location = new System.Drawing.Point(189, 12);
-            this.lbHulpvragen.Name = "lbHulpvragen";
-            this.lbHulpvragen.Size = new System.Drawing.Size(677, 355);
-            this.lbHulpvragen.TabIndex = 0;
-            this.lbHulpvragen.SelectedIndexChanged += new System.EventHandler(this.lbHulpvragen_SelectedIndexChanged);
             // 
             // btnBekijkHulpvraag
             // 
@@ -84,16 +80,44 @@
             this.btnSluiten.UseVisualStyleBackColor = true;
             this.btnSluiten.Click += new System.EventHandler(this.btnLogUit_Click);
             // 
+            // lvHulpvragen
+            // 
+            listViewGroup1.Header = "Beschrijving";
+            listViewGroup1.Name = "lvgBeschrijving";
+            listViewGroup1.Tag = "tagHulpvraag";
+            listViewGroup2.Header = "Hulpbehoevende";
+            listViewGroup2.Name = "lvgHulpbehoevende";
+            listViewGroup2.Tag = "tagHulpvraag";
+            listViewGroup3.Header = "Vrijwilliger";
+            listViewGroup3.Name = "lvgVrijwilliger";
+            listViewGroup3.Tag = "tagHulpvraag";
+            listViewGroup4.Header = "ListViewGroup";
+            listViewGroup4.Name = "listViewGroup1";
+            listViewGroup5.Header = "Urgent";
+            listViewGroup5.Name = "lvgUrgent";
+            listViewGroup5.Tag = "tagHulpvraag";
+            this.lvHulpvragen.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1,
+            listViewGroup2,
+            listViewGroup3,
+            listViewGroup4,
+            listViewGroup5});
+            this.lvHulpvragen.Location = new System.Drawing.Point(189, 12);
+            this.lvHulpvragen.Name = "lvHulpvragen";
+            this.lvHulpvragen.Size = new System.Drawing.Size(677, 365);
+            this.lvHulpvragen.TabIndex = 5;
+            this.lvHulpvragen.UseCompatibleStateImageBehavior = false;
+            // 
             // HulpvraagOverzichtForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(878, 455);
+            this.Controls.Add(this.lvHulpvragen);
             this.Controls.Add(this.btnSluiten);
             this.Controls.Add(this.lblGebruikersnaam);
             this.Controls.Add(this.lblIngelogdAls);
             this.Controls.Add(this.btnBekijkHulpvraag);
-            this.Controls.Add(this.lbHulpvragen);
             this.Name = "HulpvraagOverzichtForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HulpvragenOverzichtForm";
@@ -104,11 +128,10 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox lbHulpvragen;
         private System.Windows.Forms.Button btnBekijkHulpvraag;
         private System.Windows.Forms.Label lblIngelogdAls;
         private System.Windows.Forms.Label lblGebruikersnaam;
         private System.Windows.Forms.Button btnSluiten;
+        private System.Windows.Forms.ListView lvHulpvragen;
     }
 }

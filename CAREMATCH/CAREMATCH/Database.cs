@@ -8,6 +8,10 @@ namespace CAREMATCH
 {
     class Database
     {
+        public Database()
+        {
+
+        }
         #region Hulpvragen Queries
         public void HulpvraagToevoegen()
         {

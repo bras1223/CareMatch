@@ -27,9 +27,12 @@ namespace CAREMATCH
 
         private void btnTerug_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
             this.Close();
         }
 
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+        }
     }
 }

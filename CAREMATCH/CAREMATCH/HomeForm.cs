@@ -14,6 +14,7 @@ namespace CAREMATCH
     public partial class HomeForm : Form
     {
         private Gebruiker gebruiker;
+        private Database database;
 
         private ChatForm chatForm;
         private AgendaForm agendaForm;
@@ -25,6 +26,9 @@ namespace CAREMATCH
         {
             InitializeComponent();
             this.gebruiker = gebruiker;
+
+            //was bezig met de database doorgeven via de constructor
+            //this.database = database;
 
             if (gebruiker.rol == Enum.rol.hulpbehoevende)
             {

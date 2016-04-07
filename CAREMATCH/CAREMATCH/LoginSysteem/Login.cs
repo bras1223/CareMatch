@@ -14,6 +14,8 @@ namespace Login
 {
     class Login
     {
+
+        //database hoort eigenlijk op een andere manier doorgegeven te worden, maar dit werkt voor nu
         public Database database;
         public Login()
         {

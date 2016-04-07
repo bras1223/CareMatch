@@ -122,8 +122,16 @@ namespace CAREMATCH
         {
             sql.Open();
             OleDbCommand command = new OleDbCommand("INSERT INTO Hulpvraag(HulpvraagID, GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie) VALUES('@HulpvraagID','@GebruikerID, '@HulpvraagInhoud', '@Urgent', '@DatumTijd', '@Duur', '@Frequentie');", sql);
+            command.Parameters.AddWithValue("HulpvraagID", 1);
+            command.Parameters.AddWithValue("GebruikerID", 1);
+            command.Parameters.AddWithValue("HulpvraagInhoud", "Testinhoud");
+            command.Parameters.AddWithValue("Urgent", 'Y');
+            command.Parameters.AddWithValue("DatumTijd", new DateTime(2016, 02, 03, 21, 05, 00));
+            command.Parameters.AddWithValue("Duur", 20);
+            command.Parameters.AddWithValue("Frequentie", 2);
+
             command.ExecuteNonQuery();
-            sql.Close
+            sql.Close();
            // SqlDataAdapter sda = new SqlDataAdapter("INSERT INTO Login (Username, Password) VALUES ('" + textBox1.Text + "','" + textBox2.Text + "')", sql);
            // sda.SelectCommand.ExecuteNonQuery();
            // sql.Close();

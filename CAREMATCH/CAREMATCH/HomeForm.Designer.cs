@@ -127,6 +127,7 @@
             this.Controls.Add(this.btnAgenda);
             this.Controls.Add(this.btnHulpvraagIndienen);
             this.Name = "HomeForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
             this.ResumeLayout(false);
 

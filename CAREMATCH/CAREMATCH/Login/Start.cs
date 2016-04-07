@@ -38,15 +38,15 @@ namespace Login
             //
             if (textBox1.Text == "beheerder" && textBox2.Text == "beheerder")
             {
-                gebruiker = new Gebruiker("henk", "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.vrijwilliger);
+                gebruiker = new Gebruiker(textBox1.Text, "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.vrijwilliger);
                 homeForm = new HomeForm(gebruiker);
                 homeForm.Show();
                 this.Hide();
                 
             }
-            else if (textBox1.Text == "vrijwilliger" && textBox2.Text == "beheerder")
+            else if (textBox1.Text == "vrijwilliger" && textBox2.Text == "vrijwilliger")
             {
-                vrijwilliger = new Gebruiker("henk", "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.vrijwilliger);
+                vrijwilliger = new Gebruiker(textBox1.Text, "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.vrijwilliger);
                 homeForm = new HomeForm(vrijwilliger);
                 homeForm.Show();
                 this.Hide();
@@ -54,7 +54,7 @@ namespace Login
             }
             else if (textBox1.Text == "hulpbehoevende" && textBox2.Text == "hulpbehoevende")
             {
-                hulpbehoevende = new Gebruiker("freek", "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.hulpbehoevende);
+                hulpbehoevende = new Gebruiker(textBox1.Text, "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.hulpbehoevende);
                 homeForm = new HomeForm(hulpbehoevende);
                 homeForm.Show();
                 this.Hide();

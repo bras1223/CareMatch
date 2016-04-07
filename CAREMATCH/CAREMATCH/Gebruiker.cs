@@ -29,6 +29,7 @@ namespace CAREMATCH
         public string Email { get; private set; }
         public bool Auto { get; private set; }
         public bool Goedgekeurd { get; private set; }
+
         public Enum.rol rol { get; private set; }
 
         //Constructor
@@ -50,6 +51,7 @@ namespace CAREMATCH
         public void Chatberichtmaken(string inhoud)
         {
             Chatbericht bericht = new Chatbericht(inhoud);
+            //Bericht in database zetten
         }
     }
 }

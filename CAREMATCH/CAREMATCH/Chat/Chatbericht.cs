@@ -18,9 +18,9 @@ namespace CAREMATCH
             get { return inhoud; }
         }
 
-        public DateTime Datumtijd
+        public string Datumtijd
         {
-            get { return Datumtijd; }
+            get { return datumtijd.ToString("dd/MMMM HH:mm"); }
         }
 
         //Constructor

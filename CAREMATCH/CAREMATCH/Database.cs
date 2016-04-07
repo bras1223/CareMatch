@@ -17,8 +17,10 @@ namespace CAREMATCH
         private OleDbConnection sql;
         public Database()
         {
-            sql = new OleDbConnection("DATA SOURCE = CarematchDB; PERSIST SECURITY INFO = True; USER ID = DBI327544");
-            
+            string Datasource = "(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = fhictora01.fhict.local)(PORT = 1521)))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = fhictora))); User ID = dbi327544; PASSWORD = CareMatch";
+            sql = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0;" +  Datasource);
+      
+           
         }
         #region Hulpvragen Queries
         public void HulpvraagToevoegen(Hulpvragen.Hulpvraag hulpvraag)

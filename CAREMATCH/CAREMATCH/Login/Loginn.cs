@@ -16,7 +16,7 @@ namespace Login
         public void LoginCheck(string naam, string wachtwoord, Start form1)
         {
 
-            SqlConnection sql = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ferry\Documents\Login.mdf;Integrated Security=True;Connect Timeout=30");
+             sql = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ferry\Documents\Login.mdf;Integrated Security=True;Connect Timeout=30");
             SqlDataAdapter sda = new SqlDataAdapter("Select Count(*) From Login where username='" + naam + "' and password='" + wachtwoord + "'", sql);
             SqlDataAdapter sdaa = new SqlDataAdapter("Select Count(*) From LoginAdmin where username='" + naam + "' and password='" + wachtwoord + "'", sql);
             DataTable dt = new DataTable();

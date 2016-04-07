@@ -43,6 +43,8 @@
             this.txtDuur = new System.Windows.Forms.TextBox();
             this.txtFrequentie = new System.Windows.Forms.TextBox();
             this.lblFrequentie = new System.Windows.Forms.Label();
+            this.cbUrgent = new System.Windows.Forms.CheckBox();
+            this.lblUrgent = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblTitel
@@ -188,11 +190,33 @@
             this.lblFrequentie.TabIndex = 17;
             this.lblFrequentie.Text = "Frequentie:";
             // 
+            // cbUrgent
+            // 
+            this.cbUrgent.AutoSize = true;
+            this.cbUrgent.Location = new System.Drawing.Point(955, 130);
+            this.cbUrgent.Name = "cbUrgent";
+            this.cbUrgent.Size = new System.Drawing.Size(15, 14);
+            this.cbUrgent.TabIndex = 19;
+            this.cbUrgent.UseVisualStyleBackColor = true;
+            this.cbUrgent.CheckedChanged += new System.EventHandler(this.cbUrgent_CheckedChanged);
+            // 
+            // lblUrgent
+            // 
+            this.lblUrgent.AutoSize = true;
+            this.lblUrgent.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUrgent.Location = new System.Drawing.Point(860, 121);
+            this.lblUrgent.Name = "lblUrgent";
+            this.lblUrgent.Size = new System.Drawing.Size(89, 26);
+            this.lblUrgent.TabIndex = 20;
+            this.lblUrgent.Text = "Urgent: ";
+            // 
             // HulpvraagForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1015, 533);
+            this.Controls.Add(this.lblUrgent);
+            this.Controls.Add(this.cbUrgent);
             this.Controls.Add(this.txtFrequentie);
             this.Controls.Add(this.lblFrequentie);
             this.Controls.Add(this.txtDuur);
@@ -211,6 +235,7 @@
             this.Name = "HulpvraagForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HulpvraagForm";
+            this.Load += new System.EventHandler(this.HulpvraagForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,5 +258,7 @@
         private System.Windows.Forms.TextBox txtDuur;
         private System.Windows.Forms.TextBox txtFrequentie;
         private System.Windows.Forms.Label lblFrequentie;
+        private System.Windows.Forms.CheckBox cbUrgent;
+        private System.Windows.Forms.Label lblUrgent;
     }
 }

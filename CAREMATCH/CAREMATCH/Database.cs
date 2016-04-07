@@ -13,9 +13,9 @@ namespace CAREMATCH
 
         }
         #region Hulpvragen Queries
-        public void HulpvraagToevoegen()
+        public void HulpvraagToevoegen(Hulpvragen.Hulpvraag hulpvraag)
         {
-
+            
         }
         public void HulpvraagVerwijderen()
         {

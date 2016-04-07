@@ -38,6 +38,7 @@ namespace CAREMATCH
 
         } 
         #endregion
+
         #region Agenda Queries
         public void AgendaOverzicht()
         {
@@ -64,6 +65,7 @@ namespace CAREMATCH
 
         }
         #endregion
+
         #region Chat Queries
         public void ChatInvoegen()
         {

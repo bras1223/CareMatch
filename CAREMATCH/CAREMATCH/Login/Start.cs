@@ -33,9 +33,12 @@ namespace Login
             Gebruiker vrijwilliger;
             Gebruiker hulpbehoevende;
             //login.LoginCheck(textBox1.Text, textBox2.Text, this);
+            //
+            //tijdelijk totdat we een datebase hebben
+            //
             if (textBox1.Text == "beheerder" && textBox2.Text == "beheerder")
             {
-                gebruiker = new Gebruiker(textBox1.Text, "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.vrijwilliger);
+                gebruiker = new Gebruiker(textBox1.Text, "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.beheerder);
                 homeForm = new HomeForm(gebruiker);
                 homeForm.Show();
                 this.Hide();

@@ -77,11 +77,11 @@ namespace Login
         //Cursor hand
         private void lbRegister_MouseLeave(object sender, EventArgs e)
         {
-            lbRegister.Cursor = Cursors.Default;
+            //lbRegister.Cursor = Cursors.Default;
         }
         private void lbRegister_MouseEnter(object sender, EventArgs e)
         {
-            lbRegister.Cursor = Cursors.Hand;
+            //lbRegister.Cursor = Cursors.Hand;
         }
     }
 }

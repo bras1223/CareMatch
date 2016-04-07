@@ -22,7 +22,7 @@ namespace CAREMATCH
 
         private void btnVerzenden_Click_1(object sender, EventArgs e)
         {
-
+            lbChat.Items.Add(tbBericht.Text);
         }
 
         private void btnTerug_Click(object sender, EventArgs e)
@@ -30,5 +30,6 @@ namespace CAREMATCH
             DialogResult = DialogResult.OK;
             this.Close();
         }
+
     }
 }

@@ -103,12 +103,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Agenda\" />
-    <Folder Include="Login\.vs\" />
-    <Folder Include="Login\Login\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Login\Login.sln" />
-    <Content Include="Login\Logo.png" />
+    <Folder Include="Beheerder\" />
+    <Folder Include="Login\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

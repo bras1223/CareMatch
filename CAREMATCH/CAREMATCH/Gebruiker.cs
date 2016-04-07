@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace CAREMATCH
 {
+   
     class Gebruiker
     {
+
         //Fields
         private string gebruikersnaam;
         private string voornaam;
@@ -16,6 +18,7 @@ namespace CAREMATCH
         private string email;
         private int leeftijd;
         private bool goedgekeurd;
+        private Enum.rol rol; 
 
         //Properties
         public string Gebruikersnaam

@@ -57,12 +57,7 @@
     <Compile Include="Chat\ChatForm.Designer.cs">
       <DependentUpon>ChatForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Enum.cs" />
     <Compile Include="Gebruiker.cs" />
     <Compile Include="HomeForm.cs">
       <SubType>Form</SubType>
@@ -150,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Agenda\" />
+    <Folder Include="Beheerder\" />
     <Folder Include="Login\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

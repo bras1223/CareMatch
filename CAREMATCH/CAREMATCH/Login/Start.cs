@@ -50,28 +50,28 @@ namespace Login
         //User check
         public void AdminLogin()
         {
-            this.Hide();
+            //this.Hide();
             //BeheerdersForm twee = new BeheerdersForm();
             //twee.Show();
         }
         public void Userright()
         {
-            this.Hide();
+            //this.Hide();
             //GebruikersForm drie = new GebruikersForm();
             //drie.Show();
         }
         public void Userwrong()
         {
-            MessageBox.Show("Gebruikersnaam en/of wachtwoord verkeerd");
-            textBox2.Text = "";
+            //MessageBox.Show("Gebruikersnaam en/of wachtwoord verkeerd");
+            //textBox2.Text = "";
         }
 
         //Go to register form
         private void lbRegister_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            SignUp drie = new SignUp();
-            drie.Show();
+            //this.Hide();
+            //SignUp drie = new SignUp();
+            //drie.Show();
         }
 
         //Cursor hand

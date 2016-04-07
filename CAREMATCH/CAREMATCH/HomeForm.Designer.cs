@@ -35,12 +35,14 @@
             this.btnUitloggen = new System.Windows.Forms.Button();
             this.btnHulpvraagAannemen = new System.Windows.Forms.Button();
             this.btnAangenomenHulpvragen = new System.Windows.Forms.Button();
+            this.btnOngepasteBerichten = new System.Windows.Forms.Button();
+            this.btnAccountOverzicht = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnHulpvraagIndienen
             // 
             this.btnHulpvraagIndienen.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHulpvraagIndienen.Location = new System.Drawing.Point(51, 70);
+            this.btnHulpvraagIndienen.Location = new System.Drawing.Point(34, 70);
             this.btnHulpvraagIndienen.Name = "btnHulpvraagIndienen";
             this.btnHulpvraagIndienen.Size = new System.Drawing.Size(152, 110);
             this.btnHulpvraagIndienen.TabIndex = 0;
@@ -99,14 +101,14 @@
             this.btnHulpvraagAannemen.Name = "btnHulpvraagAannemen";
             this.btnHulpvraagAannemen.Size = new System.Drawing.Size(152, 110);
             this.btnHulpvraagAannemen.TabIndex = 6;
-            this.btnHulpvraagAannemen.Text = "Hulpvraag Aannemen";
+            this.btnHulpvraagAannemen.Text = "Hulpvragen Overzicht";
             this.btnHulpvraagAannemen.UseVisualStyleBackColor = true;
             this.btnHulpvraagAannemen.Click += new System.EventHandler(this.btnHulpvraagAannemen_Click);
             // 
             // btnAangenomenHulpvragen
             // 
             this.btnAangenomenHulpvragen.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAangenomenHulpvragen.Location = new System.Drawing.Point(51, 70);
+            this.btnAangenomenHulpvragen.Location = new System.Drawing.Point(34, 70);
             this.btnAangenomenHulpvragen.Name = "btnAangenomenHulpvragen";
             this.btnAangenomenHulpvragen.Size = new System.Drawing.Size(152, 110);
             this.btnAangenomenHulpvragen.TabIndex = 7;
@@ -114,11 +116,35 @@
             this.btnAangenomenHulpvragen.UseVisualStyleBackColor = true;
             this.btnAangenomenHulpvragen.Click += new System.EventHandler(this.btnAangenomenHulpvragen_Click);
             // 
+            // btnOngepasteBerichten
+            // 
+            this.btnOngepasteBerichten.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOngepasteBerichten.Location = new System.Drawing.Point(436, 70);
+            this.btnOngepasteBerichten.Name = "btnOngepasteBerichten";
+            this.btnOngepasteBerichten.Size = new System.Drawing.Size(152, 110);
+            this.btnOngepasteBerichten.TabIndex = 8;
+            this.btnOngepasteBerichten.Text = "Ongepaste Berichten";
+            this.btnOngepasteBerichten.UseVisualStyleBackColor = true;
+            this.btnOngepasteBerichten.Click += new System.EventHandler(this.btnOngepasteBerichten_Click);
+            // 
+            // btnAccountOverzicht
+            // 
+            this.btnAccountOverzicht.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAccountOverzicht.Location = new System.Drawing.Point(244, 70);
+            this.btnAccountOverzicht.Name = "btnAccountOverzicht";
+            this.btnAccountOverzicht.Size = new System.Drawing.Size(152, 110);
+            this.btnAccountOverzicht.TabIndex = 9;
+            this.btnAccountOverzicht.Text = "Account Overzicht";
+            this.btnAccountOverzicht.UseVisualStyleBackColor = true;
+            this.btnAccountOverzicht.Click += new System.EventHandler(this.btnAccountOverzicht_Click);
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(811, 417);
+            this.Controls.Add(this.btnAccountOverzicht);
+            this.Controls.Add(this.btnOngepasteBerichten);
             this.Controls.Add(this.btnAangenomenHulpvragen);
             this.Controls.Add(this.btnHulpvraagAannemen);
             this.Controls.Add(this.btnUitloggen);
@@ -142,5 +168,7 @@
         private System.Windows.Forms.Button btnUitloggen;
         private System.Windows.Forms.Button btnHulpvraagAannemen;
         private System.Windows.Forms.Button btnAangenomenHulpvragen;
+        private System.Windows.Forms.Button btnOngepasteBerichten;
+        private System.Windows.Forms.Button btnAccountOverzicht;
     }
 }

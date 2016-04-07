@@ -1,6 +1,6 @@
 ﻿namespace Login
 {
-    partial class SignUp
+    partial class SignupForm
     {
         /// <summary>
         /// Required designer variable.

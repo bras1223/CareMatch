@@ -19,7 +19,8 @@ namespace CAREMATCH.VrijwilligerSysteem
         public HulpvraagOverzichtForm(Gebruiker gebruiker)
         {
             InitializeComponent();
-            hulpvraagForm = new HulpvraagForm(gebruiker);
+
+            hulpvraagForm = new HulpvraagForm(gebruiker, false);
             if(gebruiker.rol == Enum.rol.hulpbehoevende)
             {
                 lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;

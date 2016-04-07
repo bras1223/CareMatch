@@ -12,13 +12,14 @@ namespace CAREMATCH.VrijwilligerSysteem
 {
     public partial class HulpvraagOverzichtForm : Form
     {
-        // private AgendaForm agendaForm = new AgendaForm();
+        
         private HulpvraagForm hulpvraagForm;
-       // private ProfielForm profielForm = new ProfielForm();
+        
         public HulpvraagOverzichtForm(Gebruiker gebruiker)
         {
             InitializeComponent();
             hulpvraagForm = new HulpvraagForm(gebruiker);
+
         }
 
         private void lbHulpvragen_SelectedIndexChanged(object sender, EventArgs e)

@@ -33,6 +33,7 @@
             this.lblIngelogdAls = new System.Windows.Forms.Label();
             this.lblGebruikersnaam = new System.Windows.Forms.Label();
             this.btnSluiten = new System.Windows.Forms.Button();
+            this.lblGebruikerType = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbHulpvragen
@@ -84,11 +85,21 @@
             this.btnSluiten.UseVisualStyleBackColor = true;
             this.btnSluiten.Click += new System.EventHandler(this.btnLogUit_Click);
             // 
+            // lblGebruikerType
+            // 
+            this.lblGebruikerType.AutoSize = true;
+            this.lblGebruikerType.Location = new System.Drawing.Point(85, 25);
+            this.lblGebruikerType.Name = "lblGebruikerType";
+            this.lblGebruikerType.Size = new System.Drawing.Size(52, 13);
+            this.lblGebruikerType.TabIndex = 5;
+            this.lblGebruikerType.Text = "Vrijwilliger";
+            // 
             // HulpvraagOverzichtForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(878, 455);
+            this.Controls.Add(this.lblGebruikerType);
             this.Controls.Add(this.btnSluiten);
             this.Controls.Add(this.lblGebruikersnaam);
             this.Controls.Add(this.lblIngelogdAls);
@@ -110,5 +121,6 @@
         private System.Windows.Forms.Label lblIngelogdAls;
         private System.Windows.Forms.Label lblGebruikersnaam;
         private System.Windows.Forms.Button btnSluiten;
+        private System.Windows.Forms.Label lblGebruikerType;
     }
 }

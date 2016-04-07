@@ -25,10 +25,6 @@ namespace CAREMATCH
         {
             InitializeComponent();
             this.gebruiker = gebruiker;
-            if(gebruiker.Voornaam == "vrijwilliger")
-            {
-
-            }
         }
 
         private void btnHulpvraagIndienen_Click(object sender, EventArgs e)
@@ -99,8 +95,9 @@ namespace CAREMATCH
 
         private void btnUitloggen_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult = DialogResult.OK;
             this.Dispose();
+            this.Close();
         }
     }
 }

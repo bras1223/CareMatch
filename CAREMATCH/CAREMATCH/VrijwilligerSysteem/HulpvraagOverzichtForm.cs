@@ -12,7 +12,7 @@ namespace CAREMATCH.VrijwilligerSysteem
 {
     public partial class HulpvraagOverzichtForm : Form
     {
-        
+        private Database database;
         private HulpvraagForm hulpvraagForm;
         private List<Hulpvragen.Hulpvraag> hulpvraagList;
         
@@ -36,7 +36,7 @@ namespace CAREMATCH.VrijwilligerSysteem
                 lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;
                 lblGebruikerType.Text = "beheerder";
             }
-            hulpvraagList
+            
         }
 
         private void lbHulpvragen_SelectedIndexChanged(object sender, EventArgs e)

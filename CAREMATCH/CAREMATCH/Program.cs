@@ -1,4 +1,5 @@
 ﻿using CAREMATCH.VrijwilligerSysteem;
+using Login;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace CAREMATCH
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new HomeForm());
+            Application.Run(new Start());
         }
     }
 }

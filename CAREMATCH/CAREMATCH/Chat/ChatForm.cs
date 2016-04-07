@@ -24,8 +24,8 @@ namespace CAREMATCH
         {
             Chatbericht bericht = new Chatbericht(tbBericht.Text);
             //Database
-            lbChat.Items.Add(gebruiker.Gebruikersnaam+": "+bericht.Inhoud);
-            lbChat.Items.Add(bericht.Datumtijd);
+            lvChat.Items.Add(gebruiker.Gebruikersnaam+": "+bericht.Inhoud);
+            lvChat.Items.Add(bericht.Datumtijd);
         }
 
         private void btnTerug_Click(object sender, EventArgs e)

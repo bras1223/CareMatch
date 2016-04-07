@@ -33,7 +33,7 @@
             this.pbProfielFoto = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnTerug = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lvChat = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,20 +88,20 @@
             this.btnTerug.UseVisualStyleBackColor = true;
             this.btnTerug.Click += new System.EventHandler(this.btnTerug_Click);
             // 
-            // listView1
+            // lvChat
             // 
-            this.listView1.Location = new System.Drawing.Point(305, 182);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(121, 97);
-            this.listView1.TabIndex = 7;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.lvChat.Location = new System.Drawing.Point(305, 182);
+            this.lvChat.Name = "lvChat";
+            this.lvChat.Size = new System.Drawing.Size(121, 97);
+            this.lvChat.TabIndex = 7;
+            this.lvChat.UseCompatibleStateImageBehavior = false;
             // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1193, 641);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.lvChat);
             this.Controls.Add(this.btnTerug);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pbProfielFoto);
@@ -126,6 +126,6 @@
         private System.Windows.Forms.PictureBox pbProfielFoto;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnTerug;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lvChat;
     }
 }

@@ -8,26 +8,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using CAREMATCH;
+using System.Data.OleDb;
 
 namespace Login
 {
     class Login
     {
+
+        //database hoort eigenlijk op een andere manier doorgegeven te worden, maar dit werkt voor nu
+        public Database database;
         public Login()
         {
-            Database database = new Database();
+            database = new Database();
         }
         //LoginCheck
         public void LoginCheck(string naam, string wachtwoord, LoginForm form1)
         {
 
-            SqlConnection sql = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ferry\Documents\Login.mdf;Integrated Security=True;Connect Timeout=30");
-            SqlDataAdapter sda = new SqlDataAdapter("Select Count(*) From Login where username='" + naam + "' and password='" + wachtwoord + "'", sql);
-            SqlDataAdapter sdaa = new SqlDataAdapter("Select Count(*) From LoginAdmin where username='" + naam + "' and password='" + wachtwoord + "'", sql);
+            
+            
             DataTable dt = new DataTable();
             DataTable dat = new DataTable();
-            sda.Fill(dt);
-            sdaa.Fill(dat);
+            //sda.Fill(dt);
+            //sdaa.Fill(dat);
 
             if (dt.Rows[0][0].ToString() == "1")
             {

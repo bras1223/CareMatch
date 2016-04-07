@@ -28,16 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("");
             this.btnBekijkHulpvraag = new System.Windows.Forms.Button();
             this.lblIngelogdAls = new System.Windows.Forms.Label();
             this.lblGebruikersnaam = new System.Windows.Forms.Label();
             this.btnSluiten = new System.Windows.Forms.Button();
             this.lblGebruikerType = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lvHulpvragenOverzicht = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // btnBekijkHulpvraag
@@ -89,25 +85,21 @@
             this.lblGebruikerType.TabIndex = 5;
             this.lblGebruikerType.Text = "Vrijwilliger";
             // 
-            // listView1
+            // lvHulpvragenOverzicht
             // 
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4});
-            this.listView1.Location = new System.Drawing.Point(189, 12);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(677, 365);
-            this.listView1.TabIndex = 6;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.lvHulpvragenOverzicht.Location = new System.Drawing.Point(189, 12);
+            this.lvHulpvragenOverzicht.Name = "lvHulpvragenOverzicht";
+            this.lvHulpvragenOverzicht.Size = new System.Drawing.Size(677, 365);
+            this.lvHulpvragenOverzicht.TabIndex = 6;
+            this.lvHulpvragenOverzicht.UseCompatibleStateImageBehavior = false;
+            this.lvHulpvragenOverzicht.SelectedIndexChanged += new System.EventHandler(this.lvHulpvragenOverzicht_SelectedIndexChanged);
             // 
             // HulpvraagOverzichtForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(878, 455);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.lvHulpvragenOverzicht);
             this.Controls.Add(this.lblGebruikerType);
             this.Controls.Add(this.btnSluiten);
             this.Controls.Add(this.lblGebruikersnaam);
@@ -128,6 +120,6 @@
         private System.Windows.Forms.Label lblGebruikersnaam;
         private System.Windows.Forms.Button btnSluiten;
         private System.Windows.Forms.Label lblGebruikerType;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lvHulpvragenOverzicht;
     }
 }

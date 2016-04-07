@@ -12,12 +12,13 @@ using System.Data.OleDb;
 
 namespace CAREMATCH
 {
-    class Database
+    public class Database
     {
+        private OleDbConnection sql;
         public Database()
         {
-            SqlConnection sql = new SqlConnection("DBI327544.CarematchDB");
-
+            sql = new OleDbConnection("DATA SOURCE = CarematchDB; PERSIST SECURITY INFO = True; USER ID = DBI327544");
+            
         }
         #region Hulpvragen Queries
         public void HulpvraagToevoegen(Hulpvragen.Hulpvraag hulpvraag)
@@ -119,7 +120,10 @@ namespace CAREMATCH
         }
         public void AccountToevoegen()
         {
-           // sql.Open();
+            sql.Open();
+            OleDbCommand command = new OleDbCommand("INSERT INTO Hulpvraag(HulpvraagID, GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie) VALUES('@HulpvraagID','@GebruikerID, '@HulpvraagInhoud', '@Urgent', '@DatumTijd', '@Duur', '@Frequentie');", sql);
+            command.ExecuteNonQuery();
+            sql.Close
            // SqlDataAdapter sda = new SqlDataAdapter("INSERT INTO Login (Username, Password) VALUES ('" + textBox1.Text + "','" + textBox2.Text + "')", sql);
            // sda.SelectCommand.ExecuteNonQuery();
            // sql.Close();

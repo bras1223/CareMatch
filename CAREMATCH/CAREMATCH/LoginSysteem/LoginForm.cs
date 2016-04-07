@@ -14,12 +14,12 @@ namespace Login
 {
     public partial class LoginForm : Form
     {
-        private Loginn login;
+        private Login login;
         
         public LoginForm()
         {
             InitializeComponent();
-            login = new Loginn();
+            login = new Login();
             
         }
 

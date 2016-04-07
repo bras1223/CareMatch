@@ -94,5 +94,10 @@ namespace Login
         {
             lbRegister.Cursor = Cursors.Hand;
         }
+
+        private void Start_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

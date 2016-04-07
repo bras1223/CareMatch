@@ -25,6 +25,10 @@ namespace CAREMATCH
         {
             InitializeComponent();
             this.gebruiker = gebruiker;
+            if(gebruiker.Voornaam == "vrijwilliger")
+            {
+
+            }
         }
 
         private void btnHulpvraagIndienen_Click(object sender, EventArgs e)

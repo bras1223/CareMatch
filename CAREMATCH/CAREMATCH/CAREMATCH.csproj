@@ -59,16 +59,54 @@
     </Compile>
     <Compile Include="Enum.cs" />
     <Compile Include="Gebruiker.cs" />
-    <Compile Include="Hulpvragen\HulpvraagIndienenForm.cs">
+    <Compile Include="HomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Hulpvragen\HulpvraagIndienenForm.Designer.cs">
-      <DependentUpon>HulpvraagIndienenForm.cs</DependentUpon>
+    <Compile Include="HomeForm.Designer.cs">
+      <DependentUpon>HomeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hulpvragen\Hulpvraag.cs" />
+    <Compile Include="Hulpvragen\Reactie.cs" />
+    <Compile Include="Login\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VrijwilligerSysteem\HulpvraagForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VrijwilligerSysteem\HulpvraagForm.Designer.cs">
+      <DependentUpon>HulpvraagForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VrijwilligerSysteem\HulpvraagOverzichtForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VrijwilligerSysteem\HulpvraagOverzichtForm.Designer.cs">
+      <DependentUpon>HulpvraagOverzichtForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VrijwilligerSysteem\ProfielForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VrijwilligerSysteem\ProfielForm.Designer.cs">
+      <DependentUpon>ProfielForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VrijwilligerSysteem\AgendaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VrijwilligerSysteem\AgendaForm.Designer.cs">
+      <DependentUpon>AgendaForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Chat\ChatForm.resx">
       <DependentUpon>ChatForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeForm.resx">
+      <DependentUpon>HomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -80,6 +118,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="VrijwilligerSysteem\HulpvraagForm.resx">
+      <DependentUpon>HulpvraagForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VrijwilligerSysteem\HulpvraagOverzichtForm.resx">
+      <DependentUpon>HulpvraagOverzichtForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VrijwilligerSysteem\ProfielForm.resx">
+      <DependentUpon>ProfielForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VrijwilligerSysteem\AgendaForm.resx">
+      <DependentUpon>AgendaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -99,7 +149,6 @@
   <ItemGroup>
     <Folder Include="Agenda\" />
     <Folder Include="Beheerder\" />
-    <Folder Include="Login\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

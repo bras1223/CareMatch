@@ -8,24 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CAREMATCH
+namespace CAREMATCH.VrijwilligerSysteem
 {
-    public partial class ChatForm : Form
+    public partial class AgendaForm : Form
     {
-        string gebruikersnaam;
-
-        public ChatForm()
+        public AgendaForm()
         {
             InitializeComponent();
-            gebruikersnaam = "Gebruiker";
         }
 
-        private void btnVerzenden_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnTerug_Click(object sender, EventArgs e)
+        private void btnOpslaan_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             this.Close();

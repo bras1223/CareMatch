@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CAREMATCH
+namespace CAREMATCH.Login
 {
-    public partial class HulpvraagIndienenForm : Form
+    public partial class LoginForm : Form
     {
-        public HulpvraagIndienenForm()
+        public LoginForm()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
-﻿namespace CAREMATCH.Login
+﻿namespace Login
 {
-    partial class LoginForm
+    partial class Start
     {
         /// <summary>
         /// Required designer variable.
@@ -80,6 +80,7 @@
             this.btnLogin.TabIndex = 9;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // textBox2
             // 

@@ -19,7 +19,18 @@ namespace CAREMATCH.VrijwilligerSysteem
         {
             InitializeComponent();
             hulpvraagForm = new HulpvraagForm(gebruiker);
+            if(gebruiker.rol == Enum.rol.hulpbehoevende)
+            {
 
+            }
+            else if(gebruiker.rol == Enum.rol.vrijwilliger)
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         private void lbHulpvragen_SelectedIndexChanged(object sender, EventArgs e)
@@ -29,6 +40,7 @@ namespace CAREMATCH.VrijwilligerSysteem
 
         private void btnBekijkHulpvraag_Click(object sender, EventArgs e)
         {
+            //properties van aangeklikte hulpvraag moeten aan HulpvraagForm worden meegegeven, zodat je ze kunt bekijken.
             this.Hide();
             hulpvraagForm.ShowDialog();
             if(hulpvraagForm.DialogResult == DialogResult.OK)

@@ -27,7 +27,7 @@ namespace CAREMATCH
         public Image Pasfoto { get; private set; }
 
         public string Email { get; private set; }
-
+        public bool Auto { get; private set; }
         public bool Goedgekeurd { get; private set; }
         public Enum.rol rol { get; private set; }
 

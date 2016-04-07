@@ -17,7 +17,7 @@ namespace CAREMATCH
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new HulpvraagOverzichtForm());
+            Application.Run(new HomeForm());
         }
     }
 }

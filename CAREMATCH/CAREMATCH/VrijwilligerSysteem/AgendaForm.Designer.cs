@@ -33,9 +33,10 @@
             // 
             // btnOpslaan
             // 
-            this.btnOpslaan.Location = new System.Drawing.Point(12, 412);
+            this.btnOpslaan.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpslaan.Location = new System.Drawing.Point(12, 409);
             this.btnOpslaan.Name = "btnOpslaan";
-            this.btnOpslaan.Size = new System.Drawing.Size(128, 58);
+            this.btnOpslaan.Size = new System.Drawing.Size(139, 61);
             this.btnOpslaan.TabIndex = 0;
             this.btnOpslaan.Text = "Opslaan en Sluiten";
             this.btnOpslaan.UseVisualStyleBackColor = true;

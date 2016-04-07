@@ -32,9 +32,7 @@
             this.btnBekijkHulpvraag = new System.Windows.Forms.Button();
             this.lblIngelogdAls = new System.Windows.Forms.Label();
             this.lblGebruikersnaam = new System.Windows.Forms.Label();
-            this.btnLogUit = new System.Windows.Forms.Button();
-            this.btnProfiel = new System.Windows.Forms.Button();
-            this.btnAgenda = new System.Windows.Forms.Button();
+            this.btnSluiten = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbHulpvragen
@@ -48,9 +46,10 @@
             // 
             // btnBekijkHulpvraag
             // 
+            this.btnBekijkHulpvraag.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBekijkHulpvraag.Location = new System.Drawing.Point(189, 383);
             this.btnBekijkHulpvraag.Name = "btnBekijkHulpvraag";
-            this.btnBekijkHulpvraag.Size = new System.Drawing.Size(149, 57);
+            this.btnBekijkHulpvraag.Size = new System.Drawing.Size(196, 57);
             this.btnBekijkHulpvraag.TabIndex = 1;
             this.btnBekijkHulpvraag.Text = "Bekijk Hulpvraag";
             this.btnBekijkHulpvraag.UseVisualStyleBackColor = true;
@@ -74,44 +73,23 @@
             this.lblGebruikersnaam.TabIndex = 3;
             this.lblGebruikersnaam.Text = "Gebruikersnaam";
             // 
-            // btnLogUit
+            // btnSluiten
             // 
-            this.btnLogUit.Location = new System.Drawing.Point(12, 404);
-            this.btnLogUit.Name = "btnLogUit";
-            this.btnLogUit.Size = new System.Drawing.Size(110, 36);
-            this.btnLogUit.TabIndex = 4;
-            this.btnLogUit.Text = "Log uit";
-            this.btnLogUit.UseVisualStyleBackColor = true;
-            this.btnLogUit.Click += new System.EventHandler(this.btnLogUit_Click);
-            // 
-            // btnProfiel
-            // 
-            this.btnProfiel.Location = new System.Drawing.Point(12, 362);
-            this.btnProfiel.Name = "btnProfiel";
-            this.btnProfiel.Size = new System.Drawing.Size(110, 36);
-            this.btnProfiel.TabIndex = 5;
-            this.btnProfiel.Text = "Wijzig Profiel";
-            this.btnProfiel.UseVisualStyleBackColor = true;
-            this.btnProfiel.Click += new System.EventHandler(this.btnProfiel_Click);
-            // 
-            // btnAgenda
-            // 
-            this.btnAgenda.Location = new System.Drawing.Point(717, 383);
-            this.btnAgenda.Name = "btnAgenda";
-            this.btnAgenda.Size = new System.Drawing.Size(149, 57);
-            this.btnAgenda.TabIndex = 6;
-            this.btnAgenda.Text = "Agenda";
-            this.btnAgenda.UseVisualStyleBackColor = true;
-            this.btnAgenda.Click += new System.EventHandler(this.btnAgenda_Click);
+            this.btnSluiten.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSluiten.Location = new System.Drawing.Point(12, 404);
+            this.btnSluiten.Name = "btnSluiten";
+            this.btnSluiten.Size = new System.Drawing.Size(110, 36);
+            this.btnSluiten.TabIndex = 4;
+            this.btnSluiten.Text = "Sluiten";
+            this.btnSluiten.UseVisualStyleBackColor = true;
+            this.btnSluiten.Click += new System.EventHandler(this.btnLogUit_Click);
             // 
             // HulpvraagOverzichtForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(878, 455);
-            this.Controls.Add(this.btnAgenda);
-            this.Controls.Add(this.btnProfiel);
-            this.Controls.Add(this.btnLogUit);
+            this.Controls.Add(this.btnSluiten);
             this.Controls.Add(this.lblGebruikersnaam);
             this.Controls.Add(this.lblIngelogdAls);
             this.Controls.Add(this.btnBekijkHulpvraag);
@@ -131,8 +109,6 @@
         private System.Windows.Forms.Button btnBekijkHulpvraag;
         private System.Windows.Forms.Label lblIngelogdAls;
         private System.Windows.Forms.Label lblGebruikersnaam;
-        private System.Windows.Forms.Button btnLogUit;
-        private System.Windows.Forms.Button btnProfiel;
-        private System.Windows.Forms.Button btnAgenda;
+        private System.Windows.Forms.Button btnSluiten;
     }
 }

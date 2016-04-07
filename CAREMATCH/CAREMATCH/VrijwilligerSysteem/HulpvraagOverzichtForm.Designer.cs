@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Hulpbehoevende", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Beschrijving", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Invoer Datum/Tijd", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Vrijwilliger", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("Urgent", System.Windows.Forms.HorizontalAlignment.Left);
             this.btnBekijkHulpvraag = new System.Windows.Forms.Button();
             this.lblIngelogdAls = new System.Windows.Forms.Label();
             this.lblGebruikersnaam = new System.Windows.Forms.Label();
@@ -91,11 +92,22 @@
             // 
             // listView1
             // 
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4});
+            listViewGroup1.Header = "Hulpbehoevende";
+            listViewGroup1.Name = "lvgHulpbehoevende";
+            listViewGroup2.Header = "Beschrijving";
+            listViewGroup2.Name = "lvgBeschrijving";
+            listViewGroup3.Header = "Invoer Datum/Tijd";
+            listViewGroup3.Name = "lvgDatumTijd";
+            listViewGroup4.Header = "Vrijwilliger";
+            listViewGroup4.Name = "lvgVrijwilliger";
+            listViewGroup5.Header = "Urgent";
+            listViewGroup5.Name = "lvgUrgent";
+            this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1,
+            listViewGroup2,
+            listViewGroup3,
+            listViewGroup4,
+            listViewGroup5});
             this.listView1.Location = new System.Drawing.Point(189, 12);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(677, 365);

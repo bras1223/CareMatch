@@ -12,7 +12,7 @@ using System.Data.OleDb;
 
 namespace CAREMATCH
 {
-    public class Database
+    class Database
     {
         private OleDbConnection sql;
         public Database()

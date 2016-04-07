@@ -20,12 +20,16 @@ namespace CAREMATCH.VrijwilligerSysteem
 
             if (gebruiker.rol == Enum.rol.hulpbehoevende && hulpvraagIndienen == true)
             {
-                rtxtReactieInhoud.Enabled = false;       
+                rtxtReactieInhoud.Enabled = false;
+                btnReactieOpslaan.Visible = false;
             }
             else if (gebruiker.rol == Enum.rol.vrijwilliger)
             {
-                rtxtHulpvraag.Enabled = false;
+                btnHulpvraagOpslaan.Visible = false;
+
                 cbUrgent.Enabled = false;
+                rtxtHulpvraag.Enabled = false;
+
                 txtDuur.Enabled = false;
                 txtFrequentie.Enabled = false;
                 txtHulpvrager.Enabled = false;

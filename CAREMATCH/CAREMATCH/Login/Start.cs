@@ -35,6 +35,8 @@ namespace Login
             //login.LoginCheck(textBox1.Text, textBox2.Text, this);
             if (textBox1.Text == "beheerder" && textBox2.Text == "beheerder")
             {
+                gebruiker = new Gebruiker("henk", "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.vrijwilliger);
+                homeForm = new HomeForm(gebruiker);
                 homeForm.Show();
                 this.Hide();
                 

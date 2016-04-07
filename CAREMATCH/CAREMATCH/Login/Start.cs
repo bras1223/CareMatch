@@ -13,7 +13,7 @@ using CAREMATCH;
 namespace Login
 {
     public partial class Start : Form
-    {        
+    {
         private Loginn login;
         
         public Start()
@@ -33,9 +33,6 @@ namespace Login
             //login.LoginCheck(textBox1.Text, textBox2.Text, this);
             if (textBox1.Text == "beheerder" && textBox2.Text == "beheerder")
             {
-                gebruiker = new Gebruiker("henk", "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.beheerder);
-                homeForm = new HomeForm(gebruiker);
-                
                 homeForm.Show();
                 this.Hide();
                 
@@ -53,7 +50,7 @@ namespace Login
                 gebruiker = new Gebruiker("henk", "piet", "piet", piet, "piet", vandaag, true);
                 homeForm = new HomeForm(gebruiker);
                 homeForm.Show();
-                this.Hide(); 
+                this.Hide();
             }
         }
 

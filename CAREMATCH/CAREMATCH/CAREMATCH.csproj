@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Agenda\" />
+    <Folder Include="Beheerder\" />
     <Folder Include="Login\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

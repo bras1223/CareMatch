@@ -32,7 +32,7 @@ namespace CAREMATCH
         public Enum.rol rol { get; private set; }
 
         //Constructor
-        public Gebruiker(string gebruikersnaam, string voornaam, string achternaam, Image pasfoto, string email, DateTime geboorteDatum, bool goedgekeurd)
+        public Gebruiker(string gebruikersnaam, string voornaam, string achternaam, Image pasfoto, string email, DateTime geboorteDatum, bool goedgekeurd, Enum.rol rol)
         {
             Gebruikersnaam = gebruikersnaam;
             Voornaam = voornaam;
@@ -41,6 +41,7 @@ namespace CAREMATCH
             Email = email;
             GeboorteDatum = geboorteDatum;
             Goedgekeurd = goedgekeurd;
+            this.rol = rol;
         }
 
         //Methoden

@@ -17,7 +17,7 @@ namespace Login
         public Database database;
         public Login()
         {
-            database = new Database();
+            //database = new Database();
         }
         //LoginCheck
         public void LoginCheck(string naam, string wachtwoord, LoginForm form1)

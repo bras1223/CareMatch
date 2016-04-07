@@ -17,9 +17,14 @@ namespace CAREMATCH
         private OleDbConnection sql;
         public Database()
         {
-            string Datasource = "(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = fhictora01.fhict.local)(PORT = 1521)))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = fhictora))); User ID = dbi327544; PASSWORD = CareMatch";
-            sql = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0;" +  Datasource);
-      
+            //string oradb = "Data Source=(DESCRIPTION="
+            // + "(ADDRESS=(PROTOCOL=TCP)(HOST=ORASRVR)(PORT=1521))"
+            // + "(CONNECT_DATA=(SERVICE_NAME=ORCL)));"
+            // + "User Id=hr;Password=hr;";
+
+            string Datasource = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=fhictora01.fhict.local)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=fhictora)));User ID=dbi327544;PASSWORD=CareMatch";
+            sql = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0;" + Datasource);
+            sql.Open();
            
         }
         #region Hulpvragen Queries
@@ -31,9 +36,17 @@ namespace CAREMATCH
         {
 
         }
-        public void HulpvraagAanpassen()
+        public int HulpvraagAanpassen()
         {
-
+            OleDbCommand sda = new OleDbCommand("SELECT * FROM Hulpvraag",sql);
+            OleDbDataReader reader = sda.ExecuteReader();
+            int rowCount = 0;
+            while (reader.Read())
+            {
+                // your logic here
+                rowCount++;
+            }
+            return rowCount;
         }
         public List<Hulpvragen.Hulpvraag> HulpvragenOverzicht()
         {

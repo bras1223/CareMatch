@@ -36,12 +36,6 @@ namespace CAREMATCH.VrijwilligerSysteem
                 lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;
                 lblGebruikerType.Text = "beheerder";
             }
-
-            lvHulpvragenOverzicht.Columns.Add("Hulpbehoevende", 100);
-            lvHulpvragenOverzicht.Columns.Add("Beschrijving Hulpvraag", 100);
-            lvHulpvragenOverzicht.Columns.Add("Vrijwilliger", 100);
-            lvHulpvragenOverzicht.Columns.Add("Indien Datum/Tijd", 100);
-            lvHulpvragenOverzicht.Columns.Add("Urgent", 50);
         }
 
         private void lbHulpvragen_SelectedIndexChanged(object sender, EventArgs e)

@@ -1,26 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using CAREMATCH;
+using System.Data.OleDb;
+using Oracle.DataAccess.Client;
 
 namespace Login
 {
-    public partial class LoginForm : Form
+    partial class LoginForm : Form
     {
         private Login login;
-        
+        public Database database;
+        private OleDbConnection sql;
+
         public LoginForm()
         {
             InitializeComponent();
             login = new Login();
-            
+
+            //database = new Database();
+            //string Datasource = "Data Source=(DESCRIPTION="
+            //    + "(ADDRESS=(PROTOCOL=TCP)(HOST=fhictora01.fhict.local)(PORT=1521))"
+            //    + "(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=fhictora)));"
+            //    + "User Id=dbi327544; Password=CareMatch;";
+                        
+            //sql = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0;" + Datasource);
+            //sql.Open();
         }
 
         //Logincheck
@@ -117,6 +122,11 @@ namespace Login
         private void button1_Click(object sender, EventArgs e)
         {
             login.database.AccountToevoegen();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            //textBox1.Text = database.HulpvraagAanpassen().ToString();
         }
     }
 }

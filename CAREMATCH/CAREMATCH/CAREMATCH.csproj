@@ -57,6 +57,7 @@
     <Compile Include="Chat\ChatForm.Designer.cs">
       <DependentUpon>ChatForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Database.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Gebruiker.cs" />
     <Compile Include="HomeForm.cs">

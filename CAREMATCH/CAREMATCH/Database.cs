@@ -17,7 +17,7 @@ namespace CAREMATCH
         private OleDbConnection sql;
         public Database()
         {
-            sql = new OleDbConnection("DATA SOURCE = CarematchDB; PERSIST SECURITY INFO = True; USER ID = DBI327544");
+            //sql = new OleDbConnection("DATA SOURCE = CarematchDB; PERSIST SECURITY INFO = True; USER ID = DBI327544");
             
         }
         #region Hulpvragen Queries

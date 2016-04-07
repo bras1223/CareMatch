@@ -28,17 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Hulpbehoevende", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Beschrijving", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Invoer Datum/Tijd", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Vrijwilliger", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("Urgent", System.Windows.Forms.HorizontalAlignment.Left);
             this.btnBekijkHulpvraag = new System.Windows.Forms.Button();
             this.lblIngelogdAls = new System.Windows.Forms.Label();
             this.lblGebruikersnaam = new System.Windows.Forms.Label();
             this.btnSluiten = new System.Windows.Forms.Button();
             this.lblGebruikerType = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lvHulpvragenOverzicht = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // btnBekijkHulpvraag
@@ -90,36 +85,21 @@
             this.lblGebruikerType.TabIndex = 5;
             this.lblGebruikerType.Text = "Vrijwilliger";
             // 
-            // listView1
+            // lvHulpvragenOverzicht
             // 
-            listViewGroup1.Header = "Hulpbehoevende";
-            listViewGroup1.Name = "lvgHulpbehoevende";
-            listViewGroup2.Header = "Beschrijving";
-            listViewGroup2.Name = "lvgBeschrijving";
-            listViewGroup3.Header = "Invoer Datum/Tijd";
-            listViewGroup3.Name = "lvgDatumTijd";
-            listViewGroup4.Header = "Vrijwilliger";
-            listViewGroup4.Name = "lvgVrijwilliger";
-            listViewGroup5.Header = "Urgent";
-            listViewGroup5.Name = "lvgUrgent";
-            this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2,
-            listViewGroup3,
-            listViewGroup4,
-            listViewGroup5});
-            this.listView1.Location = new System.Drawing.Point(189, 12);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(677, 365);
-            this.listView1.TabIndex = 6;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.lvHulpvragenOverzicht.Location = new System.Drawing.Point(189, 12);
+            this.lvHulpvragenOverzicht.Name = "lvHulpvragenOverzicht";
+            this.lvHulpvragenOverzicht.Size = new System.Drawing.Size(677, 365);
+            this.lvHulpvragenOverzicht.TabIndex = 6;
+            this.lvHulpvragenOverzicht.UseCompatibleStateImageBehavior = false;
+            this.lvHulpvragenOverzicht.SelectedIndexChanged += new System.EventHandler(this.lvHulpvragenOverzicht_SelectedIndexChanged);
             // 
             // HulpvraagOverzichtForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(878, 455);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.lvHulpvragenOverzicht);
             this.Controls.Add(this.lblGebruikerType);
             this.Controls.Add(this.btnSluiten);
             this.Controls.Add(this.lblGebruikersnaam);
@@ -140,6 +120,6 @@
         private System.Windows.Forms.Label lblGebruikersnaam;
         private System.Windows.Forms.Button btnSluiten;
         private System.Windows.Forms.Label lblGebruikerType;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lvHulpvragenOverzicht;
     }
 }

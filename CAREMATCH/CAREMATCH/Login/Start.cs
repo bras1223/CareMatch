@@ -30,14 +30,14 @@ namespace Login
         public void AdminLogin()
         {
             this.Hide();
-            BeheerdersForm twee = new BeheerdersForm();
-            twee.Show();
+            //BeheerdersForm twee = new BeheerdersForm();
+            //twee.Show();
         }
         public void Userright()
         {
             this.Hide();
-            GebruikersForm drie = new GebruikersForm();
-            drie.Show();
+            //GebruikersForm drie = new GebruikersForm();
+            //drie.Show();
         }
         public void Userwrong()
         {

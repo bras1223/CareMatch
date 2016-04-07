@@ -14,7 +14,7 @@ namespace CAREMATCH.VrijwilligerSysteem
     {
         private OpenFileDialog zoekFotoDialog;
 
-        public ProfielForm()
+        public ProfielForm(Gebruiker gebruiker)
         {
             InitializeComponent();
         }

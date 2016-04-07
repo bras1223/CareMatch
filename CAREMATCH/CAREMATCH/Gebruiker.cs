@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CAREMATCH
 {
    
-    class Gebruiker
+    public class Gebruiker
     {
 
         //Fields
@@ -48,7 +48,7 @@ namespace CAREMATCH
             //Maakt een nieuw chatbericht aan met de huidige tijd en de inhoud die word meegegeven
         public void Chatberichtmaken(string inhoud)
         {
-            Chatbericht bericht = new Chatbericht(inhoud, DateTime.Now);
+            Chatbericht bericht = new Chatbericht(inhoud);
         }
     }
 }

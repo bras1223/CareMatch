@@ -17,12 +17,14 @@ namespace CAREMATCH
         public ChatForm()
         {
             InitializeComponent();
-            gebruikersnaam = "Gebruiker";
+            gebruikersnaam = "Gebruikersnaam";
         }
 
         private void btnVerzenden_Click_1(object sender, EventArgs e)
         {
-            lbChat.Items.Add(tbBericht.Text);
+            Chatbericht bericht = new Chatbericht(tbBericht.Text);
+            lbChat.Items.Add(gebruikersnaam+": "+bericht.Inhoud);
+            lbChat.Items.Add("");
         }
 
         private void btnTerug_Click(object sender, EventArgs e)

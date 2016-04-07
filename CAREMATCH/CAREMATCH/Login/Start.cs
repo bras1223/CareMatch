@@ -8,22 +8,43 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using CAREMATCH;
 
 namespace Login
 {
     public partial class Start : Form
     {
+        HomeForm homeForm = new HomeForm();
         private Loginn login;
         public Start()
         {
             InitializeComponent();
             login = new Loginn();
+            
         }
 
         //Logincheck
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            login.LoginCheck(textBox1.Text, textBox2.Text, this);
+            //login.LoginCheck(textBox1.Text, textBox2.Text, this);
+            if (textBox1.Text == "beheerder" && textBox2.Text == "beheerder")
+            {
+                homeForm.Show();
+                this.Hide();
+                
+            }
+            else if (textBox1.Text == "vrijwilliger" && textBox2.Text == "beheerder")
+            {
+                homeForm.Show();
+                this.Hide();
+                
+            }
+            else if (textBox1.Text == "hulpbehoevende" && textBox2.Text == "hulpbehoevende")
+            {
+                homeForm.Show();
+                this.Hide();
+                
+            }
         }
 
         //User check
@@ -61,12 +82,6 @@ namespace Login
         private void lbRegister_MouseEnter(object sender, EventArgs e)
         {
             lbRegister.Cursor = Cursors.Hand;
-        }
-
-        //Close application
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            Application.Exit();
         }
     }
 }

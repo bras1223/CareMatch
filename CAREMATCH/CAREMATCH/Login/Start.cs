@@ -40,24 +40,35 @@ namespace Login
             {
                 gebruiker = new Gebruiker(textBox1.Text, "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.beheerder);
                 homeForm = new HomeForm(gebruiker);
-                homeForm.Show();
                 this.Hide();
-                
+                homeForm.ShowDialog();
+                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
+
             }
             else if (textBox1.Text == "vrijwilliger" && textBox2.Text == "vrijwilliger")
             {
                 vrijwilliger = new Gebruiker(textBox1.Text, "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.vrijwilliger);
                 homeForm = new HomeForm(vrijwilliger);
-                homeForm.Show();
                 this.Hide();
-                
+                homeForm.ShowDialog();
+                if(homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
             }
             else if (textBox1.Text == "hulpbehoevende" && textBox2.Text == "hulpbehoevende")
             {
                 hulpbehoevende = new Gebruiker(textBox1.Text, "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.hulpbehoevende);
                 homeForm = new HomeForm(hulpbehoevende);
-                homeForm.Show();
                 this.Hide();
+                homeForm.ShowDialog();
+                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
             }
         }
 

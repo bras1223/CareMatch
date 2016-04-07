@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace CAREMATCH
 {
@@ -13,9 +18,9 @@ namespace CAREMATCH
 
         }
         #region Hulpvragen Queries
-        public void HulpvraagToevoegen()
+        public void HulpvraagToevoegen(Hulpvragen.Hulpvraag hulpvraag)
         {
-
+            
         }
         public void HulpvraagVerwijderen()
         {
@@ -108,7 +113,10 @@ namespace CAREMATCH
         }
         public void AccountToevoegen()
         {
-
+           // sql.Open();
+           // SqlDataAdapter sda = new SqlDataAdapter("INSERT INTO Login (Username, Password) VALUES ('" + textBox1.Text + "','" + textBox2.Text + "')", sql);
+           // sda.SelectCommand.ExecuteNonQuery();
+           // sql.Close();
         }
         public void ProfielAanpassen()
         {

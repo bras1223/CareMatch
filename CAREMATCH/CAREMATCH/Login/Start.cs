@@ -13,9 +13,9 @@ using CAREMATCH;
 namespace Login
 {
     public partial class Start : Form
-    {
-        HomeForm homeForm = new HomeForm();
+    {        
         private Loginn login;
+        
         public Start()
         {
             InitializeComponent();
@@ -26,24 +26,34 @@ namespace Login
         //Logincheck
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            DateTime vandaag = new DateTime();
+            Image piet = CAREMATCH.Properties.Resources.users;
+            HomeForm homeForm;
+            Gebruiker gebruiker;
             //login.LoginCheck(textBox1.Text, textBox2.Text, this);
             if (textBox1.Text == "beheerder" && textBox2.Text == "beheerder")
             {
+                gebruiker = new Gebruiker("henk", "piet", "piet", piet, "piet", vandaag, true);
+                homeForm = new HomeForm(gebruiker);
+                
                 homeForm.Show();
                 this.Hide();
                 
             }
             else if (textBox1.Text == "vrijwilliger" && textBox2.Text == "beheerder")
             {
+                gebruiker = new Gebruiker("henk", "piet", "piet", piet, "piet", vandaag, true);
+                homeForm = new HomeForm(gebruiker);
                 homeForm.Show();
                 this.Hide();
                 
             }
             else if (textBox1.Text == "hulpbehoevende" && textBox2.Text == "hulpbehoevende")
             {
+                gebruiker = new Gebruiker("henk", "piet", "piet", piet, "piet", vandaag, true);
+                homeForm = new HomeForm(gebruiker);
                 homeForm.Show();
-                this.Hide();
-                
+                this.Hide(); 
             }
         }
 

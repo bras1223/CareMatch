@@ -13,15 +13,18 @@ namespace CAREMATCH
 {
     public partial class HomeForm : Form
     {
+        private Gebruiker gebruiker;
+
         private ChatForm chatForm;
         private AgendaForm agendaForm;
         private HulpvraagForm hulpvraagForm;
         private HulpvraagOverzichtForm hulpvraagOverzichtForm;
         private ProfielForm profielForm;
 
-        public HomeForm()
+        public HomeForm(Gebruiker gebruiker)
         {
             InitializeComponent();
+            this.gebruiker = gebruiker;
         }
 
         private void btnHulpvraagIndienen_Click(object sender, EventArgs e)
@@ -93,6 +96,7 @@ namespace CAREMATCH
         private void btnUitloggen_Click(object sender, EventArgs e)
         {
             this.Close();
+            this.Dispose();
         }
     }
 }

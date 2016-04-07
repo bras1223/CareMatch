@@ -12,9 +12,12 @@ namespace CAREMATCH.VrijwilligerSysteem
 {
     public partial class AgendaForm : Form
     {
-        public AgendaForm()
+        private Gebruiker gebruiker;
+
+        public AgendaForm(Gebruiker gebruiker)
         {
             InitializeComponent();
+            this.gebruiker = gebruiker;
         }
 
         private void btnOpslaan_Click(object sender, EventArgs e)

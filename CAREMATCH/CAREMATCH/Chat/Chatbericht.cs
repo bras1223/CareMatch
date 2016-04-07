@@ -24,10 +24,10 @@ namespace CAREMATCH
         }
 
         //Constructor
-        public Chatbericht(string inhoud, DateTime datumtijd)
+        public Chatbericht(string inhoud)
         {
             this.inhoud = inhoud;
-            this.datumtijd = datumtijd;
+            datumtijd = DateTime.Now;
         }
     }
 }

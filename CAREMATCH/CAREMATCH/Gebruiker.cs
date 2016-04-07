@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,68 +8,40 @@ using System.Threading.Tasks;
 namespace CAREMATCH
 {
    
-    class Gebruiker
+    public class Gebruiker
     {
 
         //Fields
-        private string gebruikersnaam;
-        private string voornaam;
-        private string achternaam;
-        private string pasfoto;
-        private string email;
-        private int leeftijd;
-        private bool goedgekeurd;
-        private Enum.rol rol; 
+        
 
         //Properties
-        public string Gebruikersnaam
-        {
-            get { return gebruikersnaam; }
-            set { gebruikersnaam = value; }
-        }
+        
+        public string Gebruikersnaam { get; private set; }
 
-        public string Voornaam
-        {
-            get { return voornaam; }
-        }
+        public string Voornaam { get; private set; }
 
-        public string Achternaam
-        {
-            get { return achternaam; }
-        }
+        public string Achternaam { get; private set; }
 
-        public int Leeftijd
-        {
-            get { return leeftijd; }
-        }
+        public DateTime GeboorteDatum { get; private set; }
 
-        public string Pasfoto
-        {
-            get { return pasfoto; }
-            set { pasfoto = value; }
-        }
+        public Image Pasfoto { get; private set; }
 
-        public string Email
-        {
-            get { return email; }
-            set { email = value; }
-        }
+        public string Email { get; private set; }
 
-        public bool Goedgekeurd
-        {
-            get { return goedgekeurd; }
-        }
+        public bool Goedgekeurd { get; private set; }
+        public Enum.rol rol { get; private set; }
 
         //Constructor
-        public Gebruiker(string gebruikersnaam, string voornaam, string achternaam, string pasfoto, string email, int leeftijd, bool goedgekeurd)
+        public Gebruiker(string gebruikersnaam, string voornaam, string achternaam, Image pasfoto, string email, DateTime geboorteDatum, bool goedgekeurd, Enum.rol rol)
         {
-            this.gebruikersnaam = gebruikersnaam;
-            this.voornaam = voornaam;
-            this.achternaam = achternaam;
-            this.pasfoto = pasfoto;
-            this.email = email;
-            this.leeftijd = leeftijd;
-            this.goedgekeurd = goedgekeurd;
+            Gebruikersnaam = gebruikersnaam;
+            Voornaam = voornaam;
+            Achternaam = achternaam;
+            Pasfoto = pasfoto;
+            Email = email;
+            GeboorteDatum = geboorteDatum;
+            Goedgekeurd = goedgekeurd;
+            this.rol = rol;
         }
 
         //Methoden
@@ -76,7 +49,7 @@ namespace CAREMATCH
             //Maakt een nieuw chatbericht aan met de huidige tijd en de inhoud die word meegegeven
         public void Chatberichtmaken(string inhoud)
         {
-            Chatbericht bericht = new Chatbericht(inhoud, DateTime.Now);
+            Chatbericht bericht = new Chatbericht(inhoud);
         }
     }
 }

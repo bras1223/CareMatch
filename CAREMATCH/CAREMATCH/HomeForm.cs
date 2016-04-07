@@ -16,7 +16,6 @@ namespace CAREMATCH
         private ChatForm chatForm;
         private AgendaForm agendaForm;
         private HulpvraagForm hulpvraagForm;
-        private HulpvraagIndienenForm hulpvraagIndienen;
         private HulpvraagOverzichtForm hulpvraagOverzichtForm;
         private ProfielForm profielForm;
 
@@ -28,8 +27,9 @@ namespace CAREMATCH
         private void btnHulpvraagIndienen_Click(object sender, EventArgs e)
         {
             this.Hide();
-            hulpvraagIndienen.ShowDialog();
-            if(hulpvraagIndienen.DialogResult == DialogResult.OK)
+            hulpvraagForm = new HulpvraagForm();
+            hulpvraagForm.ShowDialog();
+            if(hulpvraagForm.DialogResult == DialogResult.OK)
             {
                 this.Show();
             }
@@ -38,18 +38,9 @@ namespace CAREMATCH
         private void btnHulpvraagAannemen_Click(object sender, EventArgs e)
         {
             this.Hide();
+            hulpvraagOverzichtForm = new HulpvraagOverzichtForm();
             hulpvraagOverzichtForm.ShowDialog();
             if(hulpvraagOverzichtForm.DialogResult == DialogResult.OK)
-            {
-                this.Show();
-            }
-        }
-
-        private void btnMijnHulpvragen_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            hulpvraagOverzichtForm.ShowDialog();
-            if (hulpvraagOverzichtForm.DialogResult == DialogResult.OK)
             {
                 this.Show();
             }
@@ -58,6 +49,7 @@ namespace CAREMATCH
         private void btnAangenomenHulpvragen_Click(object sender, EventArgs e)
         {
             this.Hide();
+            hulpvraagOverzichtForm = new HulpvraagOverzichtForm();
             hulpvraagOverzichtForm.ShowDialog();
             if (hulpvraagOverzichtForm.DialogResult == DialogResult.OK)
             {
@@ -68,6 +60,7 @@ namespace CAREMATCH
         private void btnAgenda_Click(object sender, EventArgs e)
         {
             this.Hide();
+            agendaForm = new AgendaForm();
             agendaForm.ShowDialog();
             if (agendaForm.DialogResult == DialogResult.OK)
             {
@@ -78,6 +71,7 @@ namespace CAREMATCH
         private void btnBerichten_Click(object sender, EventArgs e)
         {
             this.Hide();
+            chatForm = new ChatForm();
             chatForm.ShowDialog();
             if (chatForm.DialogResult == DialogResult.OK)
             {
@@ -88,6 +82,7 @@ namespace CAREMATCH
         private void btnProfiel_Click(object sender, EventArgs e)
         {
             this.Hide();
+            profielForm = new ProfielForm();
             profielForm.ShowDialog();
             if (profielForm.DialogResult == DialogResult.OK)
             {

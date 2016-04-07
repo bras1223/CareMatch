@@ -66,12 +66,6 @@
       <DependentUpon>HomeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Hulpvragen\Hulpvraag.cs" />
-    <Compile Include="Hulpvragen\HulpvraagIndienenForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Hulpvragen\HulpvraagIndienenForm.Designer.cs">
-      <DependentUpon>HulpvraagIndienenForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Hulpvragen\Reactie.cs" />
     <Compile Include="Login\LoginForm.cs">
       <SubType>Form</SubType>

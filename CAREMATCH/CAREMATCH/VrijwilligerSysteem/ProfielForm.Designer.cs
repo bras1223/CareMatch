@@ -47,6 +47,7 @@
             // 
             // btnWijzig
             // 
+            this.btnWijzig.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnWijzig.Location = new System.Drawing.Point(12, 160);
             this.btnWijzig.Name = "btnWijzig";
             this.btnWijzig.Size = new System.Drawing.Size(119, 33);
@@ -65,9 +66,10 @@
             // 
             // btnOpslaan
             // 
-            this.btnOpslaan.Location = new System.Drawing.Point(12, 423);
+            this.btnOpslaan.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpslaan.Location = new System.Drawing.Point(12, 414);
             this.btnOpslaan.Name = "btnOpslaan";
-            this.btnOpslaan.Size = new System.Drawing.Size(119, 51);
+            this.btnOpslaan.Size = new System.Drawing.Size(149, 60);
             this.btnOpslaan.TabIndex = 3;
             this.btnOpslaan.Text = "Opslaan en Sluiten";
             this.btnOpslaan.UseVisualStyleBackColor = true;
@@ -76,9 +78,10 @@
             // lblOverJezelf
             // 
             this.lblOverJezelf.AutoSize = true;
+            this.lblOverJezelf.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOverJezelf.Location = new System.Drawing.Point(171, 13);
             this.lblOverJezelf.Name = "lblOverJezelf";
-            this.lblOverJezelf.Size = new System.Drawing.Size(91, 13);
+            this.lblOverJezelf.Size = new System.Drawing.Size(186, 26);
             this.lblOverJezelf.TabIndex = 4;
             this.lblOverJezelf.Text = "Vertel over jezelf: ";
             // 
@@ -161,9 +164,10 @@
             // 
             // btnWachtwoordOpslaan
             // 
+            this.btnWachtwoordOpslaan.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnWachtwoordOpslaan.Location = new System.Drawing.Point(12, 357);
             this.btnWachtwoordOpslaan.Name = "btnWachtwoordOpslaan";
-            this.btnWachtwoordOpslaan.Size = new System.Drawing.Size(119, 51);
+            this.btnWachtwoordOpslaan.Size = new System.Drawing.Size(149, 51);
             this.btnWachtwoordOpslaan.TabIndex = 13;
             this.btnWachtwoordOpslaan.Text = "Wachtwoord Opslaan";
             this.btnWachtwoordOpslaan.UseVisualStyleBackColor = true;

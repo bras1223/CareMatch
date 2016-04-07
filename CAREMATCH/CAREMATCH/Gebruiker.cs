@@ -16,16 +16,12 @@ namespace CAREMATCH
 
         //Properties
         
+        public int GebruikersID { get; private set; }
         public string Gebruikersnaam { get; private set; }
-
         public string Voornaam { get; private set; }
-
         public string Achternaam { get; private set; }
-
         public DateTime GeboorteDatum { get; private set; }
-
         public Image Pasfoto { get; private set; }
-
         public string Email { get; private set; }
         public bool Auto { get; private set; }
         public bool Goedgekeurd { get; private set; }

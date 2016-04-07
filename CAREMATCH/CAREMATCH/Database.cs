@@ -12,7 +12,7 @@ using System.Data.OleDb;
 
 namespace CAREMATCH
 {
-    public class Database
+    class Database
     {
         private OleDbConnection sql;
         public Database()
@@ -37,7 +37,7 @@ namespace CAREMATCH
         {
             List<Hulpvragen.Hulpvraag> hulpvraagList = new List<Hulpvragen.Hulpvraag>();
 
-
+            // Querry voor het halen van een lijst met alle hulpvragen hier
 
             return hulpvraagList;
         }

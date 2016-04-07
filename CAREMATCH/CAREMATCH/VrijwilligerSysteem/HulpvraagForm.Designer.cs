@@ -34,7 +34,7 @@
             this.btnSluit = new System.Windows.Forms.Button();
             this.lblReactie = new System.Windows.Forms.Label();
             this.rtxtReactieInhoud = new System.Windows.Forms.RichTextBox();
-            this.btnSlaOp = new System.Windows.Forms.Button();
+            this.btnReactieOpslaan = new System.Windows.Forms.Button();
             this.rtxtHulpvraag = new System.Windows.Forms.RichTextBox();
             this.txtTitel = new System.Windows.Forms.TextBox();
             this.txtHulpvrager = new System.Windows.Forms.TextBox();
@@ -44,6 +44,7 @@
             this.lblFrequentie = new System.Windows.Forms.Label();
             this.cbUrgent = new System.Windows.Forms.CheckBox();
             this.lblUrgent = new System.Windows.Forms.Label();
+            this.btnHulpvraagOpslaan = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTitel
@@ -106,16 +107,16 @@
             this.rtxtReactieInhoud.Text = "";
             this.rtxtReactieInhoud.TextChanged += new System.EventHandler(this.rtxtReactieInhoud_TextChanged);
             // 
-            // btnSlaOp
+            // btnReactieOpslaan
             // 
-            this.btnSlaOp.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSlaOp.Location = new System.Drawing.Point(34, 419);
-            this.btnSlaOp.Name = "btnSlaOp";
-            this.btnSlaOp.Size = new System.Drawing.Size(141, 64);
-            this.btnSlaOp.TabIndex = 10;
-            this.btnSlaOp.Text = "Sla reactie op";
-            this.btnSlaOp.UseVisualStyleBackColor = true;
-            this.btnSlaOp.Click += new System.EventHandler(this.btnSlaOp_Click);
+            this.btnReactieOpslaan.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReactieOpslaan.Location = new System.Drawing.Point(34, 419);
+            this.btnReactieOpslaan.Name = "btnReactieOpslaan";
+            this.btnReactieOpslaan.Size = new System.Drawing.Size(141, 64);
+            this.btnReactieOpslaan.TabIndex = 10;
+            this.btnReactieOpslaan.Text = "Sla reactie op";
+            this.btnReactieOpslaan.UseVisualStyleBackColor = true;
+            this.btnReactieOpslaan.Click += new System.EventHandler(this.btnSlaOp_Click);
             // 
             // rtxtHulpvraag
             // 
@@ -197,11 +198,22 @@
             this.lblUrgent.TabIndex = 20;
             this.lblUrgent.Text = "Urgent: ";
             // 
+            // btnHulpvraagOpslaan
+            // 
+            this.btnHulpvraagOpslaan.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHulpvraagOpslaan.Location = new System.Drawing.Point(34, 419);
+            this.btnHulpvraagOpslaan.Name = "btnHulpvraagOpslaan";
+            this.btnHulpvraagOpslaan.Size = new System.Drawing.Size(141, 64);
+            this.btnHulpvraagOpslaan.TabIndex = 21;
+            this.btnHulpvraagOpslaan.Text = "Hulpvraag Opslaan";
+            this.btnHulpvraagOpslaan.UseVisualStyleBackColor = true;
+            // 
             // HulpvraagForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1015, 593);
+            this.Controls.Add(this.btnHulpvraagOpslaan);
             this.Controls.Add(this.lblUrgent);
             this.Controls.Add(this.cbUrgent);
             this.Controls.Add(this.txtFrequentie);
@@ -211,7 +223,7 @@
             this.Controls.Add(this.txtHulpvrager);
             this.Controls.Add(this.txtTitel);
             this.Controls.Add(this.rtxtHulpvraag);
-            this.Controls.Add(this.btnSlaOp);
+            this.Controls.Add(this.btnReactieOpslaan);
             this.Controls.Add(this.rtxtReactieInhoud);
             this.Controls.Add(this.lblReactie);
             this.Controls.Add(this.btnSluit);
@@ -235,7 +247,7 @@
         private System.Windows.Forms.Button btnSluit;
         private System.Windows.Forms.Label lblReactie;
         private System.Windows.Forms.RichTextBox rtxtReactieInhoud;
-        private System.Windows.Forms.Button btnSlaOp;
+        private System.Windows.Forms.Button btnReactieOpslaan;
         private System.Windows.Forms.RichTextBox rtxtHulpvraag;
         private System.Windows.Forms.TextBox txtTitel;
         private System.Windows.Forms.TextBox txtHulpvrager;
@@ -245,5 +257,6 @@
         private System.Windows.Forms.Label lblFrequentie;
         private System.Windows.Forms.CheckBox cbUrgent;
         private System.Windows.Forms.Label lblUrgent;
+        private System.Windows.Forms.Button btnHulpvraagOpslaan;
     }
 }

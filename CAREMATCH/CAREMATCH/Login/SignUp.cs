@@ -34,7 +34,6 @@ namespace Login
         
             //else if (textBox2.Text != textBox3.Text)
         //    {
-         //       MessageBox.Show("Wachtwoorden zijn niet gelijk");
          //   }
            // else if (textBox1.Text == "")
          //   {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CAREMATCH
 {
    
-    class Gebruiker
+    public class Gebruiker
     {
 
         //Fields
@@ -51,6 +51,7 @@ namespace CAREMATCH
         public void Chatberichtmaken(string inhoud)
         {
             Chatbericht bericht = new Chatbericht(inhoud);
+            //Bericht in database zetten
         }
     }
 }

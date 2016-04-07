@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.tbBericht = new System.Windows.Forms.TextBox();
-            this.lbChat = new System.Windows.Forms.ListBox();
             this.btnVerzenden = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbProfielFoto = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnTerug = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.listView1 = new System.Windows.Forms.ListView();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).BeginInit();
             this.SuspendLayout();
             // 
             // tbBericht
@@ -45,16 +45,6 @@
             this.tbBericht.Name = "tbBericht";
             this.tbBericht.Size = new System.Drawing.Size(825, 74);
             this.tbBericht.TabIndex = 0;
-            // 
-            // lbChat
-            // 
-            this.lbChat.FormattingEnabled = true;
-            this.lbChat.ItemHeight = 25;
-            this.lbChat.Location = new System.Drawing.Point(213, 136);
-            this.lbChat.Margin = new System.Windows.Forms.Padding(6);
-            this.lbChat.Name = "lbChat";
-            this.lbChat.Size = new System.Drawing.Size(965, 404);
-            this.lbChat.TabIndex = 2;
             // 
             // btnVerzenden
             // 
@@ -67,16 +57,15 @@
             this.btnVerzenden.UseVisualStyleBackColor = true;
             this.btnVerzenden.Click += new System.EventHandler(this.btnVerzenden_Click_1);
             // 
-            // pictureBox1
+            // pbProfielFoto
             // 
-            this.pictureBox1.Image = global::CAREMATCH.Properties.Resources.users;
-            this.pictureBox1.Location = new System.Drawing.Point(213, 15);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(98, 96);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
+            this.pbProfielFoto.Location = new System.Drawing.Point(213, 15);
+            this.pbProfielFoto.Margin = new System.Windows.Forms.Padding(6);
+            this.pbProfielFoto.Name = "pbProfielFoto";
+            this.pbProfielFoto.Size = new System.Drawing.Size(98, 96);
+            this.pbProfielFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbProfielFoto.TabIndex = 4;
+            this.pbProfielFoto.TabStop = false;
             // 
             // label1
             // 
@@ -99,16 +88,24 @@
             this.btnTerug.UseVisualStyleBackColor = true;
             this.btnTerug.Click += new System.EventHandler(this.btnTerug_Click);
             // 
+            // listView1
+            // 
+            this.listView1.Location = new System.Drawing.Point(305, 182);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(121, 97);
+            this.listView1.TabIndex = 7;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1193, 641);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.btnTerug);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pbProfielFoto);
             this.Controls.Add(this.btnVerzenden);
-            this.Controls.Add(this.lbChat);
             this.Controls.Add(this.tbBericht);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -116,7 +113,7 @@
             this.Name = "ChatForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ChatForm";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -125,10 +122,10 @@
         #endregion
 
         private System.Windows.Forms.TextBox tbBericht;
-        private System.Windows.Forms.ListBox lbChat;
         private System.Windows.Forms.Button btnVerzenden;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbProfielFoto;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnTerug;
+        private System.Windows.Forms.ListView listView1;
     }
 }

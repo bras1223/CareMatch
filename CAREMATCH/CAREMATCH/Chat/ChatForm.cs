@@ -12,21 +12,20 @@ namespace CAREMATCH
 {
     public partial class ChatForm : Form
     {
-        string gebruikersnaam;
         Gebruiker gebruiker;
 
         public ChatForm(Gebruiker gebruiker)
         {
             this.gebruiker = gebruiker;
             InitializeComponent();
-            gebruikersnaam = "Gebruikersnaam";
         }
 
         private void btnVerzenden_Click_1(object sender, EventArgs e)
         {
             Chatbericht bericht = new Chatbericht(tbBericht.Text);
-            lbChat.Items.Add(gebruikersnaam+": "+bericht.Inhoud+"; "+bericht.Datumtijd.ToString());
-            lbChat.Items.Add("");
+            //Database
+            lbChat.Items.Add(gebruiker.Gebruikersnaam+": "+bericht.Inhoud);
+            lbChat.Items.Add(bericht.Datumtijd);
         }
 
         private void btnTerug_Click(object sender, EventArgs e)

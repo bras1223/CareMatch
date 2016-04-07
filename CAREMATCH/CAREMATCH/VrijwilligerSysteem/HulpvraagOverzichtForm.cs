@@ -12,12 +12,13 @@ namespace CAREMATCH.VrijwilligerSysteem
 {
     public partial class HulpvraagOverzichtForm : Form
     {
-        private AgendaForm agendaForm = new AgendaForm();
-        private HulpvraagForm hulpvraagForm = new HulpvraagForm();
-        private ProfielForm profielForm = new ProfielForm();
-        public HulpvraagOverzichtForm()
+        // private AgendaForm agendaForm = new AgendaForm();
+        private HulpvraagForm hulpvraagForm;
+       // private ProfielForm profielForm = new ProfielForm();
+        public HulpvraagOverzichtForm(Gebruiker gebruiker)
         {
             InitializeComponent();
+            hulpvraagForm = new HulpvraagForm(gebruiker);
         }
 
         private void lbHulpvragen_SelectedIndexChanged(object sender, EventArgs e)
@@ -37,12 +38,7 @@ namespace CAREMATCH.VrijwilligerSysteem
 
         private void btnProfiel_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            profielForm.ShowDialog();
-            if(profielForm.DialogResult == DialogResult.OK)
-            {
-                this.Show();
-            }
+
         }
 
         private void btnLogUit_Click(object sender, EventArgs e)
@@ -53,12 +49,7 @@ namespace CAREMATCH.VrijwilligerSysteem
 
         private void btnAgenda_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            agendaForm.ShowDialog();
-            if(agendaForm.DialogResult == DialogResult.OK)
-            {
-                this.Show();
-            }
+
         }
 
         private void HulpvraagOverzichtForm_Load(object sender, EventArgs e)

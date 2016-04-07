@@ -14,7 +14,7 @@ namespace CAREMATCH
     {
         string gebruikersnaam;
 
-        public ChatForm()
+        public ChatForm(Gebruiker gebruiker)
         {
             InitializeComponent();
             gebruikersnaam = "Gebruikersnaam";

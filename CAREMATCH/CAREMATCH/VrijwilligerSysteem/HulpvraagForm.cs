@@ -12,9 +12,11 @@ namespace CAREMATCH.VrijwilligerSysteem
 {
     public partial class HulpvraagForm : Form
     {
-        public HulpvraagForm()
+        private Gebruiker gebruiker;
+        public HulpvraagForm(Gebruiker gebruiker)
         {
             InitializeComponent();
+
         }
 
         private void btnSluit_Click(object sender, EventArgs e)

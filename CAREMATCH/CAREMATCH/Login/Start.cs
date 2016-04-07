@@ -14,7 +14,7 @@ namespace Login
 {
     public partial class Start : Form
     {
-        HomeForm homeForm = new HomeForm();
+        HomeForm homeForm;// = new HomeForm();
         private Loginn login;
         public Start()
         {

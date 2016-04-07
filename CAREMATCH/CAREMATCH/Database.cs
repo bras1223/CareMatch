@@ -9,23 +9,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data.OleDb;
+using Oracle.ManagedDataAccess.Client;
 
 namespace CAREMATCH
 {
     class Database
     {
-        private OleDbConnection sql;
+        private OracleConnection con;
+        private string queryString;
         public Database()
         {
-            //string oradb = "Data Source=(DESCRIPTION="
-            // + "(ADDRESS=(PROTOCOL=TCP)(HOST=ORASRVR)(PORT=1521))"
-            // + "(CONNECT_DATA=(SERVICE_NAME=ORCL)));"
-            // + "User Id=hr;Password=hr;";
+            string constr = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=fhictora01.fhict.local)(PORT=1521)))"
+                          + "(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=fhictora)));"
+                          + "User ID=DBI327544; PASSWORD=CareMatch;";
 
-            string Datasource = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=fhictora01.fhict.local)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=fhictora)));User ID=dbi327544;PASSWORD=CareMatch";
-            sql = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0;" + Datasource);
-            sql.Open();
-           
+            con = new OracleConnection(constr);
         }
         #region Hulpvragen Queries
         public void HulpvraagToevoegen(Hulpvragen.Hulpvraag hulpvraag)
@@ -36,17 +34,18 @@ namespace CAREMATCH
         {
 
         }
-        public int HulpvraagAanpassen()
+        public string HulpvraagAanpassen()
         {
-            OleDbCommand sda = new OleDbCommand("SELECT * FROM Hulpvraag",sql);
-            OleDbDataReader reader = sda.ExecuteReader();
-            int rowCount = 0;
+            con.Open();
+
+            OracleCommand sda = new OracleCommand("SELECT * FROM Hulpvraag", con);
+            OracleDataReader reader = sda.ExecuteReader();
             while (reader.Read())
             {
-                // your logic here
-                rowCount++;
+                queryString = reader["Hulpvraaginhoud"].ToString();
             }
-            return rowCount;
+            con.Close();
+            return queryString;
         }
         public List<Hulpvragen.Hulpvraag> HulpvragenOverzicht()
         {
@@ -135,18 +134,18 @@ namespace CAREMATCH
         }
         public void AccountToevoegen()
         {
-            sql.Open();
-            OleDbCommand command = new OleDbCommand("INSERT INTO Hulpvraag(HulpvraagID, GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie) VALUES('@HulpvraagID','@GebruikerID, '@HulpvraagInhoud', '@Urgent', '@DatumTijd', '@Duur', '@Frequentie');", sql);
-            command.Parameters.AddWithValue("HulpvraagID", 1);
-            command.Parameters.AddWithValue("GebruikerID", 1);
-            command.Parameters.AddWithValue("HulpvraagInhoud", "Testinhoud");
-            command.Parameters.AddWithValue("Urgent", 'Y');
-            command.Parameters.AddWithValue("DatumTijd", new DateTime(2016, 02, 03, 21, 05, 00));
-            command.Parameters.AddWithValue("Duur", 20);
-            command.Parameters.AddWithValue("Frequentie", 2);
+            con.Open();
+            OracleCommand command = new OracleCommand("INSERT INTO Hulpvraag(HulpvraagID, GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie) VALUES('@HulpvraagID','@GebruikerID, '@HulpvraagInhoud', '@Urgent', '@DatumTijd', '@Duur', '@Frequentie');", con);
+            //command.Parameters.AddWithValue("HulpvraagID", 1);
+            //command.Parameters.AddWithValue("GebruikerID", 1);
+            //command.Parameters.AddWithValue("HulpvraagInhoud", "Testinhoud");
+            //command.Parameters.AddWithValue("Urgent", 'Y');
+            //command.Parameters.AddWithValue("DatumTijd", new DateTime(2016, 02, 03, 21, 05, 00));
+            //command.Parameters.AddWithValue("Duur", 20);
+            //command.Parameters.AddWithValue("Frequentie", 2);
 
             command.ExecuteNonQuery();
-            sql.Close();
+            con.Close();
            // SqlDataAdapter sda = new SqlDataAdapter("INSERT INTO Login (Username, Password) VALUES ('" + textBox1.Text + "','" + textBox2.Text + "')", sql);
            // sda.SelectCommand.ExecuteNonQuery();
            // sql.Close();
@@ -157,8 +156,8 @@ namespace CAREMATCH
         }
         public void LoginCon(string naam, string wachtwoord)
         {
-            OleDbCommand sda = new OleDbCommand("Select Count(*) From Login where username='" + naam + "' and password='" + wachtwoord + "'", sql);
-            OleDbCommand sdaa = new OleDbCommand("Select Count(*) From LoginAdmin where username='" + naam + "' and password='" + wachtwoord + "'", sql);
+            OracleCommand sda = new OracleCommand("Select Count(*) From Login where username='" + naam + "' and password='" + wachtwoord + "'", con);
+            OracleCommand sdaa = new OracleCommand("Select Count(*) From LoginAdmin where username='" + naam + "' and password='" + wachtwoord + "'", con);
         }
     }
 }

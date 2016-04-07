@@ -33,9 +33,13 @@ namespace CAREMATCH
         {
 
         }
-        public void HulpvragenOverzicht()
+        public List<Hulpvragen.Hulpvraag> HulpvragenOverzicht()
         {
+            List<Hulpvragen.Hulpvraag> hulpvraagList = new List<Hulpvragen.Hulpvraag>();
 
+
+
+            return hulpvraagList;
         }
         public void HulpvragenAangenomen()
         {

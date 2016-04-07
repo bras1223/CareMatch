@@ -142,5 +142,10 @@ namespace CAREMATCH
         {
 
         }
+        public void LoginCon(string naam, string wachtwoord)
+        {
+            OleDbCommand sda = new OleDbCommand("Select Count(*) From Login where username='" + naam + "' and password='" + wachtwoord + "'", sql);
+            OleDbCommand sdaa = new OleDbCommand("Select Count(*) From LoginAdmin where username='" + naam + "' and password='" + wachtwoord + "'", sql);
+        }
     }
 }

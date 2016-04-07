@@ -79,7 +79,31 @@ namespace CAREMATCH
         {
 
         }
+        public void BAccountOverzicht()
+        {
+
+        }
+        public void BAccountActiveren()
+        {
+
+        }
+        public void BAccountVerwijderen()
+        {
+
+        }
         #endregion
+        public void ReactieToevoegen()
+        {
+
+        }
+        public void BeoordelingToevoegen()
+        {
+
+        }
+        public void AccountToevoegen()
+        {
+
+        }
         public void ProfielAanpassen()
         {
 

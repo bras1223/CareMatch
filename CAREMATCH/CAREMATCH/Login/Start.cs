@@ -13,8 +13,7 @@ using CAREMATCH;
 namespace Login
 {
     public partial class Start : Form
-    {
-        HomeForm homeForm = new HomeForm();
+    {        
         private Loginn login;
         public Start()
         {
@@ -26,9 +25,10 @@ namespace Login
         //Logincheck
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            HomeForm homeForm = new HomeForm();
             //login.LoginCheck(textBox1.Text, textBox2.Text, this);
             if (textBox1.Text == "beheerder" && textBox2.Text == "beheerder")
-            {
+            {          
                 homeForm.Show();
                 this.Hide();
                 

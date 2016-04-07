@@ -30,7 +30,7 @@ namespace CAREMATCH
         private void btnHulpvraagIndienen_Click(object sender, EventArgs e)
         {
             this.Hide();
-            hulpvraagForm = new HulpvraagForm();
+            hulpvraagForm = new HulpvraagForm(gebruiker);
             hulpvraagForm.ShowDialog();
             if(hulpvraagForm.DialogResult == DialogResult.OK)
             {

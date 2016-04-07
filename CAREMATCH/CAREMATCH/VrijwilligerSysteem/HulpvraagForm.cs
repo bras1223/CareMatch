@@ -16,7 +16,7 @@ namespace CAREMATCH.VrijwilligerSysteem
         public HulpvraagForm(Gebruiker gebruiker)
         {
             InitializeComponent();
-
+            this.gebruiker = gebruiker;
         }
 
         private void btnSluit_Click(object sender, EventArgs e)

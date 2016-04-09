@@ -47,11 +47,29 @@ namespace CAREMATCH
             con.Close();
             return queryString;
         }
-        public List<Hulpvragen.Hulpvraag> HulpvragenOverzicht()
+        public List<string> HulpvragenOverzicht()
         {
-            List<Hulpvragen.Hulpvraag> hulpvraagList = new List<Hulpvragen.Hulpvraag>();
+            List<string> hulpvraagList = new List<string>();
 
-            // Querry voor het halen van een lijst met alle hulpvragen hier
+            con.Open();
+            OracleCommand sda = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as g, Hulpvraag.HulpvraagInhoud, Hulpvraag.Aangenomen, Hulpvraag.DatumTijd, Hulpvraag.Urgent FROM Hulpvraag", con);
+            OracleDataReader reader = sda.ExecuteReader();
+            while (reader.Read())
+            {
+                queryString = reader["HulpvraagID"].ToString();
+                hulpvraagList.Add(queryString);
+                queryString = reader["g"].ToString();
+                hulpvraagList.Add(queryString);
+                queryString = reader["HulpvraagInhoud"].ToString();
+                hulpvraagList.Add(queryString);
+                queryString = reader["Aangenomen"].ToString();
+                hulpvraagList.Add(queryString);
+                queryString = reader["DatumTijd"].ToString();
+                hulpvraagList.Add(queryString);
+                queryString = reader["Urgent"].ToString();
+                hulpvraagList.Add(queryString);
+            }
+            con.Close();
 
             return hulpvraagList;
         }
@@ -64,7 +82,6 @@ namespace CAREMATCH
 
         } 
         #endregion
-
         #region Agenda Queries
         public void AgendaOverzicht()
         {
@@ -91,7 +108,6 @@ namespace CAREMATCH
 
         }
         #endregion
-
         #region Chat Queries
         public void ChatInvoegen()
         {
@@ -124,13 +140,29 @@ namespace CAREMATCH
 
         }
         #endregion
-        public void ReactieToevoegen()
+        #region Gebruiker Queries
+        private string rol;
+        public string Login(string naam, string wachtwoord)
         {
+            con.Open();
+            OracleCommand sda = new OracleCommand("SELECT * FROM gebruiker WHERE gebruikersnaam = '"+naam+"' AND wachtwoord = '"+wachtwoord+"'", con);
+            OracleDataReader reader = sda.ExecuteReader();
 
-        }
-        public void BeoordelingToevoegen()
-        {
-
+            while (reader.Read())
+            {
+                naam = reader["GEBRUIKERSNAAM"].ToString();
+                wachtwoord = reader["WACHTWOORD"].ToString();
+                rol = reader["ROL"].ToString();
+            }
+            con.Close();
+            if (rol == null)
+            {
+                return "";
+            }
+            else
+            {
+                return rol;
+            }
         }
         public void AccountToevoegen()
         {
@@ -146,18 +178,22 @@ namespace CAREMATCH
 
             command.ExecuteNonQuery();
             con.Close();
-           // SqlDataAdapter sda = new SqlDataAdapter("INSERT INTO Login (Username, Password) VALUES ('" + textBox1.Text + "','" + textBox2.Text + "')", sql);
-           // sda.SelectCommand.ExecuteNonQuery();
-           // sql.Close();
+            // SqlDataAdapter sda = new SqlDataAdapter("INSERT INTO Login (Username, Password) VALUES ('" + textBox1.Text + "','" + textBox2.Text + "')", sql);
+            // sda.SelectCommand.ExecuteNonQuery();
+            // sql.Close();
         }
         public void ProfielAanpassen()
         {
 
         }
-        public void LoginCon(string naam, string wachtwoord)
+        public void ReactieToevoegen()
         {
-            OracleCommand sda = new OracleCommand("Select Count(*) From Login where username='" + naam + "' and password='" + wachtwoord + "'", con);
-            OracleCommand sdaa = new OracleCommand("Select Count(*) From LoginAdmin where username='" + naam + "' and password='" + wachtwoord + "'", con);
+
         }
+        public void BeoordelingToevoegen()
+        {
+
+        }
+        #endregion
     }
 }

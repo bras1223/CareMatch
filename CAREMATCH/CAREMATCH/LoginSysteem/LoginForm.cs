@@ -8,11 +8,16 @@ namespace Login
     partial class LoginForm : Form
     {
         private Login login;
-
+        private Database dbQuery;
+        HomeForm homeForm;
+        Gebruiker gebruiker;
+        Gebruiker vrijwilliger;
+        Gebruiker hulpbehoevende;
         public LoginForm()
         {
             InitializeComponent();
             login = new Login();
+            dbQuery = new Database();
         }
 
         //Logincheck
@@ -20,15 +25,16 @@ namespace Login
         {
             DateTime vandaag = new DateTime();
             Image piet = CAREMATCH.Properties.Resources.users;
-            HomeForm homeForm;
-            Gebruiker gebruiker;
-            Gebruiker vrijwilliger;
-            Gebruiker hulpbehoevende;
-            //login.LoginCheck(textBox1.Text, textBox2.Text, this);
-            //
-            //tijdelijk totdat we een datebase hebben
-            //
-            if (textBox1.Text == "beheerder" && textBox2.Text == "beheerder")
+
+            if (textBox1.Text == "" || textBox2.Text == "")
+            {
+                MessageBox.Show("Niet alle velden zijn ingevuld");
+            }
+            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "")
+            {
+                MessageBox.Show("Gebruikersnaam of Wachtwoord incorrect");
+            }
+            else if(dbQuery.Login(textBox1.Text, textBox2.Text) == "beheerder")
             {
                 gebruiker = new Gebruiker(textBox1.Text, "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.beheerder);
                 homeForm = new HomeForm(gebruiker);
@@ -38,9 +44,8 @@ namespace Login
                 {
                     this.Show();
                 }
-
-            }
-            else if (textBox1.Text == "vrijwilliger" && textBox2.Text == "vrijwilliger")
+            }                
+            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "vrijwilliger")
             {
                 vrijwilliger = new Gebruiker(textBox1.Text, "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.vrijwilliger);
                 homeForm = new HomeForm(vrijwilliger);
@@ -51,7 +56,7 @@ namespace Login
                     this.Show();
                 }
             }
-            else if (textBox1.Text == "hulpbehoevende" && textBox2.Text == "hulpbehoevende")
+            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "hulpbehoevende")
             {
                 hulpbehoevende = new Gebruiker(textBox1.Text, "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.hulpbehoevende);
                 homeForm = new HomeForm(hulpbehoevende);
@@ -104,11 +109,6 @@ namespace Login
         private void Start_Load(object sender, EventArgs e)
         {
 
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            textBox1.Text = login.database.HulpvraagAanpassen().ToString();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

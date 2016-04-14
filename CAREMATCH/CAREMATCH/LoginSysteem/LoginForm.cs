@@ -27,8 +27,6 @@ namespace Login
         private void btnLogin_Click(object sender, EventArgs e)
         {
             DateTime vandaag = new DateTime();
-
-            //
             Image piet = CAREMATCH.Properties.Resources.users;
 
             if (textBox1.Text == "" || textBox2.Text == "")
@@ -39,7 +37,7 @@ namespace Login
             {
                 MessageBox.Show("Gebruikersnaam of Wachtwoord incorrect");
             }
-            else if(dbQuery.Login(textBox1.Text, textBox2.Text) == "beheerder")
+            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "beheerder")
             {
                 gebruiker = new Beheerder(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
                 homeForm = new HomeForm(gebruiker);
@@ -49,7 +47,18 @@ namespace Login
                 {
                     this.Show();
                 }
-            }                
+            }
+            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "Beheerder")
+            {
+                gebruiker = new Beheerder(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
+                homeForm = new HomeForm(gebruiker);
+                this.Hide();
+                homeForm.ShowDialog();
+                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
+            }
             else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "vrijwilliger")
             {
                 //vrijwilliger is nu standaard goedgekeurd, hoort niet maar is handig voor testen
@@ -58,12 +67,36 @@ namespace Login
                 homeForm = new HomeForm(vrijwilliger);
                 this.Hide();
                 homeForm.ShowDialog();
-                if(homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
+                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
+            }
+            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "Vrijwilliger")
+            {
+                //vrijwilliger is nu standaard goedgekeurd, hoort niet maar is handig voor testen
+
+                vrijwilliger = new Vrijwilliger(true, textBox1.Text, "piet", "piet", piet, "piet", vandaag);
+                homeForm = new HomeForm(vrijwilliger);
+                this.Hide();
+                homeForm.ShowDialog();
+                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
                 {
                     this.Show();
                 }
             }
             else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "hulpbehoevende")
+            {
+                hulpbehoevende = new Hulpbehoevende(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
+                homeForm = new HomeForm(hulpbehoevende);
+                this.Hide();
+                homeForm.ShowDialog();
+                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
+            }
+            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "Hulpbehoevende")
             {
                 hulpbehoevende = new Hulpbehoevende(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
                 homeForm = new HomeForm(hulpbehoevende);
@@ -95,14 +128,6 @@ namespace Login
             //textBox2.Text = "";
         }
 
-        //Go to register form
-        private void lbRegister_Click(object sender, EventArgs e)
-        {
-            //this.Hide();
-            //SignUp drie = new SignUp();
-            //drie.Show();
-        }
-
         //Cursor hand
         private void lbRegister_MouseLeave(object sender, EventArgs e)
         {
@@ -112,19 +137,9 @@ namespace Login
         {
             lbRegister.Cursor = Cursors.Hand;
         }
-
-        private void Start_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-        }
-
+        //Naar registratiescherm
         private void lbRegister_Click_1(object sender, EventArgs e)
         {
-           
             SignUp.Show();
             this.Hide();
         }

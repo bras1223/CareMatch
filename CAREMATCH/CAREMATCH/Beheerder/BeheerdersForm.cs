@@ -8,46 +8,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using CAREMATCH;
+using System.Data.SqlClient;
+using System.Data.OleDb;
+using Oracle.ManagedDataAccess.Client;
 
 namespace Login
 {
     public partial class BeheerdersForm : Form
     {
+        private OracleConnection con;
+        private Database dbQuery;
         public BeheerdersForm()
         {
             InitializeComponent();
+            dbQuery = new Database();
         }
-        SqlConnection sql = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ferry\Documents\Login.mdf;Integrated Security=True;Connect Timeout=30");
+         
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (comboBox1.Text == "Alles")
-            {
-                sql.Open();
-                SqlDataAdapter sda = new SqlDataAdapter("Select * From Login", sql);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                dataGridView1.DataSource = dt;
-                sql.Close();
-            }
-            else if (comboBox1.Text == "Naam")
-            {
-                sql.Open();
-                SqlDataAdapter sda = new SqlDataAdapter("Select USERNAME From Login", sql);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                dataGridView1.DataSource = dt;
-                sql.Close();
-            }
-            else if (comboBox1.Text == "Wachtwoord")
-            {
-                sql.Open();
-                SqlDataAdapter sda = new SqlDataAdapter("Select PASSWORD From Login", sql);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                dataGridView1.DataSource = dt;
-                sql.Close();
-            }
+            
         }
 
         private void button2_Click(object sender, EventArgs e)

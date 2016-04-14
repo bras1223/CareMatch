@@ -1,4 +1,5 @@
 ﻿using System;
+using CAREMATCH;
 using CAREMATCH.Gebruikers;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -49,11 +50,7 @@ namespace CAREMATCH.VrijwilligerSysteem
 
             foreach (Hulpvragen.Hulpvraag hulpvraag in database.HulpvragenOverzicht())
             {
-                ListViewItem item = new ListViewItem(hulpvraag.HulpvraagID.ToString());
-                if(item.Selected)
-                {
-                    this.hulpvraag = hulpvraag;
-                }
+                ListViewItem item = new ListViewItem(hulpvraag.ToString());
                 item.UseItemStyleForSubItems = false;
                 item.SubItems.Add(hulpvraag.HulpbehoevendeFoto);
                 item.SubItems.Add(hulpvraag.Hulpbehoevende);
@@ -81,6 +78,7 @@ namespace CAREMATCH.VrijwilligerSysteem
         private void btnBekijkHulpvraag_Click(object sender, EventArgs e)
         {
             this.Hide();
+            hulpvraag = database.HulpvragenOverzicht()[lvHulpvragen.FocusedItem.Index];
             hulpvraagForm = new HulpvraagForm(hulpvraag, gebruiker, false);
             hulpvraagForm.ShowDialog();
             if(hulpvraagForm.DialogResult == DialogResult.OK)

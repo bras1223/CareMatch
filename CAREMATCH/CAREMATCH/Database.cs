@@ -39,18 +39,24 @@ namespace CAREMATCH
         {
 
         }
-        public string HulpvraagAanpassen()
+        public void HulpvraagAanpassen(int vrijwilligerID, Hulpvragen.Hulpvraag hulpvraag)
         {
             con.Open();
-
-            OracleCommand sda = new OracleCommand("SELECT * FROM Hulpvraag", con);
+            if (hulpvraag.Urgent)
+            {
+                queryString = "Y";
+            }
+            else
+            {
+                queryString = "N";
+            }
+            OracleCommand sda = new OracleCommand("UPDATE Hulpvraag SET Reactie ='"+hulpvraag.Reactie+"',Vrijwilliger='"+vrijwilligerID+"',Hulpvraaginhoud='"+hulpvraag.HulpvraagInhoud+"'Urgent='"+queryString+"' WHERE HulpvraagID='"+hulpvraag.HulpvraagID+"' ", con);
             OracleDataReader reader = sda.ExecuteReader();
             while (reader.Read())
             {
                 queryString = reader["Hulpvraaginhoud"].ToString();
             }
             con.Close();
-            return queryString;
         }
         public List<Hulpvragen.Hulpvraag> HulpvragenOverzicht()
         {
@@ -295,7 +301,6 @@ namespace CAREMATCH
             command.ExecuteNonQuery();
             con.Close();
         }
-
         public int ControlleerMaxGebruikerID()
         {
             int id = 0;
@@ -307,12 +312,33 @@ namespace CAREMATCH
                 id = Convert.ToInt32(reader["MAXID"]);
             }
             con.Close();
-            
             return id;
-           
         }
+        public bool ControlleerGebruikersnaam(string Gebruikersnaam)
+        {
+            con.Open();
+            OracleCommand command = new OracleCommand("SELECT Gebruikersnaam FROM GEBRUIKER WHERE Gebruikersnaam ='" + Gebruikersnaam + "'", con);
+            OracleDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                queryString = reader["Gebruikersnaam"].ToString();
+            }
+            con.Close();
+            if (queryString == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
             
+            
+        }
+        public void ShowAccountGegevens()
+        {
 
+        }
 
 
 

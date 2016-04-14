@@ -105,7 +105,6 @@
             this.rtxtReactieInhoud.Size = new System.Drawing.Size(635, 196);
             this.rtxtReactieInhoud.TabIndex = 9;
             this.rtxtReactieInhoud.Text = "";
-            this.rtxtReactieInhoud.TextChanged += new System.EventHandler(this.rtxtReactieInhoud_TextChanged);
             // 
             // btnReactieOpslaan
             // 
@@ -186,7 +185,6 @@
             this.cbUrgent.Size = new System.Drawing.Size(15, 14);
             this.cbUrgent.TabIndex = 19;
             this.cbUrgent.UseVisualStyleBackColor = true;
-            this.cbUrgent.CheckedChanged += new System.EventHandler(this.cbUrgent_CheckedChanged);
             // 
             // lblUrgent
             // 
@@ -233,7 +231,6 @@
             this.Name = "HulpvraagForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HulpvraagForm";
-            this.Load += new System.EventHandler(this.HulpvraagForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

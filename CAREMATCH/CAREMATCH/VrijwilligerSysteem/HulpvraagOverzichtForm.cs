@@ -25,22 +25,28 @@ namespace CAREMATCH.VrijwilligerSysteem
             if(gebruiker.GetType() == typeof(Hulpbehoevende))
             {
                 lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;
-                lblGebruikerType.Text = "hulpbehoevende";
             }
             else if(gebruiker.GetType() == typeof(Vrijwilliger))
             {
                 lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;
-                lblGebruikerType.Text = "vrijwilliger";
             }
             else
             {
                 lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;
-                lblGebruikerType.Text = "beheerder";
             }
-            
-            foreach(Hulpvragen.Hulpvraag hulpvraag in database.HulpvragenOverzicht())
+
+            lvHulpvragen.Columns.Add("HulpvraagID");
+            lvHulpvragen.Columns.Add("Foto");
+            lvHulpvragen.Columns.Add("Hulpbehoevende");
+            lvHulpvragen.Columns.Add("Titel");
+            lvHulpvragen.Columns.Add("Hulpvraag inhoud");
+            lvHulpvragen.Columns.Add("Vrijwilliger");
+            lvHulpvragen.Columns.Add("Urgent");
+
+            foreach (Hulpvragen.Hulpvraag hulpvraag in database.HulpvragenOverzicht())
             {
-                //.Items.Add(hulpvraag);
+                ListViewItem item = new ListViewItem();
+                item.SubItems.Add(hulpvraag.HulpvraagID.ToString());
             }
         }
         private void btnBekijkHulpvraag_Click(object sender, EventArgs e)

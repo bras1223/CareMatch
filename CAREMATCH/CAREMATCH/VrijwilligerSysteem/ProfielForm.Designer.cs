@@ -165,9 +165,9 @@
             // btnWachtwoordOpslaan
             // 
             this.btnWachtwoordOpslaan.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWachtwoordOpslaan.Location = new System.Drawing.Point(12, 357);
+            this.btnWachtwoordOpslaan.Location = new System.Drawing.Point(12, 347);
             this.btnWachtwoordOpslaan.Name = "btnWachtwoordOpslaan";
-            this.btnWachtwoordOpslaan.Size = new System.Drawing.Size(149, 51);
+            this.btnWachtwoordOpslaan.Size = new System.Drawing.Size(149, 61);
             this.btnWachtwoordOpslaan.TabIndex = 13;
             this.btnWachtwoordOpslaan.Text = "Wachtwoord Opslaan";
             this.btnWachtwoordOpslaan.UseVisualStyleBackColor = true;

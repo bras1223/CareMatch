@@ -11,6 +11,7 @@ namespace CAREMATCH.Hulpvragen
         public DateTime DatumTijd;
 
         public int HulpvraagID { get; set; }
+        public int Duur { get; set; }
         public string HulpbehoevendeFoto { get; set; }
         public string Hulpbehoevende { get; set; }
         public string Vrijwilliger { get; set; }
@@ -18,9 +19,9 @@ namespace CAREMATCH.Hulpvragen
         public string HulpvraagInhoud { get; set; }
         public string Frequentie { get; set; }
         public string Reactie { get; set; }
-        public int Duur { get; set; }
         public bool Aangenomen { get; set; }
         public bool Urgent { get; set; }
+        public bool Afgerond { get; set; }
 
         public Hulpvraag()
         {

@@ -27,11 +27,6 @@ namespace CAREMATCH
 
             con = new OracleConnection(constr);
         }
-        public void closeCon()
-        {
-            con.Close();
-        }
-
         #region Hulpvragen Queries
         public void HulpvraagToevoegen(Hulpvragen.Hulpvraag hulpvraag)
         {

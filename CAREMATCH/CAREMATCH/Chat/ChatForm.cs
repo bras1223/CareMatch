@@ -119,11 +119,11 @@ namespace CAREMATCH
 
         private void tmrLaadberichten_Tick(object sender, EventArgs e)
         {
-            foreach (string s in database.ChatGeschiedenis(partnernaam, gebruiker.Gebruikersnaam, partnerid, gebruiker.GebruikersID + 1))
-            {
-                lbChat.Items.Clear();
-                lbChat.Items.Add(s);
-            }
+            //foreach (string s in database.ChatGeschiedenis(partnernaam, gebruiker.Gebruikersnaam, partnerid, gebruiker.GebruikersID + 1))
+            //{
+            //    lbChat.Items.Clear();
+            //    lbChat.Items.Add(s);
+            //}
         }
     }
 }

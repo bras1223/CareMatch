@@ -11,14 +11,14 @@
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing && (components != null))
+        //    {
+        //        components.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
 
         #region Windows Form Designer generated code
 
@@ -36,7 +36,6 @@
             this.lbChat = new System.Windows.Forms.ListBox();
             this.lbGebruikerLijst = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).BeginInit();
-            this.SuspendLayout();
             // 
             // tbBericht
             // 
@@ -56,7 +55,6 @@
             this.btnVerzenden.TabIndex = 3;
             this.btnVerzenden.Text = "Verzenden";
             this.btnVerzenden.UseVisualStyleBackColor = true;
-            this.btnVerzenden.Click += new System.EventHandler(this.btnVerzenden_Click_1);
             // 
             // pbProfielFoto
             // 
@@ -87,7 +85,6 @@
             this.btnTerug.TabIndex = 6;
             this.btnTerug.Text = "Terug";
             this.btnTerug.UseVisualStyleBackColor = true;
-            this.btnTerug.Click += new System.EventHandler(this.btnTerug_Click);
             // 
             // lbChat
             // 
@@ -107,30 +104,8 @@
             this.lbGebruikerLijst.Name = "lbGebruikerLijst";
             this.lbGebruikerLijst.Size = new System.Drawing.Size(192, 479);
             this.lbGebruikerLijst.TabIndex = 8;
-            this.lbGebruikerLijst.SelectedIndexChanged += new System.EventHandler(this.lbGebruikerLijst_SelectedIndexChanged);
             // 
             // ChatForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1193, 641);
-            this.Controls.Add(this.lbGebruikerLijst);
-            this.Controls.Add(this.lbChat);
-            this.Controls.Add(this.btnTerug);
-            this.Controls.Add(this.lblGebruikersnaam);
-            this.Controls.Add(this.pbProfielFoto);
-            this.Controls.Add(this.btnVerzenden);
-            this.Controls.Add(this.tbBericht);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(6);
-            this.Name = "ChatForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ChatForm";
-            this.Load += new System.EventHandler(this.ChatForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

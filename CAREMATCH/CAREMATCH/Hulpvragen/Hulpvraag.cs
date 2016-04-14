@@ -11,6 +11,7 @@ namespace CAREMATCH.Hulpvragen
         public DateTime DatumTijd;
 
         public int HulpvraagID { get; set; }
+        public string HulpbehoevendeFoto { get; set; }
         public string Hulpbehoevende { get; set; }
         public string Vrijwilliger { get; set; }
         public string Titel { get; set;}
@@ -24,9 +25,11 @@ namespace CAREMATCH.Hulpvragen
         {
 
         }
-        public void VerwijderHulpvraag()
+        public override string ToString()
         {
-
+            string iets;
+            iets.
+            return HulpvraagID.ToString() + " " + HulpbehoevendeFoto
         }
     }
 }

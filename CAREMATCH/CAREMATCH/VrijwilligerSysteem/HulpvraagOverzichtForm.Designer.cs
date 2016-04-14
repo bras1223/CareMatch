@@ -32,15 +32,13 @@
             this.lblIngelogdAls = new System.Windows.Forms.Label();
             this.lblGebruikersnaam = new System.Windows.Forms.Label();
             this.btnSluiten = new System.Windows.Forms.Button();
-            this.lblGebruikerType = new System.Windows.Forms.Label();
-            this.dgvHulpvragen = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvHulpvragen)).BeginInit();
+            this.lvHulpvragen = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // btnBekijkHulpvraag
             // 
             this.btnBekijkHulpvraag.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBekijkHulpvraag.Location = new System.Drawing.Point(189, 383);
+            this.btnBekijkHulpvraag.Location = new System.Drawing.Point(670, 401);
             this.btnBekijkHulpvraag.Name = "btnBekijkHulpvraag";
             this.btnBekijkHulpvraag.Size = new System.Drawing.Size(196, 57);
             this.btnBekijkHulpvraag.TabIndex = 1;
@@ -51,7 +49,7 @@
             // lblIngelogdAls
             // 
             this.lblIngelogdAls.AutoSize = true;
-            this.lblIngelogdAls.Location = new System.Drawing.Point(12, 12);
+            this.lblIngelogdAls.Location = new System.Drawing.Point(12, 9);
             this.lblIngelogdAls.Name = "lblIngelogdAls";
             this.lblIngelogdAls.Size = new System.Drawing.Size(67, 13);
             this.lblIngelogdAls.TabIndex = 2;
@@ -60,7 +58,7 @@
             // lblGebruikersnaam
             // 
             this.lblGebruikersnaam.AutoSize = true;
-            this.lblGebruikersnaam.Location = new System.Drawing.Point(85, 12);
+            this.lblGebruikersnaam.Location = new System.Drawing.Point(85, 9);
             this.lblGebruikersnaam.Name = "lblGebruikersnaam";
             this.lblGebruikersnaam.Size = new System.Drawing.Size(84, 13);
             this.lblGebruikersnaam.TabIndex = 3;
@@ -69,7 +67,7 @@
             // btnSluiten
             // 
             this.btnSluiten.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSluiten.Location = new System.Drawing.Point(12, 404);
+            this.btnSluiten.Location = new System.Drawing.Point(12, 422);
             this.btnSluiten.Name = "btnSluiten";
             this.btnSluiten.Size = new System.Drawing.Size(110, 36);
             this.btnSluiten.TabIndex = 4;
@@ -77,31 +75,20 @@
             this.btnSluiten.UseVisualStyleBackColor = true;
             this.btnSluiten.Click += new System.EventHandler(this.btnLogUit_Click);
             // 
-            // lblGebruikerType
+            // lvHulpvragen
             // 
-            this.lblGebruikerType.AutoSize = true;
-            this.lblGebruikerType.Location = new System.Drawing.Point(85, 25);
-            this.lblGebruikerType.Name = "lblGebruikerType";
-            this.lblGebruikerType.Size = new System.Drawing.Size(52, 13);
-            this.lblGebruikerType.TabIndex = 5;
-            this.lblGebruikerType.Text = "Vrijwilliger";
-            // 
-            // dgvHulpvragen
-            // 
-            this.dgvHulpvragen.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvHulpvragen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvHulpvragen.Location = new System.Drawing.Point(166, 12);
-            this.dgvHulpvragen.Name = "dgvHulpvragen";
-            this.dgvHulpvragen.Size = new System.Drawing.Size(700, 365);
-            this.dgvHulpvragen.TabIndex = 6;
+            this.lvHulpvragen.Location = new System.Drawing.Point(143, 25);
+            this.lvHulpvragen.Name = "lvHulpvragen";
+            this.lvHulpvragen.Size = new System.Drawing.Size(723, 370);
+            this.lvHulpvragen.TabIndex = 6;
+            this.lvHulpvragen.UseCompatibleStateImageBehavior = false;
             // 
             // HulpvraagOverzichtForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(878, 455);
-            this.Controls.Add(this.dgvHulpvragen);
-            this.Controls.Add(this.lblGebruikerType);
+            this.ClientSize = new System.Drawing.Size(878, 470);
+            this.Controls.Add(this.lvHulpvragen);
             this.Controls.Add(this.btnSluiten);
             this.Controls.Add(this.lblGebruikersnaam);
             this.Controls.Add(this.lblIngelogdAls);
@@ -110,7 +97,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HulpvragenOverzichtForm";
             this.Load += new System.EventHandler(this.HulpvraagOverzichtForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvHulpvragen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,7 +107,6 @@
         private System.Windows.Forms.Label lblIngelogdAls;
         private System.Windows.Forms.Label lblGebruikersnaam;
         private System.Windows.Forms.Button btnSluiten;
-        private System.Windows.Forms.Label lblGebruikerType;
-        private System.Windows.Forms.DataGridView dgvHulpvragen;
+        private System.Windows.Forms.ListView lvHulpvragen;
     }
 }

@@ -14,6 +14,7 @@ namespace CAREMATCH
     public partial class ChatForm : Form
     {
         Gebruiker gebruiker;
+        string partnernaam = "";
         int partnerid;
         Database database;
 
@@ -31,19 +32,9 @@ namespace CAREMATCH
         {
             int id = gebruiker.GebruikersID;
             DateTime datum;
-            try
-            {
                 datum = DateTime.Now;
                 database.ChatInvoegen(database.ControlleerMaxChatID() + 1 ,tbBericht.Text, partnerid, gebruiker.GebruikersID + 1, datum.ToString("dd/MMM HH:mm"));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                database.closeCon();
-            }
+            //database.closeCon();
             //Chatbericht bericht = new Chatbericht(tbBericht.Text);
             //Database
             //lbChat.Items.Add(gebruiker.Gebruikersnaam+": "+bericht.Inhoud);
@@ -65,14 +56,14 @@ namespace CAREMATCH
         private void ChatForm_Load_1(object sender, EventArgs e)
         {
             LbVullen();
-            tmrLaadberichten.Start();
+            tmrLaadberichten.Start();         
         }
 
         private void lbGebruikerLijst_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            string naam = lbGebruikerLijst.SelectedItem as string;
-            lblGebruikersnaam.Text = naam;
-            partnerid = database.ChatpartnerID(naam);
+            partnernaam = lbGebruikerLijst.SelectedItem as string;
+            lblGebruikersnaam.Text = partnernaam;
+            partnerid = database.ChatpartnerID(partnernaam);           
         }
 
         //Methodes
@@ -128,7 +119,11 @@ namespace CAREMATCH
 
         private void tmrLaadberichten_Tick(object sender, EventArgs e)
         {
-
+            foreach (string s in database.ChatGeschiedenis(partnernaam, gebruiker.Gebruikersnaam, partnerid, gebruiker.GebruikersID + 1))
+            {
+                lbChat.Items.Clear();
+                lbChat.Items.Add(s);
+            }
         }
     }
 }

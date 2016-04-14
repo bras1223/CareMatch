@@ -188,6 +188,15 @@ namespace CAREMATCH
 
         public void ChatInvoegen(int chatid, string inhoud, int ontvangerID, int verzenderID, string datum)
         {
+                con.Open();
+                OracleCommand command = new OracleCommand("INSERT INTO Chat(ChatID, OntvangerID, VerzenderID, BerichtInhoud, Datumtijd) VALUES('"+chatid+"','"+ontvangerID+"', '" + verzenderID + "', '" + inhoud + "', TO_TIMESTAMP('" + datum + "','DD-MON HH24.MI'))", con);
+                command.ExecuteNonQuery();
+                con.Close();
+        }
+
+        public int ControlleerMaxChatID()
+        {
+            int id = 0;
             int Chatcount = 0;
 
             con.Open();
@@ -199,44 +208,62 @@ namespace CAREMATCH
                 Chatcount = Convert.ToInt32(reader["ChatIDCount"]);
             }
 
-            if(Chatcount > 0)
+            if (Chatcount > 0)
             {
-                OracleCommand command = new OracleCommand("INSERT INTO Chat(ChatID, OntvangerID, VerzenderID, BerichtInhoud, Datumtijd) VALUES('1','" + ControlleerMaxChatID() + 1 + "', '" + verzenderID + "', '" + inhoud + "', TO_TIMESTAMP('" + datum + "','DD-MON HH24.MI'))", con);
-                command.ExecuteNonQuery();
+                OracleCommand command = new OracleCommand("SELECT MAX(CHATID) as m FROM CHAT", con);
+                OracleDataReader reader2 = command.ExecuteReader();
+                while (reader2.Read())
+                {
+                    id = Convert.ToInt32(reader2["m"]);
+                }
                 con.Close();
+                return id;
+            }
+            else
+            {
+                con.Close();
+                return 0;
             }
 
-            else if(Chatcount <= 0)
-            {
-                OracleCommand command = new OracleCommand("INSERT INTO Chat(ChatID, OntvangerID, VerzenderID, BerichtInhoud, Datumtijd) VALUES('1','0', '" + verzenderID + "', '" + inhoud + "', TO_TIMESTAMP('" + datum + "','DD-MON HH24.MI'))", con);
-                command.ExecuteNonQuery();
-                con.Close();
-            }
+            con.Close();      
         }
 
-        public int ControlleerMaxChatID()
-        {
-            int id = 0;
+        public List<string> ChatGeschiedenis(string ontvangerNaam, string verzenderNaam, int ontvangerID, int verzenderID)
+        {      
+
+            List<string> chatgeschiedenis;
+            chatgeschiedenis = new List<string>();
+
             con.Open();
-            OracleCommand command = new OracleCommand("SELECT MAX(CHATID) as MAXID FROM CHAT", con);
-            OracleDataReader reader = command.ExecuteReader();
+
+            OracleCommand cmd = new OracleCommand("SELECT BerichtInhoud FROM chat WHERE ontvangerID = '" + ontvangerID + "' AND verzenderID = '" + verzenderID + "'", con);
+            OracleDataReader reader = cmd.ExecuteReader();
+
             while (reader.Read())
             {
-                id = Convert.ToInt32(reader["MAXID"]);
+                chatgeschiedenis.Add(verzenderNaam + ": " + reader["BerichtInhoud"].ToString());
             }
+
+            OracleCommand cmd2 = new OracleCommand("SELECT BerichtInhoud FROM chat WHERE ontvangerID = '" + verzenderID + "' AND verzenderID = '" + ontvangerID + "'", con);
+            OracleDataReader reader2 = cmd.ExecuteReader();
+
+            while (reader2.Read())
+            {
+                chatgeschiedenis.Add(ontvangerNaam + ": " + reader2["BerichtInhoud"].ToString());
+            }
+
             con.Close();
 
-            return id;
+            return chatgeschiedenis;
         }
 
-        public void ChatWeergeven(int ontvangerID, int verzenderID)
+        public List<string> Chatverzonden(int ontvangerID, int verzenderID)
         {
             List<string> chatverzonden;
-            List<string> chatgekregen;
             chatverzonden = new List<string>();
 
-
             con.Open();
+
             OracleCommand cmd = new OracleCommand("SELECT Inhoud FROM chat WHERE ontvangerID = '"+ontvangerID+"' AND verzenderID = '"+verzenderID+"'", con);
             OracleDataReader reader = cmd.ExecuteReader();
 
@@ -244,7 +271,30 @@ namespace CAREMATCH
             {
                 chatverzonden.Add(reader["Inhoud"].ToString());
             }
+
             con.Close();
+
+            return chatverzonden;
+        }
+
+        public List<string> ChatGekregen(int ontvangerID, int verzenderID)
+        {
+            List<string> chatgekregen;
+            chatgekregen = new List<string>();
+
+            con.Open();
+
+            OracleCommand cmd = new OracleCommand("SELECT Inhoud FROM chat WHERE ontvangerID = '" + verzenderID + "' AND verzenderID = '" + ontvangerID + "'", con);
+            OracleDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                chatgekregen.Add(reader["Inhoud"].ToString());
+            }
+
+            con.Close();
+
+            return chatgekregen;
         }
 
         #endregion

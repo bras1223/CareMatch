@@ -49,6 +49,8 @@
             this.lbRegister.TabIndex = 5;
             this.lbRegister.Text = "Nog geen account? Registreer je hier!";
             this.lbRegister.Click += new System.EventHandler(this.lbRegister_Click_1);
+            this.lbRegister.MouseEnter += new System.EventHandler(this.lbRegister_MouseEnter);
+            this.lbRegister.MouseLeave += new System.EventHandler(this.lbRegister_MouseLeave);
             // 
             // label2
             // 
@@ -97,7 +99,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(236, 20);
             this.textBox1.TabIndex = 7;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+
             // 
             // LoginForm
             // 
@@ -115,7 +117,6 @@
             this.MinimizeBox = false;
             this.Name = "LoginForm";
             this.Text = "LoginForm";
-            this.Load += new System.EventHandler(this.Start_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

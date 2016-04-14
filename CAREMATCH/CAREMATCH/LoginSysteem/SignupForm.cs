@@ -48,12 +48,12 @@ namespace Login
             else if (comboBox1.Text == "Hulpbehoevende" && textBox2.Text == textBox3.Text && GebruikNaam == true)
             {
                 dbQuery.AccountToevoegen(GebruikNum.ToString(), textBox1.Text, textBox2.Text, "Y", comboBox1.Text);
-                MessageBox.Show("Account toegevoed");
+                MessageBox.Show("Account toegevoegd");
             }
             else if (comboBox1.Text == "Vrijwilliger" && textBox2.Text == textBox3.Text && GebruikNaam == true)
             {
                 dbQuery.AccountToevoegen(GebruikNum.ToString(), textBox1.Text, textBox2.Text, "Y", comboBox1.Text);
-                MessageBox.Show("Account toegevoed");
+                MessageBox.Show("Account toegevoegd");
             }
 
         }

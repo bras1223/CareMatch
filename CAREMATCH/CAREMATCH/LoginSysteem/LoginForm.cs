@@ -112,19 +112,9 @@ namespace Login
         {
             lbRegister.Cursor = Cursors.Hand;
         }
-
-        private void Start_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-        }
-
+        //Naar registratiescherm
         private void lbRegister_Click_1(object sender, EventArgs e)
         {
-           
             SignUp.Show();
             this.Hide();
         }

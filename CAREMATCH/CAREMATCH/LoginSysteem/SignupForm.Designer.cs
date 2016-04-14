@@ -44,7 +44,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(7, 227);
+            this.button2.Location = new System.Drawing.Point(12, 161);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(168, 28);
             this.button2.TabIndex = 6;
@@ -123,7 +123,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(425, 227);
+            this.button1.Location = new System.Drawing.Point(425, 161);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(168, 28);
             this.button1.TabIndex = 5;
@@ -153,8 +153,8 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Hulpbehoevende",
-            "Vrijwilliger"});
+            "hulpbehoevende",
+            "vrijwilliger"});
             this.comboBox1.Location = new System.Drawing.Point(204, 5);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(169, 21);
@@ -165,7 +165,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(605, 267);
+            this.ClientSize = new System.Drawing.Size(605, 201);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button2);

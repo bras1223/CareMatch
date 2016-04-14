@@ -27,8 +27,7 @@ namespace Login
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            int GebruikerIDNUM = dbQuery.ControlleerMaxGebruikerID();
+            int GebruikNum = dbQuery.ControlleerMaxGebruikerID() + 1;
 
             if (textBox2.Text != textBox3.Text)
             {

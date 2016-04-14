@@ -1,4 +1,5 @@
 ﻿using System;
+using CAREMATCH.Gebruikers;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,12 +22,12 @@ namespace CAREMATCH.VrijwilligerSysteem
             database = new Database();
             hulpvraagForm = new HulpvraagForm(gebruiker, false);
 
-            if(gebruiker.rol == Enum.rol.hulpbehoevende)
+            if(gebruiker.GetType() == typeof(Hulpbehoevende))
             {
                 lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;
                 lblGebruikerType.Text = "hulpbehoevende";
             }
-            else if(gebruiker.rol == Enum.rol.vrijwilliger)
+            else if(gebruiker.GetType() == typeof(Vrijwilliger))
             {
                 lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;
                 lblGebruikerType.Text = "vrijwilliger";
@@ -36,15 +37,17 @@ namespace CAREMATCH.VrijwilligerSysteem
                 lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;
                 lblGebruikerType.Text = "beheerder";
             }
-
-            lvHulpvragenOverzicht.View = View.Details;
-            string[] row1 = { database.HulpvragenOverzicht()[0], database.HulpvragenOverzicht()[1], database.HulpvragenOverzicht()[2] };
-            lvHulpvragenOverzicht.Items.Add("chHulpvraagID").SubItems.AddRange(row1);
+            
+            foreach(Hulpvragen.Hulpvraag hulpvraag in database.HulpvragenOverzicht())
+            {
+                //.Items.Add(hulpvraag);
+            }
         }
         private void btnBekijkHulpvraag_Click(object sender, EventArgs e)
         {
             //properties van aangeklikte hulpvraag moeten aan HulpvraagForm worden meegegeven, zodat je ze kunt bekijken.
             //selected index van listbox/view item uit list met hulpvragen halen
+            //eventueel nog de hulpvraag aan kunnen passen als hulbbehoevende
 
             this.Hide();
             hulpvraagForm.ShowDialog();

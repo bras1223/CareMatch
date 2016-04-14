@@ -52,27 +52,42 @@ namespace CAREMATCH
             con.Close();
             return queryString;
         }
-        public List<string> HulpvragenOverzicht()
+        public List<Hulpvragen.Hulpvraag> HulpvragenOverzicht()
         {
-            List<string> hulpvraagList = new List<string>();
+            List<Hulpvragen.Hulpvraag> hulpvraagList = new List<Hulpvragen.Hulpvraag>();
 
             con.Open();
-            OracleCommand sda = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as g, Hulpvraag.HulpvraagInhoud, Hulpvraag.Aangenomen, Hulpvraag.DatumTijd, Hulpvraag.Urgent FROM Hulpvraag", con);
+            OracleCommand sda = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.HulpvraagInhoud, Hulpvraag.Aangenomen, Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie, Hulpvraag.Titel FROM Hulpvraag", con);
             OracleDataReader reader = sda.ExecuteReader();
             while (reader.Read())
             {
-                queryString = reader["HulpvraagID"].ToString();
-                hulpvraagList.Add(queryString);
-                queryString = reader["g"].ToString();
-                hulpvraagList.Add(queryString);
-                queryString = reader["HulpvraagInhoud"].ToString();
-                hulpvraagList.Add(queryString);
-                queryString = reader["Aangenomen"].ToString();
-                hulpvraagList.Add(queryString);
-                queryString = reader["DatumTijd"].ToString();
-                hulpvraagList.Add(queryString);
-                queryString = reader["Urgent"].ToString();
-                hulpvraagList.Add(queryString);
+                Hulpvragen.Hulpvraag hulpvraag = new Hulpvragen.Hulpvraag();
+
+                hulpvraag.HulpvraagID = Convert.ToInt32(reader["HulpvraagID"]);
+                hulpvraag.Titel = reader["Titel"].ToString();
+                hulpvraag.Hulpbehoevende = reader["hulpbeh"].ToString();
+                hulpvraag.Vrijwilliger = reader["vrijwilliger"].ToString();
+                hulpvraag.HulpvraagInhoud = reader["HulpvraagInhoud"].ToString();
+                hulpvraag.Frequentie = reader["Frequentie"].ToString();
+                hulpvraag.DatumTijd = Convert.ToDateTime(reader["DatumTijd"]);
+                if (reader["Aangenomen"].ToString() == "Y")
+                {
+                    hulpvraag.Aangenomen = true;
+                }
+                else
+                {
+                    hulpvraag.Aangenomen = false;
+                }
+                if (reader["Urgent"].ToString() == "Y")
+                {
+                    hulpvraag.Urgent = true;
+                }
+                else
+                {
+                    hulpvraag.Urgent = false;
+                }
+
+                hulpvraagList.Add(hulpvraag);
             }
             con.Close();
 
@@ -224,10 +239,15 @@ namespace CAREMATCH
                 return rol;
             }
         }
-        public void AccountToevoegen()
+        public void AccountToevoegen(string GebruikerID, string Gebruikersnaam, string Wachtwoord, string Approved, string Rol)
         {
             con.Open();
-            OracleCommand command = new OracleCommand("INSERT INTO Hulpvraag(HulpvraagID, GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie) VALUES('@HulpvraagID','@GebruikerID, '@HulpvraagInhoud', '@Urgent', '@DatumTijd', '@Duur', '@Frequentie');", con);
+            OracleCommand command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERID, GEBRUIKERSNAAM, WACHTWOORD, APPROVED, ROL) VALUES('"  +  GebruikerID + "','" + Gebruikersnaam + "','" + Wachtwoord + "','" + Approved + "','" + Rol + "')",  con);
+            command.ExecuteNonQuery();
+            con.Close();
+
+
+            // OracleCommand command = new OracleCommand("INSERT INTO Hulpvraag(HulpvraagID, GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie) VALUES('@HulpvraagID','@GebruikerID, '@HulpvraagInhoud', '@Urgent', '@DatumTijd', '@Duur', '@Frequentie');", con);
             //command.Parameters.AddWithValue("HulpvraagID", 1);
             //command.Parameters.AddWithValue("GebruikerID", 1);
             //command.Parameters.AddWithValue("HulpvraagInhoud", "Testinhoud");
@@ -236,12 +256,13 @@ namespace CAREMATCH
             //command.Parameters.AddWithValue("Duur", 20);
             //command.Parameters.AddWithValue("Frequentie", 2);
 
-            command.ExecuteNonQuery();
-            con.Close();
+
             // SqlDataAdapter sda = new SqlDataAdapter("INSERT INTO Login (Username, Password) VALUES ('" + textBox1.Text + "','" + textBox2.Text + "')", sql);
             // sda.SelectCommand.ExecuteNonQuery();
             // sql.Close();
         }
+
+          
         public void ProfielAanpassen()
         {
 

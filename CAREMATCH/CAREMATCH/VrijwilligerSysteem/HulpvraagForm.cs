@@ -1,4 +1,5 @@
 ﻿using System;
+using CAREMATCH.Gebruikers;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,12 +19,12 @@ namespace CAREMATCH.VrijwilligerSysteem
             InitializeComponent();
             this.gebruiker = gebruiker;
 
-            if (gebruiker.rol == Enum.rol.hulpbehoevende && hulpvraagIndienen == true)
+            if (gebruiker.GetType() == typeof(Hulpbehoevende) && hulpvraagIndienen == true)
             {
                 rtxtReactieInhoud.Enabled = false;
                 btnReactieOpslaan.Visible = false;
             }
-            else if (gebruiker.rol == Enum.rol.vrijwilliger)
+            else if (gebruiker.GetType() == typeof(Vrijwilliger))
             {
                 btnHulpvraagOpslaan.Visible = false;
 

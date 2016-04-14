@@ -50,7 +50,7 @@ namespace CAREMATCH
             {
                 queryString = "N";
             }
-            OracleCommand sda = new OracleCommand("UPDATE Hulpvraag SET Reactie ='"+hulpvraag.Reactie+"',Vrijwilliger='"+vrijwilligerID+"',Hulpvraaginhoud='"+hulpvraag.HulpvraagInhoud+"'Urgent='"+queryString+"' WHERE HulpvraagID='"+hulpvraag.HulpvraagID+"' ", con);
+            OracleCommand sda = new OracleCommand("UPDATE Hulpvraag SET Reactie ='"+hulpvraag.Reactie+"', VrijwilligerID=(SELECT GebruikerID, FROM Gebruiker WHERE GebruikerID ='"+vrijwilligerID+"', Hulpvraaginhoud='"+hulpvraag.HulpvraagInhoud+"', Urgent='"+queryString+"' WHERE HulpvraagID='"+hulpvraag.HulpvraagID+"' ", con);
             OracleDataReader reader = sda.ExecuteReader();
             while (reader.Read())
             {

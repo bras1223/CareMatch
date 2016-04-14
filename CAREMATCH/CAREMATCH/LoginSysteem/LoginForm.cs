@@ -11,6 +11,7 @@ namespace Login
         private Login login;
         private Database dbQuery;
         HomeForm homeForm;
+        BeheerdersForm beheerdersform;
         Beheerder gebruiker;
         Vrijwilliger vrijwilliger;
         Hulpbehoevende hulpbehoevende;
@@ -37,12 +38,16 @@ namespace Login
             {
                 MessageBox.Show("Gebruikersnaam of Wachtwoord incorrect");
             }
+
+
+
+
             else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "beheerder")
             {
                 gebruiker = new Beheerder(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
-                homeForm = new HomeForm(gebruiker);
+                beheerdersform = new BeheerdersForm();
                 this.Hide();
-                homeForm.ShowDialog();
+                beheerdersform.ShowDialog();
                 if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
                 {
                     this.Show();
@@ -51,14 +56,22 @@ namespace Login
             else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "Beheerder")
             {
                 gebruiker = new Beheerder(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
-                homeForm = new HomeForm(gebruiker);
+                beheerdersform = new BeheerdersForm();
                 this.Hide();
-                homeForm.ShowDialog();
+                beheerdersform.ShowDialog();
                 if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
                 {
                     this.Show();
                 }
             }
+
+
+
+
+
+
+
+
             else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "vrijwilliger")
             {
                 //vrijwilliger is nu standaard goedgekeurd, hoort niet maar is handig voor testen
@@ -107,25 +120,6 @@ namespace Login
                     this.Show();
                 }
             }
-        }
-
-        //User check
-        public void AdminLogin()
-        {
-            //this.Hide();
-            //BeheerdersForm twee = new BeheerdersForm();
-            //twee.Show();
-        }
-        public void Userright()
-        {
-            //this.Hide();
-            //GebruikersForm drie = new GebruikersForm();
-            //drie.Show();
-        }
-        public void Userwrong()
-        {
-            //MessageBox.Show("Gebruikersnaam en/of wachtwoord verkeerd");
-            //textBox2.Text = "";
         }
 
         //Cursor hand

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CAREMATCH.Gebruikers;
 
 namespace CAREMATCH
 {
@@ -74,7 +75,7 @@ namespace CAREMATCH
             //Kijk of de gebruiker hulpbehoevende of vrijwilliger is en vult de listbox met vrijwilligers of hulpbehoevende
         public void LbVullen()
         {
-            if(gebruiker.rol.ToString() == "hulpbehoevende")
+            if(gebruiker.GetType() == typeof(Hulpbehoevende))
             {
                 foreach (String v in database.VrijwilligersLijst())
                 {
@@ -82,7 +83,7 @@ namespace CAREMATCH
                 }
             }
 
-            else if(gebruiker.rol.ToString() == "vrijwilliger")
+            else if(gebruiker.GetType() == typeof(Vrijwilliger))
             {
                 foreach (String h in database.HulpbehoevendeLijst())
                 {

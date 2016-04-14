@@ -259,18 +259,26 @@ namespace CAREMATCH
             con.Close();
             return id;
         }
-        public string ControlleerGebruikersnaam()
+        public bool ControlleerGebruikersnaam(string Gebruikersnaam)
         {
-            string naam = "";
             con.Open();
-            OracleCommand command = new OracleCommand("SELECT Gebruikersnaam as Naam FROM GEBRUIKER", con);
+            OracleCommand command = new OracleCommand("SELECT Gebruikersnaam FROM GEBRUIKER WHERE Gebruikersnaam ='" + Gebruikersnaam + "'", con);
             OracleDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                naam =(reader["Naam"].ToString());
+                queryString = reader["Gebruikersnaam"].ToString();
             }
             con.Close();
-            return naam;
+            if (queryString == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+            
         }
 
 

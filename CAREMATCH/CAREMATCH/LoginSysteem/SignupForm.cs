@@ -24,12 +24,13 @@ namespace Login
             dbQuery = new Database();
             
         }
-
+        //Gebruiker toevoegen
         private void button1_Click(object sender, EventArgs e)
         {
             int GebruikNum = dbQuery.ControlleerMaxGebruikerID() + 1;
-            string GebruikNaam = dbQuery.ControlleerGebruikersnaam();
-            if (textBox1.Text == GebruikNaam)
+            bool GebruikNaam = dbQuery.ControlleerGebruikersnaam(textBox1.Text);
+
+            if (GebruikNaam == false)
             {
                 MessageBox.Show("Gebruikersnaam bestaat al");
             }
@@ -45,19 +46,19 @@ namespace Login
             {
                 MessageBox.Show("Niet alles is ingevuld");
             }
-            else if (comboBox1.Text == "Hulpbehoevende" && textBox2.Text == textBox3.Text && textBox1.Text != GebruikNaam)
+            else if (comboBox1.Text == "Hulpbehoevende" && textBox2.Text == textBox3.Text && GebruikNaam == true)
             {
                 dbQuery.AccountToevoegen(GebruikNum.ToString(), textBox1.Text, textBox2.Text, "Y", comboBox1.Text);
                 MessageBox.Show("Account toegevoed");
             }
-            else if (comboBox1.Text == "Vrijwilliger" && textBox2.Text == textBox3.Text && textBox1.Text != GebruikNaam)
+            else if (comboBox1.Text == "Vrijwilliger" && textBox2.Text == textBox3.Text && GebruikNaam == true)
             {
-                dbQuery.AccountToevoegen(GebruikNum.ToString(), textBox1.Text, textBox2.Text, "N", comboBox1.Text);
+                dbQuery.AccountToevoegen(GebruikNum.ToString(), textBox1.Text, textBox2.Text, "Y", comboBox1.Text);
                 MessageBox.Show("Account toegevoed");
             }
 
         }
-
+        //Wachtwoord controle
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             if (textBox2.Text.Length < 5)
@@ -71,7 +72,7 @@ namespace Login
                 label5.Visible = true;
             }
         }
-
+        //Terug naar LoginForm
         private void button2_Click(object sender, EventArgs e)
         {
            this.Hide();

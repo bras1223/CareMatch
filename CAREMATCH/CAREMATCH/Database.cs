@@ -164,10 +164,15 @@ namespace CAREMATCH
                 return rol;
             }
         }
-        public void AccountToevoegen()
+        public void AccountToevoegen(string GebruikerID, string Gebruikersnaam, string Wachtwoord, string Approved, string Rol)
         {
             con.Open();
-            OracleCommand command = new OracleCommand("INSERT INTO Hulpvraag(HulpvraagID, GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie) VALUES('@HulpvraagID','@GebruikerID, '@HulpvraagInhoud', '@Urgent', '@DatumTijd', '@Duur', '@Frequentie');", con);
+            OracleCommand command = new OracleCommand("INSERT INTO GEBRUIKER(GebruikerID, Gebruikersnaam, Wachtwoord, Approved, Rol) VALUES(" + "'" + GebruikerID + "'" + "," + "'" + "'" + Gebruikersnaam + "'" + "," + "'" + Wachtwoord + "'" + "," + "'" + Approved + "'" + "," + "'" + Rol + "');",  con);
+            command.ExecuteNonQuery();
+            con.Close();
+
+
+            // OracleCommand command = new OracleCommand("INSERT INTO Hulpvraag(HulpvraagID, GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie) VALUES('@HulpvraagID','@GebruikerID, '@HulpvraagInhoud', '@Urgent', '@DatumTijd', '@Duur', '@Frequentie');", con);
             //command.Parameters.AddWithValue("HulpvraagID", 1);
             //command.Parameters.AddWithValue("GebruikerID", 1);
             //command.Parameters.AddWithValue("HulpvraagInhoud", "Testinhoud");
@@ -176,12 +181,13 @@ namespace CAREMATCH
             //command.Parameters.AddWithValue("Duur", 20);
             //command.Parameters.AddWithValue("Frequentie", 2);
 
-            command.ExecuteNonQuery();
-            con.Close();
+
             // SqlDataAdapter sda = new SqlDataAdapter("INSERT INTO Login (Username, Password) VALUES ('" + textBox1.Text + "','" + textBox2.Text + "')", sql);
             // sda.SelectCommand.ExecuteNonQuery();
             // sql.Close();
         }
+
+          
         public void ProfielAanpassen()
         {
 

@@ -36,8 +36,11 @@ namespace CAREMATCH.VrijwilligerSysteem
                 lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;
                 lblGebruikerType.Text = "beheerder";
             }
-
-            lvHulpvragenOverzicht.View = View.Details;
+            
+            foreach(Hulpvragen.Hulpvraag hulpvraag in database.HulpvragenOverzicht())
+            {
+                //.Items.Add(hulpvraag);
+            }
         }
         private void btnBekijkHulpvraag_Click(object sender, EventArgs e)
         {

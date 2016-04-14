@@ -8,6 +8,7 @@ namespace CAREMATCH
 {
     class Chatbericht
     {
+        //om te kunnen commiten
         //Fields
         private string inhoud;
         private DateTime datumtijd;

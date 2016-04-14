@@ -109,14 +109,51 @@ namespace CAREMATCH
         }
         #endregion
         #region Chat Queries
-        public void ChatInvoegen()
+        public List<string> VrijwilligersLijst()
         {
+            List<string> vrijwilligerlist;
+            vrijwilligerlist = new List<string>();
 
+            con.Open();
+            OracleCommand cmd = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Vrijwilliger'", con);
+            OracleDataReader reader = cmd.ExecuteReader();
+            
+            while (reader.Read())
+            {
+                vrijwilligerlist.Add(reader["Gebruikersnaam"].ToString());
+            }
+            con.Close();
+
+            return vrijwilligerlist;
+        }
+
+        public int Chatpartner(string naam)
+        {
+            int id = 0;
+            con.Open();
+            OracleCommand cmd = new OracleCommand("SELECT GebruikerID FROM gebruiker WHERE gebruikersnaam = '" + naam + "'", con);
+            OracleDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                id = Convert.ToInt32(reader["GEBRUIKERID"].ToString());
+            }
+            con.Close();
+            return id;
+        }
+
+        public void ChatInvoegen(string inhoud, int ontvangerID, int verzenderID)
+        {
+            con.Open();
+            OracleCommand command = new OracleCommand("INSERT INTO Chat(ChatID, OntvangerID, VerzenderID, BerichtInhoud, Datumtijd) VALUES('@ChatID','"+ontvangerID+"', '"+verzenderID+"', '"+inhoud+"', '"+DateTime.Now+"');", con);
+            command.ExecuteNonQuery();
+            con.Close();
         }
         public void ChatWeergeven()
         {
 
         }
+
         #endregion
         #region Beheerder Queries
         public void BOverzichtOngepasteBerichten()

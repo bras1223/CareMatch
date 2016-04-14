@@ -65,5 +65,10 @@ namespace CAREMATCH
         {
             DialogResult = DialogResult.OK;
         }
+
+        private void ChatForm_Load(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

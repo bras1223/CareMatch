@@ -59,9 +59,9 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mcommandta="urn:schemas-microsoft-com:xml-mcommandta">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
+    <xsd:element name="root" mcommandta:IcommandtaSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
@@ -84,19 +84,19 @@
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" mcommandta:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" mcommandta:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute name="name" type="xsd:string" use="required" mcommandta:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" mcommandta:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" mcommandta:Ordinal="4" />
               <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" mcommandta:Ordinal="1" />
               </xsd:sequence>
               <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
@@ -361,7 +361,7 @@
         +89mYvnyXnd5SHcjEFXdfxc0FgwmkCMIiAZNn37EJOeo4sqLISxEWrf/wKTiqPSsf0BY4kDjHn+YSxsG
         QuOue1odvxQeOE+ebm0THXAoBnR6KgqPPlQcm1r73JNwKAZ0N9T71t/oWXMNPNcJaNwD0VFRxrwDHBX+
         +UAIC52GULaurLjiQgiLmIQb99+6Opu+/LTyzlt3/uuvTIshqfrh+yBjMEa0cdfs/Fq++4aJja6073VA
-        YGI5goBoQFwyk5yj9qICCAsdaWoOk40jiEkcaNzjD3Npw0Bo3HVMT0d7zXNPuBbNEi0GMTfNfeD8ntaY
+        YGI5goBoQFwyk5yj9qICCAcommandWoOk40jiEkcaNzjD3Npw0Bo3HVMT0d7zXNPuBbNEi0GMTfNfeD8ntaY
         TIe3bv+R3r+fkyblGgv3n83fET1s2pyi6+BFwh6jPEMtkZbMoHEPROUdtzDvAEfhFbn2wWTjC2IiJiTj
         Xv/aC/Wvv1T/5iuN77xOfoPWv/dmw5a3Q9FbtS8+U/Po/ZV3rffeeG3FiqXFJ/w51HsZh1RIvwZGsnEv
         PedfEKOBsovOZMKjqMZPP4JmNMDEcgQBEdPd2spk5si1cCqEhYX/jnVMQo5C2iMiFqBxjz/MpQ0DoXHX

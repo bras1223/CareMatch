@@ -7,12 +7,13 @@ namespace Login
 {
     public partial class BeheerdersForm : Form
     {
-        private OracleConnection con;
-        private Database dbQuery;
-        public BeheerdersForm()
+        private Gebruiker gebruiker;
+        private Database database;
+        public BeheerdersForm(Gebruiker gebruiker)
         {
             InitializeComponent();
-            dbQuery = new Database();
+            database = new Database();
+            this.gebruiker = gebruiker;
         }
          
 

@@ -27,51 +27,31 @@ namespace Login
         //Logincheck
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            DateTime vandaag = new DateTime();
+            
             Image piet = CAREMATCH.Properties.Resources.users;
 
             if (textBox1.Text == "" || textBox2.Text == "")
             {
                 MessageBox.Show("Niet alle velden zijn ingevuld");
             }
-            else if (database.Login(textBox1.Text, textBox2.Text) == "")
+            else if (database.Login(textBox1.Text, textBox2.Text) == null)
             {
                 MessageBox.Show("Gebruikersnaam of Wachtwoord incorrect");
             }
-            else if (database.Login(textBox1.Text, textBox2.Text).ToLower() == "beheerder")
+            else if (database.Login(textBox1.Text, textBox2.Text).Rol.ToLower() == "beheerder")
             {
-                gebruiker = new Beheerder(textBox1.Text, "piet", "piet", "piet", "piet", vandaag);
-                beheerdersform = new BeheerdersForm();
-                this.Hide();
-                beheerdersform.ShowDialog();
-                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
+                homeForm = new HomeForm(database.Login(textBox1.Text, textBox2.Text));
+                ShowDialogMethod();
             }
-            else if (database.Login(textBox1.Text, textBox2.Text).ToLower() == "vrijwilliger")
+            else if (database.Login(textBox1.Text, textBox2.Text).Rol.ToLower() == "vrijwilliger")
             {
-                //vrijwilliger is nu standaard goedgekeurd, hoort niet maar is handig voor testen
-
-                vrijwilliger = new Vrijwilliger(true, textBox1.Text, "piet", "piet", "piet", "piet", vandaag);
-                homeForm = new HomeForm(vrijwilliger);
-                this.Hide();
-                homeForm.ShowDialog();
-                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
+                homeForm = new HomeForm(database.Login(textBox1.Text, textBox2.Text));
+                ShowDialogMethod();
             }
-            else if (database.Login(textBox1.Text, textBox2.Text).ToLower() == "hulpbehoevende")
+            else if (database.Login(textBox1.Text, textBox2.Text).Rol.ToLower() == "hulpbehoevende")
             {
-                hulpbehoevende = new Hulpbehoevende(textBox1.Text, "piet", "piet", "piet", "piet", vandaag);
-                homeForm = new HomeForm(hulpbehoevende);
-                this.Hide();
-                homeForm.ShowDialog();
-                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
+                homeForm = new HomeForm(database.Login(textBox1.Text, textBox2.Text));
+                ShowDialogMethod();
             }
         }
 
@@ -89,6 +69,15 @@ namespace Login
         {
             SignUp.Show();
             this.Hide();
+        }
+        public void ShowDialogMethod()
+        {
+            this.Hide();
+            homeForm.ShowDialog();
+            if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
+            {
+                this.Show();
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,11 +22,66 @@ namespace CAREMATCH.VrijwilligerSysteem
             InitializeComponent();
             this.gebruiker = gebruiker;
             database = new Database();
+
+            //afbeelding in de picturebox zetten als een gebruiker deze heeft.
+            if (gebruiker.Pasfoto != @"\")
+            {
+                //---------error
+                //pbProfielFoto.Image = Image.FromFile(gebruiker.Pasfoto);
+            }
+            richTextBox1.Text = gebruiker.GebruikerInfo;
+            if(gebruiker.Auto)
+            {
+                cbAuto.Checked = true;
+            }
         }
 
         private void btnOpslaan_Click(object sender, EventArgs e)
         {
-            database.ProfielAanpassen(gebruiker);
+            //dubbele IF anders foutmelding.
+            if(zoekFotoDialog != null)
+            {
+                //Als er een afbeelding geopend is.
+                if (zoekFotoDialog.FileName != "")
+                {
+                    //passfoto property krijgt de string van de afbeeldingnaam.
+                    gebruiker.Pasfoto = gebruiker.Gebruikersnaam + @"\" + gebruiker.Gebruikersnaam + Path.GetExtension(zoekFotoDialog.FileName);
+                    if (!File.Exists(gebruiker.Gebruikersnaam))
+                    {
+                        //Directory aanmaken als deze nog niet bestaat.
+                        System.IO.Directory.CreateDirectory(gebruiker.Gebruikersnaam);
+                    }
+                    //Gekozen afbeelding kopieren naar pasfoto directory. Foto = Gebruikersnaam\Gebruikersnaam + Bestandsextensie
+                    try
+                    {
+                        File.Copy(zoekFotoDialog.FileName, gebruiker.Gebruikersnaam + @"\" + gebruiker.Gebruikersnaam + Path.GetExtension(zoekFotoDialog.FileName));
+                    }
+                    catch
+                    {
+                        //alle afbeeldingen verwijderen in de map. dan opnieuw bestand kopieren.
+                        System.IO.DirectoryInfo di = new DirectoryInfo(gebruiker.Gebruikersnaam + @"\");
+                        foreach (FileInfo file in di.GetFiles())
+                        {
+                            file.Delete();
+                        }
+                        File.Copy(zoekFotoDialog.FileName, gebruiker.Gebruikersnaam + @"\" + gebruiker.Gebruikersnaam + Path.GetExtension(zoekFotoDialog.FileName));
+                    }
+                    Refresh();
+                }
+            }
+
+            //Verschil maken tussen welke info veranderd is. Anders wordt er een encryptie 
+            //over encryptie van het wachtwoord gedaan elke keer dat je iets aan het profiel aanpast
+            gebruiker.GebruikerInfo = richTextBox1.Text;
+            if (txtHerhaalWachtwoord.Text != "")
+            {
+                gebruiker.Wachtwoord = txtNieuwWachtwoord.Text;
+                database.ProfielAanpassen(gebruiker,true,false);
+            }
+            if(gebruiker.Pasfoto != @"\")
+            {
+                database.ProfielAanpassen(gebruiker, false, true);
+            }
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -34,11 +90,6 @@ namespace CAREMATCH.VrijwilligerSysteem
         {
             zoekFotoDialog = new OpenFileDialog();
             zoekFotoDialog.ShowDialog();
-
-            if (zoekFotoDialog.FileName != "")
-            {
-                pbProfielFoto.Image = new Bitmap(zoekFotoDialog.FileName);
-            }
         }
 
         private void pbProfielFoto_Click(object sender, EventArgs e)
@@ -46,9 +97,16 @@ namespace CAREMATCH.VrijwilligerSysteem
 
         }
 
-        private void btnWachtwoordOpslaan_Click(object sender, EventArgs e)
+        private void cbAuto_CheckedChanged(object sender, EventArgs e)
         {
-
+            if(cbAuto.Checked)
+            {
+                gebruiker.Auto = true;
+            }
+            else
+            {
+                gebruiker.Auto = false;
+            }
         }
     }
 }

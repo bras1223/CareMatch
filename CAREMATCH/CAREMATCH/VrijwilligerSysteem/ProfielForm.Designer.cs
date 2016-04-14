@@ -40,7 +40,6 @@
             this.lblHerhaalWachtwoord = new System.Windows.Forms.Label();
             this.txtHerhaalWachtwoord = new System.Windows.Forms.TextBox();
             this.gbWijzigWachtwoord = new System.Windows.Forms.GroupBox();
-            this.btnWachtwoordOpslaan = new System.Windows.Forms.Button();
             this.cbAuto = new System.Windows.Forms.CheckBox();
             this.lblAuto = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).BeginInit();
@@ -164,17 +163,6 @@
             this.gbWijzigWachtwoord.TabStop = false;
             this.gbWijzigWachtwoord.Text = "Wijzig Wachtwoord:";
             // 
-            // btnWachtwoordOpslaan
-            // 
-            this.btnWachtwoordOpslaan.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWachtwoordOpslaan.Location = new System.Drawing.Point(12, 347);
-            this.btnWachtwoordOpslaan.Name = "btnWachtwoordOpslaan";
-            this.btnWachtwoordOpslaan.Size = new System.Drawing.Size(149, 61);
-            this.btnWachtwoordOpslaan.TabIndex = 13;
-            this.btnWachtwoordOpslaan.Text = "Wachtwoord Opslaan";
-            this.btnWachtwoordOpslaan.UseVisualStyleBackColor = true;
-            this.btnWachtwoordOpslaan.Click += new System.EventHandler(this.btnWachtwoordOpslaan_Click);
-            // 
             // cbAuto
             // 
             this.cbAuto.AutoSize = true;
@@ -183,6 +171,7 @@
             this.cbAuto.Size = new System.Drawing.Size(15, 14);
             this.cbAuto.TabIndex = 14;
             this.cbAuto.UseVisualStyleBackColor = true;
+            this.cbAuto.CheckedChanged += new System.EventHandler(this.cbAuto_CheckedChanged);
             // 
             // lblAuto
             // 
@@ -200,7 +189,6 @@
             this.ClientSize = new System.Drawing.Size(809, 486);
             this.Controls.Add(this.lblAuto);
             this.Controls.Add(this.cbAuto);
-            this.Controls.Add(this.btnWachtwoordOpslaan);
             this.Controls.Add(this.gbWijzigWachtwoord);
             this.Controls.Add(this.lblOverJezelf);
             this.Controls.Add(this.btnOpslaan);
@@ -232,7 +220,6 @@
         private System.Windows.Forms.Label lblHerhaalWachtwoord;
         private System.Windows.Forms.TextBox txtHerhaalWachtwoord;
         private System.Windows.Forms.GroupBox gbWijzigWachtwoord;
-        private System.Windows.Forms.Button btnWachtwoordOpslaan;
         private System.Windows.Forms.CheckBox cbAuto;
         private System.Windows.Forms.Label lblAuto;
     }

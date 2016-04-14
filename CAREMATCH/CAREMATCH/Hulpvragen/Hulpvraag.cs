@@ -8,18 +8,16 @@ namespace CAREMATCH.Hulpvragen
 {
     class Hulpvraag
     {
-        public DateTime DatumTijd;
+        public DateTime DatumTijd{get; set;}
 
         public string Titel { get; set;}
         public string Omschrijving { get; set; }
         public string Frequentie { get; set; }
         public int Duur { get; set; }
+        public Gebruiker Hulpbehoevende { get; private set; }
+        public Gebruiker Vrijwilliger { get; private set; }
 
         public Hulpvraag()
-        {
-
-        }
-        public void VerwijderHulpvraag()
         {
 
         }

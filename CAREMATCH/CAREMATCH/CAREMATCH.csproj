@@ -90,7 +90,10 @@
     </Compile>
     <Compile Include="Database.cs" />
     <Compile Include="Enum.cs" />
-    <Compile Include="Gebruiker.cs" />
+    <Compile Include="Gebruikers\Beheerder.cs" />
+    <Compile Include="Gebruikers\Gebruiker.cs" />
+    <Compile Include="Gebruikers\Hulpbehoevende.cs" />
+    <Compile Include="Gebruikers\Vrijwilliger.cs" />
     <Compile Include="HomeForm.cs">
       <SubType>Form</SubType>
     </Compile>

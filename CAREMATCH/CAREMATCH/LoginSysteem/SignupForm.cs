@@ -23,6 +23,8 @@ namespace Login
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+
             //if (textBox2.Text == textBox3.Text && textBox2.Text != "" && textBox1.Text != "")
             // {
             ///  sql.Open();

@@ -114,14 +114,51 @@ namespace CAREMATCH
         }
         #endregion
         #region Chat Queries
-        public void ChatInvoegen()
+        public List<string> VrijwilligersLijst()
         {
+            List<string> vrijwilligerlist;
+            vrijwilligerlist = new List<string>();
 
+            con.Open();
+            OracleCommand cmd = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Vrijwilliger'", con);
+            OracleDataReader reader = cmd.ExecuteReader();
+            
+            while (reader.Read())
+            {
+                vrijwilligerlist.Add(reader["Gebruikersnaam"].ToString());
+            }
+            con.Close();
+
+            return vrijwilligerlist;
+        }
+
+        public int Chatpartner(string naam)
+        {
+            int id = 0;
+            con.Open();
+            OracleCommand cmd = new OracleCommand("SELECT GebruikerID FROM gebruiker WHERE gebruikersnaam = '" + naam + "'", con);
+            OracleDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                id = Convert.ToInt32(reader["GEBRUIKERID"].ToString());
+            }
+            con.Close();
+            return id;
+        }
+
+        public void ChatInvoegen(string inhoud, int ontvangerID, int verzenderID)
+        {
+            con.Open();
+            OracleCommand command = new OracleCommand("INSERT INTO Chat(ChatID, OntvangerID, VerzenderID, BerichtInhoud, Datumtijd) VALUES('@ChatID','"+ontvangerID+"', '"+verzenderID+"', '"+inhoud+"', '"+DateTime.Now+"');", con);
+            command.ExecuteNonQuery();
+            con.Close();
         }
         public void ChatWeergeven()
         {
 
         }
+
         #endregion
         #region Beheerder Queries
         public void BOverzichtOngepasteBerichten()
@@ -169,10 +206,15 @@ namespace CAREMATCH
                 return rol;
             }
         }
-        public void AccountToevoegen()
+        public void AccountToevoegen(string GebruikerID, string Gebruikersnaam, string Wachtwoord, string Approved, string Rol)
         {
             con.Open();
-            OracleCommand command = new OracleCommand("INSERT INTO Hulpvraag(HulpvraagID, GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie) VALUES('@HulpvraagID','@GebruikerID, '@HulpvraagInhoud', '@Urgent', '@DatumTijd', '@Duur', '@Frequentie');", con);
+            OracleCommand command = new OracleCommand("INSERT INTO GEBRUIKER(GebruikerID, Gebruikersnaam, Wachtwoord, Approved, Rol) VALUES(" + "'" + GebruikerID + "'" + "," + "'" + "'" + Gebruikersnaam + "'" + "," + "'" + Wachtwoord + "'" + "," + "'" + Approved + "'" + "," + "'" + Rol + "');",  con);
+            command.ExecuteNonQuery();
+            con.Close();
+
+
+            // OracleCommand command = new OracleCommand("INSERT INTO Hulpvraag(HulpvraagID, GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie) VALUES('@HulpvraagID','@GebruikerID, '@HulpvraagInhoud', '@Urgent', '@DatumTijd', '@Duur', '@Frequentie');", con);
             //command.Parameters.AddWithValue("HulpvraagID", 1);
             //command.Parameters.AddWithValue("GebruikerID", 1);
             //command.Parameters.AddWithValue("HulpvraagInhoud", "Testinhoud");
@@ -181,12 +223,13 @@ namespace CAREMATCH
             //command.Parameters.AddWithValue("Duur", 20);
             //command.Parameters.AddWithValue("Frequentie", 2);
 
-            command.ExecuteNonQuery();
-            con.Close();
+
             // SqlDataAdapter sda = new SqlDataAdapter("INSERT INTO Login (Username, Password) VALUES ('" + textBox1.Text + "','" + textBox2.Text + "')", sql);
             // sda.SelectCommand.ExecuteNonQuery();
             // sql.Close();
         }
+
+          
         public void ProfielAanpassen()
         {
 

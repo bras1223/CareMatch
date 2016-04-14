@@ -42,6 +42,7 @@ namespace CAREMATCH
                 database.closeCon();
             }
 
+            //hoi
 
             //Chatbericht bericht = new Chatbericht(tbBericht.Text);
             ////Database

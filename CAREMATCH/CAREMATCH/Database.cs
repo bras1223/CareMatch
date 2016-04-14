@@ -219,7 +219,7 @@ namespace CAREMATCH
         public void AccountToevoegen(string GebruikerID, string Gebruikersnaam, string Wachtwoord, string Approved, string Rol)
         {
             con.Open();
-            OracleCommand command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERID, GEBRUIKERSNAAM, WACHTWOORD, APPROVED, ROL) VALUES(" + "'" + GebruikerID + "','" + Gebruikersnaam + "'" + "," + "'" + Wachtwoord + "'" + "," + "'" + Approved + "'" + "," + "'" + Rol + "');",  con);
+            OracleCommand command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERID, GEBRUIKERSNAAM, WACHTWOORD, APPROVED, ROL) VALUES('"  +  GebruikerID + "','" + Gebruikersnaam + "','" + Wachtwoord + "','" + Approved + "','" + Rol + "')",  con);
             command.ExecuteNonQuery();
             con.Close();
 

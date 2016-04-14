@@ -24,12 +24,10 @@ namespace CAREMATCH
         public Image Pasfoto { get; private set; }
         public string Email { get; private set; }
         public bool Auto { get; private set; }
-        public bool Goedgekeurd { get; private set; }
 
-        public Enum.rol rol { get; private set; }
 
         //Constructor
-        public Gebruiker(string gebruikersnaam, string voornaam, string achternaam, Image pasfoto, string email, DateTime geboorteDatum, bool goedgekeurd, Enum.rol rol)
+        public Gebruiker(string gebruikersnaam, string voornaam, string achternaam, Image pasfoto, string email, DateTime geboorteDatum)
         {
             Gebruikersnaam = gebruikersnaam;
             Voornaam = voornaam;
@@ -37,8 +35,6 @@ namespace CAREMATCH
             Pasfoto = pasfoto;
             Email = email;
             GeboorteDatum = geboorteDatum;
-            Goedgekeurd = goedgekeurd;
-            this.rol = rol;
         }
 
         //Methoden

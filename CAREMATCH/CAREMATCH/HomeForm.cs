@@ -1,4 +1,5 @@
 ﻿using CAREMATCH.VrijwilligerSysteem;
+using CAREMATCH.Gebruikers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,15 +30,15 @@ namespace CAREMATCH
 
             //was bezig met de database doorgeven via de constructor
             //this.database = database;
-
-            if (gebruiker.rol == Enum.rol.hulpbehoevende)
+            
+            if (gebruiker.GetType() == typeof(Hulpbehoevende))
             {
                 btnAangenomenHulpvragen.Visible = false;
 
                 btnOngepasteBerichten.Visible = false;
                 btnAccountOverzicht.Visible = false;
             }
-            else if (gebruiker.rol == Enum.rol.vrijwilliger)
+            else if (gebruiker.GetType() == typeof(Vrijwilliger))
             {
                 btnHulpvraagIndienen.Visible = false;
 

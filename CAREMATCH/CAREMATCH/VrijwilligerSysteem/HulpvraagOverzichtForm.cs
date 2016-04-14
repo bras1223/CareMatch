@@ -1,4 +1,5 @@
 ﻿using System;
+using CAREMATCH.Gebruikers;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,12 +22,12 @@ namespace CAREMATCH.VrijwilligerSysteem
             database = new Database();
             hulpvraagForm = new HulpvraagForm(gebruiker, false);
 
-            if(gebruiker.rol == Enum.rol.hulpbehoevende)
+            if(gebruiker.GetType() == typeof(Hulpbehoevende))
             {
                 lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;
                 lblGebruikerType.Text = "hulpbehoevende";
             }
-            else if(gebruiker.rol == Enum.rol.vrijwilliger)
+            else if(gebruiker.GetType() == typeof(Vrijwilliger))
             {
                 lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;
                 lblGebruikerType.Text = "vrijwilliger";
@@ -46,6 +47,7 @@ namespace CAREMATCH.VrijwilligerSysteem
         {
             //properties van aangeklikte hulpvraag moeten aan HulpvraagForm worden meegegeven, zodat je ze kunt bekijken.
             //selected index van listbox/view item uit list met hulpvragen halen
+            //eventueel nog de hulpvraag aan kunnen passen als hulbbehoevende
 
             this.Hide();
             hulpvraagForm.ShowDialog();

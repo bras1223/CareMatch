@@ -13,7 +13,6 @@ namespace CAREMATCH
 {
     public partial class ChatForm : Form
     {
-        //om te kunnen commiten
         Gebruiker gebruiker;
         int partnerid;
         Database database;
@@ -30,9 +29,12 @@ namespace CAREMATCH
 
         private void btnVerzenden_Click(object sender, EventArgs e)
         {
+            int id = gebruiker.GebruikersID;
+            DateTime datum;
             try
             {
-                database.ChatInvoegen(tbBericht.Text, partnerid, gebruiker.GebruikersID);
+                datum = DateTime.Now;
+                database.ChatInvoegen(database.ControlleerMaxChatID() + 1 ,tbBericht.Text, partnerid, gebruiker.GebruikersID + 1, datum.ToString("dd/MMM HH:mm"));
             }
             catch (Exception ex)
             {
@@ -42,11 +44,11 @@ namespace CAREMATCH
             {
                 database.closeCon();
             }
-            /*Chatbericht bericht = new Chatbericht(tbBericht.Text);
+            //Chatbericht bericht = new Chatbericht(tbBericht.Text);
             //Database
-            lbChat.Items.Add(gebruiker.Gebruikersnaam+": "+bericht.Inhoud);
-            lbChat.Items.Add(bericht.Datumtijd);
-            lbChat.Items.Add(" ");*/
+            //lbChat.Items.Add(gebruiker.Gebruikersnaam+": "+bericht.Inhoud);
+            //lbChat.Items.Add(bericht.Datumtijd);
+            //lbChat.Items.Add(" ");
         }
 
         private void btnTerug_Click_1(object sender, EventArgs e)
@@ -56,12 +58,14 @@ namespace CAREMATCH
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
+            tmrLaadberichten.Stop();
             DialogResult = DialogResult.OK;
         }
 
         private void ChatForm_Load_1(object sender, EventArgs e)
         {
             LbVullen();
+            tmrLaadberichten.Start();
         }
 
         private void lbGebruikerLijst_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -98,23 +102,33 @@ namespace CAREMATCH
         {
             e.DrawBackground();
             Brush myBrush = Brushes.Black;
-            Font myFont;
+            Font myFont = new Font("Microsoft Sans Serif", 16); ;
             string test;
 
             test = lbChat.Items.ToString();
-
-            if (lbChat.Items[e.Index].ToString().StartsWith(" ") || lbChat.Items[e.Index].ToString().StartsWith(gebruiker.Gebruikersnaam))
+            try
             {
-                myFont = new Font("Microsoft Sans Serif", 16);
+                if (lbChat.Items[e.Index].ToString().StartsWith(" ") || lbChat.Items[e.Index].ToString().StartsWith(gebruiker.Gebruikersnaam))
+                {
+                    myFont = new Font("Microsoft Sans Serif", 16);
+                }
+
+                else
+                {
+                    myFont = new Font("Microsoft Sans Serif", 9);
+                }
+                e.Graphics.DrawString(lbChat.Items[e.Index].ToString(),
+                myFont, myBrush, e.Bounds, StringFormat.GenericDefault);
+            }
+            catch
+            {
             }
 
-            else
-            {
-                myFont = new Font("Microsoft Sans Serif", 9);
-            }
+        }
 
-            e.Graphics.DrawString(lbChat.Items[e.Index].ToString(),
-            myFont, myBrush, e.Bounds, StringFormat.GenericDefault);
+        private void tmrLaadberichten_Tick(object sender, EventArgs e)
+        {
+
         }
     }
 }

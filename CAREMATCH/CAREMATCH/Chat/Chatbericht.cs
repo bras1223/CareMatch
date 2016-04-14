@@ -8,7 +8,6 @@ namespace CAREMATCH
 {
     class Chatbericht
     {
-        //om te kunnen commiten
         //Fields
         private string inhoud;
         private DateTime datumtijd;
@@ -21,7 +20,7 @@ namespace CAREMATCH
 
         public string Datumtijd
         {
-            get { return datumtijd.ToString("dd/MMMM HH:mm"); }
+            get { return datumtijd.ToString("dd/MMM HH:mm"); }
         }
 
         //Constructor

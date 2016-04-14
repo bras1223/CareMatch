@@ -14,6 +14,7 @@ namespace Login
         Gebruiker vrijwilliger;
         Gebruiker hulpbehoevende;
         SignupForm SignUp = new SignupForm();
+
         public LoginForm()
         {
             InitializeComponent();

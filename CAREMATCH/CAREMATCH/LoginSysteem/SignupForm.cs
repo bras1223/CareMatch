@@ -21,8 +21,7 @@ namespace Login
             InitializeComponent();
             label4.Visible = false;
             label5.Visible = false;
-            dbQuery = new Database();
-            
+            dbQuery = new Database();           
         }
         //Gebruiker toevoegen
         private void button1_Click(object sender, EventArgs e)

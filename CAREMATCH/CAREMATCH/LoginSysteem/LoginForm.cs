@@ -13,6 +13,7 @@ namespace Login
         Gebruiker gebruiker;
         Gebruiker vrijwilliger;
         Gebruiker hulpbehoevende;
+        SignupForm SignUp = new SignupForm();
         public LoginForm()
         {
             InitializeComponent();
@@ -113,6 +114,13 @@ namespace Login
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+        }
+
+        private void lbRegister_Click_1(object sender, EventArgs e)
+        {
+           
+            SignUp.Show();
+            this.Hide();
         }
     }
 }

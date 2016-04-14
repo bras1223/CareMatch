@@ -48,6 +48,7 @@
             this.lbRegister.Size = new System.Drawing.Size(187, 13);
             this.lbRegister.TabIndex = 5;
             this.lbRegister.Text = "Nog geen account? Registreer je hier!";
+            this.lbRegister.Click += new System.EventHandler(this.lbRegister_Click_1);
             // 
             // label2
             // 

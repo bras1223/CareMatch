@@ -41,12 +41,12 @@ namespace Login
             {
                 MessageBox.Show("Niet alles is ingevuld");
             }
-            else if (comboBox1.Text == "Hulpbehoevende")
+            else if (comboBox1.Text == "Hulpbehoevende" && textBox2.Text == textBox3.Text)
             {
                 dbQuery.AccountToevoegen(GebruikNum.ToString(), textBox1.Text, textBox2.Text, "Y", comboBox1.Text);
                 MessageBox.Show("Account toegevoed");
             }
-            else if (comboBox1.Text == "Vrijwilliger")
+            else if (comboBox1.Text == "Vrijwilliger" && textBox2.Text == textBox3.Text)
             {
                 dbQuery.AccountToevoegen(GebruikNum.ToString(), textBox1.Text, textBox2.Text, "N", comboBox1.Text);
                 MessageBox.Show("Account toegevoed");

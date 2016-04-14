@@ -25,6 +25,11 @@ namespace CAREMATCH
 
             con = new OracleConnection(constr);
         }
+        public void closeCon()
+        {
+            con.Close();
+        }
+
         #region Hulpvragen Queries
         public void HulpvraagToevoegen(Hulpvragen.Hulpvraag hulpvraag)
         {
@@ -126,23 +131,41 @@ namespace CAREMATCH
         #region Chat Queries
         public List<string> VrijwilligersLijst()
         {
-            List<string> vrijwilligerlist;
-            vrijwilligerlist = new List<string>();
+            List<string> vrijwilligerlijst;
+            vrijwilligerlijst = new List<string>();
 
             con.Open();
-            OracleCommand cmd = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Vrijwilliger'", con);
+            OracleCommand cmd = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'vrijwilliger'", con);
             OracleDataReader reader = cmd.ExecuteReader();
             
             while (reader.Read())
             {
-                vrijwilligerlist.Add(reader["Gebruikersnaam"].ToString());
+                vrijwilligerlijst.Add(reader["Gebruikersnaam"].ToString());
             }
             con.Close();
 
-            return vrijwilligerlist;
+            return vrijwilligerlijst;
         }
 
-        public int Chatpartner(string naam)
+        public List<string> HulpbehoevendeLijst()
+        {
+            List<string> hulpbehoevendelijst;
+            hulpbehoevendelijst = new List<string>();
+
+            con.Open();
+            OracleCommand cmd = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'hulpbehoevende'", con);
+            OracleDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                hulpbehoevendelijst.Add(reader["Gebruikersnaam"].ToString());
+            }
+            con.Close();
+
+            return hulpbehoevendelijst;
+        }
+
+        public int ChatpartnerID(string naam)
         {
             int id = 0;
             con.Open();
@@ -160,7 +183,7 @@ namespace CAREMATCH
         public void ChatInvoegen(string inhoud, int ontvangerID, int verzenderID)
         {
             con.Open();
-            OracleCommand command = new OracleCommand("INSERT INTO Chat(ChatID, OntvangerID, VerzenderID, BerichtInhoud, Datumtijd) VALUES('@ChatID','"+ontvangerID+"', '"+verzenderID+"', '"+inhoud+"', '"+DateTime.Now+"');", con);
+            OracleCommand command = new OracleCommand("INSERT INTO Chat(ChatID, OntvangerID, VerzenderID, BerichtInhoud, Datumtijd) VALUES('1','"+ontvangerID+"', '"+verzenderID+"', '"+inhoud+"', '"+DateTime.Now+"');", con);
             command.ExecuteNonQuery();
             con.Close();
         }

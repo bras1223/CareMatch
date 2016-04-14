@@ -31,10 +31,10 @@
             this.tbBericht = new System.Windows.Forms.TextBox();
             this.btnVerzenden = new System.Windows.Forms.Button();
             this.pbProfielFoto = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblGebruikersnaam = new System.Windows.Forms.Label();
             this.btnTerug = new System.Windows.Forms.Button();
             this.lbChat = new System.Windows.Forms.ListBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lbGebruikerLijst = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,15 +68,15 @@
             this.pbProfielFoto.TabIndex = 4;
             this.pbProfielFoto.TabStop = false;
             // 
-            // label1
+            // lblGebruikersnaam
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(343, 25);
-            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(173, 26);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Gebruikersnaam";
+            this.lblGebruikersnaam.AutoSize = true;
+            this.lblGebruikersnaam.Location = new System.Drawing.Point(343, 25);
+            this.lblGebruikersnaam.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblGebruikersnaam.Name = "lblGebruikersnaam";
+            this.lblGebruikersnaam.Size = new System.Drawing.Size(173, 26);
+            this.lblGebruikersnaam.TabIndex = 5;
+            this.lblGebruikersnaam.Text = "Gebruikersnaam";
             // 
             // btnTerug
             // 
@@ -99,23 +99,25 @@
             this.lbChat.Size = new System.Drawing.Size(965, 404);
             this.lbChat.TabIndex = 7;
             // 
-            // listView1
+            // lbGebruikerLijst
             // 
-            this.listView1.Location = new System.Drawing.Point(15, 139);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(177, 487);
-            this.listView1.TabIndex = 8;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.lbGebruikerLijst.FormattingEnabled = true;
+            this.lbGebruikerLijst.ItemHeight = 25;
+            this.lbGebruikerLijst.Location = new System.Drawing.Point(12, 139);
+            this.lbGebruikerLijst.Name = "lbGebruikerLijst";
+            this.lbGebruikerLijst.Size = new System.Drawing.Size(192, 479);
+            this.lbGebruikerLijst.TabIndex = 8;
+            this.lbGebruikerLijst.SelectedIndexChanged += new System.EventHandler(this.lbGebruikerLijst_SelectedIndexChanged);
             // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1193, 641);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.lbGebruikerLijst);
             this.Controls.Add(this.lbChat);
             this.Controls.Add(this.btnTerug);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblGebruikersnaam);
             this.Controls.Add(this.pbProfielFoto);
             this.Controls.Add(this.btnVerzenden);
             this.Controls.Add(this.tbBericht);
@@ -137,9 +139,9 @@
         private System.Windows.Forms.TextBox tbBericht;
         private System.Windows.Forms.Button btnVerzenden;
         private System.Windows.Forms.PictureBox pbProfielFoto;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblGebruikersnaam;
         private System.Windows.Forms.Button btnTerug;
         private System.Windows.Forms.ListBox lbChat;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListBox lbGebruikerLijst;
     }
 }

@@ -246,7 +246,6 @@ namespace CAREMATCH
             command.ExecuteNonQuery();
             con.Close();
         }
-
         public int ControlleerMaxGebruikerID()
         {
             int id = 0;
@@ -258,11 +257,21 @@ namespace CAREMATCH
                 id = Convert.ToInt32(reader["MAXID"]);
             }
             con.Close();
-            
             return id;
-           
         }
-            
+        public string ControlleerGebruikersnaam()
+        {
+            string naam = "";
+            con.Open();
+            OracleCommand command = new OracleCommand("SELECT Gebruikersnaam as Naam FROM GEBRUIKER", con);
+            OracleDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                naam =(reader["Naam"].ToString());
+            }
+            con.Close();
+            return naam;
+        }
 
 
 

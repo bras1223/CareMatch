@@ -28,7 +28,11 @@ namespace Login
         private void button1_Click(object sender, EventArgs e)
         {
             int GebruikNum = dbQuery.ControlleerMaxGebruikerID() + 1;
-
+            string GebruikNaam = dbQuery.ControlleerGebruikersnaam();
+            if (textBox1.Text == GebruikNaam)
+            {
+                MessageBox.Show("Gebruikersnaam bestaat al");
+            }
             if (textBox2.Text != textBox3.Text)
             {
                 MessageBox.Show("Wachtwoorden zijn niet gelijk");
@@ -41,12 +45,12 @@ namespace Login
             {
                 MessageBox.Show("Niet alles is ingevuld");
             }
-            else if (comboBox1.Text == "Hulpbehoevende" && textBox2.Text == textBox3.Text)
+            else if (comboBox1.Text == "Hulpbehoevende" && textBox2.Text == textBox3.Text && textBox1.Text != GebruikNaam)
             {
                 dbQuery.AccountToevoegen(GebruikNum.ToString(), textBox1.Text, textBox2.Text, "Y", comboBox1.Text);
                 MessageBox.Show("Account toegevoed");
             }
-            else if (comboBox1.Text == "Vrijwilliger" && textBox2.Text == textBox3.Text)
+            else if (comboBox1.Text == "Vrijwilliger" && textBox2.Text == textBox3.Text && textBox1.Text != GebruikNaam)
             {
                 dbQuery.AccountToevoegen(GebruikNum.ToString(), textBox1.Text, textBox2.Text, "N", comboBox1.Text);
                 MessageBox.Show("Account toegevoed");

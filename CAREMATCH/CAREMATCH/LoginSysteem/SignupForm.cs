@@ -28,11 +28,32 @@ namespace Login
 
         private void button1_Click(object sender, EventArgs e)
         {
+            /int GebruikerIDNUM = dbQuery.ControlleerMaxGebruikerID;
 
-            dbQuery.AccountToevoegen( "4" , textBox1.Text,  textBox2.Text, "Y", comboBox1.Text);
-          
-            
-            
+            if (textBox2.Text != textBox3.Text)
+            {
+                MessageBox.Show("Wachtwoorden zijn niet gelijk");
+            }
+            if (textBox1.Text == "")
+            {
+                MessageBox.Show("Niet alles is ingevuld");
+            }
+            if (textBox2.Text == "")
+            {
+                MessageBox.Show("Niet alles is ingevuld");
+            }
+            else if (comboBox1.Text == "Hulpbehoevende")
+            {
+                dbQuery.AccountToevoegen("6", textBox1.Text, textBox2.Text, "Y", comboBox1.Text);
+                MessageBox.Show("Account toegevoed");
+            }
+            else if (comboBox1.Text == "Vrijwilliger")
+            {
+                dbQuery.AccountToevoegen("6", textBox1.Text, textBox2.Text, "N", comboBox1.Text);
+                MessageBox.Show("Account toegevoed");
+            }
+
+
             //if (textBox2.Text == textBox3.Text && textBox2.Text != "" && textBox1.Text != "")
             // {
             ///  sql.Open();
@@ -41,19 +62,9 @@ namespace Login
             //   sql.Close();
             //   MessageBox.Show("Gebruiker succesvol toegevoed!");
             // }
-        
-            //else if (textBox2.Text != textBox3.Text)
-        //    {
-         //   }
-           // else if (textBox1.Text == "")
-         //   {
-         //       MessageBox.Show("Niet alles is ingevuld");
-         //   }
-         //   else if (textBox2.Text == "")
-          //  {
-         //       MessageBox.Show("Niet alles is ingevuld");
-        //    }
-        
+
+
+
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)

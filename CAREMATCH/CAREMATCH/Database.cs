@@ -219,11 +219,35 @@ namespace CAREMATCH
         public void AccountToevoegen(string GebruikerID, string Gebruikersnaam, string Wachtwoord, string Approved, string Rol)
         {
             con.Open();
-            OracleCommand command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERID, GEBRUIKERSNAAM, WACHTWOORD, APPROVED, ROL) VALUES('"  +  GebruikerID + "','" + Gebruikersnaam + "','" + Wachtwoord + "','" + Approved + "','" + Rol + "')",  con);
+            OracleCommand command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERID, GEBRUIKERSNAAM, WACHTWOORD, APPROVED, ROL) VALUES('"+GebruikerID+"','"+Gebruikersnaam+"','"+Wachtwoord+"', '"+Approved+"','"+Rol+"')",  con);
             command.ExecuteNonQuery();
             con.Close();
+        }
+
+        public void ControlleerMaxGebruikerID()
+        {
+            con.Open();
+            OracleCommand command = new OracleCommand("SELECT MAX(GEBRUIKERID)FROM GEBRUIKER", con);
+            command.ExecuteNonQuery();
+            con.Close();
+           
+        }
+            
 
 
+
+
+
+        public void ProfielAanpassen()
+        {
+
+        }
+        public void ReactieToevoegen()
+        {
+
+        }
+        public void BeoordelingToevoegen()
+        {
             // OracleCommand command = new OracleCommand("INSERT INTO Hulpvraag(HulpvraagID, GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie) VALUES('@HulpvraagID','@GebruikerID, '@HulpvraagInhoud', '@Urgent', '@DatumTijd', '@Duur', '@Frequentie');", con);
             //command.Parameters.AddWithValue("HulpvraagID", 1);
             //command.Parameters.AddWithValue("GebruikerID", 1);
@@ -237,20 +261,6 @@ namespace CAREMATCH
             // SqlDataAdapter sda = new SqlDataAdapter("INSERT INTO Login (Username, Password) VALUES ('" + textBox1.Text + "','" + textBox2.Text + "')", sql);
             // sda.SelectCommand.ExecuteNonQuery();
             // sql.Close();
-        }
-
-          
-        public void ProfielAanpassen()
-        {
-
-        }
-        public void ReactieToevoegen()
-        {
-
-        }
-        public void BeoordelingToevoegen()
-        {
-
         }
         #endregion
     }

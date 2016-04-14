@@ -15,19 +15,21 @@ namespace Login
     public partial class SignupForm : Form
     {
         private Database dbQuery;
+        
         public SignupForm()
         {
             InitializeComponent();
             label4.Visible = false;
             label5.Visible = false;
             dbQuery = new Database();
+            
         }
         //SqlConnection sql = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ferry\Documents\Login.mdf;Integrated Security=True;Connect Timeout=30");
 
         private void button1_Click(object sender, EventArgs e)
         {
 
-            dbQuery.AccountToevoegen(textBox1.Text, "4",  textBox2.Text, "Y", comboBox1.Text);
+            dbQuery.AccountToevoegen( "4" , textBox1.Text,  textBox2.Text, "Y", comboBox1.Text);
           
             
             

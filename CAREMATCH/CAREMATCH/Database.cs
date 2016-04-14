@@ -135,6 +135,10 @@ namespace CAREMATCH
         }
         #endregion
         #region Chat Queries
+
+        List<Chatbericht> chatgeschiedenis = new List<Chatbericht>();
+
+
         public List<string> VrijwilligersLijst()
         {
             List<string> vrijwilligerlijst;
@@ -223,16 +227,12 @@ namespace CAREMATCH
             {
                 con.Close();
                 return 0;
-            }
-
-            con.Close();      
+            }  
         }
 
-        public List<string> ChatGeschiedenis(string ontvangerNaam, string verzenderNaam, int ontvangerID, int verzenderID)
+        public List<Chatbericht> ChatGeschiedenis(string ontvangerNaam, string verzenderNaam, int ontvangerID, int verzenderID)
         {      
 
-            List<string> chatgeschiedenis;
-            chatgeschiedenis = new List<string>();
 
             con.Open();
 
@@ -241,15 +241,15 @@ namespace CAREMATCH
 
             while (reader.Read())
             {
-                chatgeschiedenis.Add(verzenderNaam + ": " + reader["BerichtInhoud"].ToString());
+                chatgeschiedenis.Add(new Chatbericht(reader["BerichtInhoud"].ToString(), verzenderNaam));
             }
 
             OracleCommand cmd2 = new OracleCommand("SELECT BerichtInhoud FROM chat WHERE ontvangerID = '" + verzenderID + "' AND verzenderID = '" + ontvangerID + "'", con);
-            OracleDataReader reader2 = cmd.ExecuteReader();
+            OracleDataReader reader2 = cmd2.ExecuteReader();
 
             while (reader2.Read())
             {
-                chatgeschiedenis.Add(ontvangerNaam + ": " + reader2["BerichtInhoud"].ToString());
+                chatgeschiedenis.Add(new Chatbericht(reader2["BerichtInhoud"].ToString(),ontvangerNaam));
             }
 
             con.Close();

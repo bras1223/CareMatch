@@ -16,6 +16,7 @@ namespace CAREMATCH
         Gebruiker gebruiker;
         string partnernaam = "";
         int partnerid;
+        List<Chatbericht> oudchatbericht;
         Database database;
 
         public ChatForm(Gebruiker gebruiker)
@@ -25,6 +26,7 @@ namespace CAREMATCH
             InitializeComponent();
             lbChat.DrawMode = DrawMode.OwnerDrawFixed;
             lbChat.DrawItem += new DrawItemEventHandler(lbChat_DrawItem);
+            oudchatbericht = new List<Chatbericht>();
             Controls.Add(lbChat);
         }
 
@@ -34,6 +36,7 @@ namespace CAREMATCH
             DateTime datum;
                 datum = DateTime.Now;
                 database.ChatInvoegen(database.ControlleerMaxChatID() + 1 ,tbBericht.Text, partnerid, gebruiker.GebruikersID + 1, datum.ToString("dd/MMM HH:mm"));
+            tbBericht.Clear();
             //database.closeCon();
             //Chatbericht bericht = new Chatbericht(tbBericht.Text);
             //Database
@@ -63,7 +66,13 @@ namespace CAREMATCH
         {
             partnernaam = lbGebruikerLijst.SelectedItem as string;
             lblGebruikersnaam.Text = partnernaam;
-            partnerid = database.ChatpartnerID(partnernaam);           
+            partnerid = database.ChatpartnerID(partnernaam);
+            oudchatbericht = database.ChatGeschiedenis(partnernaam, gebruiker.Gebruikersnaam, partnerid, gebruiker.GebruikersID + 1);
+            lbChat.Items.Clear();
+            foreach(Chatbericht c in database.ChatGeschiedenis(partnernaam, gebruiker.Gebruikersnaam, partnerid, gebruiker.GebruikersID + 1))
+            {
+                lbChat.Items.Add(c);
+            }
         }
 
         //Methodes
@@ -119,11 +128,13 @@ namespace CAREMATCH
 
         private void tmrLaadberichten_Tick(object sender, EventArgs e)
         {
-            foreach (string s in database.ChatGeschiedenis(partnernaam, gebruiker.Gebruikersnaam, partnerid, gebruiker.GebruikersID + 1))
-            {
-                lbChat.Items.Clear();
-                lbChat.Items.Add(s);
-            }
+            List<Chatbericht> lijst = database.ChatGeschiedenis(partnernaam, gebruiker.Gebruikersnaam, partnerid, gebruiker.GebruikersID + 1);
+            //lbChat.Items.Clear();
+                if(lijst.Count > oudchatbericht.Count)
+                {
+                    lbChat.Items.Add(lijst.Count - 1);
+                    oudchatbericht = lijst;
+                }
         }
     }
 }

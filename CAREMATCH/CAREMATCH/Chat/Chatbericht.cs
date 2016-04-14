@@ -8,15 +8,12 @@ namespace CAREMATCH
 {
     class Chatbericht
     {
-        //Fields
-        private string inhoud;
+        //Properties
+        public string Inhoud { get;}
+        public string VerzenderNaam { get; }
         private DateTime datumtijd;
 
         //Properties
-        public string Inhoud
-        {
-            get { return inhoud; }
-        }
 
         public string Datumtijd
         {
@@ -24,10 +21,16 @@ namespace CAREMATCH
         }
 
         //Constructor
-        public Chatbericht(string inhoud)
+        public Chatbericht(string inhoud, string verzender)
         {
-            this.inhoud = inhoud;
+            Inhoud = inhoud;
+            VerzenderNaam = verzender;
             datumtijd = DateTime.Now;
+        }
+
+        public override string ToString()
+        {
+            return VerzenderNaam + ": " + Inhoud;
         }
     }
 }

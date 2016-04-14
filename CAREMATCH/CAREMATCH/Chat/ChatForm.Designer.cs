@@ -113,6 +113,7 @@
             // 
             // tmrLaadberichten
             // 
+            this.tmrLaadberichten.Interval = 2000;
             this.tmrLaadberichten.Tick += new System.EventHandler(this.tmrLaadberichten_Tick);
             // 
             // ChatForm

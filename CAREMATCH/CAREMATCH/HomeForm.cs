@@ -15,6 +15,7 @@ namespace CAREMATCH
     public partial class HomeForm : Form
     {
         private Gebruiker gebruiker;
+        private Hulpvragen.Hulpvraag hulpvraag;
         private Database database;
 
         private ChatForm chatForm;
@@ -55,7 +56,7 @@ namespace CAREMATCH
         private void btnHulpvraagIndienen_Click(object sender, EventArgs e)
         {
             this.Hide();
-            hulpvraagForm = new HulpvraagForm(gebruiker, true);
+            hulpvraagForm = new HulpvraagForm(hulpvraag, gebruiker, true);
             hulpvraagForm.ShowDialog();
             if(hulpvraagForm.DialogResult == DialogResult.OK || hulpvraagForm.DialogResult == DialogResult.Cancel)
             {

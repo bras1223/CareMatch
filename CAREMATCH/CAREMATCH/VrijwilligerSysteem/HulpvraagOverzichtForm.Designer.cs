@@ -96,7 +96,6 @@
             this.Name = "HulpvraagOverzichtForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HulpvragenOverzichtForm";
-            this.Load += new System.EventHandler(this.HulpvraagOverzichtForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -21,7 +21,7 @@ namespace CAREMATCH.Gebruikers
 
         public bool Keur()
         {
-
+            return true;
         }
     }
 }

@@ -16,7 +16,6 @@ namespace CAREMATCH
     {
         private Gebruiker gebruiker;
         private Hulpvragen.Hulpvraag hulpvraag;
-        private Database database;
 
         private ChatForm chatForm;
         private AgendaForm agendaForm;

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data.OleDb;
 using Oracle.ManagedDataAccess.Client;
+using System.Security.Cryptography;
 
 namespace CAREMATCH
 {
@@ -18,6 +19,7 @@ namespace CAREMATCH
         private OracleConnection con;
         private OracleCommand sda;
         private OracleDataReader reader;
+        private SHA1 sha;
         private string tempString;
         public Database()
         {
@@ -277,7 +279,8 @@ namespace CAREMATCH
         public string Login(string naam, string wachtwoord)
         {
             con.Open();
-            sda = new OracleCommand("SELECT * FROM gebruiker WHERE gebruikersnaam = '"+naam+"' AND wachtwoord = '"+wachtwoord+"'", con);
+            //Gebruikersnaam zoeken waar gebruikersnaam gelijk is aan de ingevoerde naam + w8woord
+            sda = new OracleCommand("SELECT * FROM gebruiker WHERE gebruikersnaam = '"+naam+"' AND wachtwoord = '"+EncryptString(wachtwoord)+"'", con);
             reader = sda.ExecuteReader();
 
             while (reader.Read())
@@ -299,7 +302,7 @@ namespace CAREMATCH
         public void AccountToevoegen(string GebruikerID, string Gebruikersnaam, string Wachtwoord, string Approved, string Rol)
         {
             con.Open();
-            OracleCommand command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERID, GEBRUIKERSNAAM, WACHTWOORD, APPROVED, ROL) VALUES('"+GebruikerID+"','"+Gebruikersnaam+"','"+Wachtwoord+"', '"+Approved+"','"+Rol+"')",  con);
+            OracleCommand command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERID, GEBRUIKERSNAAM, WACHTWOORD, APPROVED, ROL) VALUES('"+GebruikerID+"','"+Gebruikersnaam+"','"+EncryptString(Wachtwoord)+"', '"+Approved+"','"+Rol+"')",  con);
             command.ExecuteNonQuery();
             con.Close();
         }
@@ -333,21 +336,18 @@ namespace CAREMATCH
             else
             {
                 return false;
-            }
-            
-            
+            }    
         }
         public void ShowAccountGegevens()
         {
 
         }
-
-
-
-
-        public void ProfielAanpassen()
+        public void ProfielAanpassen(Gebruiker gebruiker)
         {
-
+            con.Open();
+            OracleCommand command = new OracleCommand("UPDATE Gebruiker SET Wachtwoord = '"+EncryptString(gebruiker.Wachtwoord)+"', Foto='"+gebruiker.Pasfoto+"', Auto='"+gebruiker.Auto+"' WHERE GebruikerID ='"+gebruiker.GebruikersID+"')", con);
+            reader = command.ExecuteReader();
+            con.Close();
         }
         public void ReactieToevoegen()
         {
@@ -370,5 +370,16 @@ namespace CAREMATCH
             // sql.Close();
         }
         #endregion
+        public string EncryptString(string toEncrypt)
+        {
+            SHA256Managed crypt = new SHA256Managed();
+            System.Text.StringBuilder hash = new StringBuilder();
+            byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(toEncrypt), 0, Encoding.UTF8.GetByteCount(toEncrypt));
+            foreach (byte theByte in crypto)
+            {
+                hash.Append(theByte.ToString("x2"));
+            }
+            return hash.ToString();
+        }
     }
 }

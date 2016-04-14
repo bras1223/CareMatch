@@ -9,7 +9,7 @@ namespace Login
     partial class LoginForm : Form
     {
         private Login login;
-        private Database dbQuery;
+        private Database database;
         HomeForm homeForm;
         BeheerdersForm beheerdersform;
         Beheerder gebruiker;
@@ -21,7 +21,7 @@ namespace Login
         {
             InitializeComponent();
             login = new Login();
-            dbQuery = new Database();
+            database = new Database();
         }
 
         //Logincheck
@@ -34,17 +34,13 @@ namespace Login
             {
                 MessageBox.Show("Niet alle velden zijn ingevuld");
             }
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "")
+            else if (database.Login(textBox1.Text, textBox2.Text) == "")
             {
                 MessageBox.Show("Gebruikersnaam of Wachtwoord incorrect");
             }
-
-
-
-
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "beheerder")
+            else if (database.Login(textBox1.Text, textBox2.Text).ToLower() == "beheerder")
             {
-                gebruiker = new Beheerder(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
+                gebruiker = new Beheerder(textBox1.Text, "piet", "piet", "piet", "piet", vandaag);
                 beheerdersform = new BeheerdersForm();
                 this.Hide();
                 beheerdersform.ShowDialog();
@@ -53,30 +49,11 @@ namespace Login
                     this.Show();
                 }
             }
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "Beheerder")
-            {
-                gebruiker = new Beheerder(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
-                beheerdersform = new BeheerdersForm();
-                this.Hide();
-                beheerdersform.ShowDialog();
-                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
-            }
-
-
-
-
-
-
-
-
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "vrijwilliger")
+            else if (database.Login(textBox1.Text, textBox2.Text).ToLower() == "vrijwilliger")
             {
                 //vrijwilliger is nu standaard goedgekeurd, hoort niet maar is handig voor testen
 
-                vrijwilliger = new Vrijwilliger(true, textBox1.Text, "piet", "piet", piet, "piet", vandaag);
+                vrijwilliger = new Vrijwilliger(true, textBox1.Text, "piet", "piet", "piet", "piet", vandaag);
                 homeForm = new HomeForm(vrijwilliger);
                 this.Hide();
                 homeForm.ShowDialog();
@@ -85,33 +62,9 @@ namespace Login
                     this.Show();
                 }
             }
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "Vrijwilliger")
+            else if (database.Login(textBox1.Text, textBox2.Text).ToLower() == "hulpbehoevende")
             {
-                //vrijwilliger is nu standaard goedgekeurd, hoort niet maar is handig voor testen
-
-                vrijwilliger = new Vrijwilliger(true, textBox1.Text, "piet", "piet", piet, "piet", vandaag);
-                homeForm = new HomeForm(vrijwilliger);
-                this.Hide();
-                homeForm.ShowDialog();
-                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
-            }
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "hulpbehoevende")
-            {
-                hulpbehoevende = new Hulpbehoevende(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
-                homeForm = new HomeForm(hulpbehoevende);
-                this.Hide();
-                homeForm.ShowDialog();
-                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
-            }
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "Hulpbehoevende")
-            {
-                hulpbehoevende = new Hulpbehoevende(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
+                hulpbehoevende = new Hulpbehoevende(textBox1.Text, "piet", "piet", "piet", "piet", vandaag);
                 homeForm = new HomeForm(hulpbehoevende);
                 this.Hide();
                 homeForm.ShowDialog();

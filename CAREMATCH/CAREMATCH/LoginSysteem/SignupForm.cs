@@ -29,7 +29,7 @@ namespace Login
             int GebruikNum = dbQuery.ControlleerMaxGebruikerID() + 1;
             bool GebruikNaam = dbQuery.ControlleerGebruikersnaam(textBox1.Text);
 
-            if (GebruikNaam == false)
+            if (!GebruikNaam)
             {
                 MessageBox.Show("Gebruikersnaam bestaat al");
             }
@@ -37,25 +37,15 @@ namespace Login
             {
                 MessageBox.Show("Wachtwoorden zijn niet gelijk");
             }
-            if (textBox1.Text == "")
+            if (textBox1.Text == "" || textBox2.Text == "")
             {
                 MessageBox.Show("Niet alles is ingevuld");
             }
-            if (textBox2.Text == "")
-            {
-                MessageBox.Show("Niet alles is ingevuld");
-            }
-            else if (comboBox1.Text == "Hulpbehoevende" && textBox2.Text == textBox3.Text && GebruikNaam == true)
+            else if ((comboBox1.Text == "Hulpbehoevende" || comboBox1.Text == "Vrijwilliger") && textBox2.Text == textBox3.Text && GebruikNaam)
             {
                 dbQuery.AccountToevoegen(GebruikNum.ToString(), textBox1.Text, textBox2.Text, "Y", comboBox1.Text);
                 MessageBox.Show("Account toegevoegd");
             }
-            else if (comboBox1.Text == "Vrijwilliger" && textBox2.Text == textBox3.Text && GebruikNaam == true)
-            {
-                dbQuery.AccountToevoegen(GebruikNum.ToString(), textBox1.Text, textBox2.Text, "Y", comboBox1.Text);
-                MessageBox.Show("Account toegevoegd");
-            }
-
         }
         //Wachtwoord controle
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -65,7 +55,7 @@ namespace Login
                 label4.Visible = true;
                 label5.Visible = false;
             }
-            if (textBox2.Text.Length >= 5)
+            else if (textBox2.Text.Length >= 5)
             {
                 label4.Visible = false;
                 label5.Visible = true;

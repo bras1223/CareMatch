@@ -14,26 +14,26 @@ namespace CAREMATCH
         //Fields
         
 
-        //Properties
-        
+        //Properties        
         public int GebruikersID { get; private set; }
+        public string Pasfoto { get; private set; }
         public string Gebruikersnaam { get; private set; }
+        public string Wachtwoord { get; set; }
         public string Voornaam { get; private set; }
         public string Achternaam { get; private set; }
+        public string GebruikerInfo { get; private set; }
         public DateTime GeboorteDatum { get; private set; }
-        public Image Pasfoto { get; private set; }
-        public string Email { get; private set; }
         public bool Auto { get; private set; }
-
+        public bool Approved { get; set; }
 
         //Constructor
-        public Gebruiker(string gebruikersnaam, string voornaam, string achternaam, Image pasfoto, string email, DateTime geboorteDatum)
+        public Gebruiker(string gebruikersnaam, string voornaam, string achternaam, string pasfoto, string gebruikerInfo, DateTime geboorteDatum)
         {
             Gebruikersnaam = gebruikersnaam;
             Voornaam = voornaam;
             Achternaam = achternaam;
             Pasfoto = pasfoto;
-            Email = email;
+            GebruikerInfo = gebruikerInfo;
             GeboorteDatum = geboorteDatum;
         }
 

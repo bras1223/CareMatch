@@ -12,15 +12,20 @@ namespace CAREMATCH.VrijwilligerSysteem
 {
     public partial class ProfielForm : Form
     {
+        private Gebruiker gebruiker;
+        private Database database;
         private OpenFileDialog zoekFotoDialog;
 
         public ProfielForm(Gebruiker gebruiker)
         {
             InitializeComponent();
+            this.gebruiker = gebruiker;
+            database = new Database();
         }
 
         private void btnOpslaan_Click(object sender, EventArgs e)
         {
+            database.ProfielAanpassen(gebruiker);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -37,6 +42,11 @@ namespace CAREMATCH.VrijwilligerSysteem
         }
 
         private void pbProfielFoto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnWachtwoordOpslaan_Click(object sender, EventArgs e)
         {
 
         }

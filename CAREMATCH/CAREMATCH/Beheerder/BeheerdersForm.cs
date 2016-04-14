@@ -17,6 +17,7 @@ namespace Login
 {
     public partial class BeheerdersForm : Form
     {
+        private OracleConnection con;
         private Database dbQuery;
         public BeheerdersForm()
         {
@@ -27,14 +28,7 @@ namespace Login
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //con.Open();
-            //OracleCommand command = new OracleCommand("SELECT * FROM GEBRUIKER", con);
-            //OracleDataReader reader = command.ExecuteReader();
-            //con.Close();
-            //dbQuery.ShowAccountGegevens();
-            //DataTable dt = new DataTable();
-            //command.Fill(dt);
-            //dataGridView1.DataSource = dt;
+            
         }
 
         private void button2_Click(object sender, EventArgs e)

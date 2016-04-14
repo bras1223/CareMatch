@@ -18,19 +18,6 @@ namespace Login
             DataTable dat = new DataTable();
             //sda.Fill(dt);
             //sdaa.Fill(dat);
-
-            if (dt.Rows[0][0].ToString() == "1")
-            {
-                form1.Userright();
-            }
-            else if (dat.Rows[0][0].ToString() == "1")
-            {
-                form1.AdminLogin();
-            }
-            else
-            {
-                form1.Userwrong();
-            }
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tbBericht = new System.Windows.Forms.TextBox();
             this.btnVerzenden = new System.Windows.Forms.Button();
             this.pbProfielFoto = new System.Windows.Forms.PictureBox();
@@ -35,6 +36,7 @@
             this.btnTerug = new System.Windows.Forms.Button();
             this.lbChat = new System.Windows.Forms.ListBox();
             this.lbGebruikerLijst = new System.Windows.Forms.ListBox();
+            this.tmrLaadberichten = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -109,6 +111,10 @@
             this.lbGebruikerLijst.TabIndex = 8;
             this.lbGebruikerLijst.SelectedIndexChanged += new System.EventHandler(this.lbGebruikerLijst_SelectedIndexChanged_1);
             // 
+            // tmrLaadberichten
+            // 
+            this.tmrLaadberichten.Tick += new System.EventHandler(this.tmrLaadberichten_Tick);
+            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -143,6 +149,6 @@
         private System.Windows.Forms.Button btnTerug;
         private System.Windows.Forms.ListBox lbChat;
         private System.Windows.Forms.ListBox lbGebruikerLijst;
-
+        private System.Windows.Forms.Timer tmrLaadberichten;
     }
 }

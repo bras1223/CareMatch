@@ -135,7 +135,7 @@ namespace CAREMATCH
             vrijwilligerlijst = new List<string>();
 
             con.Open();
-            OracleCommand cmd = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'vrijwilliger'", con);
+            OracleCommand cmd = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Vrijwilliger'", con);
             OracleDataReader reader = cmd.ExecuteReader();
             
             while (reader.Read())
@@ -180,16 +180,65 @@ namespace CAREMATCH
             return id;
         }
 
-        public void ChatInvoegen(string inhoud, int ontvangerID, int verzenderID)
+        public void ChatInvoegen(int chatid, string inhoud, int ontvangerID, int verzenderID, string datum)
         {
-            con.Open();
-            OracleCommand command = new OracleCommand("INSERT INTO Chat(ChatID, OntvangerID, VerzenderID, BerichtInhoud, Datumtijd) VALUES('1','"+ontvangerID+"', '"+verzenderID+"', '"+inhoud+"', '"+DateTime.Now+"');", con);
-            command.ExecuteNonQuery();
-            con.Close();
-        }
-        public void ChatWeergeven()
-        {
+            int Chatcount = 0;
 
+            con.Open();
+            OracleCommand cmd = new OracleCommand("SELECT COUNT(CHATID) as ChatIDCount FROM Chat", con);
+            OracleDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Chatcount = Convert.ToInt32(reader["ChatIDCount"]);
+            }
+
+            if(Chatcount > 0)
+            {
+                OracleCommand command = new OracleCommand("INSERT INTO Chat(ChatID, OntvangerID, VerzenderID, BerichtInhoud, Datumtijd) VALUES('1','" + ControlleerMaxChatID() + 1 + "', '" + verzenderID + "', '" + inhoud + "', TO_TIMESTAMP('" + datum + "','DD-MON HH24.MI'))", con);
+                command.ExecuteNonQuery();
+                con.Close();
+            }
+
+            else if(Chatcount <= 0)
+            {
+                OracleCommand command = new OracleCommand("INSERT INTO Chat(ChatID, OntvangerID, VerzenderID, BerichtInhoud, Datumtijd) VALUES('1','0', '" + verzenderID + "', '" + inhoud + "', TO_TIMESTAMP('" + datum + "','DD-MON HH24.MI'))", con);
+                command.ExecuteNonQuery();
+                con.Close();
+            }
+        }
+
+        public int ControlleerMaxChatID()
+        {
+            int id = 0;
+            con.Open();
+            OracleCommand command = new OracleCommand("SELECT MAX(CHATID) as MAXID FROM CHAT", con);
+            OracleDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                id = Convert.ToInt32(reader["MAXID"]);
+            }
+            con.Close();
+
+            return id;
+        }
+
+        public void ChatWeergeven(int ontvangerID, int verzenderID)
+        {
+            List<string> chatverzonden;
+            List<string> chatgekregen;
+            chatverzonden = new List<string>();
+
+
+            con.Open();
+            OracleCommand cmd = new OracleCommand("SELECT Inhoud FROM chat WHERE ontvangerID = '"+ontvangerID+"' AND verzenderID = '"+verzenderID+"'", con);
+            OracleDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                chatverzonden.Add(reader["Inhoud"].ToString());
+            }
+            con.Close();
         }
 
         #endregion

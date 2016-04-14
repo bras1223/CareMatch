@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnTerug = new System.Windows.Forms.Button();
             this.lbChat = new System.Windows.Forms.ListBox();
+            this.listView1 = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,11 +99,20 @@
             this.lbChat.Size = new System.Drawing.Size(965, 404);
             this.lbChat.TabIndex = 7;
             // 
+            // listView1
+            // 
+            this.listView1.Location = new System.Drawing.Point(15, 139);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(177, 487);
+            this.listView1.TabIndex = 8;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1193, 641);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.lbChat);
             this.Controls.Add(this.btnTerug);
             this.Controls.Add(this.label1);
@@ -115,6 +125,7 @@
             this.Name = "ChatForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ChatForm";
+            this.Load += new System.EventHandler(this.ChatForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -129,5 +140,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnTerug;
         private System.Windows.Forms.ListBox lbChat;
+        private System.Windows.Forms.ListView listView1;
     }
 }

@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Windows.Forms;
 using CAREMATCH;
-using CAREMATCH.Gebruikers;
 
 namespace Login
 {
@@ -11,9 +10,10 @@ namespace Login
         private Login login;
         private Database dbQuery;
         HomeForm homeForm;
-        Beheerder gebruiker;
-        Vrijwilliger vrijwilliger;
-        Hulpbehoevende hulpbehoevende;
+        Gebruiker gebruiker;
+        Gebruiker vrijwilliger;
+        Gebruiker hulpbehoevende;
+        SignupForm SignUp = new SignupForm();
         public LoginForm()
         {
             InitializeComponent();
@@ -37,7 +37,7 @@ namespace Login
             }
             else if(dbQuery.Login(textBox1.Text, textBox2.Text) == "beheerder")
             {
-                gebruiker = new Beheerder(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
+                gebruiker = new Gebruiker(textBox1.Text, "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.beheerder);
                 homeForm = new HomeForm(gebruiker);
                 this.Hide();
                 homeForm.ShowDialog();
@@ -48,7 +48,7 @@ namespace Login
             }                
             else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "vrijwilliger")
             {
-                vrijwilliger = new Vrijwilliger(true, textBox1.Text, "piet", "piet", piet, "piet", vandaag);
+                vrijwilliger = new Gebruiker(textBox1.Text, "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.vrijwilliger);
                 homeForm = new HomeForm(vrijwilliger);
                 this.Hide();
                 homeForm.ShowDialog();
@@ -59,7 +59,7 @@ namespace Login
             }
             else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "hulpbehoevende")
             {
-                hulpbehoevende = new Hulpbehoevende(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
+                hulpbehoevende = new Gebruiker(textBox1.Text, "piet", "piet", piet, "piet", vandaag, true, CAREMATCH.Enum.rol.hulpbehoevende);
                 homeForm = new HomeForm(hulpbehoevende);
                 this.Hide();
                 homeForm.ShowDialog();
@@ -114,6 +114,13 @@ namespace Login
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+        }
+
+        private void lbRegister_Click_1(object sender, EventArgs e)
+        {
+           
+            SignUp.Show();
+            this.Hide();
         }
     }
 }

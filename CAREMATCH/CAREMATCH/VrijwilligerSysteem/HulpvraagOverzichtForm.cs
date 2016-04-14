@@ -39,8 +39,6 @@ namespace CAREMATCH.VrijwilligerSysteem
             }
 
             lvHulpvragenOverzicht.View = View.Details;
-            string[] row1 = { database.HulpvragenOverzicht()[0], database.HulpvragenOverzicht()[1], database.HulpvragenOverzicht()[2] };
-            lvHulpvragenOverzicht.Items.Add("chHulpvraagID").SubItems.AddRange(row1);
         }
         private void btnBekijkHulpvraag_Click(object sender, EventArgs e)
         {

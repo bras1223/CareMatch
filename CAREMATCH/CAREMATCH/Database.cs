@@ -39,18 +39,24 @@ namespace CAREMATCH
         {
 
         }
-        public string HulpvraagAanpassen()
+        public void HulpvraagAanpassen(int vrijwilligerID, Hulpvragen.Hulpvraag hulpvraag)
         {
             con.Open();
-
-            OracleCommand sda = new OracleCommand("SELECT * FROM Hulpvraag", con);
+            if (hulpvraag.Urgent)
+            {
+                queryString = "Y";
+            }
+            else
+            {
+                queryString = "N";
+            }
+            OracleCommand sda = new OracleCommand("UPDATE Hulpvraag SET Reactie ='"+hulpvraag.Reactie+"',Vrijwilliger='"+vrijwilligerID+"',Hulpvraaginhoud='"+hulpvraag.HulpvraagInhoud+"'Urgent='"+queryString+"' WHERE HulpvraagID='"+hulpvraag.HulpvraagID+"' ", con);
             OracleDataReader reader = sda.ExecuteReader();
             while (reader.Read())
             {
                 queryString = reader["Hulpvraaginhoud"].ToString();
             }
             con.Close();
-            return queryString;
         }
         public List<Hulpvragen.Hulpvraag> HulpvragenOverzicht()
         {

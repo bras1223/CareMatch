@@ -17,6 +17,7 @@ namespace CAREMATCH.Hulpvragen
         public string Titel { get; set;}
         public string HulpvraagInhoud { get; set; }
         public string Frequentie { get; set; }
+        public string Reactie { get; set; }
         public int Duur { get; set; }
         public bool Aangenomen { get; set; }
         public bool Urgent { get; set; }
@@ -24,6 +25,10 @@ namespace CAREMATCH.Hulpvragen
         public Hulpvraag()
         {
 
+        }
+        public override string ToString()
+        {
+            return this.HulpvraagID.ToString();
         }
     }
 }

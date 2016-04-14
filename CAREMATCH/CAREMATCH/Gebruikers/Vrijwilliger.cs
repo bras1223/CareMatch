@@ -18,5 +18,10 @@ namespace CAREMATCH.Gebruikers
             Goedgekeurd = goedgekeurd;
             
         }
+
+        public bool Keur()
+        {
+
+        }
     }
 }

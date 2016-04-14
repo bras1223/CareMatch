@@ -27,9 +27,7 @@ namespace CAREMATCH.Hulpvragen
         }
         public override string ToString()
         {
-            string iets;
-            iets.
-            return HulpvraagID.ToString() + " " + HulpbehoevendeFoto
+            return HulpvraagID.ToString() + " " + HulpbehoevendeFoto;
         }
     }
 }

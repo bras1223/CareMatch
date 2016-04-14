@@ -47,6 +47,19 @@ namespace CAREMATCH.VrijwilligerSysteem
             {
                 ListViewItem item = new ListViewItem();
                 item.SubItems.Add(hulpvraag.HulpvraagID.ToString());
+                item.SubItems.Add(hulpvraag.HulpbehoevendeFoto);
+                item.SubItems.Add(hulpvraag.Hulpbehoevende);
+                item.SubItems.Add(hulpvraag.Titel);
+                item.SubItems.Add(hulpvraag.HulpvraagInhoud);
+                item.SubItems.Add(hulpvraag.Vrijwilliger);
+                if(hulpvraag.Urgent)
+                {
+                    item.SubItems[7].BackColor = Color.Red;
+                }
+                else
+                {
+                    item.SubItems[7].BackColor = Color.Blue;
+                }
             }
         }
         private void btnBekijkHulpvraag_Click(object sender, EventArgs e)

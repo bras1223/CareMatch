@@ -25,9 +25,9 @@ namespace CAREMATCH
             lbChat.DrawMode = DrawMode.OwnerDrawFixed;
             lbChat.DrawItem += new DrawItemEventHandler(lbChat_DrawItem);
             Controls.Add(lbChat);
-        }       
+        }
 
-        private void btnVerzenden_Click_1(object sender, EventArgs e)
+        private void btnVerzenden_Click(object sender, EventArgs e)
         {
             try
             {
@@ -41,14 +41,16 @@ namespace CAREMATCH
             {
                 database.closeCon();
             }
-            /*Chatbericht bericht = new Chatbericht(tbBericht.Text);
-            //Database
-            lbChat.Items.Add(gebruiker.Gebruikersnaam+": "+bericht.Inhoud);
-            lbChat.Items.Add(bericht.Datumtijd);
-            lbChat.Items.Add(" ");*/
+
+
+            //Chatbericht bericht = new Chatbericht(tbBericht.Text);
+            ////Database
+            //lbChat.Items.Add(gebruiker.Gebruikersnaam + ": " + bericht.Inhoud);
+            //lbChat.Items.Add(bericht.Datumtijd);
+            //lbChat.Items.Add(" ");
         }
 
-        private void btnTerug_Click(object sender, EventArgs e)
+        private void btnTerug_Click_1(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -58,12 +60,12 @@ namespace CAREMATCH
             DialogResult = DialogResult.OK;
         }
 
-        private void ChatForm_Load(object sender, EventArgs e)
+        private void ChatForm_Load_1(object sender, EventArgs e)
         {
             LbVullen();
         }
 
-        private void lbGebruikerLijst_SelectedIndexChanged(object sender, EventArgs e)
+        private void lbGebruikerLijst_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             string naam = lbGebruikerLijst.SelectedItem as string;
             lblGebruikersnaam.Text = naam;
@@ -72,10 +74,10 @@ namespace CAREMATCH
 
         //Methodes
 
-            //Kijk of de gebruiker hulpbehoevende of vrijwilliger is en vult de listbox met vrijwilligers of hulpbehoevende
+        //Kijk of de gebruiker hulpbehoevende of vrijwilliger is en vult de listbox met vrijwilligers of hulpbehoevende
         public void LbVullen()
         {
-            if(gebruiker.GetType() == typeof(Hulpbehoevende))
+            if (gebruiker.GetType() == typeof(Hulpbehoevende))
             {
                 foreach (String v in database.VrijwilligersLijst())
                 {
@@ -83,7 +85,7 @@ namespace CAREMATCH
                 }
             }
 
-            else if(gebruiker.GetType() == typeof(Vrijwilliger))
+            else if (gebruiker.GetType() == typeof(Vrijwilliger))
             {
                 foreach (String h in database.HulpbehoevendeLijst())
                 {
@@ -92,7 +94,7 @@ namespace CAREMATCH
             }
         }
 
-            //Zorgt ervoor dat de datum/tijd in een kleiner font heeft dan de tekst.
+        //Zorgt ervoor dat de datum/tijd in een kleiner font heeft dan de tekst.
         private void lbChat_DrawItem(object sender, System.Windows.Forms.DrawItemEventArgs e)
         {
             e.DrawBackground();
@@ -115,6 +117,7 @@ namespace CAREMATCH
             e.Graphics.DrawString(lbChat.Items[e.Index].ToString(),
             myFont, myBrush, e.Bounds, StringFormat.GenericDefault);
         }
+
 
     }
 }

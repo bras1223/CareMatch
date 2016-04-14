@@ -98,13 +98,13 @@ namespace CAREMATCH
 
         private void btnBerichten_Click(object sender, EventArgs e)
         {
-            //this.Hide();
-            //chatForm = new ChatForm(gebruiker);
-            //chatForm.ShowDialog();
-            //if (chatForm.DialogResult == DialogResult.OK || chatForm.DialogResult == DialogResult.Cancel)
-            //{
-            //    this.Show();
-            //}
+            this.Hide();
+            chatForm = new ChatForm(gebruiker);
+            chatForm.ShowDialog();
+            if (chatForm.DialogResult == DialogResult.OK || chatForm.DialogResult == DialogResult.Cancel)
+            {
+                this.Show();
+            }
         }
 
         private void btnProfiel_Click(object sender, EventArgs e)

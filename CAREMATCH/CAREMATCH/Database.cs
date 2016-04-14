@@ -52,7 +52,7 @@ namespace CAREMATCH
             List<Hulpvragen.Hulpvraag> hulpvraagList = new List<Hulpvragen.Hulpvraag>();
 
             con.Open();
-            OracleCommand sda = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as user, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.HulpvraagInhoud, Hulpvraag.Aangenomen, Hulpvraag.DatumTijd, Hulpvraag.Urgent FROM Hulpvraag", con);
+            OracleCommand sda = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.HulpvraagInhoud, Hulpvraag.Aangenomen, Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie, Hulpvraag.Titel FROM Hulpvraag", con);
             OracleDataReader reader = sda.ExecuteReader();
             while (reader.Read())
             {
@@ -60,9 +60,11 @@ namespace CAREMATCH
 
                 hulpvraag.HulpvraagID = Convert.ToInt32(reader["HulpvraagID"]);
                 hulpvraag.Titel = reader["Titel"].ToString();
-                hulpvraag.Hulpbehoevende = reader["user"].ToString();
+                hulpvraag.Hulpbehoevende = reader["hulpbeh"].ToString();
                 hulpvraag.Vrijwilliger = reader["vrijwilliger"].ToString();
                 hulpvraag.HulpvraagInhoud = reader["HulpvraagInhoud"].ToString();
+                hulpvraag.Frequentie = reader["Frequentie"].ToString();
+                hulpvraag.DatumTijd = Convert.ToDateTime(reader["DatumTijd"]);
                 if (reader["Aangenomen"].ToString() == "Y")
                 {
                     hulpvraag.Aangenomen = true;
@@ -70,9 +72,17 @@ namespace CAREMATCH
                 else
                 {
                     hulpvraag.Aangenomen = false;
-                };
-                queryString = reader["DatumTijd"].ToString();
-                queryString = reader["Urgent"].ToString();
+                }
+                if (reader["Urgent"].ToString() == "Y")
+                {
+                    hulpvraag.Urgent = true;
+                }
+                else
+                {
+                    hulpvraag.Urgent = false;
+                }
+
+                hulpvraagList.Add(hulpvraag);
             }
             con.Close();
 

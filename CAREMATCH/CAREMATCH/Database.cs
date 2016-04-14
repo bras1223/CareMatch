@@ -247,12 +247,19 @@ namespace CAREMATCH
             con.Close();
         }
 
-        public void ControlleerMaxGebruikerID()
+        public int ControlleerMaxGebruikerID()
         {
+            int id = 0;
             con.Open();
-            OracleCommand command = new OracleCommand("SELECT MAX(GEBRUIKERID)FROM GEBRUIKER", con);
-            command.ExecuteNonQuery();
+            OracleCommand command = new OracleCommand("SELECT MAX(GEBRUIKERID) as MAXID FROM GEBRUIKER", con);
+            OracleDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                id = Convert.ToInt32(reader["MAXID"]);
+            }
             con.Close();
+            
+            return id;
            
         }
             

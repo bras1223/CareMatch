@@ -24,12 +24,10 @@ namespace Login
             dbQuery = new Database();
             
         }
-        //SqlConnection sql = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ferry\Documents\Login.mdf;Integrated Security=True;Connect Timeout=30");
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int GebruikerIDNUM = dbQuery.ControlleerMaxGebruikerID;
-
+            int GebruikNum = dbQuery.ControlleerMaxGebruikerID() +1;
             if (textBox2.Text != textBox3.Text)
             {
                 MessageBox.Show("Wachtwoorden zijn niet gelijk");
@@ -44,12 +42,12 @@ namespace Login
             }
             else if (comboBox1.Text == "Hulpbehoevende")
             {
-                dbQuery.AccountToevoegen("6", textBox1.Text, textBox2.Text, "Y", comboBox1.Text);
+                dbQuery.AccountToevoegen(GebruikNum.ToString(), textBox1.Text, textBox2.Text, "Y", comboBox1.Text);
                 MessageBox.Show("Account toegevoed");
             }
             else if (comboBox1.Text == "Vrijwilliger")
             {
-                dbQuery.AccountToevoegen("6", textBox1.Text, textBox2.Text, "N", comboBox1.Text);
+                dbQuery.AccountToevoegen(GebruikNum.ToString(), textBox1.Text, textBox2.Text, "N", comboBox1.Text);
                 MessageBox.Show("Account toegevoed");
             }
 

@@ -24,11 +24,10 @@ namespace Login
             dbQuery = new Database();
             
         }
-        //SqlConnection sql = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ferry\Documents\Login.mdf;Integrated Security=True;Connect Timeout=30");
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //int GebruikerIDNUM = dbQuery.ControlleerMaxGebruikerID;
+            int GebruikNum = dbQuery.ControlleerMaxGebruikerID() + 1;
 
             if (textBox2.Text != textBox3.Text)
             {
@@ -42,14 +41,14 @@ namespace Login
             {
                 MessageBox.Show("Niet alles is ingevuld");
             }
-            else if (comboBox1.Text == "Hulpbehoevende")
+            else if (comboBox1.Text == "Hulpbehoevende" && textBox2.Text == textBox3.Text)
             {
-                dbQuery.AccountToevoegen("6", textBox1.Text, textBox2.Text, "Y", comboBox1.Text);
+                dbQuery.AccountToevoegen(GebruikNum.ToString(), textBox1.Text, textBox2.Text, "Y", comboBox1.Text);
                 MessageBox.Show("Account toegevoed");
             }
-            else if (comboBox1.Text == "Vrijwilliger")
+            else if (comboBox1.Text == "Vrijwilliger" && textBox2.Text == textBox3.Text)
             {
-                dbQuery.AccountToevoegen("6", textBox1.Text, textBox2.Text, "N", comboBox1.Text);
+                dbQuery.AccountToevoegen(GebruikNum.ToString(), textBox1.Text, textBox2.Text, "N", comboBox1.Text);
                 MessageBox.Show("Account toegevoed");
             }
 

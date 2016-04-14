@@ -13,6 +13,7 @@ namespace CAREMATCH
 {
     public partial class ChatForm : Form
     {
+        //om te kunnen commiten
         Gebruiker gebruiker;
         int partnerid;
         Database database;

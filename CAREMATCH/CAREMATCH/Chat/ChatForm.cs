@@ -13,6 +13,7 @@ namespace CAREMATCH
 {
     public partial class ChatForm : Form
     {
+        //om te kunnen commiten
         Gebruiker gebruiker;
         int partnerid;
         Database database;
@@ -25,9 +26,9 @@ namespace CAREMATCH
             lbChat.DrawMode = DrawMode.OwnerDrawFixed;
             lbChat.DrawItem += new DrawItemEventHandler(lbChat_DrawItem);
             Controls.Add(lbChat);
-        }       
+        }
 
-        private void btnVerzenden_Click_1(object sender, EventArgs e)
+        private void btnVerzenden_Click(object sender, EventArgs e)
         {
             try
             {
@@ -48,7 +49,7 @@ namespace CAREMATCH
             lbChat.Items.Add(" ");*/
         }
 
-        private void btnTerug_Click(object sender, EventArgs e)
+        private void btnTerug_Click_1(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -58,12 +59,12 @@ namespace CAREMATCH
             DialogResult = DialogResult.OK;
         }
 
-        private void ChatForm_Load(object sender, EventArgs e)
+        private void ChatForm_Load_1(object sender, EventArgs e)
         {
             LbVullen();
         }
 
-        private void lbGebruikerLijst_SelectedIndexChanged(object sender, EventArgs e)
+        private void lbGebruikerLijst_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             string naam = lbGebruikerLijst.SelectedItem as string;
             lblGebruikersnaam.Text = naam;
@@ -72,7 +73,7 @@ namespace CAREMATCH
 
         //Methodes
 
-            //Kijk of de gebruiker hulpbehoevende of vrijwilliger is en vult de listbox met vrijwilligers of hulpbehoevende
+        //Kijk of de gebruiker hulpbehoevende of vrijwilliger is en vult de listbox met vrijwilligers of hulpbehoevende
         public void LbVullen()
         {
             if(gebruiker.GetType() == typeof(Hulpbehoevende))
@@ -115,6 +116,5 @@ namespace CAREMATCH
             e.Graphics.DrawString(lbChat.Items[e.Index].ToString(),
             myFont, myBrush, e.Bounds, StringFormat.GenericDefault);
         }
-
     }
 }

@@ -81,13 +81,13 @@
     <Compile Include="Beheerder\BeheerdersForm.Designer.cs">
       <DependentUpon>BeheerdersForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Chat\Chatbericht.cs" />
     <Compile Include="Chat\ChatForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Chat\ChatForm.Designer.cs">
       <DependentUpon>ChatForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Chat\Chatbericht.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Gebruikers\Beheerder.cs" />
@@ -178,7 +178,6 @@
     <EmbeddedResource Include="VrijwilligerSysteem\AgendaForm.resx">
       <DependentUpon>AgendaForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

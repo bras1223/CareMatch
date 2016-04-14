@@ -13,14 +13,16 @@ namespace CAREMATCH.VrijwilligerSysteem
 {
     public partial class HulpvraagOverzichtForm : Form
     {
+        private Gebruiker gebruiker;
+        private Hulpvragen.Hulpvraag hulpvraag;
         private Database database;
         private HulpvraagForm hulpvraagForm;
         
         public HulpvraagOverzichtForm(Gebruiker gebruiker)
         {
             InitializeComponent();
+            this.gebruiker = gebruiker;
             database = new Database();
-            hulpvraagForm = new HulpvraagForm(gebruiker, false);
 
             if(gebruiker.GetType() == typeof(Hulpbehoevende))
             {
@@ -35,6 +37,8 @@ namespace CAREMATCH.VrijwilligerSysteem
                 lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;
             }
 
+            lvHulpvragen.View = View.Details;
+            lvHulpvragen.FullRowSelect = true;
             lvHulpvragen.Columns.Add("HulpvraagID");
             lvHulpvragen.Columns.Add("Foto");
             lvHulpvragen.Columns.Add("Hulpbehoevende");
@@ -45,30 +49,39 @@ namespace CAREMATCH.VrijwilligerSysteem
 
             foreach (Hulpvragen.Hulpvraag hulpvraag in database.HulpvragenOverzicht())
             {
-                ListViewItem item = new ListViewItem();
-                item.SubItems.Add(hulpvraag.HulpvraagID.ToString());
+                ListViewItem item = new ListViewItem(hulpvraag.HulpvraagID.ToString());
+                if(item.Selected)
+                {
+                    this.hulpvraag = hulpvraag;
+                }
+                item.UseItemStyleForSubItems = false;
                 item.SubItems.Add(hulpvraag.HulpbehoevendeFoto);
                 item.SubItems.Add(hulpvraag.Hulpbehoevende);
                 item.SubItems.Add(hulpvraag.Titel);
                 item.SubItems.Add(hulpvraag.HulpvraagInhoud);
                 item.SubItems.Add(hulpvraag.Vrijwilliger);
+                item.SubItems.Add("");
                 if(hulpvraag.Urgent)
                 {
-                    item.SubItems[7].BackColor = Color.Red;
+                    item.SubItems[6].BackColor = Color.Red;
                 }
                 else
                 {
-                    item.SubItems[7].BackColor = Color.Blue;
+                    item.SubItems[6].BackColor = Color.Blue;
                 }
+                lvHulpvragen.Items.Add(item);
             }
         }
+
+        private void hulpvraag_Selected(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         private void btnBekijkHulpvraag_Click(object sender, EventArgs e)
         {
-            //properties van aangeklikte hulpvraag moeten aan HulpvraagForm worden meegegeven, zodat je ze kunt bekijken.
-            //selected index van listbox/view item uit list met hulpvragen halen
-            //eventueel nog de hulpvraag aan kunnen passen als hulbbehoevende
-
             this.Hide();
+            hulpvraagForm = new HulpvraagForm(hulpvraag, gebruiker, false);
             hulpvraagForm.ShowDialog();
             if(hulpvraagForm.DialogResult == DialogResult.OK)
             {
@@ -79,15 +92,6 @@ namespace CAREMATCH.VrijwilligerSysteem
         {
             DialogResult = DialogResult.OK;
             this.Close();
-        }
-        private void HulpvraagOverzichtForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lvHulpvragenOverzicht_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

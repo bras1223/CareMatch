@@ -13,7 +13,6 @@ namespace CAREMATCH
 {
     public partial class ChatForm : Form
     {
-        //dit is om te kunnen commiten
         Gebruiker gebruiker;
         int partnerid;
         Database database;
@@ -42,12 +41,11 @@ namespace CAREMATCH
             {
                 database.closeCon();
             }
-
-            //Chatbericht bericht = new Chatbericht(tbBericht.Text);
-            ////Database
-            //lbChat.Items.Add(gebruiker.Gebruikersnaam + ": " + bericht.Inhoud);
-            //lbChat.Items.Add(bericht.Datumtijd);
-            //lbChat.Items.Add(" ");
+            /*Chatbericht bericht = new Chatbericht(tbBericht.Text);
+            //Database
+            lbChat.Items.Add(gebruiker.Gebruikersnaam+": "+bericht.Inhoud);
+            lbChat.Items.Add(bericht.Datumtijd);
+            lbChat.Items.Add(" ");*/
         }
 
         private void btnTerug_Click_1(object sender, EventArgs e)
@@ -77,7 +75,7 @@ namespace CAREMATCH
         //Kijk of de gebruiker hulpbehoevende of vrijwilliger is en vult de listbox met vrijwilligers of hulpbehoevende
         public void LbVullen()
         {
-            if (gebruiker.GetType() == typeof(Hulpbehoevende))
+            if(gebruiker.GetType() == typeof(Hulpbehoevende))
             {
                 foreach (String v in database.VrijwilligersLijst())
                 {
@@ -85,7 +83,7 @@ namespace CAREMATCH
                 }
             }
 
-            else if (gebruiker.GetType() == typeof(Vrijwilliger))
+            else if(gebruiker.GetType() == typeof(Vrijwilliger))
             {
                 foreach (String h in database.HulpbehoevendeLijst())
                 {
@@ -94,7 +92,7 @@ namespace CAREMATCH
             }
         }
 
-        //Zorgt ervoor dat de datum/tijd in een kleiner font heeft dan de tekst.
+            //Zorgt ervoor dat de datum/tijd in een kleiner font heeft dan de tekst.
         private void lbChat_DrawItem(object sender, System.Windows.Forms.DrawItemEventArgs e)
         {
             e.DrawBackground();
@@ -117,7 +115,5 @@ namespace CAREMATCH
             e.Graphics.DrawString(lbChat.Items[e.Index].ToString(),
             myFont, myBrush, e.Bounds, StringFormat.GenericDefault);
         }
-
-
     }
 }

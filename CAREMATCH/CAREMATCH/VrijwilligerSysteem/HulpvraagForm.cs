@@ -11,13 +11,15 @@ using System.Windows.Forms;
 
 namespace CAREMATCH.VrijwilligerSysteem
 {
-    public partial class HulpvraagForm : Form
+    partial class HulpvraagForm : Form
     {
         private Gebruiker gebruiker;
-        public HulpvraagForm(Gebruiker gebruiker, bool hulpvraagIndienen)
+        private Hulpvragen.Hulpvraag hulpvraag;
+        public HulpvraagForm(Hulpvragen.Hulpvraag hulpvraag, Gebruiker gebruiker, bool hulpvraagIndienen)
         {
             InitializeComponent();
             this.gebruiker = gebruiker;
+            this.hulpvraag = hulpvraag;
 
             if (gebruiker.GetType() == typeof(Hulpbehoevende) && hulpvraagIndienen == true)
             {
@@ -36,6 +38,8 @@ namespace CAREMATCH.VrijwilligerSysteem
                 txtHulpvrager.Enabled = false;
                 txtTitel.Enabled = false;
             }
+
+            rtxtHulpvraag.Text = hulpvraag.HulpvraagInhoud;
         }
 
         private void btnSluit_Click(object sender, EventArgs e)

@@ -70,9 +70,9 @@ namespace Login
 
         private void button2_Click(object sender, EventArgs e)
         {
-           // this.Hide();
-           // Start een = new Start();
-            //een.Show();
+           this.Hide();
+           LoginForm Login = new LoginForm();
+           Login.Show();
         }
     }
 }

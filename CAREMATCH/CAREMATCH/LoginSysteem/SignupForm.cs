@@ -52,18 +52,6 @@ namespace Login
                 MessageBox.Show("Account toegevoed");
             }
 
-
-            //if (textBox2.Text == textBox3.Text && textBox2.Text != "" && textBox1.Text != "")
-            // {
-            ///  sql.Open();
-            //   SqlDataAdapter sda = new SqlDataAdapter("INSERT INTO Login (Username, Password) VALUES ('" + textBox1.Text + "','" + textBox2.Text + "')", sql);
-            //  sda.SelectCommand.ExecuteNonQuery();
-            //   sql.Close();
-            //   MessageBox.Show("Gebruiker succesvol toegevoed!");
-            // }
-
-
-
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)

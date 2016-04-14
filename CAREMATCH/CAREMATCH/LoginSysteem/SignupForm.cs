@@ -27,7 +27,8 @@ namespace Login
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int GebruikNum = dbQuery.ControlleerMaxGebruikerID() +1;
+            /int GebruikerIDNUM = dbQuery.ControlleerMaxGebruikerID;
+
             if (textBox2.Text != textBox3.Text)
             {
                 MessageBox.Show("Wachtwoorden zijn niet gelijk");

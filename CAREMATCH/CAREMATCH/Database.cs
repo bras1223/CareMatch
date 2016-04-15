@@ -21,6 +21,7 @@ namespace CAREMATCH
         private OracleCommand command;
         private OracleDataReader reader;
         private Gebruiker gebruiker;
+        private Agenda.AgendaPunt agendaPunt;
         private DateTime vandaag;
         private string tempString;
         public Database()
@@ -283,7 +284,7 @@ namespace CAREMATCH
         }
         #endregion
         #region Gebruiker Queries
-        public Gebruiker Login(string naam, string wachtwoord)
+        public Gebruiker GebruikerLogin(string naam, string wachtwoord)
         {
             con.Open();
             //Gebruikersnaam zoeken waar gebruikersnaam gelijk is aan de ingevoerde naam + w8woord
@@ -344,7 +345,7 @@ namespace CAREMATCH
             con.Close();
             return id;
         }
-        public bool ControlleerGebruikersnaam(string Gebruikersnaam)
+        public bool GebruikerControlleerUsername(string Gebruikersnaam)
         {
             con.Open();
             command = new OracleCommand("SELECT Gebruikersnaam FROM GEBRUIKER WHERE Gebruikersnaam ='" + Gebruikersnaam + "'", con);
@@ -363,11 +364,7 @@ namespace CAREMATCH
                 return false;
             }    
         }
-        public void ShowAccountGegevens()
-        {
-
-        }
-        public void ProfielAanpassen(Gebruiker gebruiker, bool wachtwoordChanged, bool fotoChanged)
+        public void GebruikerProfielAanpassen(Gebruiker gebruiker, bool wachtwoordChanged, bool fotoChanged)
         {
             con.Open();
             if (gebruiker.Auto)
@@ -395,11 +392,11 @@ namespace CAREMATCH
             reader = command.ExecuteReader();
             con.Close();
         }
-        public void ReactieToevoegen()
+        public void GebruikerReactieToevoegen()
         {
 
         }
-        public void BeoordelingToevoegen()
+        public void GebruikerBeoordelingToevoegen()
         {
             // command = new OracleCommand("INSERT INTO Hulpvraag(HulpvraagID, GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie) VALUES('@HulpvraagID','@GebruikerID, '@HulpvraagInhoud', '@Urgent', '@DatumTijd', '@Duur', '@Frequentie');", con);
             //command.Parameters.AddWithValue("HulpvraagID", 1);
@@ -414,6 +411,37 @@ namespace CAREMATCH
             // SqlDataAdapter command = new SqlDataAdapter("INSERT INTO Login (Username, Password) VALUES ('" + textBox1.Text + "','" + textBox2.Text + "')", sql);
             // command.SelectCommand.ExecuteNonQuery();
             // sql.Close();
+        }
+        public Agenda.AgendaPunt GebruikerAgendaInhoud(Gebruiker gebruiker, int agendaID)
+        {
+            agendaPunt = new Agenda.AgendaPunt();
+            command = new OracleCommand("SELECT * FROM Agenda WHERE GebruikerID ='"+gebruiker.GebruikersID+"' AND AgendaID='"+agendaID+"'", con);
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                agendaPunt.AgendaEigenaar = gebruiker.GebruikersID;
+                agendaPunt.Titel = reader["Titel"].ToString();
+                agendaPunt.DatumTijdStart = reader["StartDateTime"].ToString();
+                agendaPunt.DatumTijdEind = reader["EindDateTime"].ToString();
+                agendaPunt.Beschrijving = reader["Omschrijving"].ToString();
+                agendaPunt.Hulpbehoevende = reader["Hulpbehoevende"].ToString();
+                agendaPunt.Vrijwilliger = reader["Vrijwilliger"].ToString();
+            }
+            con.Close();
+
+            return agendaPunt;
+        }
+        public void GebruikerAgendaAanpassen(Gebruiker gebruiker, Agenda.AgendaPunt agendaPunt)
+        {
+            command = new OracleCommand("UPDATE Agenda SET", con);
+            reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+
+            }
+            con.Close();
+            
         }
         #endregion
         public string EncryptString(string toEncrypt)

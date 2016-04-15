@@ -38,6 +38,10 @@ namespace CAREMATCH
         {
             agendaPuntList.Add(agendaPunt);
         }
+        public List<AgendaPunt> GetAgendaPunten()
+        {
+            return agendaPuntList;
+        }
             //Maakt een nieuw chatbericht aan met de huidige tijd en de inhoud die word meegegeven
         //public void Chatberichtmaken(string inhoud)
         //{

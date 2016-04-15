@@ -27,7 +27,7 @@ namespace Login
         private void button1_Click(object sender, EventArgs e)
         {
             int GebruikNum = dbQuery.ControlleerMaxGebruikerID() + 1;
-            bool GebruikNaam = dbQuery.ControlleerGebruikersnaam(txtGebruikersnaam.Text);
+            bool GebruikNaam = dbQuery.GebruikerControlleerUsername(txtGebruikersnaam.Text);
 
             if (GebruikNaam == false)
             {

@@ -29,7 +29,7 @@ namespace CAREMATCH.Agenda
 
         private void btnOpslaan_Click(object sender, EventArgs e)
         {
-            agendaPunt.AgendaEigenaar = gebruiker.Gebruikersnaam;
+            agendaPunt.AgendaEigenaar = gebruiker.GebruikersID;
             agendaPunt.Titel = txtTitel.Text;
             agendaPunt.DatumTijdEind = txtEindTijd.Text;
             agendaPunt.DatumTijdStart = txtStartTijd.Text;

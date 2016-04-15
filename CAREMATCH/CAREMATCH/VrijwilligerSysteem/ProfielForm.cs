@@ -81,11 +81,11 @@ namespace CAREMATCH.VrijwilligerSysteem
             if (txtHerhaalWachtwoord.Text != "")
             {
                 gebruiker.Wachtwoord = txtNieuwWachtwoord.Text;
-                database.ProfielAanpassen(gebruiker,true,false);
+                database.GebruikerProfielAanpassen(gebruiker,true,false);
             }
             if(gebruiker.Pasfoto != @"\")
             {
-                database.ProfielAanpassen(gebruiker, false, true);
+                database.GebruikerProfielAanpassen(gebruiker, false, true);
             }
             this.DialogResult = DialogResult.OK;
             this.Close();

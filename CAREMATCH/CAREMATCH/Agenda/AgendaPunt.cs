@@ -8,9 +8,10 @@ namespace CAREMATCH.Agenda
 {
     public class AgendaPunt
     {
+        public int AfspraakID { get; set; }
+        public int AgendaEigenaar { get; set; }
         public string DatumTijdStart { get; set; }
         public string DatumTijdEind { get; set; }
-        public string AgendaEigenaar { get; set; }
         public string Vrijwilliger { get; set; }
         public string Hulpbehoevende { get; set; }
         public string Titel { get; set; }

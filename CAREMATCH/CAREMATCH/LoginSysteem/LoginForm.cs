@@ -11,10 +11,6 @@ namespace Login
         private Login login;
         private Database database;
         HomeForm homeForm;
-        BeheerdersForm beheerdersform;
-        Beheerder gebruiker;
-        Vrijwilliger vrijwilliger;
-        Hulpbehoevende hulpbehoevende;
         SignupForm SignUp = new SignupForm();
 
         public LoginForm()
@@ -34,23 +30,23 @@ namespace Login
             {
                 MessageBox.Show("Niet alle velden zijn ingevuld");
             }
-            else if (database.Login(txtGebruikersnaam.Text, txtWachtwoord.Text) == null)
+            else if (database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text) == null)
             {
                 MessageBox.Show("Gebruikersnaam of Wachtwoord incorrect");
             }
-            else if (database.Login(txtGebruikersnaam.Text, txtWachtwoord.Text).Rol.ToLower() == "beheerder")
+            else if (database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text).Rol.ToLower() == "beheerder")
             {
-                homeForm = new HomeForm(database.Login(txtGebruikersnaam.Text, txtWachtwoord.Text));
+                homeForm = new HomeForm(database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text));
                 ShowDialogMethod();
             }
-            else if (database.Login(txtGebruikersnaam.Text, txtWachtwoord.Text).Rol.ToLower() == "vrijwilliger")
+            else if (database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text).Rol.ToLower() == "vrijwilliger")
             {
-                homeForm = new HomeForm(database.Login(txtGebruikersnaam.Text, txtWachtwoord.Text));
+                homeForm = new HomeForm(database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text));
                 ShowDialogMethod();
             }
-            else if (database.Login(txtGebruikersnaam.Text, txtWachtwoord.Text).Rol.ToLower() == "hulpbehoevende")
+            else if (database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text).Rol.ToLower() == "hulpbehoevende")
             {
-                homeForm = new HomeForm(database.Login(txtGebruikersnaam.Text, txtWachtwoord.Text));
+                homeForm = new HomeForm(database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text));
                 ShowDialogMethod();
             }
         }

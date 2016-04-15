@@ -26,10 +26,12 @@ namespace CAREMATCH.VrijwilligerSysteem
             //afbeelding in de picturebox zetten als een gebruiker deze heeft.
             if (gebruiker.Pasfoto != @"\")
             {
-                //---------error
-                //pbProfielFoto.Image = Image.FromFile(gebruiker.Pasfoto);
+                pbProfielFoto.Image = Image.FromFile(gebruiker.Pasfoto);
             }
-            richTextBox1.Text = gebruiker.GebruikerInfo;
+            txtGebruikersInfo.Text = gebruiker.GebruikerInfo;
+            txtAchternaam.Text = gebruiker.Achternaam;
+            txtVoornaam.Text = gebruiker.Voornaam;
+            cbAuto.Checked = gebruiker.Auto;
             if(gebruiker.Auto)
             {
                 cbAuto.Checked = true;
@@ -72,7 +74,10 @@ namespace CAREMATCH.VrijwilligerSysteem
 
             //Verschil maken tussen welke info veranderd is. Anders wordt er een encryptie 
             //over encryptie van het wachtwoord gedaan elke keer dat je iets aan het profiel aanpast
-            gebruiker.GebruikerInfo = richTextBox1.Text;
+            gebruiker.GebruikerInfo = txtGebruikersInfo.Text;
+            gebruiker.Voornaam = txtVoornaam.Text;
+            gebruiker.Achternaam = txtAchternaam.Text;
+            gebruiker.Auto = cbAuto.Checked;
             if (txtHerhaalWachtwoord.Text != "")
             {
                 gebruiker.Wachtwoord = txtNieuwWachtwoord.Text;

@@ -16,7 +16,7 @@ namespace CAREMATCH
     {
         private Gebruiker gebruiker;
         private Hulpvragen.Hulpvraag hulpvraag;
-
+        private Agenda.WeekroosterForm weekrooster;
         private ChatForm chatForm;
         private HulpvraagForm hulpvraagForm;
         private HulpvraagOverzichtForm hulpvraagOverzichtForm;
@@ -87,12 +87,12 @@ namespace CAREMATCH
         private void btnAgenda_Click(object sender, EventArgs e)
         {
             this.Hide();
-            //agendaForm = new AgendaForm(gebruiker);
-            //agendaForm.ShowDialog();
-            //if (agendaForm.DialogResult == DialogResult.OK || agendaForm.DialogResult == DialogResult.Cancel)
-            //{
-            //    this.Show();
-            //}
+            weekrooster = new Agenda.WeekroosterForm(gebruiker);
+            weekrooster.ShowDialog();
+            if (weekrooster.DialogResult == DialogResult.OK || weekrooster.DialogResult == DialogResult.Cancel)
+            {
+                this.Show();
+            }
         }
 
         private void btnBerichten_Click(object sender, EventArgs e)

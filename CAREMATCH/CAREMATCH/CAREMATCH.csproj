@@ -75,6 +75,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agenda\AgendaPunt.cs" />
+    <Compile Include="Agenda\AgendaPuntToevoegenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Agenda\AgendaPuntToevoegenForm.Designer.cs">
+      <DependentUpon>AgendaPuntToevoegenForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Agenda\WeekroosterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Agenda\WeekroosterForm.Designer.cs">
+      <DependentUpon>WeekroosterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Beheerder\BeheerdersForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +148,12 @@
     <Compile Include="VrijwilligerSysteem\ProfielForm.Designer.cs">
       <DependentUpon>ProfielForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Agenda\AgendaPuntToevoegenForm.resx">
+      <DependentUpon>AgendaPuntToevoegenForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Agenda\WeekroosterForm.resx">
+      <DependentUpon>WeekroosterForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Beheerder\BeheerdersForm.resx">
       <DependentUpon>BeheerdersForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -187,9 +206,7 @@
   <ItemGroup>
     <None Include="Resources\users.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Agenda\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -27,32 +27,32 @@ namespace Login
         private void button1_Click(object sender, EventArgs e)
         {
             int GebruikNum = dbQuery.ControlleerMaxGebruikerID() + 1;
-            bool GebruikNaam = dbQuery.ControlleerGebruikersnaam(textBox1.Text);
+            bool GebruikNaam = dbQuery.ControlleerGebruikersnaam(txtGebruikersnaam.Text);
 
             if (GebruikNaam == false)
             {
                 MessageBox.Show("Gebruikersnaam bestaat al");
             }
-            if (textBox2.Text != textBox3.Text)
+            if (txtWachtwoord.Text != txtHerhWachtwoord.Text)
             {
                 MessageBox.Show("Wachtwoorden zijn niet gelijk");
             }
-            if (textBox1.Text == "")
+            if (txtGebruikersnaam.Text == "")
             {
                 MessageBox.Show("Niet alles is ingevuld");
             }
-            if (textBox2.Text == "")
+            if (txtWachtwoord.Text == "")
             {
                 MessageBox.Show("Niet alles is ingevuld");
             }
-            else if (comboBox1.Text == "Hulpbehoevende" && textBox2.Text == textBox3.Text && GebruikNaam == true)
+            else if (cbRol.Text == "Hulpbehoevende" && txtWachtwoord.Text == txtHerhWachtwoord.Text && GebruikNaam == true)
             {
-                dbQuery.AccountToevoegen(GebruikNum.ToString(), textBox1.Text, textBox2.Text, "Y", comboBox1.Text);
+                dbQuery.AccountToevoegen(GebruikNum.ToString(), txtGebruikersnaam.Text, txtWachtwoord.Text, "Y", cbRol.Text);
                 MessageBox.Show("Account toegevoegd");
             }
-            else if (comboBox1.Text == "Vrijwilliger" && textBox2.Text == textBox3.Text && GebruikNaam == true)
+            else if (cbRol.Text == "Vrijwilliger" && txtWachtwoord.Text == txtHerhWachtwoord.Text && GebruikNaam == true)
             {
-                dbQuery.AccountToevoegen(GebruikNum.ToString(), textBox1.Text, textBox2.Text, "Y", comboBox1.Text);
+                dbQuery.AccountToevoegen(GebruikNum.ToString(), txtGebruikersnaam.Text, txtWachtwoord.Text, "Y", cbRol.Text);
                 MessageBox.Show("Account toegevoegd");
             }
 
@@ -60,12 +60,12 @@ namespace Login
         //Wachtwoord controle
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            if (textBox2.Text.Length < 5)
+            if (txtWachtwoord.Text.Length < 5)
             {
                 label4.Visible = true;
                 label5.Visible = false;
             }
-            if (textBox2.Text.Length >= 5)
+            if (txtWachtwoord.Text.Length >= 5)
             {
                 label4.Visible = false;
                 label5.Visible = true;

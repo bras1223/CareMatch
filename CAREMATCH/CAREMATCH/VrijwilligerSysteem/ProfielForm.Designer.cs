@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnWijzig = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.txtGebruikersInfo = new System.Windows.Forms.RichTextBox();
             this.btnOpslaan = new System.Windows.Forms.Button();
             this.lblOverJezelf = new System.Windows.Forms.Label();
             this.pbProfielFoto = new System.Windows.Forms.PictureBox();
@@ -42,6 +42,10 @@
             this.gbWijzigWachtwoord = new System.Windows.Forms.GroupBox();
             this.cbAuto = new System.Windows.Forms.CheckBox();
             this.lblAuto = new System.Windows.Forms.Label();
+            this.lblAchternaam = new System.Windows.Forms.Label();
+            this.txtAchternaam = new System.Windows.Forms.TextBox();
+            this.txtVoornaam = new System.Windows.Forms.TextBox();
+            this.lblVoornaam = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).BeginInit();
             this.gbWijzigWachtwoord.SuspendLayout();
             this.SuspendLayout();
@@ -57,13 +61,13 @@
             this.btnWijzig.UseVisualStyleBackColor = true;
             this.btnWijzig.Click += new System.EventHandler(this.btnWijzig_Click);
             // 
-            // richTextBox1
+            // txtGebruikersInfo
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(171, 52);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(626, 286);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = "";
+            this.txtGebruikersInfo.Location = new System.Drawing.Point(171, 52);
+            this.txtGebruikersInfo.Name = "txtGebruikersInfo";
+            this.txtGebruikersInfo.Size = new System.Drawing.Size(626, 286);
+            this.txtGebruikersInfo.TabIndex = 2;
+            this.txtGebruikersInfo.Text = "";
             // 
             // btnOpslaan
             // 
@@ -166,7 +170,7 @@
             // cbAuto
             // 
             this.cbAuto.AutoSize = true;
-            this.cbAuto.Location = new System.Drawing.Point(354, 347);
+            this.cbAuto.Location = new System.Drawing.Point(313, 387);
             this.cbAuto.Name = "cbAuto";
             this.cbAuto.Size = new System.Drawing.Size(15, 14);
             this.cbAuto.TabIndex = 14;
@@ -176,23 +180,59 @@
             // lblAuto
             // 
             this.lblAuto.AutoSize = true;
-            this.lblAuto.Location = new System.Drawing.Point(237, 347);
+            this.lblAuto.Location = new System.Drawing.Point(191, 387);
             this.lblAuto.Name = "lblAuto";
             this.lblAuto.Size = new System.Drawing.Size(111, 13);
             this.lblAuto.TabIndex = 15;
             this.lblAuto.Text = "In bezit van een Auto:";
+            // 
+            // lblAchternaam
+            // 
+            this.lblAchternaam.AutoSize = true;
+            this.lblAchternaam.Location = new System.Drawing.Point(191, 440);
+            this.lblAchternaam.Name = "lblAchternaam";
+            this.lblAchternaam.Size = new System.Drawing.Size(67, 13);
+            this.lblAchternaam.TabIndex = 15;
+            this.lblAchternaam.Text = "Achternaam:";
+            // 
+            // txtAchternaam
+            // 
+            this.txtAchternaam.Location = new System.Drawing.Point(313, 440);
+            this.txtAchternaam.Name = "txtAchternaam";
+            this.txtAchternaam.Size = new System.Drawing.Size(135, 20);
+            this.txtAchternaam.TabIndex = 14;
+            // 
+            // txtVoornaam
+            // 
+            this.txtVoornaam.Location = new System.Drawing.Point(313, 414);
+            this.txtVoornaam.Name = "txtVoornaam";
+            this.txtVoornaam.Size = new System.Drawing.Size(135, 20);
+            this.txtVoornaam.TabIndex = 12;
+            // 
+            // lblVoornaam
+            // 
+            this.lblVoornaam.AutoSize = true;
+            this.lblVoornaam.Location = new System.Drawing.Point(191, 414);
+            this.lblVoornaam.Name = "lblVoornaam";
+            this.lblVoornaam.Size = new System.Drawing.Size(58, 13);
+            this.lblVoornaam.TabIndex = 13;
+            this.lblVoornaam.Text = "Voornaam:";
             // 
             // ProfielForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(809, 486);
+            this.Controls.Add(this.lblAchternaam);
             this.Controls.Add(this.lblAuto);
+            this.Controls.Add(this.txtAchternaam);
+            this.Controls.Add(this.txtVoornaam);
             this.Controls.Add(this.cbAuto);
+            this.Controls.Add(this.lblVoornaam);
             this.Controls.Add(this.gbWijzigWachtwoord);
             this.Controls.Add(this.lblOverJezelf);
             this.Controls.Add(this.btnOpslaan);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.txtGebruikersInfo);
             this.Controls.Add(this.btnWijzig);
             this.Controls.Add(this.pbProfielFoto);
             this.Name = "ProfielForm";
@@ -210,7 +250,7 @@
 
         private System.Windows.Forms.PictureBox pbProfielFoto;
         private System.Windows.Forms.Button btnWijzig;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox txtGebruikersInfo;
         private System.Windows.Forms.Button btnOpslaan;
         private System.Windows.Forms.Label lblOverJezelf;
         private System.Windows.Forms.TextBox txtActueelWachtwoord;
@@ -222,5 +262,9 @@
         private System.Windows.Forms.GroupBox gbWijzigWachtwoord;
         private System.Windows.Forms.CheckBox cbAuto;
         private System.Windows.Forms.Label lblAuto;
+        private System.Windows.Forms.Label lblAchternaam;
+        private System.Windows.Forms.TextBox txtAchternaam;
+        private System.Windows.Forms.TextBox txtVoornaam;
+        private System.Windows.Forms.Label lblVoornaam;
     }
 }

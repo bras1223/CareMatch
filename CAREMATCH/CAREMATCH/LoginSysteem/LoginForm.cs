@@ -30,27 +30,27 @@ namespace Login
             
             Image piet = CAREMATCH.Properties.Resources.users;
 
-            if (textBox1.Text == "" || textBox2.Text == "")
+            if (txtGebruikersnaam.Text == "" || txtWachtwoord.Text == "")
             {
                 MessageBox.Show("Niet alle velden zijn ingevuld");
             }
-            else if (database.Login(textBox1.Text, textBox2.Text) == null)
+            else if (database.Login(txtGebruikersnaam.Text, txtWachtwoord.Text) == null)
             {
                 MessageBox.Show("Gebruikersnaam of Wachtwoord incorrect");
             }
-            else if (database.Login(textBox1.Text, textBox2.Text).Rol.ToLower() == "beheerder")
+            else if (database.Login(txtGebruikersnaam.Text, txtWachtwoord.Text).Rol.ToLower() == "beheerder")
             {
-                homeForm = new HomeForm(database.Login(textBox1.Text, textBox2.Text));
+                homeForm = new HomeForm(database.Login(txtGebruikersnaam.Text, txtWachtwoord.Text));
                 ShowDialogMethod();
             }
-            else if (database.Login(textBox1.Text, textBox2.Text).Rol.ToLower() == "vrijwilliger")
+            else if (database.Login(txtGebruikersnaam.Text, txtWachtwoord.Text).Rol.ToLower() == "vrijwilliger")
             {
-                homeForm = new HomeForm(database.Login(textBox1.Text, textBox2.Text));
+                homeForm = new HomeForm(database.Login(txtGebruikersnaam.Text, txtWachtwoord.Text));
                 ShowDialogMethod();
             }
-            else if (database.Login(textBox1.Text, textBox2.Text).Rol.ToLower() == "hulpbehoevende")
+            else if (database.Login(txtGebruikersnaam.Text, txtWachtwoord.Text).Rol.ToLower() == "hulpbehoevende")
             {
-                homeForm = new HomeForm(database.Login(textBox1.Text, textBox2.Text));
+                homeForm = new HomeForm(database.Login(txtGebruikersnaam.Text, txtWachtwoord.Text));
                 ShowDialogMethod();
             }
         }

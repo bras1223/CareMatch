@@ -119,7 +119,7 @@
             // btnOngepasteBerichten
             // 
             this.btnOngepasteBerichten.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOngepasteBerichten.Location = new System.Drawing.Point(436, 70);
+            this.btnOngepasteBerichten.Location = new System.Drawing.Point(34, 70);
             this.btnOngepasteBerichten.Name = "btnOngepasteBerichten";
             this.btnOngepasteBerichten.Size = new System.Drawing.Size(152, 110);
             this.btnOngepasteBerichten.TabIndex = 6;

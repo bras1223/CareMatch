@@ -28,29 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnTerug = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtHerhWachtwoord = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtWachtwoord = new System.Windows.Forms.TextBox();
+            this.btnRegistreer = new System.Windows.Forms.Button();
+            this.txtGebruikersnaam = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbRol = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // button2
+            // btnTerug
             // 
-            this.button2.Location = new System.Drawing.Point(12, 161);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(168, 28);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Terug naar login scherm";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnTerug.Location = new System.Drawing.Point(12, 161);
+            this.btnTerug.Name = "btnTerug";
+            this.btnTerug.Size = new System.Drawing.Size(168, 28);
+            this.btnTerug.TabIndex = 6;
+            this.btnTerug.Text = "Terug naar login scherm";
+            this.btnTerug.UseVisualStyleBackColor = true;
+            this.btnTerug.Click += new System.EventHandler(this.button2_Click);
             // 
             // label5
             // 
@@ -74,13 +74,13 @@
             this.label4.TabIndex = 17;
             this.label4.Text = "Zwak wachtwoord";
             // 
-            // textBox3
+            // txtHerhWachtwoord
             // 
-            this.textBox3.Location = new System.Drawing.Point(206, 113);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.PasswordChar = '*';
-            this.textBox3.Size = new System.Drawing.Size(168, 20);
-            this.textBox3.TabIndex = 4;
+            this.txtHerhWachtwoord.Location = new System.Drawing.Point(206, 113);
+            this.txtHerhWachtwoord.Name = "txtHerhWachtwoord";
+            this.txtHerhWachtwoord.PasswordChar = '*';
+            this.txtHerhWachtwoord.Size = new System.Drawing.Size(168, 20);
+            this.txtHerhWachtwoord.TabIndex = 4;
             // 
             // label3
             // 
@@ -112,31 +112,31 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Gebruikersnaam:";
             // 
-            // textBox2
+            // txtWachtwoord
             // 
-            this.textBox2.Location = new System.Drawing.Point(206, 82);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(168, 20);
-            this.textBox2.TabIndex = 3;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.txtWachtwoord.Location = new System.Drawing.Point(206, 82);
+            this.txtWachtwoord.Name = "txtWachtwoord";
+            this.txtWachtwoord.PasswordChar = '*';
+            this.txtWachtwoord.Size = new System.Drawing.Size(168, 20);
+            this.txtWachtwoord.TabIndex = 3;
+            this.txtWachtwoord.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
-            // button1
+            // btnRegistreer
             // 
-            this.button1.Location = new System.Drawing.Point(425, 161);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(168, 28);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Registreer";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnRegistreer.Location = new System.Drawing.Point(425, 161);
+            this.btnRegistreer.Name = "btnRegistreer";
+            this.btnRegistreer.Size = new System.Drawing.Size(168, 28);
+            this.btnRegistreer.TabIndex = 5;
+            this.btnRegistreer.Text = "Registreer";
+            this.btnRegistreer.UseVisualStyleBackColor = true;
+            this.btnRegistreer.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
+            // txtGebruikersnaam
             // 
-            this.textBox1.Location = new System.Drawing.Point(206, 40);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(168, 20);
-            this.textBox1.TabIndex = 2;
+            this.txtGebruikersnaam.Location = new System.Drawing.Point(206, 40);
+            this.txtGebruikersnaam.Name = "txtGebruikersnaam";
+            this.txtGebruikersnaam.Size = new System.Drawing.Size(168, 20);
+            this.txtGebruikersnaam.TabIndex = 2;
             // 
             // label6
             // 
@@ -148,17 +148,17 @@
             this.label6.TabIndex = 19;
             this.label6.Text = "Rol:";
             // 
-            // comboBox1
+            // cbRol
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRol.FormattingEnabled = true;
+            this.cbRol.Items.AddRange(new object[] {
             "Hulpbehoevende",
             "Vrijwilliger"});
-            this.comboBox1.Location = new System.Drawing.Point(204, 5);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(169, 21);
-            this.comboBox1.TabIndex = 1;
+            this.cbRol.Location = new System.Drawing.Point(204, 5);
+            this.cbRol.Name = "cbRol";
+            this.cbRol.Size = new System.Drawing.Size(169, 21);
+            this.cbRol.TabIndex = 1;
             // 
             // SignupForm
             // 
@@ -166,18 +166,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(605, 201);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbRol);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnTerug);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtHerhWachtwoord);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtWachtwoord);
+            this.Controls.Add(this.btnRegistreer);
+            this.Controls.Add(this.txtGebruikersnaam);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SignupForm";
@@ -189,17 +189,17 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnTerug;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtHerhWachtwoord;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtWachtwoord;
+        private System.Windows.Forms.Button btnRegistreer;
+        private System.Windows.Forms.TextBox txtGebruikersnaam;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbRol;
     }
 }

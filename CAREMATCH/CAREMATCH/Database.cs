@@ -313,7 +313,7 @@ namespace CAREMATCH
                 gebruiker.GebruikerInfo = reader["GebruikerInfo"].ToString();
                 try
                 {
-                    gebruiker.Pasfoto = reader["Voornaam"].ToString() + @"\" + reader["Foto"].ToString();
+                    gebruiker.Pasfoto = reader["Foto"].ToString();
                 }
                 catch
                 {
@@ -382,11 +382,15 @@ namespace CAREMATCH
             //over encryptie van het wachtwoord gedaan elke keer dat je iets aan het profiel aanpast
             if(fotoChanged)
             {
-                command = new OracleCommand("UPDATE Gebruiker SET GebruikerInfo='" + gebruiker.GebruikerInfo + "', Foto='" + gebruiker.Pasfoto + "', Auto='" + tempString + "' WHERE GebruikerID ='" + gebruiker.GebruikersID + "'", con);
+                command = new OracleCommand("UPDATE Gebruiker SET GebruikerInfo='" + gebruiker.GebruikerInfo + "', Foto='" + gebruiker.Pasfoto + "', Auto='" + tempString + "', Voornaam='"+gebruiker.Voornaam+"', Achternaam='"+gebruiker.Achternaam+"'  WHERE GebruikerID ='" + gebruiker.GebruikersID + "'", con);
             }
             else if(wachtwoordChanged)
             {
-                command = new OracleCommand("UPDATE Gebruiker SET Wachtwoord = '" + EncryptString(gebruiker.Wachtwoord) + "', GebruikerInfo='" + gebruiker.GebruikerInfo + "', Auto='" + tempString + "' WHERE GebruikerID ='" + gebruiker.GebruikersID + "'", con);
+                command = new OracleCommand("UPDATE Gebruiker SET Wachtwoord = '" + EncryptString(gebruiker.Wachtwoord) + "', GebruikerInfo='" + gebruiker.GebruikerInfo + "', Auto='" + tempString + "', Voornaam='" + gebruiker.Voornaam + "', Achternaam='" + gebruiker.Achternaam + "' WHERE GebruikerID ='" + gebruiker.GebruikersID + "'", con);
+            }
+            else
+            {
+                command = new OracleCommand("UPDATE Gebruiker SET GebruikerInfo='" + gebruiker.GebruikerInfo + "', Auto='" + tempString + "', Voornaam='" + gebruiker.Voornaam + "', Achternaam='" + gebruiker.Achternaam + "' WHERE GebruikerID ='" + gebruiker.GebruikersID + "'", con);
             }
             reader = command.ExecuteReader();
             con.Close();

@@ -160,7 +160,11 @@ namespace CAREMATCH
 
             return vrijwilligerlijst;
         }
-
+        public List<Chatbericht> ChatGeschiedenis(string partnerNaam, string gebruikerNaam, int partnerID, int gebruikerID)
+        {
+            List<Chatbericht> chatberichtenList = new List<Chatbericht>();
+            return chatberichtenList;
+        }
         public List<string> HulpbehoevendeLijst()
         {
             List<string> hulpbehoevendelijst;

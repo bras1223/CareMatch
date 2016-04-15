@@ -135,10 +135,6 @@
     <Compile Include="VrijwilligerSysteem\ProfielForm.Designer.cs">
       <DependentUpon>ProfielForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="VrijwilligerSysteem\AgendaForm.cs" />
-    <Compile Include="VrijwilligerSysteem\AgendaForm.Designer.cs">
-      <DependentUpon>AgendaForm.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Beheerder\BeheerdersForm.resx">
       <DependentUpon>BeheerdersForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -173,9 +169,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VrijwilligerSysteem\ProfielForm.resx">
       <DependentUpon>ProfielForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VrijwilligerSysteem\AgendaForm.resx">
-      <DependentUpon>AgendaForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

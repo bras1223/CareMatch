@@ -18,7 +18,6 @@ namespace CAREMATCH
         private Hulpvragen.Hulpvraag hulpvraag;
 
         private ChatForm chatForm;
-        private AgendaForm agendaForm;
         private HulpvraagForm hulpvraagForm;
         private HulpvraagOverzichtForm hulpvraagOverzichtForm;
         private ProfielForm profielForm;
@@ -88,12 +87,12 @@ namespace CAREMATCH
         private void btnAgenda_Click(object sender, EventArgs e)
         {
             this.Hide();
-            agendaForm = new AgendaForm(gebruiker);
-            agendaForm.ShowDialog();
-            if (agendaForm.DialogResult == DialogResult.OK || agendaForm.DialogResult == DialogResult.Cancel)
-            {
-                this.Show();
-            }
+            //agendaForm = new AgendaForm(gebruiker);
+            //agendaForm.ShowDialog();
+            //if (agendaForm.DialogResult == DialogResult.OK || agendaForm.DialogResult == DialogResult.Cancel)
+            //{
+            //    this.Show();
+            //}
         }
 
         private void btnBerichten_Click(object sender, EventArgs e)

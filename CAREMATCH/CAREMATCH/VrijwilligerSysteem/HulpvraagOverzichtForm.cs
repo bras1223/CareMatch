@@ -18,11 +18,13 @@ namespace CAREMATCH.VrijwilligerSysteem
         private Hulpvragen.Hulpvraag hulpvraag;
         private Database database;
         private HulpvraagForm hulpvraagForm;
-        
-        public HulpvraagOverzichtForm(Gebruiker gebruiker)
+
+        private bool aangenomen;
+        public HulpvraagOverzichtForm(Gebruiker gebruiker, bool aangenomen)
         {
             InitializeComponent();
             this.gebruiker = gebruiker;
+            this.aangenomen = aangenomen;
             database = new Database();
 
             if(gebruiker.GetType() == typeof(Hulpbehoevende))
@@ -48,7 +50,8 @@ namespace CAREMATCH.VrijwilligerSysteem
             lvHulpvragen.Columns.Add("Vrijwilliger");
             lvHulpvragen.Columns.Add("Urgent");
 
-            foreach (Hulpvragen.Hulpvraag hulpvraag in database.HulpvragenOverzicht())
+            #region Hulpvragen Overzicht
+            foreach (Hulpvragen.Hulpvraag hulpvraag in database.HulpvragenOverzicht(aangenomen, gebruiker.GebruikersID))
             {
                 ListViewItem item = new ListViewItem(hulpvraag.ToString());
                 item.UseItemStyleForSubItems = false;
@@ -68,22 +71,27 @@ namespace CAREMATCH.VrijwilligerSysteem
                 }
                 lvHulpvragen.Items.Add(item);
             }
-        }
+            #endregion
+            #region Aangenomen Hulpvragen overzicht
 
-        private void hulpvraag_Selected(object sender, MouseEventArgs e)
-        {
-            throw new NotImplementedException();
+            #endregion
         }
-
         private void btnBekijkHulpvraag_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            hulpvraag = database.HulpvragenOverzicht()[lvHulpvragen.FocusedItem.Index];
-            hulpvraagForm = new HulpvraagForm(hulpvraag, gebruiker, false);
-            hulpvraagForm.ShowDialog();
-            if(hulpvraagForm.DialogResult == DialogResult.OK)
+            try
             {
-                this.Show();
+                this.Hide();
+                hulpvraag = database.HulpvragenOverzicht(aangenomen, gebruiker.GebruikersID)[lvHulpvragen.FocusedItem.Index];
+                hulpvraagForm = new HulpvraagForm(hulpvraag, gebruiker, false);
+                hulpvraagForm.ShowDialog();
+                if (hulpvraagForm.DialogResult == DialogResult.OK)
+                {
+                    this.Show();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Selecteer een hulpvraag");
             }
         }
         private void btnLogUit_Click(object sender, EventArgs e)

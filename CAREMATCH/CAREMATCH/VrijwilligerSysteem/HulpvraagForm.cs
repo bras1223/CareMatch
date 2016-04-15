@@ -46,7 +46,7 @@ namespace CAREMATCH.VrijwilligerSysteem
             txtHulpvrager.Text = hulpvraag.Hulpbehoevende;
             txtTitel.Text = hulpvraag.Titel;
             rtxtHulpvraag.Text = hulpvraag.HulpvraagInhoud;
-            rtxtReactieInhoud.Text = hulpvraag.Reactie;
+            rtxtReactieInhoud.Text = hulpvraag.Reactie +"\n\n"+ DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt") + "   " + gebruiker.Gebruikersnaam +" Zegt:\n";
 
             if (hulpvraag.Urgent)
             {
@@ -66,7 +66,7 @@ namespace CAREMATCH.VrijwilligerSysteem
             hulpvraag.Vrijwilliger = gebruiker.Gebruikersnaam;
             hulpvraag.HulpvraagInhoud = rtxtHulpvraag.Text;
             hulpvraag.Urgent = cbUrgent.Checked;
-            hulpvraag.Reactie = hulpvraag.Reactie + "\n" + DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt") + "   " + gebruiker.Gebruikersnaam + "\n" + rtxtReactieInhoud.Text;
+            hulpvraag.Reactie = rtxtReactieInhoud.Text + "\n";
             database.HulpvraagAanpassen(gebruiker.GebruikersID, hulpvraag);
         }
     }

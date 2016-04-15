@@ -67,7 +67,7 @@ namespace CAREMATCH
         private void btnHulpvraagAannemen_Click(object sender, EventArgs e)
         {
             this.Hide();
-            hulpvraagOverzichtForm = new HulpvraagOverzichtForm(gebruiker);
+            hulpvraagOverzichtForm = new HulpvraagOverzichtForm(gebruiker, false);
             hulpvraagOverzichtForm.ShowDialog();
             if(hulpvraagOverzichtForm.DialogResult == DialogResult.OK || hulpvraagOverzichtForm.DialogResult == DialogResult.Cancel)
             {
@@ -78,7 +78,7 @@ namespace CAREMATCH
         private void btnAangenomenHulpvragen_Click(object sender, EventArgs e)
         {
             this.Hide();
-            hulpvraagOverzichtForm = new HulpvraagOverzichtForm(gebruiker);
+            hulpvraagOverzichtForm = new HulpvraagOverzichtForm(gebruiker, true);
             hulpvraagOverzichtForm.ShowDialog();
             if (hulpvraagOverzichtForm.DialogResult == DialogResult.OK || hulpvraagOverzichtForm.DialogResult == DialogResult.Cancel)
             {

@@ -25,6 +25,11 @@ namespace CAREMATCH.VrijwilligerSysteem
         private void btnOpslaan_Click(object sender, EventArgs e)
         {
             agendaPunt.AfspraakBeschrijving = rtxtBeschrijving.Text;
+            agendaPunt.AfspraakTitel = txtTitel.Text;
+            agendaPunt.AgendaEigenaar = gebruiker.Gebruikersnaam;
+            agendaPunt.Hulpbehoevende = txtHulpbehoevende.Text;
+            agendaPunt.Vrijwilliger = txtVrijwilliger.Text;
+
             gebruiker.AgendaPuntToevoegen(agendaPunt);
             DialogResult = DialogResult.OK;
         }

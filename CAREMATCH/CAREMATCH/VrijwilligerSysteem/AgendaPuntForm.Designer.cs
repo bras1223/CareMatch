@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtTitel = new System.Windows.Forms.TextBox();
             this.rtxtBeschrijving = new System.Windows.Forms.RichTextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtVrijwilliger = new System.Windows.Forms.TextBox();
             this.lblDatumAfspraak = new System.Windows.Forms.Label();
             this.lblAfspraakBeschrijving = new System.Windows.Forms.Label();
             this.lblVrijwilliger = new System.Windows.Forms.Label();
@@ -48,13 +48,13 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(137, 20);
             this.dateTimePicker1.TabIndex = 0;
             // 
-            // textBox1
+            // txtTitel
             // 
-            this.textBox1.Location = new System.Drawing.Point(303, 15);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(281, 33);
-            this.textBox1.TabIndex = 1;
+            this.txtTitel.Location = new System.Drawing.Point(303, 15);
+            this.txtTitel.Multiline = true;
+            this.txtTitel.Name = "txtTitel";
+            this.txtTitel.Size = new System.Drawing.Size(281, 33);
+            this.txtTitel.TabIndex = 1;
             // 
             // rtxtBeschrijving
             // 
@@ -64,13 +64,13 @@
             this.rtxtBeschrijving.TabIndex = 2;
             this.rtxtBeschrijving.Text = "";
             // 
-            // textBox2
+            // txtVrijwilliger
             // 
-            this.textBox2.Location = new System.Drawing.Point(303, 66);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(141, 33);
-            this.textBox2.TabIndex = 3;
+            this.txtVrijwilliger.Location = new System.Drawing.Point(303, 66);
+            this.txtVrijwilliger.Multiline = true;
+            this.txtVrijwilliger.Name = "txtVrijwilliger";
+            this.txtVrijwilliger.Size = new System.Drawing.Size(141, 33);
+            this.txtVrijwilliger.TabIndex = 3;
             // 
             // lblDatumAfspraak
             // 
@@ -135,7 +135,7 @@
             this.lblHulpbehoevende.TabIndex = 10;
             this.lblHulpbehoevende.Text = "Hulpbehoevende:";
             // 
-            // NieuwAgendaPuntForm
+            // AgendaPuntForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -147,11 +147,11 @@
             this.Controls.Add(this.lblVrijwilliger);
             this.Controls.Add(this.lblAfspraakBeschrijving);
             this.Controls.Add(this.lblDatumAfspraak);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtVrijwilliger);
             this.Controls.Add(this.rtxtBeschrijving);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtTitel);
             this.Controls.Add(this.dateTimePicker1);
-            this.Name = "NieuwAgendaPuntForm";
+            this.Name = "AgendaPuntForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NieuwAgendaPuntForm";
             this.ResumeLayout(false);
@@ -162,9 +162,9 @@
         #endregion
 
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtTitel;
         private System.Windows.Forms.RichTextBox rtxtBeschrijving;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtVrijwilliger;
         private System.Windows.Forms.Label lblDatumAfspraak;
         private System.Windows.Forms.Label lblAfspraakBeschrijving;
         private System.Windows.Forms.Label lblVrijwilliger;

@@ -19,46 +19,46 @@ namespace Login
         public SignupForm()
         {
             InitializeComponent();
-            label4.Visible = false;
-            label5.Visible = false;
+            lvlZwakWW.Visible = false;
+            lvlSterkWW.Visible = false;
             dbQuery = new Database();           
         }
         //Gebruiker toevoegen
         private void button1_Click(object sender, EventArgs e)
         {
             int GebruikNum = dbQuery.ControlleerMaxGebruikerID() + 1;
-            bool GebruikNaam = dbQuery.ControlleerGebruikersnaam(textBox1.Text);
+            bool GebruikNaam = dbQuery.ControlleerGebruikersnaam(txtGebruikersnaam.Text);
 
             if (!GebruikNaam)
             {
                 MessageBox.Show("Gebruikersnaam bestaat al");
             }
-            if (textBox2.Text != textBox3.Text)
+            if (txtWachtwoord.Text != txtHerhWachtwoord.Text)
             {
                 MessageBox.Show("Wachtwoorden zijn niet gelijk");
             }
-            if (textBox1.Text == "" || textBox2.Text == "")
+            if (txtGebruikersnaam.Text == "" || txtWachtwoord.Text == "")
             {
                 MessageBox.Show("Niet alles is ingevuld");
             }
-            else if ((comboBox1.Text == "Hulpbehoevende" || comboBox1.Text == "Vrijwilliger") && textBox2.Text == textBox3.Text && GebruikNaam)
+            else if ((cbRol.Text == "Hulpbehoevende" || cbRol.Text == "Vrijwilliger") && txtWachtwoord.Text == txtHerhWachtwoord.Text && GebruikNaam)
             {
-                dbQuery.AccountToevoegen(GebruikNum.ToString(), textBox1.Text, textBox2.Text, "Y", comboBox1.Text);
+                dbQuery.AccountToevoegen(GebruikNum.ToString(), txtGebruikersnaam.Text, txtWachtwoord.Text, "Y", cbRol.Text);
                 MessageBox.Show("Account toegevoegd");
             }
         }
         //Wachtwoord controle
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            if (textBox2.Text.Length < 5)
+            if (txtWachtwoord.Text.Length < 5)
             {
-                label4.Visible = true;
-                label5.Visible = false;
+                lvlZwakWW.Visible = true;
+                lvlSterkWW.Visible = false;
             }
-            else if (textBox2.Text.Length >= 5)
+            else if (txtWachtwoord.Text.Length >= 5)
             {
-                label4.Visible = false;
-                label5.Visible = true;
+                lvlZwakWW.Visible = false;
+                lvlSterkWW.Visible = true;
             }
         }
         //Terug naar LoginForm

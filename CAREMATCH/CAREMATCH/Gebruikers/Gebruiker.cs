@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CAREMATCH.VrijwilligerSysteem;
 
 namespace CAREMATCH
 {
@@ -12,7 +13,7 @@ namespace CAREMATCH
     {
 
         //Fields
-        
+        private List<AgendaPunt> AgendaPunt;
 
         //Properties        
         public int GebruikersID { get; set; }
@@ -26,14 +27,20 @@ namespace CAREMATCH
         public DateTime GeboorteDatum { get; set; }
         public bool Auto { get; set; }
         public bool Approved { get; set; }
-
         //Constructor
         public Gebruiker()
         {
-
+            AgendaPunt = new List<VrijwilligerSysteem.AgendaPunt>();
         }
         //Methoden
+        public void AgendaPuntToevoegen(AgendaPunt agendaPunt)
+        {
 
+        }
+        public void AgendaPuntVerwijderen()
+        {
+
+        }
             //Maakt een nieuw chatbericht aan met de huidige tijd en de inhoud die word meegegeven
         public void Chatberichtmaken(string inhoud)
         {

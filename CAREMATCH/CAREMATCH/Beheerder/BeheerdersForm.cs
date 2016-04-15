@@ -1,28 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using CAREMATCH;
-using System.Data.SqlClient;
-using System.Data.OleDb;
 using Oracle.ManagedDataAccess.Client;
 
 namespace Login
 {
     public partial class BeheerdersForm : Form
     {
-        private OracleConnection con;
-        private Database dbQuery;
-        public BeheerdersForm()
+        private Gebruiker gebruiker;
+        private Database database;
+        public BeheerdersForm(Gebruiker gebruiker)
         {
             InitializeComponent();
-            dbQuery = new Database();
+            database = new Database();
+            this.gebruiker = gebruiker;
         }
          
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CAREMATCH.VrijwilligerSysteem;
 
 namespace CAREMATCH
 {
@@ -12,33 +13,34 @@ namespace CAREMATCH
     {
 
         //Fields
-        
+        private List<AgendaPunt> AgendaPunt;
 
-        //Properties
-        
-        public int GebruikersID { get; private set; }
-        public string Gebruikersnaam { get; private set; }
-        public string Voornaam { get; private set; }
-        public string Achternaam { get; private set; }
-        public DateTime GeboorteDatum { get; private set; }
-        public Image Pasfoto { get; private set; }
-        public string Email { get; private set; }
-        public bool Auto { get; private set; }
-
-
+        //Properties        
+        public int GebruikersID { get; set; }
+        public string Pasfoto { get; set; }
+        public string Gebruikersnaam { get; set; }
+        public string Wachtwoord { get; set; }
+        public string Voornaam { get; set; }
+        public string Achternaam { get; set; }
+        public string GebruikerInfo { get; set; }
+        public string Rol { get; set; }
+        public DateTime GeboorteDatum { get; set; }
+        public bool Auto { get; set; }
+        public bool Approved { get; set; }
         //Constructor
-        public Gebruiker(string gebruikersnaam, string voornaam, string achternaam, Image pasfoto, string email, DateTime geboorteDatum)
+        public Gebruiker()
         {
-            Gebruikersnaam = gebruikersnaam;
-            Voornaam = voornaam;
-            Achternaam = achternaam;
-            Pasfoto = pasfoto;
-            Email = email;
-            GeboorteDatum = geboorteDatum;
+            AgendaPunt = new List<VrijwilligerSysteem.AgendaPunt>();
         }
-
         //Methoden
+        public void AgendaPuntToevoegen(AgendaPunt agendaPunt)
+        {
 
+        }
+        public void AgendaPuntVerwijderen()
+        {
+
+        }
             //Maakt een nieuw chatbericht aan met de huidige tijd en de inhoud die word meegegeven
         //public void Chatberichtmaken(string inhoud)
         //{

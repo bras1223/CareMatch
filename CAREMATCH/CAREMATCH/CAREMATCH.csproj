@@ -135,9 +135,7 @@
     <Compile Include="VrijwilligerSysteem\ProfielForm.Designer.cs">
       <DependentUpon>ProfielForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="VrijwilligerSysteem\AgendaForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="VrijwilligerSysteem\AgendaForm.cs" />
     <Compile Include="VrijwilligerSysteem\AgendaForm.Designer.cs">
       <DependentUpon>AgendaForm.cs</DependentUpon>
     </Compile>

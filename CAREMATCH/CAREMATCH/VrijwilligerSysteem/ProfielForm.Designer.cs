@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnWijzig = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.rtxtGebruikerInfo = new System.Windows.Forms.RichTextBox();
             this.btnOpslaan = new System.Windows.Forms.Button();
             this.lblOverJezelf = new System.Windows.Forms.Label();
             this.pbProfielFoto = new System.Windows.Forms.PictureBox();
@@ -40,7 +40,12 @@
             this.lblHerhaalWachtwoord = new System.Windows.Forms.Label();
             this.txtHerhaalWachtwoord = new System.Windows.Forms.TextBox();
             this.gbWijzigWachtwoord = new System.Windows.Forms.GroupBox();
-            this.btnWachtwoordOpslaan = new System.Windows.Forms.Button();
+            this.cbAuto = new System.Windows.Forms.CheckBox();
+            this.lblAuto = new System.Windows.Forms.Label();
+            this.lblAchternaam = new System.Windows.Forms.Label();
+            this.txtAchternaam = new System.Windows.Forms.TextBox();
+            this.txtVoornaam = new System.Windows.Forms.TextBox();
+            this.lblVoornaam = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).BeginInit();
             this.gbWijzigWachtwoord.SuspendLayout();
             this.SuspendLayout();
@@ -51,18 +56,18 @@
             this.btnWijzig.Location = new System.Drawing.Point(12, 160);
             this.btnWijzig.Name = "btnWijzig";
             this.btnWijzig.Size = new System.Drawing.Size(119, 33);
-            this.btnWijzig.TabIndex = 1;
+            this.btnWijzig.TabIndex = 4;
             this.btnWijzig.Text = "Wijzig Profielfoto";
             this.btnWijzig.UseVisualStyleBackColor = true;
             this.btnWijzig.Click += new System.EventHandler(this.btnWijzig_Click);
             // 
-            // richTextBox1
+            // rtxtGebruikerInfo
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(171, 52);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(626, 286);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = "";
+            this.rtxtGebruikerInfo.Location = new System.Drawing.Point(171, 52);
+            this.rtxtGebruikerInfo.Name = "rtxtGebruikerInfo";
+            this.rtxtGebruikerInfo.Size = new System.Drawing.Size(626, 286);
+            this.rtxtGebruikerInfo.TabIndex = 9;
+            this.rtxtGebruikerInfo.Text = "";
             // 
             // btnOpslaan
             // 
@@ -70,7 +75,7 @@
             this.btnOpslaan.Location = new System.Drawing.Point(12, 414);
             this.btnOpslaan.Name = "btnOpslaan";
             this.btnOpslaan.Size = new System.Drawing.Size(149, 60);
-            this.btnOpslaan.TabIndex = 3;
+            this.btnOpslaan.TabIndex = 5;
             this.btnOpslaan.Text = "Opslaan en Sluiten";
             this.btnOpslaan.UseVisualStyleBackColor = true;
             this.btnOpslaan.Click += new System.EventHandler(this.btnOpslaan_Click);
@@ -94,7 +99,6 @@
             this.pbProfielFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbProfielFoto.TabIndex = 0;
             this.pbProfielFoto.TabStop = false;
-            this.pbProfielFoto.Click += new System.EventHandler(this.pbProfielFoto_Click);
             // 
             // txtActueelWachtwoord
             // 
@@ -102,7 +106,7 @@
             this.txtActueelWachtwoord.Name = "txtActueelWachtwoord";
             this.txtActueelWachtwoord.PasswordChar = '*';
             this.txtActueelWachtwoord.Size = new System.Drawing.Size(135, 20);
-            this.txtActueelWachtwoord.TabIndex = 5;
+            this.txtActueelWachtwoord.TabIndex = 6;
             // 
             // lblActueelWachtwoord
             // 
@@ -128,7 +132,7 @@
             this.txtNieuwWachtwoord.Name = "txtNieuwWachtwoord";
             this.txtNieuwWachtwoord.PasswordChar = '*';
             this.txtNieuwWachtwoord.Size = new System.Drawing.Size(135, 20);
-            this.txtNieuwWachtwoord.TabIndex = 8;
+            this.txtNieuwWachtwoord.TabIndex = 7;
             // 
             // lblHerhaalWachtwoord
             // 
@@ -145,7 +149,7 @@
             this.txtHerhaalWachtwoord.Name = "txtHerhaalWachtwoord";
             this.txtHerhaalWachtwoord.PasswordChar = '*';
             this.txtHerhaalWachtwoord.Size = new System.Drawing.Size(135, 20);
-            this.txtHerhaalWachtwoord.TabIndex = 10;
+            this.txtHerhaalWachtwoord.TabIndex = 8;
             // 
             // gbWijzigWachtwoord
             // 
@@ -162,26 +166,72 @@
             this.gbWijzigWachtwoord.TabStop = false;
             this.gbWijzigWachtwoord.Text = "Wijzig Wachtwoord:";
             // 
-            // btnWachtwoordOpslaan
+            // cbAuto
             // 
-            this.btnWachtwoordOpslaan.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWachtwoordOpslaan.Location = new System.Drawing.Point(12, 357);
-            this.btnWachtwoordOpslaan.Name = "btnWachtwoordOpslaan";
-            this.btnWachtwoordOpslaan.Size = new System.Drawing.Size(149, 51);
-            this.btnWachtwoordOpslaan.TabIndex = 13;
-            this.btnWachtwoordOpslaan.Text = "Wachtwoord Opslaan";
-            this.btnWachtwoordOpslaan.UseVisualStyleBackColor = true;
+            this.cbAuto.AutoSize = true;
+            this.cbAuto.Location = new System.Drawing.Point(321, 356);
+            this.cbAuto.Name = "cbAuto";
+            this.cbAuto.Size = new System.Drawing.Size(15, 14);
+            this.cbAuto.TabIndex = 1;
+            this.cbAuto.UseVisualStyleBackColor = true;
+            this.cbAuto.CheckedChanged += new System.EventHandler(this.cbAuto_CheckedChanged);
+            // 
+            // lblAuto
+            // 
+            this.lblAuto.AutoSize = true;
+            this.lblAuto.Location = new System.Drawing.Point(204, 356);
+            this.lblAuto.Name = "lblAuto";
+            this.lblAuto.Size = new System.Drawing.Size(111, 13);
+            this.lblAuto.TabIndex = 15;
+            this.lblAuto.Text = "In bezit van een Auto:";
+            // 
+            // lblAchternaam
+            // 
+            this.lblAchternaam.AutoSize = true;
+            this.lblAchternaam.Location = new System.Drawing.Point(199, 433);
+            this.lblAchternaam.Name = "lblAchternaam";
+            this.lblAchternaam.Size = new System.Drawing.Size(67, 13);
+            this.lblAchternaam.TabIndex = 15;
+            this.lblAchternaam.Text = "Achternaam:";
+            // 
+            // txtAchternaam
+            // 
+            this.txtAchternaam.Location = new System.Drawing.Point(321, 433);
+            this.txtAchternaam.Name = "txtAchternaam";
+            this.txtAchternaam.Size = new System.Drawing.Size(135, 20);
+            this.txtAchternaam.TabIndex = 3;
+            // 
+            // txtVoornaam
+            // 
+            this.txtVoornaam.Location = new System.Drawing.Point(321, 407);
+            this.txtVoornaam.Name = "txtVoornaam";
+            this.txtVoornaam.Size = new System.Drawing.Size(135, 20);
+            this.txtVoornaam.TabIndex = 2;
+            // 
+            // lblVoornaam
+            // 
+            this.lblVoornaam.AutoSize = true;
+            this.lblVoornaam.Location = new System.Drawing.Point(199, 407);
+            this.lblVoornaam.Name = "lblVoornaam";
+            this.lblVoornaam.Size = new System.Drawing.Size(58, 13);
+            this.lblVoornaam.TabIndex = 13;
+            this.lblVoornaam.Text = "Voornaam:";
             // 
             // ProfielForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(809, 486);
-            this.Controls.Add(this.btnWachtwoordOpslaan);
+            this.Controls.Add(this.lblAchternaam);
+            this.Controls.Add(this.lblAuto);
+            this.Controls.Add(this.txtAchternaam);
+            this.Controls.Add(this.txtVoornaam);
+            this.Controls.Add(this.cbAuto);
+            this.Controls.Add(this.lblVoornaam);
             this.Controls.Add(this.gbWijzigWachtwoord);
             this.Controls.Add(this.lblOverJezelf);
             this.Controls.Add(this.btnOpslaan);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.rtxtGebruikerInfo);
             this.Controls.Add(this.btnWijzig);
             this.Controls.Add(this.pbProfielFoto);
             this.Name = "ProfielForm";
@@ -199,7 +249,7 @@
 
         private System.Windows.Forms.PictureBox pbProfielFoto;
         private System.Windows.Forms.Button btnWijzig;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox rtxtGebruikerInfo;
         private System.Windows.Forms.Button btnOpslaan;
         private System.Windows.Forms.Label lblOverJezelf;
         private System.Windows.Forms.TextBox txtActueelWachtwoord;
@@ -209,6 +259,11 @@
         private System.Windows.Forms.Label lblHerhaalWachtwoord;
         private System.Windows.Forms.TextBox txtHerhaalWachtwoord;
         private System.Windows.Forms.GroupBox gbWijzigWachtwoord;
-        private System.Windows.Forms.Button btnWachtwoordOpslaan;
+        private System.Windows.Forms.CheckBox cbAuto;
+        private System.Windows.Forms.Label lblAuto;
+        private System.Windows.Forms.Label lblAchternaam;
+        private System.Windows.Forms.TextBox txtAchternaam;
+        private System.Windows.Forms.TextBox txtVoornaam;
+        private System.Windows.Forms.Label lblVoornaam;
     }
 }

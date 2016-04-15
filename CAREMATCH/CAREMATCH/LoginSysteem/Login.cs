@@ -16,8 +16,8 @@ namespace Login
         {       
             DataTable dt = new DataTable();
             DataTable dat = new DataTable();
-            //sda.Fill(dt);
-            //sdaa.Fill(dat);
+            //command.Fill(dt);
+            //commanda.Fill(dat);
         }
     }
 }

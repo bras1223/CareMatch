@@ -26,32 +26,29 @@ namespace CAREMATCH.VrijwilligerSysteem
             this.gebruiker = gebruiker;
             this.aangenomen = aangenomen;
             database = new Database();
-
-            if(gebruiker.GetType() == typeof(Hulpbehoevende))
-            {
-                lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;
-            }
-            else if(gebruiker.GetType() == typeof(Vrijwilliger))
-            {
-                lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;
-            }
-            else
-            {
-                lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;
-            }
+            //Inlognaam weergeven links in de hoek
+            lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;
 
             lvHulpvragen.View = View.Details;
             lvHulpvragen.FullRowSelect = true;
-            lvHulpvragen.Columns.Add("HulpvraagID");
+            lvHulpvragen.Columns.Add("ID");
             lvHulpvragen.Columns.Add("Foto");
             lvHulpvragen.Columns.Add("Hulpbehoevende");
             lvHulpvragen.Columns.Add("Titel");
             lvHulpvragen.Columns.Add("Hulpvraag inhoud");
             lvHulpvragen.Columns.Add("Vrijwilliger");
             lvHulpvragen.Columns.Add("Urgent");
-
-            #region Hulpvragen Overzicht
-            foreach (Hulpvragen.Hulpvraag hulpvraag in database.HulpvragenOverzicht(aangenomen, gebruiker.GebruikersID))
+            //Resize  colums
+            for(int i =0;i<=6;i++)
+            {
+                lvHulpvragen.AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.ColumnContent);
+                if(i == 2)
+                {
+                    lvHulpvragen.AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.HeaderSize);
+                }
+            }
+            // Hulpvragen Overzicht
+            foreach (Hulpvragen.Hulpvraag hulpvraag in database.HulpvragenOverzicht(aangenomen, gebruiker.GebruikersID +1))
             {
                 ListViewItem item = new ListViewItem(hulpvraag.ToString());
                 item.UseItemStyleForSubItems = false;
@@ -60,21 +57,17 @@ namespace CAREMATCH.VrijwilligerSysteem
                 item.SubItems.Add(hulpvraag.Titel);
                 item.SubItems.Add(hulpvraag.HulpvraagInhoud);
                 item.SubItems.Add(hulpvraag.Vrijwilliger);
-                item.SubItems.Add("");
+                item.SubItems.Add("    ");
                 if(hulpvraag.Urgent)
                 {
                     item.SubItems[6].BackColor = Color.Red;
                 }
-                else
+                else if(!hulpvraag.Urgent)
                 {
                     item.SubItems[6].BackColor = Color.Blue;
                 }
                 lvHulpvragen.Items.Add(item);
             }
-            #endregion
-            #region Aangenomen Hulpvragen overzicht
-
-            #endregion
         }
         private void btnBekijkHulpvraag_Click(object sender, EventArgs e)
         {
@@ -84,7 +77,7 @@ namespace CAREMATCH.VrijwilligerSysteem
                 hulpvraag = database.HulpvragenOverzicht(aangenomen, gebruiker.GebruikersID)[lvHulpvragen.FocusedItem.Index];
                 hulpvraagForm = new HulpvraagForm(hulpvraag, gebruiker, false);
                 hulpvraagForm.ShowDialog();
-                if (hulpvraagForm.DialogResult == DialogResult.OK)
+                if (hulpvraagForm.DialogResult == DialogResult.OK || hulpvraagForm.DialogResult == DialogResult.Cancel)
                 {
                     this.Show();
                 }

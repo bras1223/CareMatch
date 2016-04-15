@@ -9,116 +9,45 @@ namespace Login
     partial class LoginForm : Form
     {
         private Login login;
-        private Database dbQuery;
+        private Database database;
         HomeForm homeForm;
-        BeheerdersForm beheerdersform;
-        Beheerder gebruiker;
-        Vrijwilliger vrijwilliger;
-        Hulpbehoevende hulpbehoevende;
         SignupForm SignUp = new SignupForm();
 
         public LoginForm()
         {
             InitializeComponent();
             login = new Login();
-            dbQuery = new Database();
+            database = new Database();
         }
 
         //Logincheck
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            DateTime vandaag = new DateTime();
+            
             Image piet = CAREMATCH.Properties.Resources.users;
 
             if (textBox1.Text == "" || textBox2.Text == "")
             {
                 MessageBox.Show("Niet alle velden zijn ingevuld");
             }
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "")
+            else if (database.Login(textBox1.Text, textBox2.Text) == null)
             {
                 MessageBox.Show("Gebruikersnaam of Wachtwoord incorrect");
             }
-
-
-
-
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "beheerder")
+            else if (database.Login(textBox1.Text, textBox2.Text).Rol.ToLower() == "beheerder")
             {
-                gebruiker = new Beheerder(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
-                beheerdersform = new BeheerdersForm();
-                this.Hide();
-                beheerdersform.ShowDialog();
-                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
+                homeForm = new HomeForm(database.Login(textBox1.Text, textBox2.Text));
+                ShowDialogMethod();
             }
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "Beheerder")
+            else if (database.Login(textBox1.Text, textBox2.Text).Rol.ToLower() == "vrijwilliger")
             {
-                gebruiker = new Beheerder(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
-                beheerdersform = new BeheerdersForm();
-                this.Hide();
-                beheerdersform.ShowDialog();
-                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
+                homeForm = new HomeForm(database.Login(textBox1.Text, textBox2.Text));
+                ShowDialogMethod();
             }
-
-
-
-
-
-
-
-
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "vrijwilliger")
+            else if (database.Login(textBox1.Text, textBox2.Text).Rol.ToLower() == "hulpbehoevende")
             {
-                //vrijwilliger is nu standaard goedgekeurd, hoort niet maar is handig voor testen
-
-                vrijwilliger = new Vrijwilliger(true, textBox1.Text, "piet", "piet", piet, "piet", vandaag);
-                homeForm = new HomeForm(vrijwilliger);
-                this.Hide();
-                homeForm.ShowDialog();
-                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
-            }
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "Vrijwilliger")
-            {
-                //vrijwilliger is nu standaard goedgekeurd, hoort niet maar is handig voor testen
-
-                vrijwilliger = new Vrijwilliger(true, textBox1.Text, "piet", "piet", piet, "piet", vandaag);
-                homeForm = new HomeForm(vrijwilliger);
-                this.Hide();
-                homeForm.ShowDialog();
-                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
-            }
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "hulpbehoevende")
-            {
-                hulpbehoevende = new Hulpbehoevende(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
-                homeForm = new HomeForm(hulpbehoevende);
-                this.Hide();
-                homeForm.ShowDialog();
-                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
-            }
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "Hulpbehoevende")
-            {
-                hulpbehoevende = new Hulpbehoevende(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
-                homeForm = new HomeForm(hulpbehoevende);
-                this.Hide();
-                homeForm.ShowDialog();
-                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
+                homeForm = new HomeForm(database.Login(textBox1.Text, textBox2.Text));
+                ShowDialogMethod();
             }
         }
 
@@ -136,6 +65,15 @@ namespace Login
         {
             SignUp.Show();
             this.Hide();
+        }
+        public void ShowDialogMethod()
+        {
+            this.Hide();
+            homeForm.ShowDialog();
+            if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
+            {
+                this.Show();
+            }
         }
     }
 }

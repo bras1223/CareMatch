@@ -11,6 +11,10 @@ namespace Login
         private Login login;
         private Database database;
         HomeForm homeForm;
+        BeheerdersForm beheerdersform;
+        Beheerder gebruiker;
+        Vrijwilliger vrijwilliger;
+        Hulpbehoevende hulpbehoevende;
         SignupForm SignUp = new SignupForm();
 
         public LoginForm()

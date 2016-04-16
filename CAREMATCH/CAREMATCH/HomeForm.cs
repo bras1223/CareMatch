@@ -17,7 +17,7 @@ namespace CAREMATCH
     {
         private Gebruiker gebruiker;
         private Hulpvragen.Hulpvraag hulpvraag;
-        private Agenda.WeekroosterForm weekrooster;
+        private Agenda.DagOverzichtForm weekrooster;
         private ChatForm chatForm;
         private HulpvraagForm hulpvraagForm;
         private HulpvraagOverzichtForm hulpvraagOverzichtForm;
@@ -85,7 +85,7 @@ namespace CAREMATCH
         private void btnAgenda_Click(object sender, EventArgs e)
         {
             this.Hide();
-            weekrooster = new Agenda.WeekroosterForm(gebruiker);
+            weekrooster = new Agenda.DagOverzichtForm(gebruiker);
             weekrooster.ShowDialog();
             if (weekrooster.DialogResult == DialogResult.OK || weekrooster.DialogResult == DialogResult.Cancel)
             {

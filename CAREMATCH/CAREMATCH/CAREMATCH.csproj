@@ -82,12 +82,12 @@
     <Compile Include="Agenda\AgendaPuntToevoegenForm.Designer.cs">
       <DependentUpon>AgendaPuntToevoegenForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Agenda\WeekOverzicht.cs" />
-    <Compile Include="Agenda\WeekroosterForm.cs">
+    <Compile Include="Agenda\AgendaDagOverzicht.cs" />
+    <Compile Include="Agenda\DagOverzichtForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Agenda\WeekroosterForm.Designer.cs">
-      <DependentUpon>WeekroosterForm.cs</DependentUpon>
+    <Compile Include="Agenda\DagOverzichtForm.Designer.cs">
+      <DependentUpon>DagOverzichtForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Beheerder\BeheerdersForm.cs">
       <SubType>Form</SubType>
@@ -152,8 +152,8 @@
     <EmbeddedResource Include="Agenda\AgendaPuntToevoegenForm.resx">
       <DependentUpon>AgendaPuntToevoegenForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Agenda\WeekroosterForm.resx">
-      <DependentUpon>WeekroosterForm.cs</DependentUpon>
+    <EmbeddedResource Include="Agenda\DagOverzichtForm.resx">
+      <DependentUpon>DagOverzichtForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Beheerder\BeheerdersForm.resx">
       <DependentUpon>BeheerdersForm.cs</DependentUpon>

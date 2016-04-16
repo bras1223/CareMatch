@@ -51,7 +51,7 @@
             // 
             this.pnlWeekrooster.Location = new System.Drawing.Point(171, 63);
             this.pnlWeekrooster.Name = "pnlWeekrooster";
-            this.pnlWeekrooster.Size = new System.Drawing.Size(835, 496);
+            this.pnlWeekrooster.Size = new System.Drawing.Size(1033, 496);
             this.pnlWeekrooster.TabIndex = 1;
             this.pnlWeekrooster.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlWeekrooster_Paint);
             // 
@@ -96,7 +96,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1023, 571);
+            this.ClientSize = new System.Drawing.Size(1216, 571);
             this.Controls.Add(this.lblDatumWaarde);
             this.Controls.Add(this.lblDatumVandaag);
             this.Controls.Add(this.btnAgendaPuntToevoegen);
@@ -104,7 +104,8 @@
             this.Controls.Add(this.pnlWeekrooster);
             this.Controls.Add(this.btnSluiten);
             this.Name = "DagOverzichtForm";
-            this.Text = "Weekrooster";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Agenda Dag Overzicht";
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DagOverzichtForm_MouseDown);
             this.ResumeLayout(false);
             this.PerformLayout();

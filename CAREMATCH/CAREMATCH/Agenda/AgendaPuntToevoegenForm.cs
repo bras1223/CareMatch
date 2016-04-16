@@ -57,9 +57,10 @@ namespace CAREMATCH.Agenda
                 }
 
                 gebruiker.AgendaPuntToevoegen(agendaPunt);
+
+                DialogResult = DialogResult.OK;
+                this.Close();
             }
-            DialogResult = DialogResult.OK;
-            this.Close();
         }
     }
 }

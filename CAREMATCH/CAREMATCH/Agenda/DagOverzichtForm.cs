@@ -39,10 +39,10 @@ namespace CAREMATCH.Agenda
 
         private void pnlWeekrooster_Paint(object sender, PaintEventArgs e)
         {
-            Graphics g = e.Graphics;
-
-            dagOverzicht.DrawAgendaPunten(g);
-            
+            using (Graphics g = pnlWeekrooster.CreateGraphics())
+            {
+                dagOverzicht.DrawAgendaPunten(g);                                
+            }           
         }
 
         private void btnSluiten_Click(object sender, EventArgs e)

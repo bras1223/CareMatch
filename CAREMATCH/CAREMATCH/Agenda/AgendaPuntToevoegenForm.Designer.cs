@@ -42,6 +42,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtStartTijd = new System.Windows.Forms.TextBox();
             this.btnOpslaanEnSluiten = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnOpslaan
@@ -179,11 +180,21 @@
             this.btnOpslaanEnSluiten.UseVisualStyleBackColor = true;
             this.btnOpslaanEnSluiten.Click += new System.EventHandler(this.OplsaanEnSluiten_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(399, 193);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(199, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Voorbeeld: 1000 = 10 uur && 1600 = 4 uur";
+            // 
             // AgendaPuntToevoegenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(989, 499);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnOpslaanEnSluiten);
             this.Controls.Add(this.txtEindTijd);
             this.Controls.Add(this.label4);
@@ -199,6 +210,7 @@
             this.Controls.Add(this.txtBeschrijving);
             this.Controls.Add(this.btnOpslaan);
             this.Name = "AgendaPuntToevoegenForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AgendaPuntToevoegenForm";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -221,5 +233,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtStartTijd;
         private System.Windows.Forms.Button btnOpslaanEnSluiten;
+        private System.Windows.Forms.Label label6;
     }
 }

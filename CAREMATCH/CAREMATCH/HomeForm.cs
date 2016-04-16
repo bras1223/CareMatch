@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CAREMATCH.Agenda;
 
 namespace CAREMATCH
 {
@@ -26,10 +27,7 @@ namespace CAREMATCH
         {
             InitializeComponent();
             this.gebruiker = gebruiker;
-
-            //was bezig met de database doorgeven via de constructor
-            //this.database = database;
-            
+                        
             if (gebruiker.GetType() == typeof(Hulpbehoevende))
             {
                 btnAangenomenHulpvragen.Visible = false;

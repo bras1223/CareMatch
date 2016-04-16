@@ -82,6 +82,7 @@
     <Compile Include="Agenda\AgendaPuntToevoegenForm.Designer.cs">
       <DependentUpon>AgendaPuntToevoegenForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Agenda\WeekOverzicht.cs" />
     <Compile Include="Agenda\WeekroosterForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -32,6 +32,8 @@
             this.pnlWeekrooster = new System.Windows.Forms.Panel();
             this.dtpTijdPicker = new System.Windows.Forms.DateTimePicker();
             this.btnAgendaPuntToevoegen = new System.Windows.Forms.Button();
+            this.cdKiesKleur = new System.Windows.Forms.ColorDialog();
+            this.btnKiesKleur = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSluiten
@@ -42,6 +44,7 @@
             this.btnSluiten.TabIndex = 0;
             this.btnSluiten.Text = "Sluiten";
             this.btnSluiten.UseVisualStyleBackColor = true;
+            this.btnSluiten.Click += new System.EventHandler(this.btnSluiten_Click);
             // 
             // pnlWeekrooster
             // 
@@ -68,11 +71,22 @@
             this.btnAgendaPuntToevoegen.UseVisualStyleBackColor = true;
             this.btnAgendaPuntToevoegen.Click += new System.EventHandler(this.btnAgendaPuntToevoegen_Click);
             // 
+            // btnKiesKleur
+            // 
+            this.btnKiesKleur.Location = new System.Drawing.Point(21, 219);
+            this.btnKiesKleur.Name = "btnKiesKleur";
+            this.btnKiesKleur.Size = new System.Drawing.Size(114, 54);
+            this.btnKiesKleur.TabIndex = 4;
+            this.btnKiesKleur.Text = "Kies Kleur";
+            this.btnKiesKleur.UseVisualStyleBackColor = true;
+            this.btnKiesKleur.Click += new System.EventHandler(this.btnKiesKleur_Click);
+            // 
             // WeekroosterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1007, 520);
+            this.Controls.Add(this.btnKiesKleur);
             this.Controls.Add(this.btnAgendaPuntToevoegen);
             this.Controls.Add(this.dtpTijdPicker);
             this.Controls.Add(this.pnlWeekrooster);
@@ -89,5 +103,7 @@
         private System.Windows.Forms.Panel pnlWeekrooster;
         private System.Windows.Forms.DateTimePicker dtpTijdPicker;
         private System.Windows.Forms.Button btnAgendaPuntToevoegen;
+        private System.Windows.Forms.ColorDialog cdKiesKleur;
+        private System.Windows.Forms.Button btnKiesKleur;
     }
 }

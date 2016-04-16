@@ -134,8 +134,29 @@ namespace CAREMATCH
         {
 
         }
-        public void AgendaPuntAanpassen()
+        public Agenda.AgendaPunt AgendaInhoudWeergeven(Gebruiker gebruiker, int agendaID)
         {
+            agendaPunt = new Agenda.AgendaPunt();
+            command = new OracleCommand("SELECT * FROM Agenda WHERE GebruikerID ='" + gebruiker.GebruikersID + "' AND AgendaID='" + agendaID + "'", con);
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                agendaPunt.AgendaEigenaar = gebruiker.GebruikersID;
+                agendaPunt.Titel = reader["Titel"].ToString();
+                agendaPunt.DatumTijdStart = reader["StartDateTime"].ToString();
+                agendaPunt.DatumTijdEind = reader["EindDateTime"].ToString();
+                agendaPunt.Beschrijving = reader["Omschrijving"].ToString();
+                agendaPunt.Hulpbehoevende = reader["Hulpbehoevende"].ToString();
+                agendaPunt.Vrijwilliger = reader["Vrijwilliger"].ToString();
+            }
+            con.Close();
+            return agendaPunt;
+        }
+        public void AgendaAanpassen(Gebruiker gebruiker, Agenda.AgendaPunt agendaPunt)
+        {
+            command = new OracleCommand("UPDATE Agenda SET AfspraakID ='" + agendaPunt.AfspraakID + "', Omschrijving='" + agendaPunt.Beschrijving + "', StartDateTime='" + agendaPunt.DatumTijdStart + "', EindDateTime='" + agendaPunt.DatumTijdEind + "', Titel='" + agendaPunt.Titel + "',Hulpbehoevende='" + agendaPunt.Hulpbehoevende + "', Vrijwilliger='" + agendaPunt.Vrijwilliger + "'", con);
+            reader = command.ExecuteReader();
+            con.Close();
 
         }
         public void AgendaPuntVerwijderen()
@@ -293,6 +314,7 @@ namespace CAREMATCH
 
             while (reader.Read())
             {
+                //Nieuwe gebruiker aanmaken op basis van de rol
                 if (reader["ROL"].ToString().ToLower() == "hulpbehoevende")
                 {
                     gebruiker = new Hulpbehoevende();
@@ -306,12 +328,21 @@ namespace CAREMATCH
                     gebruiker = new Vrijwilliger();
                     gebruiker.Approved = true;
                 }
+                //Properties toekennen aan gebruiken.
                 gebruiker.Achternaam = reader["Achternaam"].ToString();
                 gebruiker.Voornaam = reader["Voornaam"].ToString();
                 gebruiker.Wachtwoord = reader["Wachtwoord"].ToString();
                 gebruiker.Gebruikersnaam = reader["Gebruikersnaam"].ToString();
                 gebruiker.GebruikersID = Convert.ToInt32(reader["GebruikerID"]);
                 gebruiker.GebruikerInfo = reader["GebruikerInfo"].ToString();
+                if (reader["Auto"].ToString() == "Y")
+                {
+                    gebruiker.Auto = true;
+                }
+                else
+                {
+                    gebruiker.Auto = false;
+                }
                 try
                 {
                     gebruiker.Pasfoto = reader["Foto"].ToString();
@@ -411,38 +442,7 @@ namespace CAREMATCH
             // SqlDataAdapter command = new SqlDataAdapter("INSERT INTO Login (Username, Password) VALUES ('" + textBox1.Text + "','" + textBox2.Text + "')", sql);
             // command.SelectCommand.ExecuteNonQuery();
             // sql.Close();
-        }
-        public Agenda.AgendaPunt GebruikerAgendaInhoud(Gebruiker gebruiker, int agendaID)
-        {
-            agendaPunt = new Agenda.AgendaPunt();
-            command = new OracleCommand("SELECT * FROM Agenda WHERE GebruikerID ='"+gebruiker.GebruikersID+"' AND AgendaID='"+agendaID+"'", con);
-            reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                agendaPunt.AgendaEigenaar = gebruiker.GebruikersID;
-                agendaPunt.Titel = reader["Titel"].ToString();
-                agendaPunt.DatumTijdStart = reader["StartDateTime"].ToString();
-                agendaPunt.DatumTijdEind = reader["EindDateTime"].ToString();
-                agendaPunt.Beschrijving = reader["Omschrijving"].ToString();
-                agendaPunt.Hulpbehoevende = reader["Hulpbehoevende"].ToString();
-                agendaPunt.Vrijwilliger = reader["Vrijwilliger"].ToString();
-            }
-            con.Close();
-
-            return agendaPunt;
-        }
-        public void GebruikerAgendaAanpassen(Gebruiker gebruiker, Agenda.AgendaPunt agendaPunt)
-        {
-            command = new OracleCommand("UPDATE Agenda SET", con);
-            reader = command.ExecuteReader();
-
-            while (reader.Read())
-            {
-
-            }
-            con.Close();
-            
-        }
+        }        
         #endregion
         public string EncryptString(string toEncrypt)
         {

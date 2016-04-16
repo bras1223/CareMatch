@@ -205,6 +205,7 @@
             this.btnHulpvraagOpslaan.TabIndex = 21;
             this.btnHulpvraagOpslaan.Text = "Hulpvraag Opslaan";
             this.btnHulpvraagOpslaan.UseVisualStyleBackColor = true;
+            this.btnHulpvraagOpslaan.Click += new System.EventHandler(this.btnHulpvraagOpslaan_Click);
             // 
             // HulpvraagForm
             // 

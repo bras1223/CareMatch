@@ -41,16 +41,19 @@ namespace CAREMATCH.VrijwilligerSysteem
                 txtTitel.Enabled = false;
             }
 
-            txtDuur.Text = hulpvraag.Duur.ToString();
-            txtFrequentie.Text = hulpvraag.Frequentie;
-            txtHulpvrager.Text = hulpvraag.Hulpbehoevende;
-            txtTitel.Text = hulpvraag.Titel;
-            rtxtHulpvraag.Text = hulpvraag.HulpvraagInhoud;
-            rtxtReactieInhoud.Text = hulpvraag.Reactie +"\n"+ DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt") + "   " + gebruiker.Gebruikersnaam +" Zegt:\n";
-
-            if (hulpvraag.Urgent)
+            if(hulpvraag != null)
             {
-                cbUrgent.Checked = true;
+                txtDuur.Text = hulpvraag.Duur.ToString();
+                txtFrequentie.Text = hulpvraag.Frequentie;
+                txtHulpvrager.Text = hulpvraag.Hulpbehoevende;
+                txtTitel.Text = hulpvraag.Titel;
+                rtxtHulpvraag.Text = hulpvraag.HulpvraagInhoud;
+                rtxtReactieInhoud.Text = hulpvraag.Reactie + "\n" + DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt") + "   " + gebruiker.Gebruikersnaam + " Zegt:\n";
+
+                if (hulpvraag.Urgent)
+                {
+                    cbUrgent.Checked = true;
+                }
             }
         }
 
@@ -68,6 +71,11 @@ namespace CAREMATCH.VrijwilligerSysteem
             hulpvraag.Urgent = cbUrgent.Checked;
             hulpvraag.Reactie = rtxtReactieInhoud.Text + "\n";
             database.HulpvraagAanpassen(gebruiker.GebruikersID, hulpvraag);
+        }
+
+        private void btnHulpvraagOpslaan_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

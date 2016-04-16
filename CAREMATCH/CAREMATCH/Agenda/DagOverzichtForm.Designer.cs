@@ -33,7 +33,6 @@
             this.dtpTijdPicker = new System.Windows.Forms.DateTimePicker();
             this.btnAgendaPuntToevoegen = new System.Windows.Forms.Button();
             this.cdKiesKleur = new System.Windows.Forms.ColorDialog();
-            this.btnKiesKleur = new System.Windows.Forms.Button();
             this.lblDatumVandaag = new System.Windows.Forms.Label();
             this.lblDatumWaarde = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -73,16 +72,6 @@
             this.btnAgendaPuntToevoegen.UseVisualStyleBackColor = true;
             this.btnAgendaPuntToevoegen.Click += new System.EventHandler(this.btnAgendaPuntToevoegen_Click);
             // 
-            // btnKiesKleur
-            // 
-            this.btnKiesKleur.Location = new System.Drawing.Point(22, 272);
-            this.btnKiesKleur.Name = "btnKiesKleur";
-            this.btnKiesKleur.Size = new System.Drawing.Size(114, 54);
-            this.btnKiesKleur.TabIndex = 4;
-            this.btnKiesKleur.Text = "Kies Kleur";
-            this.btnKiesKleur.UseVisualStyleBackColor = true;
-            this.btnKiesKleur.Click += new System.EventHandler(this.btnKiesKleur_Click);
-            // 
             // lblDatumVandaag
             // 
             this.lblDatumVandaag.AutoSize = true;
@@ -92,7 +81,6 @@
             this.lblDatumVandaag.Size = new System.Drawing.Size(223, 26);
             this.lblDatumVandaag.TabIndex = 5;
             this.lblDatumVandaag.Text = "Actuele Datum && Tijd:";
-            this.lblDatumVandaag.Click += new System.EventHandler(this.lblDatumVandaag_Click);
             // 
             // lblDatumWaarde
             // 
@@ -103,7 +91,6 @@
             this.lblDatumWaarde.Size = new System.Drawing.Size(153, 26);
             this.lblDatumWaarde.TabIndex = 6;
             this.lblDatumWaarde.Text = "DatumWaarde";
-            this.lblDatumWaarde.Click += new System.EventHandler(this.lblDatumWaarde_Click);
             // 
             // DagOverzichtForm
             // 
@@ -112,13 +99,13 @@
             this.ClientSize = new System.Drawing.Size(1023, 571);
             this.Controls.Add(this.lblDatumWaarde);
             this.Controls.Add(this.lblDatumVandaag);
-            this.Controls.Add(this.btnKiesKleur);
             this.Controls.Add(this.btnAgendaPuntToevoegen);
             this.Controls.Add(this.dtpTijdPicker);
             this.Controls.Add(this.pnlWeekrooster);
             this.Controls.Add(this.btnSluiten);
             this.Name = "DagOverzichtForm";
             this.Text = "Weekrooster";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DagOverzichtForm_MouseDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,7 +118,6 @@
         private System.Windows.Forms.DateTimePicker dtpTijdPicker;
         private System.Windows.Forms.Button btnAgendaPuntToevoegen;
         private System.Windows.Forms.ColorDialog cdKiesKleur;
-        private System.Windows.Forms.Button btnKiesKleur;
         private System.Windows.Forms.Label lblDatumVandaag;
         private System.Windows.Forms.Label lblDatumWaarde;
     }

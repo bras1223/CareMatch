@@ -27,16 +27,37 @@ namespace CAREMATCH.Agenda
 
         }
 
-        private void btnOpslaan_Click(object sender, EventArgs e)
+        private void btnSluiten_Click(object sender, EventArgs e)
         {
-            agendaPunt.AgendaEigenaar = gebruiker.GebruikersID;
-            agendaPunt.Titel = txtTitel.Text;
-            agendaPunt.DatumTijdEind = txtEindTijd.Text;
-            agendaPunt.DatumTijdStart = txtStartTijd.Text;
-            agendaPunt.Hulpbehoevende = txtHulpbehoevende.Text;
-            agendaPunt.Beschrijving = txtBeschrijving.Text;
+            Close();
+        }
 
-            gebruiker.AgendaPuntToevoegen(agendaPunt);
+        private void OplsaanEnSluiten_Click(object sender, EventArgs e)
+        {
+            if(txtEindTijd.Text == "" || txtStartTijd.Text == "")
+            {
+                MessageBox.Show("Vul in ieder geval een start- en eindtijd in.");
+            }
+            else
+            {
+                agendaPunt.AgendaEigenaar = gebruiker.GebruikersID;
+                agendaPunt.Titel = txtTitel.Text;
+                agendaPunt.DatumTijdEind = int.Parse(txtEindTijd.Text);                
+                agendaPunt.Hulpbehoevende = txtHulpbehoevende.Text;
+                agendaPunt.Beschrijving = txtBeschrijving.Text;
+                //Zorgen dat alleen de eerste 2 cijfers van datum Eind & Start meegeven worden.
+                while (agendaPunt.DatumTijdEind >= 25)
+                {
+                    agendaPunt.DatumTijdEind = agendaPunt.DatumTijdEind / 10;
+                }
+                agendaPunt.DatumTijdStart = int.Parse(txtStartTijd.Text);
+                while (agendaPunt.DatumTijdStart >= 25)
+                {
+                    agendaPunt.DatumTijdStart = agendaPunt.DatumTijdStart / 10;
+                }
+
+                gebruiker.AgendaPuntToevoegen(agendaPunt);
+            }
             DialogResult = DialogResult.OK;
             this.Close();
         }

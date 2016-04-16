@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CAREMATCH.Agenda
 {
@@ -12,12 +13,20 @@ namespace CAREMATCH.Agenda
         //Properties
         public int AfspraakID { get; set; }
         public int AgendaEigenaar { get; set; }
-        public string DatumTijdStart { get; set; }
-        public string DatumTijdEind { get; set; }
+        public int DatumTijdStart { get; set; }
+        public int DatumTijdEind { get; set; }
         public string Vrijwilliger { get; set; }
         public string Hulpbehoevende { get; set; }
         public string Titel { get; set; }
         public string Beschrijving { get; set; }
-        //Methodes
+
+        //Fields
+        private int x;
+        private int y;
+        //Constructor
+        public AgendaPunt()
+        {
+            
+        }
     }
 }

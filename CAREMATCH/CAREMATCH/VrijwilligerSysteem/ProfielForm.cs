@@ -24,7 +24,7 @@ namespace CAREMATCH.VrijwilligerSysteem
             database = new Database();
 
             //afbeelding in de picturebox zetten als een gebruiker deze heeft.
-            if (gebruiker.Pasfoto != @"\")
+            if (gebruiker.Pasfoto != "")
             {
                 pbProfielFoto.Image = Image.FromFile(gebruiker.Pasfoto);
             }
@@ -72,12 +72,12 @@ namespace CAREMATCH.VrijwilligerSysteem
                 }
             }
 
-            //Verschil maken tussen welke info veranderd is. Anders wordt er een encryptie 
-            //over encryptie van het wachtwoord gedaan elke keer dat je iets aan het profiel aanpast
             gebruiker.GebruikerInfo = txtGebruikersInfo.Text;
             gebruiker.Voornaam = txtVoornaam.Text;
             gebruiker.Achternaam = txtAchternaam.Text;
             gebruiker.Auto = cbAuto.Checked;
+            //Verschil maken tussen welke info veranderd is. Anders wordt er een encryptie 
+            //over uitgevoerd over het al, geencrypte wachtwoord elke keer dat je iets aan het profiel aanpast
             if (txtHerhaalWachtwoord.Text != "")
             {
                 gebruiker.Wachtwoord = txtNieuwWachtwoord.Text;

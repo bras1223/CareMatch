@@ -143,8 +143,8 @@ namespace CAREMATCH
             {
                 agendaPunt.AgendaEigenaar = gebruiker.GebruikersID;
                 agendaPunt.Titel = reader["Titel"].ToString();
-                agendaPunt.DatumTijdStart = reader["StartDateTime"].ToString();
-                agendaPunt.DatumTijdEind = reader["EindDateTime"].ToString();
+                agendaPunt.DatumTijdStart = Convert.ToInt32(reader["StartDateTime"]);
+                agendaPunt.DatumTijdEind = Convert.ToInt32(reader["EindDateTime"]);
                 agendaPunt.Beschrijving = reader["Omschrijving"].ToString();
                 agendaPunt.Hulpbehoevende = reader["Hulpbehoevende"].ToString();
                 agendaPunt.Vrijwilliger = reader["Vrijwilliger"].ToString();

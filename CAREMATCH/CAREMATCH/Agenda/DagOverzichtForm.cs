@@ -22,7 +22,7 @@ namespace CAREMATCH.Agenda
             InitializeComponent();
             this.gebruiker = gebruiker;
 
-            dagOverzicht = new AgendaDagOverzicht();
+            dagOverzicht = new AgendaDagOverzicht(gebruiker);
 
             lblDatumWaarde.Text = dtpTijdPicker.Value.ToString();
         }
@@ -30,7 +30,11 @@ namespace CAREMATCH.Agenda
         private void btnAgendaPuntToevoegen_Click(object sender, EventArgs e)
         {
             agendaPuntToevoegen = new AgendaPuntToevoegenForm(gebruiker);
-            agendaPuntToevoegen.Show();
+            agendaPuntToevoegen.ShowDialog();
+            if (agendaPuntToevoegen.DialogResult == DialogResult.OK)
+            {
+                Refresh();
+            }
         }
 
         private void pnlWeekrooster_Paint(object sender, PaintEventArgs e)
@@ -38,8 +42,7 @@ namespace CAREMATCH.Agenda
             Graphics g = e.Graphics;
 
             dagOverzicht.DrawAgendaPunten(g);
-
-            //weekOverzicht.DrawAgendaPunt(g);
+            
         }
 
         private void btnSluiten_Click(object sender, EventArgs e)
@@ -50,15 +53,10 @@ namespace CAREMATCH.Agenda
 
         private void btnKiesKleur_Click(object sender, EventArgs e)
         {
-            //cdKiesKleur.ShowDialog();
+            cdKiesKleur.ShowDialog();
         }
 
-        private void lblDatumVandaag_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblDatumWaarde_Click(object sender, EventArgs e)
+        private void DagOverzichtForm_MouseDown(object sender, MouseEventArgs e)
         {
 
         }

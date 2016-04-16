@@ -41,46 +41,52 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtStartTijd = new System.Windows.Forms.TextBox();
+            this.btnOpslaanEnSluiten = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnOpslaan
             // 
-            this.btnOpslaan.Location = new System.Drawing.Point(12, 337);
+            this.btnOpslaan.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpslaan.Location = new System.Drawing.Point(12, 416);
             this.btnOpslaan.Name = "btnOpslaan";
-            this.btnOpslaan.Size = new System.Drawing.Size(115, 55);
+            this.btnOpslaan.Size = new System.Drawing.Size(141, 71);
             this.btnOpslaan.TabIndex = 0;
-            this.btnOpslaan.Text = "Opslaan";
+            this.btnOpslaan.Text = "Sluiten";
             this.btnOpslaan.UseVisualStyleBackColor = true;
-            this.btnOpslaan.Click += new System.EventHandler(this.btnOpslaan_Click);
+            this.btnOpslaan.Click += new System.EventHandler(this.btnSluiten_Click);
             // 
             // txtBeschrijving
             // 
-            this.txtBeschrijving.Location = new System.Drawing.Point(209, 175);
+            this.txtBeschrijving.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBeschrijving.Location = new System.Drawing.Point(260, 230);
             this.txtBeschrijving.Name = "txtBeschrijving";
-            this.txtBeschrijving.Size = new System.Drawing.Size(566, 217);
+            this.txtBeschrijving.Size = new System.Drawing.Size(706, 243);
             this.txtBeschrijving.TabIndex = 1;
             this.txtBeschrijving.Text = "";
             // 
             // txtTitel
             // 
-            this.txtTitel.Location = new System.Drawing.Point(310, 9);
+            this.txtTitel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTitel.Location = new System.Drawing.Point(464, 15);
             this.txtTitel.Multiline = true;
             this.txtTitel.Name = "txtTitel";
-            this.txtTitel.Size = new System.Drawing.Size(465, 35);
+            this.txtTitel.Size = new System.Drawing.Size(500, 35);
             this.txtTitel.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(206, 12);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(255, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 13);
+            this.label1.Size = new System.Drawing.Size(203, 26);
             this.label1.TabIndex = 3;
             this.label1.Text = "Korte Omschrijving:";
             // 
             // txtVrijwilliger
             // 
-            this.txtVrijwilliger.Location = new System.Drawing.Point(310, 63);
+            this.txtVrijwilliger.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtVrijwilliger.Location = new System.Drawing.Point(402, 96);
             this.txtVrijwilliger.Multiline = true;
             this.txtVrijwilliger.Name = "txtVrijwilliger";
             this.txtVrijwilliger.Size = new System.Drawing.Size(166, 35);
@@ -90,24 +96,27 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(511, 63);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(603, 105);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 13);
+            this.label2.Size = new System.Drawing.Size(182, 26);
             this.label2.TabIndex = 6;
             this.label2.Text = "Hulpbehoevende:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(206, 66);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(257, 105);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.Size = new System.Drawing.Size(117, 26);
             this.label3.TabIndex = 7;
             this.label3.Text = "Vrijwilliger:";
             // 
             // txtHulpbehoevende
             // 
-            this.txtHulpbehoevende.Location = new System.Drawing.Point(609, 60);
+            this.txtHulpbehoevende.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHulpbehoevende.Location = new System.Drawing.Point(800, 96);
             this.txtHulpbehoevende.Multiline = true;
             this.txtHulpbehoevende.Name = "txtHulpbehoevende";
             this.txtHulpbehoevende.Size = new System.Drawing.Size(166, 35);
@@ -115,14 +124,16 @@
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Location = new System.Drawing.Point(12, 12);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(144, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(208, 32);
             this.dateTimePicker1.TabIndex = 9;
             // 
             // txtEindTijd
             // 
-            this.txtEindTijd.Location = new System.Drawing.Point(609, 119);
+            this.txtEindTijd.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEindTijd.Location = new System.Drawing.Point(800, 158);
             this.txtEindTijd.Multiline = true;
             this.txtEindTijd.Name = "txtEindTijd";
             this.txtEindTijd.Size = new System.Drawing.Size(166, 35);
@@ -131,34 +142,49 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(206, 125);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(257, 164);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 13);
+            this.label4.Size = new System.Drawing.Size(104, 26);
             this.label4.TabIndex = 12;
             this.label4.Text = "Start Tijd:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(511, 122);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(603, 161);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 13);
+            this.label5.Size = new System.Drawing.Size(102, 26);
             this.label5.TabIndex = 11;
             this.label5.Text = "Eind Tijd:";
             // 
             // txtStartTijd
             // 
-            this.txtStartTijd.Location = new System.Drawing.Point(310, 122);
+            this.txtStartTijd.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStartTijd.Location = new System.Drawing.Point(402, 155);
             this.txtStartTijd.Multiline = true;
             this.txtStartTijd.Name = "txtStartTijd";
             this.txtStartTijd.Size = new System.Drawing.Size(166, 35);
             this.txtStartTijd.TabIndex = 10;
             // 
+            // btnOpslaanEnSluiten
+            // 
+            this.btnOpslaanEnSluiten.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpslaanEnSluiten.Location = new System.Drawing.Point(12, 328);
+            this.btnOpslaanEnSluiten.Name = "btnOpslaanEnSluiten";
+            this.btnOpslaanEnSluiten.Size = new System.Drawing.Size(141, 71);
+            this.btnOpslaanEnSluiten.TabIndex = 14;
+            this.btnOpslaanEnSluiten.Text = "Opslaan && Sluiten";
+            this.btnOpslaanEnSluiten.UseVisualStyleBackColor = true;
+            this.btnOpslaanEnSluiten.Click += new System.EventHandler(this.OplsaanEnSluiten_Click);
+            // 
             // AgendaPuntToevoegenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(796, 410);
+            this.ClientSize = new System.Drawing.Size(989, 499);
+            this.Controls.Add(this.btnOpslaanEnSluiten);
             this.Controls.Add(this.txtEindTijd);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
@@ -194,5 +220,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtStartTijd;
+        private System.Windows.Forms.Button btnOpslaanEnSluiten;
     }
 }

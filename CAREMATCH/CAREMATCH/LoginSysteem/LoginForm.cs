@@ -41,8 +41,15 @@ namespace Login
             }
             else if (database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text).Rol.ToLower() == "vrijwilliger")
             {
-                homeForm = new HomeForm(database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text));
-                ShowDialogMethod();
+                if(database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text).Approved)
+                {
+                    homeForm = new HomeForm(database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text));
+                    ShowDialogMethod();
+                }
+                else
+                {
+                    MessageBox.Show("Uw Account is nog niet goedgekeurd door de beheerder.");
+                }
             }
             else if (database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text).Rol.ToLower() == "hulpbehoevende")
             {
@@ -50,7 +57,6 @@ namespace Login
                 ShowDialogMethod();
             }
         }
-
         //Cursor hand
         private void lbRegister_MouseLeave(object sender, EventArgs e)
         {
@@ -63,8 +69,11 @@ namespace Login
         //Naar registratiescherm
         private void lbRegister_Click_1(object sender, EventArgs e)
         {
-            SignUp.Show();
             this.Hide();
+            if (SignUp.ShowDialog() == DialogResult.OK)
+            {
+                this.Show();
+            }
         }
         public void ShowDialogMethod()
         {
@@ -74,6 +83,11 @@ namespace Login
             {
                 this.Show();
             }
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

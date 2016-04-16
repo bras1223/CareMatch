@@ -40,13 +40,16 @@
             this.txtGebruikersnaam = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cbRol = new System.Windows.Forms.ComboBox();
+            this.txtUploadVOG = new System.Windows.Forms.TextBox();
+            this.btnUploadVOG = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnTerug
             // 
-            this.btnTerug.Location = new System.Drawing.Point(12, 161);
+            this.btnTerug.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTerug.Location = new System.Drawing.Point(19, 259);
             this.btnTerug.Name = "btnTerug";
-            this.btnTerug.Size = new System.Drawing.Size(168, 28);
+            this.btnTerug.Size = new System.Drawing.Size(111, 42);
             this.btnTerug.TabIndex = 6;
             this.btnTerug.Text = "Terug naar login scherm";
             this.btnTerug.UseVisualStyleBackColor = true;
@@ -76,17 +79,18 @@
             // 
             // txtHerhWachtwoord
             // 
-            this.txtHerhWachtwoord.Location = new System.Drawing.Point(206, 113);
+            this.txtHerhWachtwoord.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHerhWachtwoord.Location = new System.Drawing.Point(205, 158);
             this.txtHerhWachtwoord.Name = "txtHerhWachtwoord";
             this.txtHerhWachtwoord.PasswordChar = '*';
-            this.txtHerhWachtwoord.Size = new System.Drawing.Size(168, 20);
+            this.txtHerhWachtwoord.Size = new System.Drawing.Size(168, 23);
             this.txtHerhWachtwoord.TabIndex = 4;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(16, 113);
+            this.label3.Location = new System.Drawing.Point(16, 158);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(159, 17);
             this.label3.TabIndex = 16;
@@ -96,7 +100,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(16, 82);
+            this.label2.Location = new System.Drawing.Point(16, 109);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 17);
             this.label2.TabIndex = 15;
@@ -106,7 +110,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(16, 43);
+            this.label1.Location = new System.Drawing.Point(16, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(132, 17);
             this.label1.TabIndex = 12;
@@ -114,18 +118,20 @@
             // 
             // txtWachtwoord
             // 
-            this.txtWachtwoord.Location = new System.Drawing.Point(206, 82);
+            this.txtWachtwoord.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWachtwoord.Location = new System.Drawing.Point(205, 109);
             this.txtWachtwoord.Name = "txtWachtwoord";
             this.txtWachtwoord.PasswordChar = '*';
-            this.txtWachtwoord.Size = new System.Drawing.Size(168, 20);
+            this.txtWachtwoord.Size = new System.Drawing.Size(168, 23);
             this.txtWachtwoord.TabIndex = 3;
             this.txtWachtwoord.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // btnRegistreer
             // 
-            this.btnRegistreer.Location = new System.Drawing.Point(425, 161);
+            this.btnRegistreer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistreer.Location = new System.Drawing.Point(392, 259);
             this.btnRegistreer.Name = "btnRegistreer";
-            this.btnRegistreer.Size = new System.Drawing.Size(168, 28);
+            this.btnRegistreer.Size = new System.Drawing.Size(111, 42);
             this.btnRegistreer.TabIndex = 5;
             this.btnRegistreer.Text = "Registreer";
             this.btnRegistreer.UseVisualStyleBackColor = true;
@@ -133,9 +139,10 @@
             // 
             // txtGebruikersnaam
             // 
-            this.txtGebruikersnaam.Location = new System.Drawing.Point(206, 40);
+            this.txtGebruikersnaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGebruikersnaam.Location = new System.Drawing.Point(205, 44);
             this.txtGebruikersnaam.Name = "txtGebruikersnaam";
-            this.txtGebruikersnaam.Size = new System.Drawing.Size(168, 20);
+            this.txtGebruikersnaam.Size = new System.Drawing.Size(168, 23);
             this.txtGebruikersnaam.TabIndex = 2;
             // 
             // label6
@@ -151,21 +158,43 @@
             // cbRol
             // 
             this.cbRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbRol.FormattingEnabled = true;
             this.cbRol.Items.AddRange(new object[] {
             "Hulpbehoevende",
             "Vrijwilliger"});
             this.cbRol.Location = new System.Drawing.Point(204, 5);
             this.cbRol.Name = "cbRol";
-            this.cbRol.Size = new System.Drawing.Size(169, 21);
+            this.cbRol.Size = new System.Drawing.Size(169, 24);
             this.cbRol.TabIndex = 1;
+            // 
+            // txtUploadVOG
+            // 
+            this.txtUploadVOG.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUploadVOG.Location = new System.Drawing.Point(205, 209);
+            this.txtUploadVOG.Name = "txtUploadVOG";
+            this.txtUploadVOG.Size = new System.Drawing.Size(168, 23);
+            this.txtUploadVOG.TabIndex = 20;
+            // 
+            // btnUploadVOG
+            // 
+            this.btnUploadVOG.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUploadVOG.Location = new System.Drawing.Point(392, 206);
+            this.btnUploadVOG.Name = "btnUploadVOG";
+            this.btnUploadVOG.Size = new System.Drawing.Size(111, 28);
+            this.btnUploadVOG.TabIndex = 21;
+            this.btnUploadVOG.Text = "Upload VOG";
+            this.btnUploadVOG.UseVisualStyleBackColor = true;
+            this.btnUploadVOG.Click += new System.EventHandler(this.btnUploadVOG_Click);
             // 
             // SignupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(605, 201);
+            this.ClientSize = new System.Drawing.Size(562, 307);
+            this.Controls.Add(this.btnUploadVOG);
+            this.Controls.Add(this.txtUploadVOG);
             this.Controls.Add(this.cbRol);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnTerug);
@@ -201,5 +230,7 @@
         private System.Windows.Forms.TextBox txtGebruikersnaam;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cbRol;
+        private System.Windows.Forms.TextBox txtUploadVOG;
+        private System.Windows.Forms.Button btnUploadVOG;
     }
 }

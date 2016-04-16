@@ -14,11 +14,13 @@ namespace CAREMATCH.Agenda
     {
         Gebruiker gebruiker;
         AgendaPunt agendaPunt;
+        Database database;
         public AgendaPuntToevoegenForm(Gebruiker gebruiker)
         {
             InitializeComponent();
             this.gebruiker = gebruiker;
 
+            database = new Database();
             agendaPunt = new AgendaPunt();
         }
 
@@ -44,6 +46,7 @@ namespace CAREMATCH.Agenda
                 agendaPunt.Titel = txtTitel.Text;
                 agendaPunt.DatumTijdEind = int.Parse(txtEindTijd.Text);                
                 agendaPunt.Hulpbehoevende = txtHulpbehoevende.Text;
+                agendaPunt.Vrijwilliger = txtVrijwilliger.Text;
                 agendaPunt.Beschrijving = txtBeschrijving.Text;
                 //Zorgen dat alleen de eerste 2 cijfers van datum Eind & Start meegeven worden.
                 while (agendaPunt.DatumTijdEind >= 25)
@@ -56,6 +59,7 @@ namespace CAREMATCH.Agenda
                     agendaPunt.DatumTijdStart = agendaPunt.DatumTijdStart / 10;
                 }
 
+                database.AgendaPuntToevoegen(agendaPunt, gebruiker);
                 gebruiker.AgendaPuntToevoegen(agendaPunt);
 
                 DialogResult = DialogResult.OK;

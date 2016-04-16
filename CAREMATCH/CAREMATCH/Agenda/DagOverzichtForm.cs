@@ -58,7 +58,7 @@ namespace CAREMATCH.Agenda
 
         private void DagOverzichtForm_MouseDown(object sender, MouseEventArgs e)
         {
-
+            
         }
     }
 }

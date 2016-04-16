@@ -118,21 +118,34 @@ namespace CAREMATCH
         } 
         #endregion
         #region Agenda Queries
-        public void AgendaOverzicht()
+        public void AgendaOverzicht(Gebruiker gebruiker)
         {
+            con.Open();
+            command = new OracleCommand("SELECT * FROM Agenda WHERE EigenaarID ='"+gebruiker.GebruikersID+"' ", con);
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                agendaPunt = new Agenda.AgendaPunt();
 
+                agendaPunt.AfspraakID = Convert.ToInt32(reader["AFSPRAAKID"]);
+                agendaPunt.Titel = reader["Titel"].ToString();
+                agendaPunt.Hulpbehoevende = reader["HulpBehoevende"].ToString();
+                agendaPunt.Vrijwilliger = reader["Vrijwilliger"].ToString();
+                agendaPunt.Beschrijving = reader["Omschrijving"].ToString();
+                agendaPunt.AgendaEigenaar = Convert.ToInt32(reader["AFSPRAAKID"]);
+                agendaPunt.DatumTijdStart = Convert.ToInt32(reader["StartDateTime"]);
+                agendaPunt.DatumTijdEind = Convert.ToInt32(reader["EndDateTime"]);
+
+                gebruiker.AgendaPuntToevoegen(agendaPunt);
+            }
+            con.Close();
         }
-        public void AgendaOverzichtVolgendeWeek()
+        public void AgendaPuntToevoegen(Agenda.AgendaPunt agendaPunt, Gebruiker gebruiker)
         {
-
-        }
-        public void AgendaOverzichtVorigeWeek()
-        {
-
-        }
-        public void AgendaPuntToevoegen()
-        {
-
+            con.Open();
+            command = new OracleCommand("INSERT INTO Agenda(EigenaarID, Omschrijving, StartDateTime, EndDateTime, Titel, Hulpbehoevende, Vrijwilliger) VALUES('"+gebruiker.GebruikersID+"','"+agendaPunt.Beschrijving+"','"+agendaPunt.DatumTijdStart+"', '"+agendaPunt.DatumTijdEind+"','"+agendaPunt.Titel+"', '"+agendaPunt.Hulpbehoevende+"', '"+agendaPunt.Vrijwilliger+"')", con);
+            command.ExecuteNonQuery();
+            con.Close();
         }
         public Agenda.AgendaPunt AgendaInhoudWeergeven(Gebruiker gebruiker, int agendaID)
         {
@@ -335,6 +348,7 @@ namespace CAREMATCH
                 gebruiker.Gebruikersnaam = reader["Gebruikersnaam"].ToString();
                 gebruiker.GebruikersID = Convert.ToInt32(reader["GebruikerID"]);
                 gebruiker.GebruikerInfo = reader["GebruikerInfo"].ToString();
+                gebruiker.VOG = reader["vog"].ToString();
                 if (reader["Auto"].ToString() == "Y")
                 {
                     gebruiker.Auto = true;
@@ -356,25 +370,21 @@ namespace CAREMATCH
             
             return gebruiker;
         }
-        public void AccountToevoegen(string GebruikerID, string Gebruikersnaam, string Wachtwoord, string Approved, string Rol)
+        public void GebruikerAccountToevoegen(string Gebruikersnaam, string Wachtwoord, string Approved, string Rol, string filename)
         {
             con.Open();
-            command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERID, GEBRUIKERSNAAM, WACHTWOORD, APPROVED, ROL) VALUES('"+GebruikerID+"','"+Gebruikersnaam+"','"+EncryptString(Wachtwoord)+"', '"+Approved+"','"+Rol+"')",  con);
+            //Hulpbehoevende hoeft geen VOG te inserten.
+            if (Rol.ToLower() == "hulpbehoevende") 
+            {
+                command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, APPROVED, ROL) VALUES('" + Gebruikersnaam + "','" + EncryptString(Wachtwoord) + "', '" + Approved + "','" + Rol + "')", con);
+            }
+            //Vrijwilliger wel.
+            else
+            {
+                command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, APPROVED, ROL, VOG) VALUES('" + Gebruikersnaam + "','" + EncryptString(Wachtwoord) + "', '" + Approved + "','" + Rol + "', '"+filename+"')", con);
+            }
             command.ExecuteNonQuery();
             con.Close();
-        }
-        public int ControlleerMaxGebruikerID()
-        {
-            int id = 0;
-            con.Open();
-            command = new OracleCommand("SELECT MAX(GEBRUIKERID) as MAXID FROM GEBRUIKER", con);
-            reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                id = Convert.ToInt32(reader["MAXID"]);
-            }
-            con.Close();
-            return id;
         }
         public bool GebruikerControlleerUsername(string Gebruikersnaam)
         {
@@ -443,6 +453,14 @@ namespace CAREMATCH
             // command.SelectCommand.ExecuteNonQuery();
             // sql.Close();
         }        
+        public void GebruikerActiveren(string filename)
+        {
+            con.Open();
+            //query aanpassen
+            //command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, APPROVED, ROL) VALUES('" + Gebruikersnaam + "','" + EncryptString(Wachtwoord) + "', '" + Approved + "','" + Rol + "')", con);
+            command.ExecuteNonQuery();
+            con.Close();
+        }
         #endregion
         public string EncryptString(string toEncrypt)
         {

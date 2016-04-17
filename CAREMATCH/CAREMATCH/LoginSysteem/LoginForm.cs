@@ -19,13 +19,9 @@ namespace Login
             login = new Login();
             database = new Database();
         }
-
         //Logincheck
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            
-            Image piet = CAREMATCH.Properties.Resources.users;
-
             if (txtGebruikersnaam.Text == "" || txtWachtwoord.Text == "")
             {
                 MessageBox.Show("Niet alle velden zijn ingevuld");
@@ -41,6 +37,7 @@ namespace Login
             }
             else if (database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text).Rol.ToLower() == "vrijwilliger")
             {
+                //Checken if Account approved.
                 if(database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text).Approved)
                 {
                     homeForm = new HomeForm(database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text));
@@ -84,7 +81,6 @@ namespace Login
                 this.Show();
             }
         }
-
         private void LoginForm_Load(object sender, EventArgs e)
         {
 

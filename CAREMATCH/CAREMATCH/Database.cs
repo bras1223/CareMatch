@@ -35,9 +35,20 @@ namespace CAREMATCH
             con = new OracleConnection(constr);
         }
         #region Hulpvragen Queries
-        public void HulpvraagToevoegen(Hulpvragen.Hulpvraag hulpvraag)
+        public void HulpvraagToevoegen(Hulpvragen.Hulpvraag hulpvraag, Gebruiker gebruiker)
         {
-            
+            con.Open();
+            if(hulpvraag.Urgent)
+            {
+                tempString = "Y";
+            }
+            else
+            {
+                tempString = "N";
+            }
+            command = new OracleCommand("INSERT INTO Hulpvraag(GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie, Titel, HulpbehoevendeFoto) VALUES('" + gebruiker.GebruikersID + "','" + hulpvraag.HulpvraagInhoud + "','" + tempString + "', '" + hulpvraag.DatumTijd + "','" + hulpvraag.Duur + "', '" + hulpvraag.Frequentie+ "', '" +hulpvraag.Titel + "', '"+gebruiker.Pasfoto+"')", con);
+            command.ExecuteNonQuery();
+            con.Close();
         }
         public void HulpvraagVerwijderen()
         {
@@ -87,8 +98,8 @@ namespace CAREMATCH
                 hulpvraag.HulpvraagInhoud = reader["HulpvraagInhoud"].ToString();
                 hulpvraag.Frequentie = reader["Frequentie"].ToString();
                 hulpvraag.Reactie = reader["Reactie"].ToString();
-                hulpvraag.Duur = Convert.ToInt32(reader["Duur"]);
-                hulpvraag.DatumTijd = Convert.ToDateTime(reader["DatumTijd"]);
+                hulpvraag.Duur = reader["Duur"].ToString();
+                hulpvraag.DatumTijd = reader["DatumTijd"].ToString();
                 if (reader["Aangenomen"].ToString() == "Y")
                 {
                     hulpvraag.Aangenomen = true;

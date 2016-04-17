@@ -167,6 +167,7 @@
             this.cbRol.Name = "cbRol";
             this.cbRol.Size = new System.Drawing.Size(169, 24);
             this.cbRol.TabIndex = 1;
+            this.cbRol.SelectedIndexChanged += new System.EventHandler(this.cbRol_SelectedIndexChanged);
             // 
             // txtUploadVOG
             // 
@@ -211,6 +212,7 @@
             this.MinimizeBox = false;
             this.Name = "SignupForm";
             this.Text = "SignUp";
+            this.Load += new System.EventHandler(this.SignupForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

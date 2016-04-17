@@ -56,13 +56,12 @@ namespace CAREMATCH.VrijwilligerSysteem
                 }
             }
         }
-
         private void btnSluit_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             this.Close();
         }
-
+        //Vrijwilliger past hulpvraag aan.
         private void btnSlaOp_Click(object sender, EventArgs e)
         {
             rtxtReactieInhoud.Enabled = false;
@@ -72,10 +71,27 @@ namespace CAREMATCH.VrijwilligerSysteem
             hulpvraag.Reactie = rtxtReactieInhoud.Text + "\n";
             database.HulpvraagAanpassen(gebruiker.GebruikersID, hulpvraag);
         }
-
+        //Hulpbehoevende dient hulpvraag in.
         private void btnHulpvraagOpslaan_Click(object sender, EventArgs e)
         {
+            hulpvraag = new Hulpvragen.Hulpvraag();
+            hulpvraag.Duur = txtDuur.Text;
+            hulpvraag.Frequentie = txtFrequentie.Text;
+            hulpvraag.Hulpbehoevende = gebruiker.Gebruikersnaam;
+            hulpvraag.Titel = txtTitel.Text;
+            hulpvraag.HulpvraagInhoud = rtxtHulpvraag.Text;
+            hulpvraag.Urgent = cbUrgent.Checked;
+            hulpvraag.HulpbehoevendeFoto = gebruiker.Pasfoto;
 
+            try
+            {
+                database.HulpvraagToevoegen(hulpvraag, gebruiker);
+                MessageBox.Show("Hulpvraag opgeslagen.");
+            }
+            catch
+            {
+                MessageBox.Show("Er is iets foutgegaan bij het opslaan van de hulpvraag. Neem contact op met CareMatch.");
+            }
         }
     }
 }

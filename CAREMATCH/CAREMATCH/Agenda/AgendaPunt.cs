@@ -19,10 +19,7 @@ namespace CAREMATCH.Agenda
         public string Hulpbehoevende { get; set; }
         public string Titel { get; set; }
         public string Beschrijving { get; set; }
-
-        //Fields
-        private int x;
-        private int y;
+        
         //Constructor
         public AgendaPunt()
         {

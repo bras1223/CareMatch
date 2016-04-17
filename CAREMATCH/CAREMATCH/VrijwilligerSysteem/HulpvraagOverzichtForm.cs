@@ -32,41 +32,45 @@ namespace CAREMATCH.VrijwilligerSysteem
             lvHulpvragen.View = View.Details;
             lvHulpvragen.FullRowSelect = true;
             lvHulpvragen.Columns.Add("ID");
+            lvHulpvragen.Columns.Add("Urgent");
             lvHulpvragen.Columns.Add("Foto");
             lvHulpvragen.Columns.Add("Hulpbehoevende");
+            lvHulpvragen.Columns.Add("Vrijwilliger");
             lvHulpvragen.Columns.Add("Titel");
             lvHulpvragen.Columns.Add("Hulpvraag inhoud");
-            lvHulpvragen.Columns.Add("Vrijwilliger");
-            lvHulpvragen.Columns.Add("Urgent");
-            //Resize  colums
-            for(int i =0;i<=6;i++)
-            {
-                lvHulpvragen.AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.ColumnContent);
-                if(i == 2)
-                {
-                    lvHulpvragen.AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.HeaderSize);
-                }
-            }
             // Hulpvragen Overzicht
             foreach (Hulpvragen.Hulpvraag hulpvraag in database.HulpvragenOverzicht(aangenomen, gebruiker.GebruikersID +1))
             {
                 ListViewItem item = new ListViewItem(hulpvraag.ToString());
                 item.UseItemStyleForSubItems = false;
+
+                item.SubItems.Add("    ");
+                if (hulpvraag.Urgent)
+                {
+                    item.SubItems[1].BackColor = Color.Red;
+                }
+                else if (!hulpvraag.Urgent)
+                {
+                    item.SubItems[1].BackColor = Color.Blue;
+                }
                 item.SubItems.Add(hulpvraag.HulpbehoevendeFoto);
                 item.SubItems.Add(hulpvraag.Hulpbehoevende);
+                item.SubItems.Add(hulpvraag.Vrijwilliger);
                 item.SubItems.Add(hulpvraag.Titel);
                 item.SubItems.Add(hulpvraag.HulpvraagInhoud);
-                item.SubItems.Add(hulpvraag.Vrijwilliger);
-                item.SubItems.Add("    ");
-                if(hulpvraag.Urgent)
-                {
-                    item.SubItems[6].BackColor = Color.Red;
-                }
-                else if(!hulpvraag.Urgent)
-                {
-                    item.SubItems[6].BackColor = Color.Blue;
-                }
                 lvHulpvragen.Items.Add(item);
+            }
+            //Autosize collumns.
+            for(int i =0;i<7;i++)
+            {
+                if(i >= 5)
+                {
+                    lvHulpvragen.AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.ColumnContent);
+                }
+                else
+                {
+                    lvHulpvragen.AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.HeaderSize);
+                }
             }
         }
         private void btnBekijkHulpvraag_Click(object sender, EventArgs e)

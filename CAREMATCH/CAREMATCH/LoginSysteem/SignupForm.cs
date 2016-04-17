@@ -21,9 +21,13 @@ namespace Login
         public SignupForm()
         {
             InitializeComponent();
+            database = new Database();
+
             label4.Visible = false;
             label5.Visible = false;
-            database = new Database();           
+
+            btnUploadVOG.Visible = false;
+            txtUploadVOG.Visible = false;        
         }
         //Gebruiker toevoegen
         private void button1_Click(object sender, EventArgs e)
@@ -49,17 +53,10 @@ namespace Login
             }
             else if (cbRol.Text == "Hulpbehoevende" && txtWachtwoord.Text == txtHerhWachtwoord.Text && GebruikNaam == true)
             {
-                //Hulpbehoevende moet een VOG uploaden.
-                if (txtUploadVOG.Text == "")
-                {
-                    MessageBox.Show("Een vrijwilliger is verplicht een VOG bij te voegen.");
-                }
-                else
-                {
-                    database.GebruikerAccountToevoegen(txtGebruikersnaam.Text, txtWachtwoord.Text, "Y", cbRol.Text, txtUploadVOG.Text);
-                    MessageBox.Show("Account aangemaakt. U moet wachten tot dat uw account is geactiveerd voordat u kunt inloggen.");
-                    this.Close();
-                }
+                database.GebruikerAccountToevoegen(txtGebruikersnaam.Text, txtWachtwoord.Text, "Y", cbRol.Text, txtUploadVOG.Text);
+                MessageBox.Show("Account aangemaakt. U kunt nu inloggen.");
+                DialogResult = DialogResult.OK;
+                this.Close();
             }
             else if (cbRol.Text == "Vrijwilliger" && txtWachtwoord.Text == txtHerhWachtwoord.Text && GebruikNaam == true)
             {
@@ -126,6 +123,25 @@ namespace Login
             if(ofd.ShowDialog() == DialogResult.OK)
             {
                 txtUploadVOG.Text = ofd.FileName;
+            }
+        }
+
+        private void SignupForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbRol_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbRol.Text.ToLower() == "vrijwilliger")
+            {
+                btnUploadVOG.Visible = true;
+                txtUploadVOG.Visible = true;
+            }
+            else
+            {
+                btnUploadVOG.Visible = false;
+                txtUploadVOG.Visible = false;
             }
         }
     }

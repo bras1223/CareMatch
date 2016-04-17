@@ -30,8 +30,6 @@ namespace CAREMATCH
                         
             if (gebruiker.GetType() == typeof(Hulpbehoevende))
             {
-                btnAangenomenHulpvragen.Visible = false;
-
                 btnOngepasteBerichten.Visible = false;
                 btnAccountOverzicht.Visible = false;
             }
@@ -44,7 +42,6 @@ namespace CAREMATCH
             }
             else
             {
-                btnAangenomenHulpvragen.Visible = false;
                 btnHulpvraagIndienen.Visible = false;
             }
         }
@@ -70,18 +67,6 @@ namespace CAREMATCH
                 this.Show();
             }
         }
-
-        private void btnAangenomenHulpvragen_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            hulpvraagOverzichtForm = new HulpvraagOverzichtForm(gebruiker, true);
-            hulpvraagOverzichtForm.ShowDialog();
-            if (hulpvraagOverzichtForm.DialogResult == DialogResult.OK || hulpvraagOverzichtForm.DialogResult == DialogResult.Cancel)
-            {
-                this.Show();
-            }
-        }
-
         private void btnAgenda_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -92,7 +77,6 @@ namespace CAREMATCH
                 this.Show();
             }
         }
-
         private void btnBerichten_Click(object sender, EventArgs e)
         {
             this.Hide();

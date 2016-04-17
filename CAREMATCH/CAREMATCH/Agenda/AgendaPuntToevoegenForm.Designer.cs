@@ -36,13 +36,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtHulpbehoevende = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpAfspraakDatum = new System.Windows.Forms.DateTimePicker();
             this.txtEindTijd = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtStartTijd = new System.Windows.Forms.TextBox();
             this.btnOpslaanEnSluiten = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
+            this.lblAfspraakDatum = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnOpslaan
@@ -122,13 +123,13 @@
             this.txtHulpbehoevende.Size = new System.Drawing.Size(166, 35);
             this.txtHulpbehoevende.TabIndex = 3;
             // 
-            // dateTimePicker1
+            // dtpAfspraakDatum
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(12, 12);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(208, 32);
-            this.dateTimePicker1.TabIndex = 7;
+            this.dtpAfspraakDatum.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpAfspraakDatum.Location = new System.Drawing.Point(12, 61);
+            this.dtpAfspraakDatum.Name = "dtpAfspraakDatum";
+            this.dtpAfspraakDatum.Size = new System.Drawing.Size(208, 32);
+            this.dtpAfspraakDatum.TabIndex = 7;
             // 
             // txtEindTijd
             // 
@@ -188,18 +189,29 @@
             this.label6.TabIndex = 15;
             this.label6.Text = "Voorbeeld: 1000 = 10 uur && 1600 = 4 uur";
             // 
+            // lblAfspraakDatum
+            // 
+            this.lblAfspraakDatum.AutoSize = true;
+            this.lblAfspraakDatum.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAfspraakDatum.Location = new System.Drawing.Point(12, 15);
+            this.lblAfspraakDatum.Name = "lblAfspraakDatum";
+            this.lblAfspraakDatum.Size = new System.Drawing.Size(175, 26);
+            this.lblAfspraakDatum.TabIndex = 16;
+            this.lblAfspraakDatum.Text = "Afspraak Datum:";
+            // 
             // AgendaPuntToevoegenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(989, 499);
+            this.Controls.Add(this.lblAfspraakDatum);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnOpslaanEnSluiten);
             this.Controls.Add(this.txtEindTijd);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtStartTijd);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dtpAfspraakDatum);
             this.Controls.Add(this.txtHulpbehoevende);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -226,12 +238,13 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtHulpbehoevende;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpAfspraakDatum;
         private System.Windows.Forms.TextBox txtEindTijd;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtStartTijd;
         private System.Windows.Forms.Button btnOpslaanEnSluiten;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblAfspraakDatum;
     }
 }

@@ -26,7 +26,7 @@ namespace CAREMATCH.Agenda
             dagOverzicht = new AgendaDagOverzicht(gebruiker);
 
             //Alle agendapunten ophalen van de geselecteerde vrijwilliger ind e filter. Standaard eigen agenda weergeven.
-            database.AgendaOverzicht(gebruiker, cbFilter.Text);
+            database.AgendaOverzicht(gebruiker, cbFilter.Text, dtpTijdPicker.Value.Date);
             foreach (string vrijwilliger in database.AgendaSelecteerVrijwilligers())
             {
                 cbFilter.Items.Add(vrijwilliger);
@@ -40,10 +40,9 @@ namespace CAREMATCH.Agenda
             agendaPuntToevoegen.ShowDialog();
             if (agendaPuntToevoegen.DialogResult == DialogResult.OK)
             {
-                Refresh();
+                pnlWeekrooster.Refresh();
             }
         }
-
         private void pnlWeekrooster_Paint(object sender, PaintEventArgs e)
         {
             using (Graphics g = pnlWeekrooster.CreateGraphics())
@@ -51,9 +50,7 @@ namespace CAREMATCH.Agenda
                 dagOverzicht.DrawAgendaPunten(g, cbFilter.Text);                                
             }
         }
-
-        private void btnSluiten_Click(object sender, EventArgs e)
-        {
+        private void btnSluiten_Click(object sender, EventArgs e)        {
             DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -64,13 +61,14 @@ namespace CAREMATCH.Agenda
         private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             gebruiker.GetAgendaPunten().Clear();
-            database.AgendaOverzicht(gebruiker, cbFilter.Text);
-            Refresh();
+            database.AgendaOverzicht(gebruiker, cbFilter.Text, dtpTijdPicker.Value.Date);
+            pnlWeekrooster.Refresh();
         }
-
         private void dtpTijdPicker_ValueChanged(object sender, EventArgs e)
         {
-
+            gebruiker.GetAgendaPunten().Clear();
+            database.AgendaOverzicht(gebruiker, cbFilter.Text, dtpTijdPicker.Value.Date);
+            pnlWeekrooster.Refresh();
         }
     }
 }

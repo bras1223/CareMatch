@@ -157,7 +157,7 @@ namespace CAREMATCH
             }
             return vrijwilligersList;
         }
-        public void AgendaOverzicht(Gebruiker gebruiker, string filter)
+        public void AgendaOverzicht(Gebruiker gebruiker, string filter, DateTime datum)
         {
             try
             {
@@ -170,11 +170,13 @@ namespace CAREMATCH
             }
             if(filter == "")
             {
-                command = new OracleCommand("SELECT * FROM Agenda WHERE EigenaarID ='" + gebruiker.GebruikersID + "' ", con);
+                //Standaard eigen agenda weergeven.
+                command = new OracleCommand("SELECT * FROM Agenda WHERE EigenaarID ='" + gebruiker.GebruikersID + "' AND AfspraakDatum='"+datum+"' ", con);
             }
             else
             {
-                command = new OracleCommand("SELECT * FROM Agenda WHERE EigenaarID =(SELECT GebruikerID FROM Gebruiker WHERE Gebruikersnaam='" +filter+ "') ", con);
+                //Anders de agenda van de geselecteerde persoon weergeven.
+                command = new OracleCommand("SELECT * FROM Agenda WHERE EigenaarID =(SELECT GebruikerID FROM Gebruiker WHERE Gebruikersnaam='" +filter+ "' AND AfspraakDatum='"+datum+"') ", con);
             }
             reader = command.ExecuteReader();
             while (reader.Read())
@@ -187,17 +189,17 @@ namespace CAREMATCH
                 agendaPunt.Vrijwilliger = reader["Vrijwilliger"].ToString();
                 agendaPunt.Beschrijving = reader["Omschrijving"].ToString();
                 agendaPunt.AgendaEigenaar = Convert.ToInt32(reader["AFSPRAAKID"]);
-                agendaPunt.DatumTijdStart = Convert.ToInt32(reader["StartDateTime"]);
-                agendaPunt.DatumTijdEind = Convert.ToInt32(reader["EndDateTime"]);
+                agendaPunt.DatumTijdStart = Convert.ToInt32(reader["StartTijd"]);
+                agendaPunt.DatumTijdEind = Convert.ToInt32(reader["EindTijd"]);
 
                 gebruiker.AgendaPuntToevoegen(agendaPunt);
             }
             con.Close();
         }
-        public void AgendaPuntToevoegen(Agenda.AgendaPunt agendaPunt, Gebruiker gebruiker)
+        public void AgendaPuntToevoegen(Agenda.AgendaPunt agendaPunt, Gebruiker gebruiker, DateTime datum)
         {
             con.Open();
-            command = new OracleCommand("INSERT INTO Agenda(EigenaarID, Omschrijving, StartDateTime, EndDateTime, Titel, Hulpbehoevende, Vrijwilliger) VALUES('"+gebruiker.GebruikersID+"','"+agendaPunt.Beschrijving+"','"+agendaPunt.DatumTijdStart+"', '"+agendaPunt.DatumTijdEind+"','"+agendaPunt.Titel+"', '"+agendaPunt.Hulpbehoevende+"', '"+agendaPunt.Vrijwilliger+"')", con);
+            command = new OracleCommand("INSERT INTO Agenda(EigenaarID, Omschrijving, StartTijd, EindTijd, Titel, Hulpbehoevende, Vrijwilliger, AfspraakDatum) VALUES('"+gebruiker.GebruikersID+"','"+agendaPunt.Beschrijving+"','"+agendaPunt.DatumTijdStart+"', '"+agendaPunt.DatumTijdEind+"','"+agendaPunt.Titel+"', '"+agendaPunt.Hulpbehoevende+"', '"+agendaPunt.Vrijwilliger+"', '"+datum+"')", con);
             command.ExecuteNonQuery();
             con.Close();
         }
@@ -210,8 +212,8 @@ namespace CAREMATCH
             {
                 agendaPunt.AgendaEigenaar = gebruiker.GebruikersID;
                 agendaPunt.Titel = reader["Titel"].ToString();
-                agendaPunt.DatumTijdStart = Convert.ToInt32(reader["StartDateTime"]);
-                agendaPunt.DatumTijdEind = Convert.ToInt32(reader["EindDateTime"]);
+                agendaPunt.DatumTijdStart = Convert.ToInt32(reader["StartTijd"]);
+                agendaPunt.DatumTijdEind = Convert.ToInt32(reader["EindTijd"]);
                 agendaPunt.Beschrijving = reader["Omschrijving"].ToString();
                 agendaPunt.Hulpbehoevende = reader["Hulpbehoevende"].ToString();
                 agendaPunt.Vrijwilliger = reader["Vrijwilliger"].ToString();
@@ -221,7 +223,7 @@ namespace CAREMATCH
         }
         public void AgendaAanpassen(Gebruiker gebruiker, Agenda.AgendaPunt agendaPunt)
         {
-            command = new OracleCommand("UPDATE Agenda SET AfspraakID ='" + agendaPunt.AfspraakID + "', Omschrijving='" + agendaPunt.Beschrijving + "', StartDateTime='" + agendaPunt.DatumTijdStart + "', EindDateTime='" + agendaPunt.DatumTijdEind + "', Titel='" + agendaPunt.Titel + "',Hulpbehoevende='" + agendaPunt.Hulpbehoevende + "', Vrijwilliger='" + agendaPunt.Vrijwilliger + "'", con);
+            command = new OracleCommand("UPDATE Agenda SET AfspraakID ='" + agendaPunt.AfspraakID + "', Omschrijving='" + agendaPunt.Beschrijving + "', StartTijd='" + agendaPunt.DatumTijdStart + "', EindTijd='" + agendaPunt.DatumTijdEind + "', Titel='" + agendaPunt.Titel + "',Hulpbehoevende='" + agendaPunt.Hulpbehoevende + "', Vrijwilliger='" + agendaPunt.Vrijwilliger + "'", con);
             reader = command.ExecuteReader();
             con.Close();
 

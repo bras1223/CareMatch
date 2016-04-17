@@ -124,7 +124,7 @@
             this.txtWachtwoord.PasswordChar = '*';
             this.txtWachtwoord.Size = new System.Drawing.Size(168, 23);
             this.txtWachtwoord.TabIndex = 3;
-            this.txtWachtwoord.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.txtWachtwoord.TextChanged += new System.EventHandler(this.txtHerhWachtwoord_TextChanged);
             // 
             // btnRegistreer
             // 
@@ -135,7 +135,7 @@
             this.btnRegistreer.TabIndex = 7;
             this.btnRegistreer.Text = "Registreer";
             this.btnRegistreer.UseVisualStyleBackColor = true;
-            this.btnRegistreer.Click += new System.EventHandler(this.button1_Click);
+            this.btnRegistreer.Click += new System.EventHandler(this.btnRegistreer_Click);
             // 
             // txtGebruikersnaam
             // 
@@ -212,7 +212,6 @@
             this.MinimizeBox = false;
             this.Name = "SignupForm";
             this.Text = "SignUp";
-            this.Load += new System.EventHandler(this.SignupForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

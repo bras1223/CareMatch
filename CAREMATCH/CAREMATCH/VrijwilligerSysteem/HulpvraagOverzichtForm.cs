@@ -26,9 +26,49 @@ namespace CAREMATCH.VrijwilligerSysteem
             this.gebruiker = gebruiker;
             this.aangenomen = aangenomen;
             database = new Database();
+            //Filter alleen weergeven voor vrijwilligers.
+            if(gebruiker.Rol.ToLower() == "hulpbehoevende")
+            {
+                cbFilter.Visible = false;
+                lblFilter.Visible = false;
+            }
+            cbFilter.SelectedIndex = 0;
+            HulpvragenOverzichtWeergeven();
+        }
+        private void btnBekijkHulpvraag_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Hide();
+                hulpvraag = database.HulpvragenOverzicht(aangenomen, gebruiker, cbFilter.Text)[lvHulpvragen.FocusedItem.Index];
+                hulpvraagForm = new HulpvraagForm(hulpvraag, gebruiker, false);
+                hulpvraagForm.ShowDialog();
+                if (hulpvraagForm.DialogResult == DialogResult.OK || hulpvraagForm.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Selecteer eerst een hulpvraag");
+            }
+        }
+        private void btnLogUit_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            HulpvragenOverzichtWeergeven();
+        }
+        public void HulpvragenOverzichtWeergeven()
+        {
+            lvHulpvragen.Clear();
             //Inlognaam weergeven links in de hoek
             lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;
-
+            //Kolommen toevoegen.
             lvHulpvragen.View = View.Details;
             lvHulpvragen.FullRowSelect = true;
             lvHulpvragen.Columns.Add("ID");
@@ -38,8 +78,8 @@ namespace CAREMATCH.VrijwilligerSysteem
             lvHulpvragen.Columns.Add("Vrijwilliger");
             lvHulpvragen.Columns.Add("Titel");
             lvHulpvragen.Columns.Add("Hulpvraag inhoud");
-            // Hulpvragen Overzicht
-            foreach (Hulpvragen.Hulpvraag hulpvraag in database.HulpvragenOverzicht(aangenomen, gebruiker.GebruikersID +1))
+            // Hulpvragen Overzicht weergeven met inhoud.
+            foreach (Hulpvragen.Hulpvraag hulpvraag in database.HulpvragenOverzicht(aangenomen, gebruiker, cbFilter.Text))
             {
                 ListViewItem item = new ListViewItem(hulpvraag.ToString());
                 item.UseItemStyleForSubItems = false;
@@ -51,7 +91,7 @@ namespace CAREMATCH.VrijwilligerSysteem
                 }
                 else if (!hulpvraag.Urgent)
                 {
-                    item.SubItems[1].BackColor = Color.Blue;
+                    item.SubItems[1].BackColor = Color.Green;
                 }
                 item.SubItems.Add(hulpvraag.HulpbehoevendeFoto);
                 item.SubItems.Add(hulpvraag.Hulpbehoevende);
@@ -61,9 +101,9 @@ namespace CAREMATCH.VrijwilligerSysteem
                 lvHulpvragen.Items.Add(item);
             }
             //Autosize collumns.
-            for(int i =0;i<7;i++)
+            for (int i = 0; i < 7; i++)
             {
-                if(i >= 5)
+                if (i >= 5)
                 {
                     lvHulpvragen.AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.ColumnContent);
                 }
@@ -72,29 +112,6 @@ namespace CAREMATCH.VrijwilligerSysteem
                     lvHulpvragen.AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.HeaderSize);
                 }
             }
-        }
-        private void btnBekijkHulpvraag_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.Hide();
-                hulpvraag = database.HulpvragenOverzicht(aangenomen, gebruiker.GebruikersID)[lvHulpvragen.FocusedItem.Index];
-                hulpvraagForm = new HulpvraagForm(hulpvraag, gebruiker, false);
-                hulpvraagForm.ShowDialog();
-                if (hulpvraagForm.DialogResult == DialogResult.OK || hulpvraagForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Selecteer een hulpvraag");
-            }
-        }
-        private void btnLogUit_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.OK;
-            this.Close();
         }
     }
 }

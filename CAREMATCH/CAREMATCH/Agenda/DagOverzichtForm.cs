@@ -12,6 +12,7 @@ namespace CAREMATCH.Agenda
 {
     public partial class DagOverzichtForm : Form
     {
+        private Database database;
         private Gebruiker gebruiker;
         private AgendaDagOverzicht dagOverzicht;
         private AgendaPuntToevoegenForm agendaPuntToevoegen;
@@ -22,8 +23,15 @@ namespace CAREMATCH.Agenda
             InitializeComponent();
             this.gebruiker = gebruiker;
 
+            database = new Database();
             dagOverzicht = new AgendaDagOverzicht(gebruiker);
 
+            //Alle agendapunten ophalen. van de geselecteerde vrijwilliger ind e filter. Standaard eigen agenda weergeven.
+            database.AgendaOverzicht(gebruiker, cbFilter.Text);
+            foreach (string vrijwilliger in database.AgendaSelecteerVrijwilligers())
+            {
+                cbFilter.Items.Add(vrijwilliger);
+            }
             lblDatumWaarde.Text = dtpTijdPicker.Value.ToString();
         }
 
@@ -41,8 +49,8 @@ namespace CAREMATCH.Agenda
         {
             using (Graphics g = pnlWeekrooster.CreateGraphics())
             {
-                dagOverzicht.DrawAgendaPunten(g);                                
-            }           
+                dagOverzicht.DrawAgendaPunten(g, cbFilter.Text);                                
+            }
         }
 
         private void btnSluiten_Click(object sender, EventArgs e)
@@ -59,6 +67,13 @@ namespace CAREMATCH.Agenda
         private void DagOverzichtForm_MouseDown(object sender, MouseEventArgs e)
         {
             
+        }
+
+        private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            gebruiker.GetAgendaPunten().Clear();
+            database.AgendaOverzicht(gebruiker, cbFilter.Text);
+            Refresh();
         }
     }
 }

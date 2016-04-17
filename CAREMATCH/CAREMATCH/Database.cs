@@ -70,20 +70,25 @@ namespace CAREMATCH
             reader = command.ExecuteReader();
             con.Close();
         }
-        public List<Hulpvragen.Hulpvraag> HulpvragenOverzicht(bool aangenomen, int vrijwilligerID)
+        public List<Hulpvragen.Hulpvraag> HulpvragenOverzicht(bool aangenomen, Gebruiker gebruiker, string filter)
         {
             List<Hulpvragen.Hulpvraag> hulpvraagList = new List<Hulpvragen.Hulpvraag>();
 
             con.Open();
-            if(aangenomen)
-            {
-                //Als de vrijwillger alleen zijn eigen aangenomen hulpvragen wil zien
-                command = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.HulpvraagInhoud, Hulpvraag.Aangenomen, Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie, Hulpvraag.HulpbehoevendeFoto, Hulpvraag.Titel, Hulpvraag.Reactie, Hulpvraag.Duur FROM Hulpvraag WHERE Hulpvraag.VrijwilligerID='"+vrijwilligerID+"'", con);
-            }
-            else
+            if((filter == "Alle hulpvragen" || filter == "") && gebruiker.Rol.ToLower() == "vrijwilliger")
             {
                 //overzicht van alle hulpvragen
                 command = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.HulpvraagInhoud, Hulpvraag.Aangenomen, Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie, Hulpvraag.HulpbehoevendeFoto, Hulpvraag.Titel, Hulpvraag.Reactie, Hulpvraag.Duur FROM Hulpvraag", con);
+            }
+            else if(filter == "Eigen hulpvragen" && gebruiker.Rol.ToLower() == "vrijwilliger")
+            {
+                //overzicht eigen toegekende hulpvragen.
+                command = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.HulpvraagInhoud, Hulpvraag.Aangenomen, Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie, Hulpvraag.HulpbehoevendeFoto, Hulpvraag.Titel, Hulpvraag.Reactie, Hulpvraag.Duur FROM Hulpvraag WHERE VrijwilligerID='"+gebruiker.GebruikersID+"'", con);
+            }
+            else
+            {
+                //Overzicht eigen hulpvragen voor hulpbehoevende.
+                command = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.HulpvraagInhoud, Hulpvraag.Aangenomen, Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie, Hulpvraag.HulpbehoevendeFoto, Hulpvraag.Titel, Hulpvraag.Reactie, Hulpvraag.Duur FROM Hulpvraag WHERE GebruikerID='" + gebruiker.GebruikersID + "'", con);
             }
             reader = command.ExecuteReader();
             while (reader.Read())
@@ -126,13 +131,42 @@ namespace CAREMATCH
         public void HulpvragenIngediend()
         {
 
-        } 
+        }
         #endregion
         #region Agenda Queries
-        public void AgendaOverzicht(Gebruiker gebruiker)
+        public List<string> AgendaSelecteerVrijwilligers()
         {
+            List<string> vrijwilligersList = new List<string>();
             con.Open();
-            command = new OracleCommand("SELECT * FROM Agenda WHERE EigenaarID ='"+gebruiker.GebruikersID+"' ", con);
+
+            command = new OracleCommand("SELECT Gebruikersnaam FROM Gebruiker WHERE LOWER(ROL)='vrijwilliger' ", con);
+
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                vrijwilligersList.Add(reader["Gebruikersnaam"].ToString());
+            }
+            return vrijwilligersList;
+        }
+        public void AgendaOverzicht(Gebruiker gebruiker, string filter)
+        {
+            try
+            {
+                con.Open();
+            }
+            catch
+            {
+                //Soms is de connectie niet goed afgesloten en komt er een foutmelding: CON already Open. 
+                //Als dat zo is, gewoon doorgaan met code. dus hoeft niet afgevangen te worden.
+            }
+            if(filter == "")
+            {
+                command = new OracleCommand("SELECT * FROM Agenda WHERE EigenaarID ='" + gebruiker.GebruikersID + "' ", con);
+            }
+            else
+            {
+                command = new OracleCommand("SELECT * FROM Agenda WHERE EigenaarID =(SELECT GebruikerID FROM Gebruiker WHERE Gebruikersnaam='" +filter+ "') ", con);
+            }
             reader = command.ExecuteReader();
             while (reader.Read())
             {

@@ -12,6 +12,7 @@ namespace CAREMATCH.Agenda
         private Gebruiker gebruiker;
         private Database database;
         private List<AgendaPunt> dagAfsprakenList;
+        private string filter;
         int lines;
         float x;
         float y;
@@ -27,8 +28,6 @@ namespace CAREMATCH.Agenda
             dagAfsprakenList = new List<AgendaPunt>();
             database = new Database();
 
-            database.AgendaOverzicht(gebruiker);
-
             lines = 22;
             x = 0f;
             y = 0f;
@@ -39,8 +38,9 @@ namespace CAREMATCH.Agenda
             p = new Pen(sbBlack);
             font = new Font("Arial", 10);
         }
-        public void DrawAgendaPunten(Graphics g)
+        public void DrawAgendaPunten(Graphics g, string filter)
         {
+            this.filter = filter;
             int aantalAfspraken = 0;
             //Agendapunten weergeven. Deze eerder tekenen dan de lijnen en tijden. anders layout problems.
             foreach (AgendaPunt ap in gebruiker.GetAgendaPunten())
@@ -57,14 +57,14 @@ namespace CAREMATCH.Agenda
                         sbColor = new SolidBrush(Color.Blue);
                         break;
                     case 3:
-                        sbColor = new SolidBrush(Color.Purple);
+                        sbColor = new SolidBrush(Color.Yellow);
                         break;
                     case 4:
-                        sbColor = new SolidBrush(Color.Purple);
+                        sbColor = new SolidBrush(Color.Orange);
                         break;
                 };
                 g.FillRectangle(sbColor, new Rectangle(aantalAfspraken * 200 + 50, Convert.ToInt32((xSpace * (ap.DatumTijdStart - 8))), 180, Convert.ToInt32((xSpace * (ap.DatumTijdEind - ap.DatumTijdStart)))));
-                g.DrawString("Afspraak met:\n"+ ap.Vrijwilliger, font, sbBlack, aantalAfspraken * 200 + 50, Convert.ToInt32((xSpace * (ap.DatumTijdStart - 8))));
+                g.DrawString("Afspraak met:\n"+ ap.Hulpbehoevende , font, sbBlack, aantalAfspraken * 200 + 50, Convert.ToInt32((xSpace * (ap.DatumTijdStart - 8))));
                 aantalAfspraken++;
             }
             y = 0f;
@@ -76,8 +76,7 @@ namespace CAREMATCH.Agenda
                 g.DrawString((i+8) + ":00", font, sbBlack, new Point(0, Convert.ToInt32(y)));
                 //Zorgen dat de lijnen niet naast elkaar gezet worden
                 y += xSpace;
-            }            
-            
+            }                        
         }
     }
 }

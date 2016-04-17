@@ -23,6 +23,8 @@ namespace Login
             InitializeComponent();
             database = new Database();
 
+            cbRol.SelectedIndex = 0;
+
             label4.Visible = false;
             label5.Visible = false;
 
@@ -30,7 +32,7 @@ namespace Login
             txtUploadVOG.Visible = false;        
         }
         //Gebruiker toevoegen
-        private void button1_Click(object sender, EventArgs e)
+        private void btnRegistreer_Click(object sender, EventArgs e)
         {
             //Controlleer of gebruikersnaam bestaat.
             bool GebruikNaam = database.GebruikerControlleerUsername(txtGebruikersnaam.Text);
@@ -98,7 +100,7 @@ namespace Login
             }
         }
         //Wachtwoord controle
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void txtHerhWachtwoord_TextChanged(object sender, EventArgs e)
         {
             if (txtWachtwoord.Text.Length < 5)
             {
@@ -125,12 +127,6 @@ namespace Login
                 txtUploadVOG.Text = ofd.FileName;
             }
         }
-
-        private void SignupForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void cbRol_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(cbRol.Text.ToLower() == "vrijwilliger")

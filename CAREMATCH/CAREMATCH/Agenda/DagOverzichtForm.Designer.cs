@@ -35,6 +35,8 @@
             this.cdKiesKleur = new System.Windows.Forms.ColorDialog();
             this.lblDatumVandaag = new System.Windows.Forms.Label();
             this.lblDatumWaarde = new System.Windows.Forms.Label();
+            this.cbFilter = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSluiten
@@ -95,11 +97,33 @@
             this.lblDatumWaarde.TabIndex = 6;
             this.lblDatumWaarde.Text = "DatumWaarde";
             // 
+            // cbFilter
+            // 
+            this.cbFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbFilter.FormattingEnabled = true;
+            this.cbFilter.Location = new System.Drawing.Point(12, 178);
+            this.cbFilter.Name = "cbFilter";
+            this.cbFilter.Size = new System.Drawing.Size(152, 33);
+            this.cbFilter.TabIndex = 7;
+            this.cbFilter.SelectedIndexChanged += new System.EventHandler(this.cbFilter_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(7, 149);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(134, 26);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Agenda van:";
+            // 
             // DagOverzichtForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1216, 571);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbFilter);
             this.Controls.Add(this.lblDatumWaarde);
             this.Controls.Add(this.lblDatumVandaag);
             this.Controls.Add(this.btnAgendaPuntToevoegen);
@@ -124,5 +148,7 @@
         private System.Windows.Forms.ColorDialog cdKiesKleur;
         private System.Windows.Forms.Label lblDatumVandaag;
         private System.Windows.Forms.Label lblDatumWaarde;
+        private System.Windows.Forms.ComboBox cbFilter;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -45,7 +45,7 @@
             this.btnHulpvraagIndienen.Location = new System.Drawing.Point(34, 70);
             this.btnHulpvraagIndienen.Name = "btnHulpvraagIndienen";
             this.btnHulpvraagIndienen.Size = new System.Drawing.Size(152, 110);
-            this.btnHulpvraagIndienen.TabIndex = 0;
+            this.btnHulpvraagIndienen.TabIndex = 3;
             this.btnHulpvraagIndienen.Text = "Hulpvraag Indienen";
             this.btnHulpvraagIndienen.UseVisualStyleBackColor = true;
             this.btnHulpvraagIndienen.Click += new System.EventHandler(this.btnHulpvraagIndienen_Click);
@@ -56,7 +56,7 @@
             this.btnAgenda.Location = new System.Drawing.Point(436, 70);
             this.btnAgenda.Name = "btnAgenda";
             this.btnAgenda.Size = new System.Drawing.Size(152, 110);
-            this.btnAgenda.TabIndex = 5;
+            this.btnAgenda.TabIndex = 6;
             this.btnAgenda.Text = "Agenda";
             this.btnAgenda.UseVisualStyleBackColor = true;
             this.btnAgenda.Click += new System.EventHandler(this.btnAgenda_Click);
@@ -100,7 +100,7 @@
             this.btnHulpvraagAannemen.Location = new System.Drawing.Point(244, 70);
             this.btnHulpvraagAannemen.Name = "btnHulpvraagAannemen";
             this.btnHulpvraagAannemen.Size = new System.Drawing.Size(152, 110);
-            this.btnHulpvraagAannemen.TabIndex = 3;
+            this.btnHulpvraagAannemen.TabIndex = 5;
             this.btnHulpvraagAannemen.Text = "Hulpvragen Overzicht";
             this.btnHulpvraagAannemen.UseVisualStyleBackColor = true;
             this.btnHulpvraagAannemen.Click += new System.EventHandler(this.btnHulpvraagAannemen_Click);
@@ -111,7 +111,7 @@
             this.btnAangenomenHulpvragen.Location = new System.Drawing.Point(34, 70);
             this.btnAangenomenHulpvragen.Name = "btnAangenomenHulpvragen";
             this.btnAangenomenHulpvragen.Size = new System.Drawing.Size(152, 110);
-            this.btnAangenomenHulpvragen.TabIndex = 1;
+            this.btnAangenomenHulpvragen.TabIndex = 2;
             this.btnAangenomenHulpvragen.Text = "Aangenomen Hulpvragen";
             this.btnAangenomenHulpvragen.UseVisualStyleBackColor = true;
             this.btnAangenomenHulpvragen.Click += new System.EventHandler(this.btnAangenomenHulpvragen_Click);
@@ -122,7 +122,7 @@
             this.btnOngepasteBerichten.Location = new System.Drawing.Point(34, 70);
             this.btnOngepasteBerichten.Name = "btnOngepasteBerichten";
             this.btnOngepasteBerichten.Size = new System.Drawing.Size(152, 110);
-            this.btnOngepasteBerichten.TabIndex = 6;
+            this.btnOngepasteBerichten.TabIndex = 1;
             this.btnOngepasteBerichten.Text = "Ongepaste Berichten";
             this.btnOngepasteBerichten.UseVisualStyleBackColor = true;
             this.btnOngepasteBerichten.Click += new System.EventHandler(this.btnOngepasteBerichten_Click);
@@ -133,7 +133,7 @@
             this.btnAccountOverzicht.Location = new System.Drawing.Point(244, 70);
             this.btnAccountOverzicht.Name = "btnAccountOverzicht";
             this.btnAccountOverzicht.Size = new System.Drawing.Size(152, 110);
-            this.btnAccountOverzicht.TabIndex = 2;
+            this.btnAccountOverzicht.TabIndex = 4;
             this.btnAccountOverzicht.Text = "Account Overzicht";
             this.btnAccountOverzicht.UseVisualStyleBackColor = true;
             this.btnAccountOverzicht.Click += new System.EventHandler(this.btnAccountOverzicht_Click);

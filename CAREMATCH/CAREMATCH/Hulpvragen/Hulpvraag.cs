@@ -15,6 +15,7 @@ namespace CAREMATCH.Hulpvragen
         public int HulpvraagID { get; set; }
         public string Duur { get; set; }
         public string HulpbehoevendeFoto { get; set; }
+        public string Locatie { get; set; }
         public string Hulpbehoevende { get; set; }
         public string Vrijwilliger { get; set; }
         public string Titel { get; set;}

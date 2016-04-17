@@ -113,5 +113,10 @@ namespace CAREMATCH.VrijwilligerSysteem
                 gebruiker.Auto = false;
             }
         }
+
+        private void lblHerhaalWachtwoord_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

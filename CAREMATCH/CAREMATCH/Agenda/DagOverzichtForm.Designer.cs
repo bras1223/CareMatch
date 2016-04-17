@@ -39,10 +39,11 @@
             // 
             // btnSluiten
             // 
-            this.btnSluiten.Location = new System.Drawing.Point(22, 498);
+            this.btnSluiten.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSluiten.Location = new System.Drawing.Point(22, 490);
             this.btnSluiten.Name = "btnSluiten";
-            this.btnSluiten.Size = new System.Drawing.Size(114, 54);
-            this.btnSluiten.TabIndex = 0;
+            this.btnSluiten.Size = new System.Drawing.Size(133, 69);
+            this.btnSluiten.TabIndex = 2;
             this.btnSluiten.Text = "Sluiten";
             this.btnSluiten.UseVisualStyleBackColor = true;
             this.btnSluiten.Click += new System.EventHandler(this.btnSluiten_Click);
@@ -57,16 +58,18 @@
             // 
             // dtpTijdPicker
             // 
+            this.dtpTijdPicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpTijdPicker.Location = new System.Drawing.Point(13, 68);
             this.dtpTijdPicker.Name = "dtpTijdPicker";
-            this.dtpTijdPicker.Size = new System.Drawing.Size(142, 20);
-            this.dtpTijdPicker.TabIndex = 2;
+            this.dtpTijdPicker.Size = new System.Drawing.Size(142, 32);
+            this.dtpTijdPicker.TabIndex = 1;
             // 
             // btnAgendaPuntToevoegen
             // 
-            this.btnAgendaPuntToevoegen.Location = new System.Drawing.Point(22, 386);
+            this.btnAgendaPuntToevoegen.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgendaPuntToevoegen.Location = new System.Drawing.Point(22, 352);
             this.btnAgendaPuntToevoegen.Name = "btnAgendaPuntToevoegen";
-            this.btnAgendaPuntToevoegen.Size = new System.Drawing.Size(114, 54);
+            this.btnAgendaPuntToevoegen.Size = new System.Drawing.Size(133, 69);
             this.btnAgendaPuntToevoegen.TabIndex = 3;
             this.btnAgendaPuntToevoegen.Text = "Afspraak Toevoegen";
             this.btnAgendaPuntToevoegen.UseVisualStyleBackColor = true;

@@ -50,7 +50,7 @@
             this.btnTerug.Location = new System.Drawing.Point(19, 259);
             this.btnTerug.Name = "btnTerug";
             this.btnTerug.Size = new System.Drawing.Size(111, 42);
-            this.btnTerug.TabIndex = 6;
+            this.btnTerug.TabIndex = 8;
             this.btnTerug.Text = "Terug naar login scherm";
             this.btnTerug.UseVisualStyleBackColor = true;
             this.btnTerug.Click += new System.EventHandler(this.button2_Click);
@@ -132,7 +132,7 @@
             this.btnRegistreer.Location = new System.Drawing.Point(392, 259);
             this.btnRegistreer.Name = "btnRegistreer";
             this.btnRegistreer.Size = new System.Drawing.Size(111, 42);
-            this.btnRegistreer.TabIndex = 5;
+            this.btnRegistreer.TabIndex = 7;
             this.btnRegistreer.Text = "Registreer";
             this.btnRegistreer.UseVisualStyleBackColor = true;
             this.btnRegistreer.Click += new System.EventHandler(this.button1_Click);
@@ -175,7 +175,7 @@
             this.txtUploadVOG.Location = new System.Drawing.Point(205, 209);
             this.txtUploadVOG.Name = "txtUploadVOG";
             this.txtUploadVOG.Size = new System.Drawing.Size(168, 23);
-            this.txtUploadVOG.TabIndex = 20;
+            this.txtUploadVOG.TabIndex = 5;
             // 
             // btnUploadVOG
             // 
@@ -183,7 +183,7 @@
             this.btnUploadVOG.Location = new System.Drawing.Point(392, 206);
             this.btnUploadVOG.Name = "btnUploadVOG";
             this.btnUploadVOG.Size = new System.Drawing.Size(111, 28);
-            this.btnUploadVOG.TabIndex = 21;
+            this.btnUploadVOG.TabIndex = 6;
             this.btnUploadVOG.Text = "Upload VOG";
             this.btnUploadVOG.UseVisualStyleBackColor = true;
             this.btnUploadVOG.Click += new System.EventHandler(this.btnUploadVOG_Click);

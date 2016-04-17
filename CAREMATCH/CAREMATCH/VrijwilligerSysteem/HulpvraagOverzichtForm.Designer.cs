@@ -41,7 +41,7 @@
             this.btnBekijkHulpvraag.Location = new System.Drawing.Point(670, 401);
             this.btnBekijkHulpvraag.Name = "btnBekijkHulpvraag";
             this.btnBekijkHulpvraag.Size = new System.Drawing.Size(196, 57);
-            this.btnBekijkHulpvraag.TabIndex = 1;
+            this.btnBekijkHulpvraag.TabIndex = 3;
             this.btnBekijkHulpvraag.Text = "Bekijk Hulpvraag";
             this.btnBekijkHulpvraag.UseVisualStyleBackColor = true;
             this.btnBekijkHulpvraag.Click += new System.EventHandler(this.btnBekijkHulpvraag_Click);
@@ -70,7 +70,7 @@
             this.btnSluiten.Location = new System.Drawing.Point(12, 422);
             this.btnSluiten.Name = "btnSluiten";
             this.btnSluiten.Size = new System.Drawing.Size(110, 36);
-            this.btnSluiten.TabIndex = 4;
+            this.btnSluiten.TabIndex = 2;
             this.btnSluiten.Text = "Sluiten";
             this.btnSluiten.UseVisualStyleBackColor = true;
             this.btnSluiten.Click += new System.EventHandler(this.btnLogUit_Click);
@@ -80,7 +80,7 @@
             this.lvHulpvragen.Location = new System.Drawing.Point(143, 25);
             this.lvHulpvragen.Name = "lvHulpvragen";
             this.lvHulpvragen.Size = new System.Drawing.Size(723, 370);
-            this.lvHulpvragen.TabIndex = 6;
+            this.lvHulpvragen.TabIndex = 1;
             this.lvHulpvragen.UseCompatibleStateImageBehavior = false;
             // 
             // HulpvraagOverzichtForm

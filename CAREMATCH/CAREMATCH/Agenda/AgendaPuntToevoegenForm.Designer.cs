@@ -51,7 +51,7 @@
             this.btnOpslaan.Location = new System.Drawing.Point(12, 416);
             this.btnOpslaan.Name = "btnOpslaan";
             this.btnOpslaan.Size = new System.Drawing.Size(141, 71);
-            this.btnOpslaan.TabIndex = 0;
+            this.btnOpslaan.TabIndex = 9;
             this.btnOpslaan.Text = "Sluiten";
             this.btnOpslaan.UseVisualStyleBackColor = true;
             this.btnOpslaan.Click += new System.EventHandler(this.btnSluiten_Click);
@@ -62,7 +62,7 @@
             this.txtBeschrijving.Location = new System.Drawing.Point(260, 230);
             this.txtBeschrijving.Name = "txtBeschrijving";
             this.txtBeschrijving.Size = new System.Drawing.Size(706, 243);
-            this.txtBeschrijving.TabIndex = 1;
+            this.txtBeschrijving.TabIndex = 6;
             this.txtBeschrijving.Text = "";
             // 
             // txtTitel
@@ -72,7 +72,7 @@
             this.txtTitel.Multiline = true;
             this.txtTitel.Name = "txtTitel";
             this.txtTitel.Size = new System.Drawing.Size(500, 35);
-            this.txtTitel.TabIndex = 2;
+            this.txtTitel.TabIndex = 1;
             // 
             // label1
             // 
@@ -91,7 +91,7 @@
             this.txtVrijwilliger.Multiline = true;
             this.txtVrijwilliger.Name = "txtVrijwilliger";
             this.txtVrijwilliger.Size = new System.Drawing.Size(166, 35);
-            this.txtVrijwilliger.TabIndex = 5;
+            this.txtVrijwilliger.TabIndex = 2;
             this.txtVrijwilliger.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // label2
@@ -121,7 +121,7 @@
             this.txtHulpbehoevende.Multiline = true;
             this.txtHulpbehoevende.Name = "txtHulpbehoevende";
             this.txtHulpbehoevende.Size = new System.Drawing.Size(166, 35);
-            this.txtHulpbehoevende.TabIndex = 8;
+            this.txtHulpbehoevende.TabIndex = 3;
             // 
             // dateTimePicker1
             // 
@@ -129,7 +129,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(12, 12);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(208, 32);
-            this.dateTimePicker1.TabIndex = 9;
+            this.dateTimePicker1.TabIndex = 7;
             // 
             // txtEindTijd
             // 
@@ -138,7 +138,7 @@
             this.txtEindTijd.Multiline = true;
             this.txtEindTijd.Name = "txtEindTijd";
             this.txtEindTijd.Size = new System.Drawing.Size(166, 35);
-            this.txtEindTijd.TabIndex = 13;
+            this.txtEindTijd.TabIndex = 5;
             // 
             // label4
             // 
@@ -167,7 +167,7 @@
             this.txtStartTijd.Multiline = true;
             this.txtStartTijd.Name = "txtStartTijd";
             this.txtStartTijd.Size = new System.Drawing.Size(166, 35);
-            this.txtStartTijd.TabIndex = 10;
+            this.txtStartTijd.TabIndex = 4;
             // 
             // btnOpslaanEnSluiten
             // 
@@ -175,7 +175,7 @@
             this.btnOpslaanEnSluiten.Location = new System.Drawing.Point(12, 328);
             this.btnOpslaanEnSluiten.Name = "btnOpslaanEnSluiten";
             this.btnOpslaanEnSluiten.Size = new System.Drawing.Size(141, 71);
-            this.btnOpslaanEnSluiten.TabIndex = 14;
+            this.btnOpslaanEnSluiten.TabIndex = 8;
             this.btnOpslaanEnSluiten.Text = "Opslaan && Sluiten";
             this.btnOpslaanEnSluiten.UseVisualStyleBackColor = true;
             this.btnOpslaanEnSluiten.Click += new System.EventHandler(this.OplsaanEnSluiten_Click);

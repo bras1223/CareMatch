@@ -68,7 +68,7 @@
             this.btnLogin.Location = new System.Drawing.Point(180, 240);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(109, 31);
-            this.btnLogin.TabIndex = 9;
+            this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -80,7 +80,7 @@
             this.txtWachtwoord.Name = "txtWachtwoord";
             this.txtWachtwoord.PasswordChar = '*';
             this.txtWachtwoord.Size = new System.Drawing.Size(236, 29);
-            this.txtWachtwoord.TabIndex = 8;
+            this.txtWachtwoord.TabIndex = 2;
             // 
             // txtGebruikersnaam
             // 
@@ -88,7 +88,7 @@
             this.txtGebruikersnaam.Location = new System.Drawing.Point(197, 89);
             this.txtGebruikersnaam.Name = "txtGebruikersnaam";
             this.txtGebruikersnaam.Size = new System.Drawing.Size(236, 29);
-            this.txtGebruikersnaam.TabIndex = 7;
+            this.txtGebruikersnaam.TabIndex = 1;
             // 
             // groupBox1
             // 
@@ -110,7 +110,7 @@
             this.lbRegister.Location = new System.Drawing.Point(108, 457);
             this.lbRegister.Name = "lbRegister";
             this.lbRegister.Size = new System.Drawing.Size(297, 54);
-            this.lbRegister.TabIndex = 13;
+            this.lbRegister.TabIndex = 4;
             this.lbRegister.Text = "Registreer HIER!";
             this.lbRegister.UseVisualStyleBackColor = true;
             this.lbRegister.Click += new System.EventHandler(this.lbRegister_Click_1);

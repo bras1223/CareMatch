@@ -63,19 +63,20 @@
             // 
             // txtGebruikersInfo
             // 
+            this.txtGebruikersInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGebruikersInfo.Location = new System.Drawing.Point(171, 52);
             this.txtGebruikersInfo.Name = "txtGebruikersInfo";
-            this.txtGebruikersInfo.Size = new System.Drawing.Size(626, 286);
+            this.txtGebruikersInfo.Size = new System.Drawing.Size(777, 207);
             this.txtGebruikersInfo.TabIndex = 2;
             this.txtGebruikersInfo.Text = "";
             // 
             // btnOpslaan
             // 
             this.btnOpslaan.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpslaan.Location = new System.Drawing.Point(12, 414);
+            this.btnOpslaan.Location = new System.Drawing.Point(12, 405);
             this.btnOpslaan.Name = "btnOpslaan";
             this.btnOpslaan.Size = new System.Drawing.Size(149, 60);
-            this.btnOpslaan.TabIndex = 3;
+            this.btnOpslaan.TabIndex = 9;
             this.btnOpslaan.Text = "Opslaan en Sluiten";
             this.btnOpslaan.UseVisualStyleBackColor = true;
             this.btnOpslaan.Click += new System.EventHandler(this.btnOpslaan_Click);
@@ -103,54 +104,55 @@
             // 
             // txtActueelWachtwoord
             // 
-            this.txtActueelWachtwoord.Location = new System.Drawing.Point(135, 32);
+            this.txtActueelWachtwoord.Location = new System.Drawing.Point(235, 41);
             this.txtActueelWachtwoord.Name = "txtActueelWachtwoord";
             this.txtActueelWachtwoord.PasswordChar = '*';
-            this.txtActueelWachtwoord.Size = new System.Drawing.Size(135, 20);
-            this.txtActueelWachtwoord.TabIndex = 5;
+            this.txtActueelWachtwoord.Size = new System.Drawing.Size(135, 32);
+            this.txtActueelWachtwoord.TabIndex = 6;
             // 
             // lblActueelWachtwoord
             // 
             this.lblActueelWachtwoord.AutoSize = true;
-            this.lblActueelWachtwoord.Location = new System.Drawing.Point(13, 32);
+            this.lblActueelWachtwoord.Location = new System.Drawing.Point(6, 41);
             this.lblActueelWachtwoord.Name = "lblActueelWachtwoord";
-            this.lblActueelWachtwoord.Size = new System.Drawing.Size(110, 13);
+            this.lblActueelWachtwoord.Size = new System.Drawing.Size(218, 26);
             this.lblActueelWachtwoord.TabIndex = 7;
             this.lblActueelWachtwoord.Text = "Actueel Wachtwoord:";
             // 
             // lblNieuwWachtwoord
             // 
             this.lblNieuwWachtwoord.AutoSize = true;
-            this.lblNieuwWachtwoord.Location = new System.Drawing.Point(13, 58);
+            this.lblNieuwWachtwoord.Location = new System.Drawing.Point(6, 87);
             this.lblNieuwWachtwoord.Name = "lblNieuwWachtwoord";
-            this.lblNieuwWachtwoord.Size = new System.Drawing.Size(104, 13);
+            this.lblNieuwWachtwoord.Size = new System.Drawing.Size(206, 26);
             this.lblNieuwWachtwoord.TabIndex = 9;
             this.lblNieuwWachtwoord.Text = "Nieuw Wachtwoord:";
             // 
             // txtNieuwWachtwoord
             // 
-            this.txtNieuwWachtwoord.Location = new System.Drawing.Point(135, 58);
+            this.txtNieuwWachtwoord.Location = new System.Drawing.Point(235, 87);
             this.txtNieuwWachtwoord.Name = "txtNieuwWachtwoord";
             this.txtNieuwWachtwoord.PasswordChar = '*';
-            this.txtNieuwWachtwoord.Size = new System.Drawing.Size(135, 20);
-            this.txtNieuwWachtwoord.TabIndex = 8;
+            this.txtNieuwWachtwoord.Size = new System.Drawing.Size(135, 32);
+            this.txtNieuwWachtwoord.TabIndex = 7;
             // 
             // lblHerhaalWachtwoord
             // 
             this.lblHerhaalWachtwoord.AutoSize = true;
-            this.lblHerhaalWachtwoord.Location = new System.Drawing.Point(13, 84);
+            this.lblHerhaalWachtwoord.Location = new System.Drawing.Point(6, 134);
             this.lblHerhaalWachtwoord.Name = "lblHerhaalWachtwoord";
-            this.lblHerhaalWachtwoord.Size = new System.Drawing.Size(111, 13);
+            this.lblHerhaalWachtwoord.Size = new System.Drawing.Size(221, 26);
             this.lblHerhaalWachtwoord.TabIndex = 11;
             this.lblHerhaalWachtwoord.Text = "Herhaal Wachtwoord:";
+            this.lblHerhaalWachtwoord.Click += new System.EventHandler(this.lblHerhaalWachtwoord_Click);
             // 
             // txtHerhaalWachtwoord
             // 
-            this.txtHerhaalWachtwoord.Location = new System.Drawing.Point(135, 84);
+            this.txtHerhaalWachtwoord.Location = new System.Drawing.Point(235, 134);
             this.txtHerhaalWachtwoord.Name = "txtHerhaalWachtwoord";
             this.txtHerhaalWachtwoord.PasswordChar = '*';
-            this.txtHerhaalWachtwoord.Size = new System.Drawing.Size(135, 20);
-            this.txtHerhaalWachtwoord.TabIndex = 10;
+            this.txtHerhaalWachtwoord.Size = new System.Drawing.Size(135, 32);
+            this.txtHerhaalWachtwoord.TabIndex = 8;
             // 
             // gbWijzigWachtwoord
             // 
@@ -160,9 +162,10 @@
             this.gbWijzigWachtwoord.Controls.Add(this.txtHerhaalWachtwoord);
             this.gbWijzigWachtwoord.Controls.Add(this.txtNieuwWachtwoord);
             this.gbWijzigWachtwoord.Controls.Add(this.lblNieuwWachtwoord);
-            this.gbWijzigWachtwoord.Location = new System.Drawing.Point(511, 356);
+            this.gbWijzigWachtwoord.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbWijzigWachtwoord.Location = new System.Drawing.Point(559, 280);
             this.gbWijzigWachtwoord.Name = "gbWijzigWachtwoord";
-            this.gbWijzigWachtwoord.Size = new System.Drawing.Size(286, 118);
+            this.gbWijzigWachtwoord.Size = new System.Drawing.Size(389, 182);
             this.gbWijzigWachtwoord.TabIndex = 12;
             this.gbWijzigWachtwoord.TabStop = false;
             this.gbWijzigWachtwoord.Text = "Wijzig Wachtwoord:";
@@ -170,51 +173,56 @@
             // cbAuto
             // 
             this.cbAuto.AutoSize = true;
-            this.cbAuto.Location = new System.Drawing.Point(313, 387);
+            this.cbAuto.Location = new System.Drawing.Point(436, 289);
             this.cbAuto.Name = "cbAuto";
             this.cbAuto.Size = new System.Drawing.Size(15, 14);
-            this.cbAuto.TabIndex = 14;
+            this.cbAuto.TabIndex = 3;
             this.cbAuto.UseVisualStyleBackColor = true;
             this.cbAuto.CheckedChanged += new System.EventHandler(this.cbAuto_CheckedChanged);
             // 
             // lblAuto
             // 
             this.lblAuto.AutoSize = true;
-            this.lblAuto.Location = new System.Drawing.Point(191, 387);
+            this.lblAuto.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAuto.Location = new System.Drawing.Point(182, 280);
             this.lblAuto.Name = "lblAuto";
-            this.lblAuto.Size = new System.Drawing.Size(111, 13);
+            this.lblAuto.Size = new System.Drawing.Size(222, 26);
             this.lblAuto.TabIndex = 15;
             this.lblAuto.Text = "In bezit van een Auto:";
             // 
             // lblAchternaam
             // 
             this.lblAchternaam.AutoSize = true;
-            this.lblAchternaam.Location = new System.Drawing.Point(191, 440);
+            this.lblAchternaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAchternaam.Location = new System.Drawing.Point(182, 376);
             this.lblAchternaam.Name = "lblAchternaam";
-            this.lblAchternaam.Size = new System.Drawing.Size(67, 13);
+            this.lblAchternaam.Size = new System.Drawing.Size(136, 26);
             this.lblAchternaam.TabIndex = 15;
             this.lblAchternaam.Text = "Achternaam:";
             // 
             // txtAchternaam
             // 
-            this.txtAchternaam.Location = new System.Drawing.Point(313, 440);
+            this.txtAchternaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAchternaam.Location = new System.Drawing.Point(397, 376);
             this.txtAchternaam.Name = "txtAchternaam";
-            this.txtAchternaam.Size = new System.Drawing.Size(135, 20);
-            this.txtAchternaam.TabIndex = 14;
+            this.txtAchternaam.Size = new System.Drawing.Size(135, 32);
+            this.txtAchternaam.TabIndex = 5;
             // 
             // txtVoornaam
             // 
-            this.txtVoornaam.Location = new System.Drawing.Point(313, 414);
+            this.txtVoornaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtVoornaam.Location = new System.Drawing.Point(397, 330);
             this.txtVoornaam.Name = "txtVoornaam";
-            this.txtVoornaam.Size = new System.Drawing.Size(135, 20);
-            this.txtVoornaam.TabIndex = 12;
+            this.txtVoornaam.Size = new System.Drawing.Size(135, 32);
+            this.txtVoornaam.TabIndex = 4;
             // 
             // lblVoornaam
             // 
             this.lblVoornaam.AutoSize = true;
-            this.lblVoornaam.Location = new System.Drawing.Point(191, 414);
+            this.lblVoornaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVoornaam.Location = new System.Drawing.Point(182, 330);
             this.lblVoornaam.Name = "lblVoornaam";
-            this.lblVoornaam.Size = new System.Drawing.Size(58, 13);
+            this.lblVoornaam.Size = new System.Drawing.Size(119, 26);
             this.lblVoornaam.TabIndex = 13;
             this.lblVoornaam.Text = "Voornaam:";
             // 
@@ -222,7 +230,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(809, 486);
+            this.ClientSize = new System.Drawing.Size(973, 474);
             this.Controls.Add(this.lblAchternaam);
             this.Controls.Add(this.lblAuto);
             this.Controls.Add(this.txtAchternaam);

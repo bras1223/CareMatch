@@ -25,6 +25,7 @@ namespace CAREMATCH.VrijwilligerSysteem
 
             if (gebruiker.GetType() == typeof(Hulpbehoevende) && hulpvraagIndienen == true)
             {
+                txtHulpvrager.Text = gebruiker.Gebruikersnaam;
                 rtxtReactieInhoud.Enabled = false;
                 btnReactieOpslaan.Visible = false;
             }
@@ -34,7 +35,6 @@ namespace CAREMATCH.VrijwilligerSysteem
 
                 cbUrgent.Enabled = false;
                 rtxtHulpvraag.Enabled = false;
-
                 txtDuur.Enabled = false;
                 txtFrequentie.Enabled = false;
                 txtHulpvrager.Enabled = false;
@@ -82,6 +82,7 @@ namespace CAREMATCH.VrijwilligerSysteem
             hulpvraag.HulpvraagInhoud = rtxtHulpvraag.Text;
             hulpvraag.Urgent = cbUrgent.Checked;
             hulpvraag.HulpbehoevendeFoto = gebruiker.Pasfoto;
+            hulpvraag.Locatie = txtLocatie.Text;
 
             try
             {

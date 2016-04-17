@@ -34,7 +34,6 @@
             this.btnProfiel = new System.Windows.Forms.Button();
             this.btnUitloggen = new System.Windows.Forms.Button();
             this.btnHulpvraagAannemen = new System.Windows.Forms.Button();
-            this.btnAangenomenHulpvragen = new System.Windows.Forms.Button();
             this.btnOngepasteBerichten = new System.Windows.Forms.Button();
             this.btnAccountOverzicht = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -105,17 +104,6 @@
             this.btnHulpvraagAannemen.UseVisualStyleBackColor = true;
             this.btnHulpvraagAannemen.Click += new System.EventHandler(this.btnHulpvraagAannemen_Click);
             // 
-            // btnAangenomenHulpvragen
-            // 
-            this.btnAangenomenHulpvragen.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAangenomenHulpvragen.Location = new System.Drawing.Point(34, 70);
-            this.btnAangenomenHulpvragen.Name = "btnAangenomenHulpvragen";
-            this.btnAangenomenHulpvragen.Size = new System.Drawing.Size(152, 110);
-            this.btnAangenomenHulpvragen.TabIndex = 2;
-            this.btnAangenomenHulpvragen.Text = "Aangenomen Hulpvragen";
-            this.btnAangenomenHulpvragen.UseVisualStyleBackColor = true;
-            this.btnAangenomenHulpvragen.Click += new System.EventHandler(this.btnAangenomenHulpvragen_Click);
-            // 
             // btnOngepasteBerichten
             // 
             this.btnOngepasteBerichten.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -134,7 +122,7 @@
             this.btnAccountOverzicht.Name = "btnAccountOverzicht";
             this.btnAccountOverzicht.Size = new System.Drawing.Size(152, 110);
             this.btnAccountOverzicht.TabIndex = 4;
-            this.btnAccountOverzicht.Text = "Account Overzicht";
+            this.btnAccountOverzicht.Text = "Accounts Overzicht";
             this.btnAccountOverzicht.UseVisualStyleBackColor = true;
             this.btnAccountOverzicht.Click += new System.EventHandler(this.btnAccountOverzicht_Click);
             // 
@@ -145,7 +133,6 @@
             this.ClientSize = new System.Drawing.Size(811, 417);
             this.Controls.Add(this.btnAccountOverzicht);
             this.Controls.Add(this.btnOngepasteBerichten);
-            this.Controls.Add(this.btnAangenomenHulpvragen);
             this.Controls.Add(this.btnHulpvraagAannemen);
             this.Controls.Add(this.btnUitloggen);
             this.Controls.Add(this.btnProfiel);
@@ -167,7 +154,6 @@
         private System.Windows.Forms.Button btnProfiel;
         private System.Windows.Forms.Button btnUitloggen;
         private System.Windows.Forms.Button btnHulpvraagAannemen;
-        private System.Windows.Forms.Button btnAangenomenHulpvragen;
         private System.Windows.Forms.Button btnOngepasteBerichten;
         private System.Windows.Forms.Button btnAccountOverzicht;
     }

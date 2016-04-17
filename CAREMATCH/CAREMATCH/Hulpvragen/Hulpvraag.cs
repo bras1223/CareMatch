@@ -22,6 +22,7 @@ namespace CAREMATCH.Hulpvragen
         public string HulpvraagInhoud { get; set; }
         public string Frequentie { get; set; }
         public string Reactie { get; set; }
+        public string LaatstGereageerdDoor { get; set; }
         public bool Aangenomen { get; set; }
         public bool Urgent { get; set; }
         public bool Afgerond { get; set; }

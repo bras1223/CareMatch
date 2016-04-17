@@ -69,7 +69,7 @@ namespace CAREMATCH.VrijwilligerSysteem
             hulpvraag.HulpvraagInhoud = rtxtHulpvraag.Text;
             hulpvraag.Urgent = cbUrgent.Checked;
             hulpvraag.Reactie = rtxtReactieInhoud.Text + "\n";
-            database.HulpvraagAanpassen(gebruiker.GebruikersID, hulpvraag);
+            database.HulpvraagAanpassen(gebruiker, hulpvraag);
         }
         //Hulpbehoevende dient hulpvraag in.
         private void btnHulpvraagOpslaan_Click(object sender, EventArgs e)

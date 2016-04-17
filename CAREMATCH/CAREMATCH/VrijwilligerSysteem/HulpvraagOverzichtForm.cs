@@ -18,11 +18,12 @@ namespace CAREMATCH.VrijwilligerSysteem
             this.gebruiker = gebruiker;
             this.aangenomen = aangenomen;
             database = new Database();
-            //Filter alleen weergeven voor vrijwilligers.
-            if(gebruiker.Rol.ToLower() == "hulpbehoevende")
+
+            cbFilter.Items.Add("Eigen hulpvragen");
+            cbFilter.Items.Add("Nieuwe reacties");
+            if (gebruiker.Rol.ToLower() == "vrijwilliger")
             {
-                cbFilter.Visible = false;
-                lblFilter.Visible = false;
+                cbFilter.Items.Add("Alle hulpvragen");
             }
             cbFilter.SelectedIndex = 0;
             HulpvragenOverzichtWeergeven();
@@ -69,6 +70,7 @@ namespace CAREMATCH.VrijwilligerSysteem
             lvHulpvragen.Columns.Add("Foto");
             lvHulpvragen.Columns.Add("Hulpbehoevende");
             lvHulpvragen.Columns.Add("Vrijwilliger");
+            lvHulpvragen.Columns.Add("Laatste reactie door");
             lvHulpvragen.Columns.Add("Titel");
             lvHulpvragen.Columns.Add("Hulpvraag inhoud");
             // Hulpvragen Overzicht weergeven met inhoud.
@@ -89,14 +91,15 @@ namespace CAREMATCH.VrijwilligerSysteem
                 item.SubItems.Add(hulpvraag.HulpbehoevendeFoto);
                 item.SubItems.Add(hulpvraag.Hulpbehoevende);
                 item.SubItems.Add(hulpvraag.Vrijwilliger);
+                item.SubItems.Add(hulpvraag.LaatstGereageerdDoor);
                 item.SubItems.Add(hulpvraag.Titel);
                 item.SubItems.Add(hulpvraag.HulpvraagInhoud);
                 lvHulpvragen.Items.Add(item);
             }
             //Autosize collumns.
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 8; i++)
             {
-                if (i >= 5)
+                if (i >= 6)
                 {
                     lvHulpvragen.AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.ColumnContent);
                 }

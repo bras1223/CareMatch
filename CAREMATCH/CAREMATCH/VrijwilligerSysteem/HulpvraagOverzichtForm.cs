@@ -1,13 +1,5 @@
 ﻿using System;
-using CAREMATCH;
-using CAREMATCH.Gebruikers;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CAREMATCH.VrijwilligerSysteem
@@ -40,6 +32,7 @@ namespace CAREMATCH.VrijwilligerSysteem
             try
             {
                 this.Hide();
+                //geselecteerde hulpvraag openen.
                 hulpvraag = database.HulpvragenOverzicht(aangenomen, gebruiker, cbFilter.Text)[lvHulpvragen.FocusedItem.Index];
                 hulpvraagForm = new HulpvraagForm(hulpvraag, gebruiker, false);
                 hulpvraagForm.ShowDialog();

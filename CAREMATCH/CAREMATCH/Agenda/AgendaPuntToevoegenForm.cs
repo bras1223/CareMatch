@@ -23,12 +23,6 @@ namespace CAREMATCH.Agenda
             database = new Database();
             agendaPunt = new AgendaPunt();
         }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnSluiten_Click(object sender, EventArgs e)
         {
             Close();
@@ -42,6 +36,7 @@ namespace CAREMATCH.Agenda
             }
             else
             {
+                //Agendapunten opslaan
                 agendaPunt.AgendaEigenaar = gebruiker.GebruikersID;
                 agendaPunt.Titel = txtTitel.Text;
                 agendaPunt.DatumTijdEind = int.Parse(txtEindTijd.Text);                
@@ -58,7 +53,7 @@ namespace CAREMATCH.Agenda
                 {
                     agendaPunt.DatumTijdStart = agendaPunt.DatumTijdStart / 10;
                 }
-
+                //Agendainfo inserten.
                 database.AgendaPuntToevoegen(agendaPunt, gebruiker);
                 gebruiker.AgendaPuntToevoegen(agendaPunt);
 

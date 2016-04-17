@@ -65,6 +65,7 @@
             this.dtpTijdPicker.Name = "dtpTijdPicker";
             this.dtpTijdPicker.Size = new System.Drawing.Size(142, 32);
             this.dtpTijdPicker.TabIndex = 1;
+            this.dtpTijdPicker.ValueChanged += new System.EventHandler(this.dtpTijdPicker_ValueChanged);
             // 
             // btnAgendaPuntToevoegen
             // 

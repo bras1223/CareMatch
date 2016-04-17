@@ -92,7 +92,6 @@
             this.txtVrijwilliger.Name = "txtVrijwilliger";
             this.txtVrijwilliger.Size = new System.Drawing.Size(166, 35);
             this.txtVrijwilliger.TabIndex = 2;
-            this.txtVrijwilliger.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // label2
             // 

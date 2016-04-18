@@ -178,7 +178,16 @@ namespace CAREMATCH
                 //Anders de agenda van de geselecteerde persoon weergeven.
                 command = new OracleCommand("SELECT * FROM Agenda WHERE EigenaarID =(SELECT GebruikerID FROM Gebruiker WHERE Gebruikersnaam='" +filter+ "' AND AfspraakDatum='"+datum+"') ", con);
             }
-            reader = command.ExecuteReader();
+            try
+            {
+                //Na het opnieuw inloggen als er al een keer ingelogd is, wordt de connectie niet opnieuw geopened. Vandaar nog een try catch.
+                reader = command.ExecuteReader();
+            }
+            catch
+            {
+                con.Open();
+                reader = command.ExecuteReader();
+            }
             while (reader.Read())
             {
                 agendaPunt = new Agenda.AgendaPunt();

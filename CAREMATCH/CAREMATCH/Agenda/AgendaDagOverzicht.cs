@@ -64,10 +64,6 @@ namespace CAREMATCH.Agenda
                         sbColor = new SolidBrush(Color.Orange);
                         break;
                 };
-                //X = per afspraak de rectangle opschuiven bij 200 + 50 voor een vrije ruimte links + rechts
-                //Y = De afstand van een regel * de tijd van een afspraak - 8 omdat er begonnen wordt om 8 uur.
-                //Width = vaste breedte.
-                //Height = afstand van een regel * de eindtijd - startijd. Voorbeeld: 12 - 8 = 4 hoogte van 4 * lijn afstand (xSpace).
                 g.FillRectangle(sbColor, new Rectangle(aantalAfspraken * 200 + 50, Convert.ToInt32((xSpace * (ap.DatumTijdStart - 8))), 180, Convert.ToInt32((xSpace * (ap.DatumTijdEind - ap.DatumTijdStart)))));
                 g.DrawString("Afspraak met:\n"+ ap.Hulpbehoevende , font, sbBlack, aantalAfspraken * 200 + 50, Convert.ToInt32((xSpace * (ap.DatumTijdStart - 8))));
                 aantalAfspraken++;

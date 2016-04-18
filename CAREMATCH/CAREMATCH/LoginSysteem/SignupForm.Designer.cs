@@ -30,12 +30,12 @@
         {
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtHerhWachtwoord = new System.Windows.Forms.TextBox();
+            this.tbHerhWachtwoord = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtWachtwoord = new System.Windows.Forms.TextBox();
-            this.txtGebruikersnaam = new System.Windows.Forms.TextBox();
+            this.tbWachtwoord = new System.Windows.Forms.TextBox();
+            this.tbGebruikersnaam = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cbRol = new System.Windows.Forms.ComboBox();
             this.btnUploadVOG = new System.Windows.Forms.Button();
@@ -52,6 +52,10 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.lblPasFotoPath = new System.Windows.Forms.Label();
             this.lblVOGPath = new System.Windows.Forms.Label();
+            this.tbVoornaam = new System.Windows.Forms.TextBox();
+            this.tbAchternaam = new System.Windows.Forms.TextBox();
+            this.cbGeslacht = new System.Windows.Forms.ComboBox();
+            this.dtpGeboortedatum = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label5
@@ -76,14 +80,14 @@
             this.label4.TabIndex = 17;
             this.label4.Text = "Zwak wachtwoord";
             // 
-            // txtHerhWachtwoord
+            // tbHerhWachtwoord
             // 
-            this.txtHerhWachtwoord.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHerhWachtwoord.Location = new System.Drawing.Point(455, 165);
-            this.txtHerhWachtwoord.Name = "txtHerhWachtwoord";
-            this.txtHerhWachtwoord.PasswordChar = '*';
-            this.txtHerhWachtwoord.Size = new System.Drawing.Size(168, 23);
-            this.txtHerhWachtwoord.TabIndex = 4;
+            this.tbHerhWachtwoord.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbHerhWachtwoord.Location = new System.Drawing.Point(455, 165);
+            this.tbHerhWachtwoord.Name = "tbHerhWachtwoord";
+            this.tbHerhWachtwoord.PasswordChar = '*';
+            this.tbHerhWachtwoord.Size = new System.Drawing.Size(168, 23);
+            this.tbHerhWachtwoord.TabIndex = 4;
             // 
             // label3
             // 
@@ -115,23 +119,23 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Gebruikersnaam:";
             // 
-            // txtWachtwoord
+            // tbWachtwoord
             // 
-            this.txtWachtwoord.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWachtwoord.Location = new System.Drawing.Point(455, 121);
-            this.txtWachtwoord.Name = "txtWachtwoord";
-            this.txtWachtwoord.PasswordChar = '*';
-            this.txtWachtwoord.Size = new System.Drawing.Size(168, 23);
-            this.txtWachtwoord.TabIndex = 3;
-            this.txtWachtwoord.TextChanged += new System.EventHandler(this.txtHerhWachtwoord_TextChanged);
+            this.tbWachtwoord.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWachtwoord.Location = new System.Drawing.Point(455, 121);
+            this.tbWachtwoord.Name = "tbWachtwoord";
+            this.tbWachtwoord.PasswordChar = '*';
+            this.tbWachtwoord.Size = new System.Drawing.Size(168, 23);
+            this.tbWachtwoord.TabIndex = 3;
+            this.tbWachtwoord.TextChanged += new System.EventHandler(this.txtHerhWachtwoord_TextChanged);
             // 
-            // txtGebruikersnaam
+            // tbGebruikersnaam
             // 
-            this.txtGebruikersnaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGebruikersnaam.Location = new System.Drawing.Point(455, 83);
-            this.txtGebruikersnaam.Name = "txtGebruikersnaam";
-            this.txtGebruikersnaam.Size = new System.Drawing.Size(168, 23);
-            this.txtGebruikersnaam.TabIndex = 2;
+            this.tbGebruikersnaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbGebruikersnaam.Location = new System.Drawing.Point(455, 83);
+            this.tbGebruikersnaam.Name = "tbGebruikersnaam";
+            this.tbGebruikersnaam.Size = new System.Drawing.Size(168, 23);
+            this.tbGebruikersnaam.TabIndex = 2;
             // 
             // label6
             // 
@@ -165,7 +169,7 @@
             this.btnUploadVOG.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnUploadVOG.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnUploadVOG.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUploadVOG.Location = new System.Drawing.Point(485, 393);
+            this.btnUploadVOG.Location = new System.Drawing.Point(483, 463);
             this.btnUploadVOG.Name = "btnUploadVOG";
             this.btnUploadVOG.Size = new System.Drawing.Size(56, 48);
             this.btnUploadVOG.TabIndex = 6;
@@ -267,12 +271,12 @@
             this.btnPasfotoToevoegen.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnPasfotoToevoegen.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPasfotoToevoegen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPasfotoToevoegen.Location = new System.Drawing.Point(485, 463);
+            this.btnPasfotoToevoegen.Location = new System.Drawing.Point(483, 381);
             this.btnPasfotoToevoegen.Name = "btnPasfotoToevoegen";
             this.btnPasfotoToevoegen.Size = new System.Drawing.Size(56, 48);
             this.btnPasfotoToevoegen.TabIndex = 26;
             this.btnPasfotoToevoegen.UseVisualStyleBackColor = false;
-            this.btnPasfotoToevoegen.Visible = false;
+            this.btnPasfotoToevoegen.Click += new System.EventHandler(this.btnPasfotoToevoegen_Click);
             // 
             // label13
             // 
@@ -306,12 +310,52 @@
             this.lblVOGPath.Size = new System.Drawing.Size(0, 20);
             this.lblVOGPath.TabIndex = 29;
             // 
+            // tbVoornaam
+            // 
+            this.tbVoornaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbVoornaam.Location = new System.Drawing.Point(455, 226);
+            this.tbVoornaam.Name = "tbVoornaam";
+            this.tbVoornaam.Size = new System.Drawing.Size(168, 22);
+            this.tbVoornaam.TabIndex = 30;
+            // 
+            // tbAchternaam
+            // 
+            this.tbAchternaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbAchternaam.Location = new System.Drawing.Point(455, 266);
+            this.tbAchternaam.Name = "tbAchternaam";
+            this.tbAchternaam.Size = new System.Drawing.Size(168, 22);
+            this.tbAchternaam.TabIndex = 31;
+            // 
+            // cbGeslacht
+            // 
+            this.cbGeslacht.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbGeslacht.FormattingEnabled = true;
+            this.cbGeslacht.Items.AddRange(new object[] {
+            "Man",
+            "Vrouw"});
+            this.cbGeslacht.Location = new System.Drawing.Point(454, 302);
+            this.cbGeslacht.Name = "cbGeslacht";
+            this.cbGeslacht.Size = new System.Drawing.Size(169, 24);
+            this.cbGeslacht.TabIndex = 32;
+            // 
+            // dtpGeboortedatum
+            // 
+            this.dtpGeboortedatum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpGeboortedatum.Location = new System.Drawing.Point(454, 350);
+            this.dtpGeboortedatum.Name = "dtpGeboortedatum";
+            this.dtpGeboortedatum.Size = new System.Drawing.Size(214, 22);
+            this.dtpGeboortedatum.TabIndex = 33;
+            // 
             // SignupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1033, 536);
+            this.Controls.Add(this.dtpGeboortedatum);
+            this.Controls.Add(this.cbGeslacht);
+            this.Controls.Add(this.tbAchternaam);
+            this.Controls.Add(this.tbVoornaam);
             this.Controls.Add(this.lblVOGPath);
             this.Controls.Add(this.lblPasFotoPath);
             this.Controls.Add(this.label13);
@@ -328,13 +372,13 @@
             this.Controls.Add(this.btnTerug);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtHerhWachtwoord);
+            this.Controls.Add(this.tbHerhWachtwoord);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtWachtwoord);
+            this.Controls.Add(this.tbWachtwoord);
             this.Controls.Add(this.btnRegistreer);
-            this.Controls.Add(this.txtGebruikersnaam);
+            this.Controls.Add(this.tbGebruikersnaam);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SignupForm";
@@ -349,13 +393,13 @@
         private System.Windows.Forms.Button btnTerug;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtHerhWachtwoord;
+        private System.Windows.Forms.TextBox tbHerhWachtwoord;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtWachtwoord;
+        private System.Windows.Forms.TextBox tbWachtwoord;
         private System.Windows.Forms.Button btnRegistreer;
-        private System.Windows.Forms.TextBox txtGebruikersnaam;
+        private System.Windows.Forms.TextBox tbGebruikersnaam;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cbRol;
         private System.Windows.Forms.Button btnUploadVOG;
@@ -370,5 +414,9 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Label lblPasFotoPath;
         private System.Windows.Forms.Label lblVOGPath;
+        private System.Windows.Forms.TextBox tbVoornaam;
+        private System.Windows.Forms.TextBox tbAchternaam;
+        private System.Windows.Forms.ComboBox cbGeslacht;
+        private System.Windows.Forms.DateTimePicker dtpGeboortedatum;
     }
 }

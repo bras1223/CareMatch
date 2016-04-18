@@ -33,32 +33,32 @@ namespace Login
         private void btnRegistreer_Click(object sender, EventArgs e)
         {
             //Controlleer of gebruikersnaam bestaat.
-            bool GebruikNaam = database.GebruikerControlleerUsername(txtGebruikersnaam.Text);
+            bool GebruikNaam = database.GebruikerControlleerUsername(tbGebruikersnaam.Text);
 
             if (GebruikNaam == false)
             {
                 MessageBox.Show("Gebruikersnaam bestaat al");
             }
-            if (txtWachtwoord.Text != txtHerhWachtwoord.Text)
+            if (tbWachtwoord.Text != tbHerhWachtwoord.Text)
             {
                 MessageBox.Show("Wachtwoorden zijn niet gelijk");
             }
-            if (txtGebruikersnaam.Text == "")
+            if (tbGebruikersnaam.Text == "")
             {
-                MessageBox.Show("Niet alles is ingevuld");
+                MessageBox.Show("Geen gebruikersnaam ingevuld");
             }
-            if (txtWachtwoord.Text == "")
+            if (tbWachtwoord.Text == "")
             {
-                MessageBox.Show("Niet alles is ingevuld");
+                MessageBox.Show("Geen wachtwoord ingevuld");
             }
-            else if (cbRol.Text == "Hulpbehoevende" && txtWachtwoord.Text == txtHerhWachtwoord.Text && GebruikNaam == true)
+            else if (cbRol.Text == "Hulpbehoevende" && tbWachtwoord.Text == tbHerhWachtwoord.Text && GebruikNaam == true)
             {
-                database.GebruikerAccountToevoegen(txtGebruikersnaam.Text, txtWachtwoord.Text, "Y", cbRol.Text, lblVOGPath.Text);
+                database.GebruikerAccountToevoegen(tbGebruikersnaam.Text, tbWachtwoord.Text,  "Y", cbRol.Text, lblPasFotoPath.Text, lblVOGPath.Text, tbVoornaam.Text, tbAchternaam.Text, cbGeslacht.Text, dtpGeboortedatum.Value);
                 MessageBox.Show("Account aangemaakt. U kunt nu inloggen.");
                 DialogResult = DialogResult.OK;
                 this.Close();
             }
-            else if (cbRol.Text == "Vrijwilliger" && txtWachtwoord.Text == txtHerhWachtwoord.Text && GebruikNaam == true)
+            else if (cbRol.Text == "Vrijwilliger" && tbWachtwoord.Text == tbHerhWachtwoord.Text && GebruikNaam == true)
             {
                 //Vrijwilliger moet een VOG uploaden.
                 if (lblVOGPath.Text == "")
@@ -73,15 +73,15 @@ namespace Login
                         //Als er een afbeelding geopend is.
                         if (ofd.FileName != "")
                         {
-                            if (!File.Exists(txtGebruikersnaam.Text))
+                            if (!File.Exists(tbGebruikersnaam.Text))
                             {
                                 //Directory aanmaken als deze nog niet bestaat.
-                                System.IO.Directory.CreateDirectory(txtGebruikersnaam.Text);
+                                System.IO.Directory.CreateDirectory(tbGebruikersnaam.Text);
                             }
                             //Gekozen afbeelding kopieren naar pasfoto directory. Foto = Gebruikersnaam\Gebruikersnaam + Bestandsextensie
                             try
                             {
-                                vog = txtGebruikersnaam.Text + @"\VOG" + Path.GetExtension(ofd.FileName);
+                                vog = tbGebruikersnaam.Text + @"\VOG" + Path.GetExtension(ofd.FileName);
                                 File.Copy(ofd.FileName, vog);
                             }
                             catch
@@ -90,7 +90,7 @@ namespace Login
                             }
                         }
                     }
-                    database.GebruikerAccountToevoegen(txtGebruikersnaam.Text, txtWachtwoord.Text, "Y", cbRol.Text, vog);
+                    database.GebruikerAccountToevoegen(tbGebruikersnaam.Text, tbWachtwoord.Text, "Y", cbRol.Text, lblPasFotoPath.Text, lblVOGPath.Text, tbVoornaam.Text, tbAchternaam.Text, cbGeslacht.Text, dtpGeboortedatum.Value);
                     MessageBox.Show("Account aangemaakt. U moet wachten tot dat uw account is geactiveerd voordat u kunt inloggen.");
                     DialogResult = DialogResult.OK;
                     this.Close();
@@ -100,12 +100,12 @@ namespace Login
         //Wachtwoord controle
         private void txtHerhWachtwoord_TextChanged(object sender, EventArgs e)
         {
-            if (txtWachtwoord.Text.Length < 5)
+            if (tbWachtwoord.Text.Length < 5)
             {
                 label4.Visible = true;
                 label5.Visible = false;
             }
-            if (txtWachtwoord.Text.Length >= 5)
+            if (tbWachtwoord.Text.Length >= 5)
             {
                 label4.Visible = false;
                 label5.Visible = true;
@@ -122,7 +122,7 @@ namespace Login
             ofd = new OpenFileDialog();
             if(ofd.ShowDialog() == DialogResult.OK)
             {
-                lblPasFotoPath.Text = ofd.FileName;
+                lblVOGPath.Text = ofd.FileName;
             }
         }
         private void cbRol_SelectedIndexChanged(object sender, EventArgs e)
@@ -130,22 +130,26 @@ namespace Login
             if(cbRol.Text.ToLower() == "vrijwilliger")
             {
                 btnUploadVOG.Visible = true;
-                btnPasfotoToevoegen.Visible = true;
-                lblPasFotoPath.Visible = true;
                 lblVOG.Visible = true;
-                lblFoto.Visible = true;
+
 
             }
             else
             {
-                btnPasfotoToevoegen.Visible = false;
+               
                 btnUploadVOG.Visible = false;
-                lblPasFotoPath.Visible = false;
                 lblVOG.Visible = false;
-                lblFoto.Visible = false;
+
             }
         }
 
-
+        private void btnPasfotoToevoegen_Click(object sender, EventArgs e)
+        {
+            ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                lblPasFotoPath.Text = ofd.FileName;
+            }
+        }
     }
 }

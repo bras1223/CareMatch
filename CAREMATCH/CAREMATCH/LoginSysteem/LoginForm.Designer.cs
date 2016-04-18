@@ -1,4 +1,4 @@
-﻿namespace Login
+﻿namespace CAREMATCH.LoginSysteem
 {
     partial class LoginForm
     {
@@ -34,9 +34,11 @@
             this.txtWachtwoord = new System.Windows.Forms.TextBox();
             this.txtGebruikersnaam = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lbRegister = new System.Windows.Forms.Button();
-            this.pbLogo = new System.Windows.Forms.PictureBox();
+            this.btnRegister = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnRFIDLogin = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pbLogo = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.SuspendLayout();
@@ -66,9 +68,9 @@
             // btnLogin
             // 
             this.btnLogin.BackColor = System.Drawing.SystemColors.Control;
-            this.btnLogin.Location = new System.Drawing.Point(180, 240);
+            this.btnLogin.Location = new System.Drawing.Point(180, 228);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(109, 31);
+            this.btnLogin.Size = new System.Drawing.Size(109, 43);
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
@@ -99,51 +101,74 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtGebruikersnaam);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(307, 152);
+            this.groupBox1.Location = new System.Drawing.Point(294, 152);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(454, 288);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Login";
             // 
-            // lbRegister
+            // btnRegister
             // 
-            this.lbRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRegister.Location = new System.Drawing.Point(397, 487);
-            this.lbRegister.Name = "lbRegister";
-            this.lbRegister.Size = new System.Drawing.Size(297, 37);
-            this.lbRegister.TabIndex = 4;
-            this.lbRegister.Text = "Klik hier om je te registreren";
-            this.lbRegister.UseVisualStyleBackColor = true;
-            this.lbRegister.Click += new System.EventHandler(this.lbRegister_Click_1);
+            this.btnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegister.Location = new System.Drawing.Point(829, 107);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(166, 177);
+            this.btnRegister.TabIndex = 4;
+            this.btnRegister.Text = "Klik hier om u te registreren";
+            this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.Click += new System.EventHandler(this.lbRegister_Click_1);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(847, 68);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(129, 24);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Nog geen lid?";
+            // 
+            // btnRFIDLogin
+            // 
+            this.btnRFIDLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRFIDLogin.Location = new System.Drawing.Point(829, 347);
+            this.btnRFIDLogin.Name = "btnRFIDLogin";
+            this.btnRFIDLogin.Size = new System.Drawing.Size(166, 177);
+            this.btnRFIDLogin.TabIndex = 16;
+            this.btnRFIDLogin.Text = "Met uw TAG inloggen";
+            this.btnRFIDLogin.UseVisualStyleBackColor = true;
+            this.btnRFIDLogin.Click += new System.EventHandler(this.btnRFIDLogin_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(839, 309);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(137, 24);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Snel inloggen?";
             // 
             // pbLogo
             // 
             this.pbLogo.Image = global::CAREMATCH.Properties.Resources.CAREMATCHLOGO;
-            this.pbLogo.Location = new System.Drawing.Point(321, 24);
+            this.pbLogo.Location = new System.Drawing.Point(312, 24);
             this.pbLogo.Name = "pbLogo";
             this.pbLogo.Size = new System.Drawing.Size(419, 106);
             this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbLogo.TabIndex = 14;
             this.pbLogo.TabStop = false;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(483, 460);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(129, 24);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "Nog geen lid?";
-            // 
             // LoginForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1033, 536);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.btnRFIDLogin);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pbLogo);
-            this.Controls.Add(this.lbRegister);
+            this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -166,8 +191,10 @@
         private System.Windows.Forms.TextBox txtWachtwoord;
         private System.Windows.Forms.TextBox txtGebruikersnaam;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button lbRegister;
+        private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.PictureBox pbLogo;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnRFIDLogin;
+        private System.Windows.Forms.Label label4;
     }
 }

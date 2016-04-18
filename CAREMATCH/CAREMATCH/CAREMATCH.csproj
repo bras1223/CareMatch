@@ -61,6 +61,10 @@
       <HintPath>..\packages\Oracle.ManagedDataAccess.12.1.2400\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Phidget21.NET, Version=2.1.8.243, Culture=neutral, PublicKeyToken=c2b1f2a3594bce52, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\phidget21-windevel\Phidget21.NET.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.OracleClient" />
@@ -116,6 +120,12 @@
     </Compile>
     <Compile Include="Hulpvragen\Hulpvraag.cs" />
     <Compile Include="Hulpvragen\Reactie.cs" />
+    <Compile Include="LoginSysteem\RFIDLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginSysteem\RFIDLogin.Designer.cs">
+      <DependentUpon>RFIDLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginSysteem\SignupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +174,9 @@
     <EmbeddedResource Include="HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LoginSysteem\RFIDLogin.resx">
+      <DependentUpon>RFIDLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginSysteem\SignupForm.resx">
       <DependentUpon>SignupForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -208,6 +221,7 @@
     <None Include="Resources\users.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\arrows.png" />
     <Content Include="Resources\buildings.png" />
     <None Include="Resources\CAREMATCHLOGO.png" />
     <None Include="Resources\up-arrow.png" />

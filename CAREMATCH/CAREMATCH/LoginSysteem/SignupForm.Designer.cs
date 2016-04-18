@@ -1,4 +1,4 @@
-﻿namespace Login
+﻿namespace CAREMATCH.LoginSysteem
 {
     partial class SignupForm
     {
@@ -38,16 +38,12 @@
             this.tbGebruikersnaam = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cbRol = new System.Windows.Forms.ComboBox();
-            this.btnUploadVOG = new System.Windows.Forms.Button();
-            this.btnTerug = new System.Windows.Forms.Button();
-            this.btnRegistreer = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lblFoto = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.lblVOG = new System.Windows.Forms.Label();
-            this.btnPasfotoToevoegen = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.lblPasFotoPath = new System.Windows.Forms.Label();
@@ -56,6 +52,11 @@
             this.tbAchternaam = new System.Windows.Forms.TextBox();
             this.cbGeslacht = new System.Windows.Forms.ComboBox();
             this.dtpGeboortedatum = new System.Windows.Forms.DateTimePicker();
+            this.btnPasfotoToevoegen = new System.Windows.Forms.Button();
+            this.btnUploadVOG = new System.Windows.Forms.Button();
+            this.btnTerug = new System.Windows.Forms.Button();
+            this.btnRegistreer = new System.Windows.Forms.Button();
+            this.lblRFIDUitleg = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label5
@@ -161,48 +162,6 @@
             this.cbRol.TabIndex = 1;
             this.cbRol.SelectedIndexChanged += new System.EventHandler(this.cbRol_SelectedIndexChanged);
             // 
-            // btnUploadVOG
-            // 
-            this.btnUploadVOG.BackColor = System.Drawing.Color.Transparent;
-            this.btnUploadVOG.BackgroundImage = global::CAREMATCH.Properties.Resources.up_arrow;
-            this.btnUploadVOG.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnUploadVOG.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnUploadVOG.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnUploadVOG.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUploadVOG.Location = new System.Drawing.Point(483, 463);
-            this.btnUploadVOG.Name = "btnUploadVOG";
-            this.btnUploadVOG.Size = new System.Drawing.Size(56, 48);
-            this.btnUploadVOG.TabIndex = 6;
-            this.btnUploadVOG.UseVisualStyleBackColor = false;
-            this.btnUploadVOG.Visible = false;
-            this.btnUploadVOG.Click += new System.EventHandler(this.btnUploadVOG_Click);
-            // 
-            // btnTerug
-            // 
-            this.btnTerug.BackColor = System.Drawing.Color.Transparent;
-            this.btnTerug.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnTerug.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTerug.Image = global::CAREMATCH.Properties.Resources.circle_1_;
-            this.btnTerug.Location = new System.Drawing.Point(43, 450);
-            this.btnTerug.Name = "btnTerug";
-            this.btnTerug.Size = new System.Drawing.Size(75, 74);
-            this.btnTerug.TabIndex = 8;
-            this.btnTerug.UseVisualStyleBackColor = false;
-            this.btnTerug.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // btnRegistreer
-            // 
-            this.btnRegistreer.BackColor = System.Drawing.Color.Transparent;
-            this.btnRegistreer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnRegistreer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistreer.Image = global::CAREMATCH.Properties.Resources._interface;
-            this.btnRegistreer.Location = new System.Drawing.Point(891, 450);
-            this.btnRegistreer.Name = "btnRegistreer";
-            this.btnRegistreer.Size = new System.Drawing.Size(75, 74);
-            this.btnRegistreer.TabIndex = 7;
-            this.btnRegistreer.UseVisualStyleBackColor = false;
-            this.btnRegistreer.Click += new System.EventHandler(this.btnRegistreer_Click);
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -263,26 +222,11 @@
             this.lblVOG.TabIndex = 25;
             this.lblVOG.Text = "Voeg VOG* toe:";
             // 
-            // btnPasfotoToevoegen
-            // 
-            this.btnPasfotoToevoegen.BackColor = System.Drawing.Color.Transparent;
-            this.btnPasfotoToevoegen.BackgroundImage = global::CAREMATCH.Properties.Resources.up_arrow;
-            this.btnPasfotoToevoegen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnPasfotoToevoegen.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnPasfotoToevoegen.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPasfotoToevoegen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPasfotoToevoegen.Location = new System.Drawing.Point(483, 381);
-            this.btnPasfotoToevoegen.Name = "btnPasfotoToevoegen";
-            this.btnPasfotoToevoegen.Size = new System.Drawing.Size(56, 48);
-            this.btnPasfotoToevoegen.TabIndex = 26;
-            this.btnPasfotoToevoegen.UseVisualStyleBackColor = false;
-            this.btnPasfotoToevoegen.Click += new System.EventHandler(this.btnPasfotoToevoegen_Click);
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(702, 509);
+            this.label13.Location = new System.Drawing.Point(638, 506);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(183, 18);
             this.label13.TabIndex = 27;
@@ -346,12 +290,81 @@
             this.dtpGeboortedatum.Size = new System.Drawing.Size(214, 22);
             this.dtpGeboortedatum.TabIndex = 33;
             // 
+            // btnPasfotoToevoegen
+            // 
+            this.btnPasfotoToevoegen.BackColor = System.Drawing.Color.Transparent;
+            this.btnPasfotoToevoegen.BackgroundImage = global::CAREMATCH.Properties.Resources.up_arrow;
+            this.btnPasfotoToevoegen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPasfotoToevoegen.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnPasfotoToevoegen.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPasfotoToevoegen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPasfotoToevoegen.Location = new System.Drawing.Point(483, 381);
+            this.btnPasfotoToevoegen.Name = "btnPasfotoToevoegen";
+            this.btnPasfotoToevoegen.Size = new System.Drawing.Size(56, 48);
+            this.btnPasfotoToevoegen.TabIndex = 26;
+            this.btnPasfotoToevoegen.UseVisualStyleBackColor = false;
+            this.btnPasfotoToevoegen.Click += new System.EventHandler(this.btnPasfotoToevoegen_Click);
+            // 
+            // btnUploadVOG
+            // 
+            this.btnUploadVOG.BackColor = System.Drawing.Color.Transparent;
+            this.btnUploadVOG.BackgroundImage = global::CAREMATCH.Properties.Resources.up_arrow;
+            this.btnUploadVOG.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnUploadVOG.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnUploadVOG.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnUploadVOG.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUploadVOG.Location = new System.Drawing.Point(483, 463);
+            this.btnUploadVOG.Name = "btnUploadVOG";
+            this.btnUploadVOG.Size = new System.Drawing.Size(56, 48);
+            this.btnUploadVOG.TabIndex = 6;
+            this.btnUploadVOG.UseVisualStyleBackColor = false;
+            this.btnUploadVOG.Visible = false;
+            this.btnUploadVOG.Click += new System.EventHandler(this.btnUploadVOG_Click);
+            // 
+            // btnTerug
+            // 
+            this.btnTerug.BackColor = System.Drawing.Color.Transparent;
+            this.btnTerug.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTerug.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTerug.Image = global::CAREMATCH.Properties.Resources.circle_1_;
+            this.btnTerug.Location = new System.Drawing.Point(43, 450);
+            this.btnTerug.Name = "btnTerug";
+            this.btnTerug.Size = new System.Drawing.Size(75, 74);
+            this.btnTerug.TabIndex = 8;
+            this.btnTerug.UseVisualStyleBackColor = false;
+            this.btnTerug.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnRegistreer
+            // 
+            this.btnRegistreer.BackColor = System.Drawing.Color.Transparent;
+            this.btnRegistreer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRegistreer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistreer.Image = global::CAREMATCH.Properties.Resources._interface;
+            this.btnRegistreer.Location = new System.Drawing.Point(891, 450);
+            this.btnRegistreer.Name = "btnRegistreer";
+            this.btnRegistreer.Size = new System.Drawing.Size(75, 74);
+            this.btnRegistreer.TabIndex = 7;
+            this.btnRegistreer.UseVisualStyleBackColor = false;
+            this.btnRegistreer.Click += new System.EventHandler(this.btnRegistreer_Click);
+            // 
+            // lblRFIDUitleg
+            // 
+            this.lblRFIDUitleg.AutoSize = true;
+            this.lblRFIDUitleg.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRFIDUitleg.Location = new System.Drawing.Point(205, 452);
+            this.lblRFIDUitleg.Name = "lblRFIDUitleg";
+            this.lblRFIDUitleg.Size = new System.Drawing.Size(616, 72);
+            this.lblRFIDUitleg.TabIndex = 34;
+            this.lblRFIDUitleg.Text = "Als Hulpbehoevende kunt u ook uw TAG gebruiken om te registreren. \r\nLeg deze op d" +
+    "e scanner, zodat u geen gebruikersnaam en wachtwoord \r\nmeer in hoeft te vullen.";
+            // 
             // SignupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1033, 536);
+            this.Controls.Add(this.lblRFIDUitleg);
             this.Controls.Add(this.dtpGeboortedatum);
             this.Controls.Add(this.cbGeslacht);
             this.Controls.Add(this.tbAchternaam);
@@ -383,6 +396,7 @@
             this.MinimizeBox = false;
             this.Name = "SignupForm";
             this.Text = "SignUp";
+            this.Load += new System.EventHandler(this.SignupForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -418,5 +432,6 @@
         private System.Windows.Forms.TextBox tbAchternaam;
         private System.Windows.Forms.ComboBox cbGeslacht;
         private System.Windows.Forms.DateTimePicker dtpGeboortedatum;
+        private System.Windows.Forms.Label lblRFIDUitleg;
     }
 }

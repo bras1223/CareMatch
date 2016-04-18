@@ -4,14 +4,13 @@ using System.Windows.Forms;
 using CAREMATCH;
 using CAREMATCH.Gebruikers;
 
-namespace Login
+namespace CAREMATCH.LoginSysteem
 {
     partial class LoginForm : Form
     {
         private Login login;
         private Database database;
-        HomeForm homeForm;
-        SignupForm SignUp = new SignupForm();
+        HomeForm homeForm;        
 
         public LoginForm()
         {
@@ -55,18 +54,10 @@ namespace Login
                 ShowDialogMethod();
             }
         }
-        //Cursor hand
-        private void lbRegister_MouseLeave(object sender, EventArgs e)
-        {
-            lbRegister.Cursor = Cursors.Default;
-        }
-        private void lbRegister_MouseEnter(object sender, EventArgs e)
-        {
-            lbRegister.Cursor = Cursors.Hand;
-        }
         //Naar registratiescherm
         private void lbRegister_Click_1(object sender, EventArgs e)
         {
+            SignupForm SignUp = new SignupForm();
             this.Hide();
             if (SignUp.ShowDialog() == DialogResult.OK)
             {
@@ -75,6 +66,7 @@ namespace Login
         }
         public void ShowDialogMethod()
         {
+            SignupForm SignUp = new SignupForm();
             this.Hide();
             homeForm.ShowDialog();
             if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
@@ -85,6 +77,12 @@ namespace Login
         private void LoginForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnRFIDLogin_Click(object sender, EventArgs e)
+        {
+            RFIDLogin RfidLogin = new RFIDLogin();
+            RfidLogin.ShowDialog();
         }
     }
 }

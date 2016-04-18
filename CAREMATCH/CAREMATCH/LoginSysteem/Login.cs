@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using CAREMATCH;
 
-namespace Login
+namespace CAREMATCH.LoginSysteem
 {
     class Login
     {

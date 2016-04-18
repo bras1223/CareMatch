@@ -25,11 +25,9 @@ namespace Login
 
             cbRol.SelectedIndex = 0;
 
-            label4.Visible = false;
-            label5.Visible = false;
-
             btnUploadVOG.Visible = false;
-            txtUploadVOG.Visible = false;        
+            lblVOGPath.Visible = false;
+            lblVOG.Visible = false;     
         }
         //Gebruiker toevoegen
         private void btnRegistreer_Click(object sender, EventArgs e)
@@ -55,7 +53,7 @@ namespace Login
             }
             else if (cbRol.Text == "Hulpbehoevende" && txtWachtwoord.Text == txtHerhWachtwoord.Text && GebruikNaam == true)
             {
-                database.GebruikerAccountToevoegen(txtGebruikersnaam.Text, txtWachtwoord.Text, "Y", cbRol.Text, txtUploadVOG.Text);
+                database.GebruikerAccountToevoegen(txtGebruikersnaam.Text, txtWachtwoord.Text, "Y", cbRol.Text, lblVOGPath.Text);
                 MessageBox.Show("Account aangemaakt. U kunt nu inloggen.");
                 DialogResult = DialogResult.OK;
                 this.Close();
@@ -63,7 +61,7 @@ namespace Login
             else if (cbRol.Text == "Vrijwilliger" && txtWachtwoord.Text == txtHerhWachtwoord.Text && GebruikNaam == true)
             {
                 //Vrijwilliger moet een VOG uploaden.
-                if (txtUploadVOG.Text == "")
+                if (lblVOGPath.Text == "")
                 {
                     MessageBox.Show("Een vrijwilliger is verplicht een VOG bij te voegen.");
                 }
@@ -124,7 +122,7 @@ namespace Login
             ofd = new OpenFileDialog();
             if(ofd.ShowDialog() == DialogResult.OK)
             {
-                txtUploadVOG.Text = ofd.FileName;
+                lblPasFotoPath.Text = ofd.FileName;
             }
         }
         private void cbRol_SelectedIndexChanged(object sender, EventArgs e)
@@ -132,13 +130,22 @@ namespace Login
             if(cbRol.Text.ToLower() == "vrijwilliger")
             {
                 btnUploadVOG.Visible = true;
-                txtUploadVOG.Visible = true;
+                btnPasfotoToevoegen.Visible = true;
+                lblPasFotoPath.Visible = true;
+                lblVOG.Visible = true;
+                lblFoto.Visible = true;
+
             }
             else
             {
+                btnPasfotoToevoegen.Visible = false;
                 btnUploadVOG.Visible = false;
-                txtUploadVOG.Visible = false;
+                lblPasFotoPath.Visible = false;
+                lblVOG.Visible = false;
+                lblFoto.Visible = false;
             }
         }
+
+
     }
 }

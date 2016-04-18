@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnOpslaan = new System.Windows.Forms.Button();
             this.txtBeschrijving = new System.Windows.Forms.RichTextBox();
             this.txtTitel = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,21 +40,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtStartTijd = new System.Windows.Forms.TextBox();
-            this.btnOpslaanEnSluiten = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.lblAfspraakDatum = new System.Windows.Forms.Label();
+            this.btnOpslaanEnSluiten = new System.Windows.Forms.Button();
+            this.btnOpslaan = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnOpslaan
-            // 
-            this.btnOpslaan.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpslaan.Location = new System.Drawing.Point(12, 416);
-            this.btnOpslaan.Name = "btnOpslaan";
-            this.btnOpslaan.Size = new System.Drawing.Size(141, 71);
-            this.btnOpslaan.TabIndex = 9;
-            this.btnOpslaan.Text = "Sluiten";
-            this.btnOpslaan.UseVisualStyleBackColor = true;
-            this.btnOpslaan.Click += new System.EventHandler(this.btnSluiten_Click);
             // 
             // txtBeschrijving
             // 
@@ -169,17 +158,6 @@
             this.txtStartTijd.Size = new System.Drawing.Size(166, 35);
             this.txtStartTijd.TabIndex = 4;
             // 
-            // btnOpslaanEnSluiten
-            // 
-            this.btnOpslaanEnSluiten.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpslaanEnSluiten.Location = new System.Drawing.Point(12, 328);
-            this.btnOpslaanEnSluiten.Name = "btnOpslaanEnSluiten";
-            this.btnOpslaanEnSluiten.Size = new System.Drawing.Size(141, 71);
-            this.btnOpslaanEnSluiten.TabIndex = 8;
-            this.btnOpslaanEnSluiten.Text = "Opslaan && Sluiten";
-            this.btnOpslaanEnSluiten.UseVisualStyleBackColor = true;
-            this.btnOpslaanEnSluiten.Click += new System.EventHandler(this.OplsaanEnSluiten_Click);
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -198,6 +176,32 @@
             this.lblAfspraakDatum.Size = new System.Drawing.Size(175, 26);
             this.lblAfspraakDatum.TabIndex = 16;
             this.lblAfspraakDatum.Text = "Afspraak Datum:";
+            // 
+            // btnOpslaanEnSluiten
+            // 
+            this.btnOpslaanEnSluiten.BackColor = System.Drawing.Color.Transparent;
+            this.btnOpslaanEnSluiten.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnOpslaanEnSluiten.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpslaanEnSluiten.Image = global::CAREMATCH.Properties.Resources._interface;
+            this.btnOpslaanEnSluiten.Location = new System.Drawing.Point(141, 416);
+            this.btnOpslaanEnSluiten.Name = "btnOpslaanEnSluiten";
+            this.btnOpslaanEnSluiten.Size = new System.Drawing.Size(73, 71);
+            this.btnOpslaanEnSluiten.TabIndex = 8;
+            this.btnOpslaanEnSluiten.UseVisualStyleBackColor = false;
+            this.btnOpslaanEnSluiten.Click += new System.EventHandler(this.OplsaanEnSluiten_Click);
+            // 
+            // btnOpslaan
+            // 
+            this.btnOpslaan.BackColor = System.Drawing.Color.Transparent;
+            this.btnOpslaan.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnOpslaan.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpslaan.Image = global::CAREMATCH.Properties.Resources.circle_1_;
+            this.btnOpslaan.Location = new System.Drawing.Point(41, 416);
+            this.btnOpslaan.Name = "btnOpslaan";
+            this.btnOpslaan.Size = new System.Drawing.Size(73, 71);
+            this.btnOpslaan.TabIndex = 9;
+            this.btnOpslaan.UseVisualStyleBackColor = false;
+            this.btnOpslaan.Click += new System.EventHandler(this.btnSluiten_Click);
             // 
             // AgendaPuntToevoegenForm
             // 

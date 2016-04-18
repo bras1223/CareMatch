@@ -435,24 +435,25 @@ namespace CAREMATCH
             
             return gebruiker;
         }
-        public void GebruikerAccountToevoegen(string Gebruikersnaam, string Wachtwoord, string Approved, string Rol, string filename)
+        public void GebruikerAccountToevoegen(string Gebruikersnaam, string Wachtwoord, string Approved, string Rol, string filenameFoto, string filenameVOG, string voornaam, string achternaam, string geslacht, DateTime geboortedatum)
         {
             con.Open();
             //Hulpbehoevende hoeft geen VOG te inserten.
             if (Rol.ToLower() == "hulpbehoevende") 
             {
-                command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, APPROVED, ROL) VALUES('" + Gebruikersnaam + "','" + EncryptString(Wachtwoord) + "', '" + Approved + "','" + Rol + "')", con);
+                command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, VOORNAAM, ACHTERNAAM, FOTO, APPROVED, ROL) VALUES('" + Gebruikersnaam + "','" + EncryptString(Wachtwoord) + "', '" + voornaam + "', '" + achternaam + "', '" + filenameFoto + "', '" + Approved + "','" + Rol + "')", con);
             }
             //Vrijwilliger wel.
             else
             {
-                command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, APPROVED, ROL, VOG) VALUES('" + Gebruikersnaam + "','" + EncryptString(Wachtwoord) + "', '" + Approved + "','" + Rol + "', '"+filename+"')", con);
+                command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, VOORNAAM, ACHTERNAAM, FOTO, APPROVED, ROL, VOG) VALUES('" + Gebruikersnaam + "','" + EncryptString(Wachtwoord) + "', '" + voornaam + "', '" + achternaam + "', '" + filenameFoto + "', '" + Approved + "','" + Rol + "', '"+filenameVOG+"')", con);
             }
             command.ExecuteNonQuery();
             con.Close();
         }
         public bool GebruikerControlleerUsername(string Gebruikersnaam)
         {
+
             con.Open();
             command = new OracleCommand("SELECT Gebruikersnaam FROM GEBRUIKER WHERE Gebruikersnaam ='" + Gebruikersnaam + "'", con);
             reader = command.ExecuteReader();

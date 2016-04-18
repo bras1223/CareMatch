@@ -209,6 +209,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\buildings.png" />
+    <None Include="Resources\CAREMATCHLOGO.png" />
+    <None Include="Resources\up-arrow.png" />
+    <None Include="Resources\interface.png" />
+    <None Include="Resources\circle%281%29.png" />
     <None Include="Resources\circle.png" />
     <None Include="Resources\buildings1.png" />
   </ItemGroup>

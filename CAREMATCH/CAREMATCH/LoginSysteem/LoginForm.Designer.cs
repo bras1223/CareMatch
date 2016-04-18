@@ -36,6 +36,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lbRegister = new System.Windows.Forms.Button();
             this.pbLogo = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.SuspendLayout();
@@ -98,7 +99,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtGebruikersnaam);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(34, 153);
+            this.groupBox1.Location = new System.Drawing.Point(307, 152);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(454, 288);
             this.groupBox1.TabIndex = 12;
@@ -108,27 +109,39 @@
             // lbRegister
             // 
             this.lbRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRegister.Location = new System.Drawing.Point(108, 457);
+            this.lbRegister.Location = new System.Drawing.Point(397, 487);
             this.lbRegister.Name = "lbRegister";
-            this.lbRegister.Size = new System.Drawing.Size(297, 54);
+            this.lbRegister.Size = new System.Drawing.Size(297, 37);
             this.lbRegister.TabIndex = 4;
-            this.lbRegister.Text = "Registreer HIER!";
+            this.lbRegister.Text = "Klik hier om je te registreren";
             this.lbRegister.UseVisualStyleBackColor = true;
             this.lbRegister.Click += new System.EventHandler(this.lbRegister_Click_1);
             // 
             // pbLogo
             // 
-            this.pbLogo.Location = new System.Drawing.Point(48, 27);
+            this.pbLogo.Image = global::CAREMATCH.Properties.Resources.CAREMATCHLOGO;
+            this.pbLogo.Location = new System.Drawing.Point(321, 24);
             this.pbLogo.Name = "pbLogo";
             this.pbLogo.Size = new System.Drawing.Size(419, 106);
             this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbLogo.TabIndex = 14;
             this.pbLogo.TabStop = false;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(483, 460);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(129, 24);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Nog geen lid?";
+            // 
             // LoginForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(528, 536);
+            this.ClientSize = new System.Drawing.Size(1033, 536);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.pbLogo);
             this.Controls.Add(this.lbRegister);
             this.Controls.Add(this.groupBox1);
@@ -142,6 +155,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -154,5 +168,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button lbRegister;
         private System.Windows.Forms.PictureBox pbLogo;
+        private System.Windows.Forms.Label label3;
     }
 }

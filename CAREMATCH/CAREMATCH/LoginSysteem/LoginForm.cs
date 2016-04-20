@@ -4,144 +4,85 @@ using System.Windows.Forms;
 using CAREMATCH;
 using CAREMATCH.Gebruikers;
 
-namespace Login
+namespace CAREMATCH.LoginSysteem
 {
     partial class LoginForm : Form
     {
         private Login login;
-        private Database dbQuery;
-        HomeForm homeForm;
-        BeheerdersForm beheerdersform;
-        Beheerder gebruiker;
-        Vrijwilliger vrijwilliger;
-        Hulpbehoevende hulpbehoevende;
-        SignupForm SignUp = new SignupForm();
+        private Database database;
+        HomeForm homeForm;        
 
         public LoginForm()
         {
             InitializeComponent();
             login = new Login();
-            dbQuery = new Database();
+            database = new Database();
+            ActiveControl = txtGebruikersnaam;
         }
-
         //Logincheck
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            DateTime vandaag = new DateTime();
-            Image piet = CAREMATCH.Properties.Resources.users;
-
-            //foutmeldingen
-            #region
-            if (textBox1.Text == "" || textBox2.Text == "")
+            if (txtGebruikersnaam.Text == "" || txtWachtwoord.Text == "")
             {
                 MessageBox.Show("Niet alle velden zijn ingevuld");
             }
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "")
+            else if (database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text) == null)
             {
                 MessageBox.Show("Gebruikersnaam of Wachtwoord incorrect");
             }
-            #endregion
-
-            //beheerder
-            #region
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "beheerder")
+            else if (database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text).Rol.ToLower() == "beheerder")
             {
-                gebruiker = new Beheerder(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
-                beheerdersform = new BeheerdersForm();
-                this.Hide();
-                beheerdersform.ShowDialog();
-                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
+                homeForm = new HomeForm(database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text));
+                ShowDialogMethod();
+            }
+            else if (database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text).Rol.ToLower() == "vrijwilliger")
+            {
+                //Checken if Account approved.
+                if(database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text).Approved)
                 {
-                    this.Show();
+                    homeForm = new HomeForm(database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text));
+                    ShowDialogMethod();
+                }
+                else
+                {
+                    MessageBox.Show("Uw Account is nog niet goedgekeurd door de beheerder.");
                 }
             }
-           
-
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "Beheerder")
+            else if (database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text).Rol.ToLower() == "hulpbehoevende")
             {
-                gebruiker = new Beheerder(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
-                beheerdersform = new BeheerdersForm();
-                this.Hide();
-                beheerdersform.ShowDialog();
-                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
+                homeForm = new HomeForm(database.GebruikerLogin(txtGebruikersnaam.Text, txtWachtwoord.Text));
+                ShowDialogMethod();
             }
-            #endregion
-
-            //vrijwilliger
-            #region
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "vrijwilliger")
-            {
-                //vrijwilliger is nu standaard goedgekeurd, hoort niet maar is handig voor testen
-
-                vrijwilliger = new Vrijwilliger(true, textBox1.Text, "piet", "piet", piet, "piet", vandaag);
-                homeForm = new HomeForm(vrijwilliger);
-                this.Hide();
-                homeForm.ShowDialog();
-                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
-            }
-          
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "Vrijwilliger")
-            {
-                //vrijwilliger is nu standaard goedgekeurd, hoort niet maar is handig voor testen
-
-                vrijwilliger = new Vrijwilliger(true, textBox1.Text, "piet", "piet", piet, "piet", vandaag);
-                homeForm = new HomeForm(vrijwilliger);
-                this.Hide();
-                homeForm.ShowDialog();
-                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
-            }
-            #endregion
-
-            //hulpbehoevende
-            #region
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "hulpbehoevende")
-            {
-                hulpbehoevende = new Hulpbehoevende(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
-                homeForm = new HomeForm(hulpbehoevende);
-                this.Hide();
-                homeForm.ShowDialog();
-                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
-            }
-            else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "Hulpbehoevende")
-            {
-                hulpbehoevende = new Hulpbehoevende(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
-                homeForm = new HomeForm(hulpbehoevende);
-                this.Hide();
-                homeForm.ShowDialog();
-                if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
-            }
-            #endregion
-        }
-
-        //Cursor hand
-        private void lbRegister_MouseLeave(object sender, EventArgs e)
-        {
-            lbRegister.Cursor = Cursors.Default;
-        }
-        private void lbRegister_MouseEnter(object sender, EventArgs e)
-        {
-            lbRegister.Cursor = Cursors.Hand;
         }
         //Naar registratiescherm
         private void lbRegister_Click_1(object sender, EventArgs e)
         {
-            SignUp.Show();
+            SignupForm SignUp = new SignupForm();
             this.Hide();
+            if (SignUp.ShowDialog() == DialogResult.OK)
+            {
+                this.Show();
+            }
+        }
+        public void ShowDialogMethod()
+        {
+            SignupForm SignUp = new SignupForm();
+            this.Hide();
+            homeForm.ShowDialog();
+            if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
+            {
+                this.Show();
+            }
+        }
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRFIDLogin_Click(object sender, EventArgs e)
+        {
+            RFIDLogin RfidLogin = new RFIDLogin();
+            RfidLogin.ShowDialog();
         }
     }
 }

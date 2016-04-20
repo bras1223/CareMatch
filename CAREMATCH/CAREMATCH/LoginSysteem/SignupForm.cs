@@ -9,63 +9,105 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using CAREMATCH;
+using System.IO;
+using Phidgets;
+using Phidgets.Events;
 
-namespace Login
+namespace CAREMATCH.LoginSysteem
 {
     public partial class SignupForm : Form
     {
-        private Database dbQuery;
-        
+        private Database database;
+        private OpenFileDialog ofd;
+        private string vog;
         public SignupForm()
         {
             InitializeComponent();
-            label4.Visible = false;
-            label5.Visible = false;
-            dbQuery = new Database();           
+            database = new Database();
+
+            cbRol.SelectedIndex = 0;
+
+            btnUploadVOG.Visible = false;
+            lblVOGPath.Visible = false;
+            lblVOG.Visible = false;     
         }
         //Gebruiker toevoegen
-        private void button1_Click(object sender, EventArgs e)
+        private void btnRegistreer_Click(object sender, EventArgs e)
         {
-            int GebruikNum = dbQuery.ControlleerMaxGebruikerID() + 1;
-            bool GebruikNaam = dbQuery.ControlleerGebruikersnaam(textBox1.Text);
+            //Controlleer of gebruikersnaam bestaat.
+            bool GebruikNaam = database.GebruikerControlleerUsername(tbGebruikersnaam.Text);
 
             if (GebruikNaam == false)
             {
                 MessageBox.Show("Gebruikersnaam bestaat al");
             }
-            if (textBox2.Text != textBox3.Text)
+            if (tbWachtwoord.Text != tbHerhWachtwoord.Text)
             {
                 MessageBox.Show("Wachtwoorden zijn niet gelijk");
             }
-            if (textBox1.Text == "")
+            if (tbGebruikersnaam.Text == "")
             {
-                MessageBox.Show("Niet alles is ingevuld");
+                MessageBox.Show("Geen gebruikersnaam ingevuld");
             }
-            if (textBox2.Text == "")
+            if (tbWachtwoord.Text == "")
             {
-                MessageBox.Show("Niet alles is ingevuld");
+                MessageBox.Show("Geen wachtwoord ingevuld");
             }
-            else if (comboBox1.Text == "Hulpbehoevende" && textBox2.Text == textBox3.Text && GebruikNaam == true)
+            else if (cbRol.Text == "Hulpbehoevende" && tbWachtwoord.Text == tbHerhWachtwoord.Text && GebruikNaam == true)
             {
-                dbQuery.AccountToevoegen(GebruikNum.ToString(), textBox1.Text, textBox2.Text, "Y", comboBox1.Text);
-                MessageBox.Show("Account toegevoegd");
+                database.GebruikerAccountToevoegen(tbGebruikersnaam.Text, tbWachtwoord.Text,  "Y", cbRol.Text, lblPasFotoPath.Text, lblVOGPath.Text, tbVoornaam.Text, tbAchternaam.Text, cbGeslacht.Text, dtpGeboortedatum.Value);
+                MessageBox.Show("Account aangemaakt. U kunt nu inloggen.");
+                DialogResult = DialogResult.OK;
+                this.Close();
             }
-            else if (comboBox1.Text == "Vrijwilliger" && textBox2.Text == textBox3.Text && GebruikNaam == true)
+            else if (cbRol.Text == "Vrijwilliger" && tbWachtwoord.Text == tbHerhWachtwoord.Text && GebruikNaam == true)
             {
-                dbQuery.AccountToevoegen(GebruikNum.ToString(), textBox1.Text, textBox2.Text, "Y", comboBox1.Text);
-                MessageBox.Show("Account toegevoegd");
+                //Vrijwilliger moet een VOG uploaden.
+                if (lblVOGPath.Text == "")
+                {
+                    MessageBox.Show("Een vrijwilliger is verplicht een VOG bij te voegen.");
+                }
+                else
+                {
+                    //VOG uploaden
+                    if (ofd != null)
+                    {
+                        //Als er een afbeelding geopend is.
+                        if (ofd.FileName != "")
+                        {
+                            if (!File.Exists(tbGebruikersnaam.Text))
+                            {
+                                //Directory aanmaken als deze nog niet bestaat.
+                                System.IO.Directory.CreateDirectory(tbGebruikersnaam.Text);
+                            }
+                            //Gekozen afbeelding kopieren naar pasfoto directory. Foto = Gebruikersnaam\Gebruikersnaam + Bestandsextensie
+                            try
+                            {
+                                vog = tbGebruikersnaam.Text + @"\VOG" + Path.GetExtension(ofd.FileName);
+                                File.Copy(ofd.FileName, vog);
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Er is iets fout gegaan bij het uploaden van een VOG. Contacteer een beheerder.");
+                            }
+                        }
+                    }
+                    database.GebruikerAccountToevoegen(tbGebruikersnaam.Text, tbWachtwoord.Text, "Y", cbRol.Text, lblPasFotoPath.Text, lblVOGPath.Text, tbVoornaam.Text, tbAchternaam.Text, cbGeslacht.Text, dtpGeboortedatum.Value);
+                    MessageBox.Show("Account aangemaakt. U moet wachten tot dat uw account is geactiveerd voordat u kunt inloggen.");
+                    DialogResult = DialogResult.OK;
+                    this.Close();
+                }
             }
-
         }
         //Wachtwoord controle
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void txtHerhWachtwoord_TextChanged(object sender, EventArgs e)
         {
-            if (textBox2.Text.Length < 5)
+            if (tbWachtwoord.Text.Length < 5)
             {
                 label4.Visible = true;
                 label5.Visible = false;
             }
-            if (textBox2.Text.Length >= 5)
+            if (tbWachtwoord.Text.Length >= 5)
             {
                 label4.Visible = false;
                 label5.Visible = true;
@@ -74,10 +116,188 @@ namespace Login
         //Terug naar LoginForm
         private void button2_Click(object sender, EventArgs e)
         {
-           this.Hide();
-           LoginForm Login = new LoginForm();
-           Login.Show();
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+        private void btnUploadVOG_Click(object sender, EventArgs e)
+        {
+            ofd = new OpenFileDialog();
+            if(ofd.ShowDialog() == DialogResult.OK)
+            {
+                lblVOGPath.Text = ofd.FileName;
+            }
+        }
+        private void cbRol_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbRol.Text.ToLower() == "vrijwilliger")
+            {
+                btnUploadVOG.Visible = true;
+                lblVOG.Visible = true;
+                lblRFIDUitleg.Visible = false;
+
+            }
+            else
+            {
+               
+                btnUploadVOG.Visible = false;
+                lblVOG.Visible = false;
+                lblRFIDUitleg.Visible = true;
+            }
         }
 
+        private void btnPasfotoToevoegen_Click(object sender, EventArgs e)
+        {
+            ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                lblPasFotoPath.Text = ofd.FileName;
+            }
+        }
+        #region RFID
+        RFID rfid;
+        private void SignupForm_Load(object sender, EventArgs e)
+        {
+            rfid = new RFID();
+
+            rfid.Attach += new AttachEventHandler(rfid_Attach);
+            rfid.Detach += new DetachEventHandler(rfid_Detach);
+
+            rfid.Tag += new TagEventHandler(rfid_Tag);
+            rfid.TagLost += new TagEventHandler(rfid_TagLost);
+            openCmdLine(rfid);
+        }
+        void rfid_Tag(object sender, TagEventArgs e)
+        {
+            if (database.GebruikerLogin(e.Tag, e.Tag) !=null)
+            {
+                MessageBox.Show("Deze tag is reeds aangemeld, klik op OK om u in te loggen.");
+            }
+            else
+            {
+                tbGebruikersnaam.Text = e.Tag;
+                tbWachtwoord.Text = e.Tag;
+            }
+
+            //This sends the RFID tag and an enter to the active application
+
+        }
+
+        //Tag lost event handler...here we simply want to clear our tag field in the GUI
+        void rfid_TagLost(object sender, TagEventArgs e)
+        {
+            tbGebruikersnaam.Text = "";
+            tbWachtwoord.Text = "";
+
+        }
+
+        void rfid_Attach(object sender, AttachEventArgs e)
+        {
+            RFID attached = (RFID)sender;
+        }
+
+        void rfid_Detach(object sender, DetachEventArgs e)
+        {
+            RFID detached = (RFID)sender;
+        }
+
+
+        #region Command line open functions
+        private void openCmdLine(Phidget p)
+        {
+            openCmdLine(p, null);
+        }
+        private void openCmdLine(Phidget p, String pass)
+        {
+            int serial = -1;
+            String logFile = null;
+            int port = 5001;
+            String host = null;
+            bool remote = false, remoteIP = false;
+            string[] args = Environment.GetCommandLineArgs();
+            String appName = args[0];
+
+            try
+            { //Parse the flags
+                for (int i = 1; i < args.Length; i++)
+                {
+                    if (args[i].StartsWith("-"))
+                        switch (args[i].Remove(0, 1).ToLower())
+                        {
+                            case "l":
+                                logFile = (args[++i]);
+                                break;
+                            case "n":
+                                serial = int.Parse(args[++i]);
+                                break;
+                            case "r":
+                                remote = true;
+                                break;
+                            case "s":
+                                remote = true;
+                                host = args[++i];
+                                break;
+                            case "p":
+                                pass = args[++i];
+                                break;
+                            case "i":
+                                remoteIP = true;
+                                host = args[++i];
+                                if (host.Contains(":"))
+                                {
+                                    port = int.Parse(host.Split(':')[1]);
+                                    host = host.Split(':')[0];
+                                }
+                                break;
+                            default:
+                                goto usage;
+                        }
+                    else
+                        goto usage;
+                }
+                if (logFile != null)
+                    Phidget.enableLogging(Phidget.LogLevel.PHIDGET_LOG_INFO, logFile);
+                if (remoteIP)
+                    p.open(serial, host, port, pass);
+                else if (remote)
+                    p.open(serial, host, pass);
+                else
+                    p.open(serial);
+                return; //success
+            }
+            catch { }
+        usage:
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Invalid Command line arguments." + Environment.NewLine);
+            sb.AppendLine("Usage: " + appName + " [Flags...]");
+            sb.AppendLine("Flags:\t-n   serialNumber\tSerial Number, omit for any serial");
+            sb.AppendLine("\t-l   logFile\tEnable phidget21 logging to logFile.");
+            sb.AppendLine("\t-r\t\tOpen remotely");
+            sb.AppendLine("\t-s   serverID\tServer ID, omit for any server");
+            sb.AppendLine("\t-i   ipAddress:port\tIp Address and Port. Port is optional, defaults to 5001");
+            sb.AppendLine("\t-p   password\tPassword, omit for no password" + Environment.NewLine);
+            sb.AppendLine("Examples: ");
+            sb.AppendLine(appName + " -n 50098");
+            sb.AppendLine(appName + " -r");
+            sb.AppendLine(appName + " -s myphidgetserver");
+            sb.AppendLine(appName + " -n 45670 -i 127.0.0.1:5001 -p paswrd");
+            MessageBox.Show(sb.ToString(), "Argument Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            Application.Exit();
+        }
+        #endregion
+
+        private void RFIDLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            rfid.Attach -= new AttachEventHandler(rfid_Attach);
+            rfid.Detach -= new DetachEventHandler(rfid_Detach);
+            rfid.Tag -= new TagEventHandler(rfid_Tag);
+            rfid.TagLost -= new TagEventHandler(rfid_TagLost);
+
+            //run any events in the message queue - otherwise close will hang if there are any outstanding events
+            Application.DoEvents();
+
+            rfid.close();
+        }
+        #endregion
     }
 }

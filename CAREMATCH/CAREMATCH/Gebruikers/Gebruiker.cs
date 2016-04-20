@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CAREMATCH.Agenda;
 
 namespace CAREMATCH
 {
@@ -12,38 +13,41 @@ namespace CAREMATCH
     {
 
         //Fields
+        private List<AgendaPunt> agendaPuntList;
+
+        //Properties        
+        public int GebruikersID { get; set; }
+        public string Pasfoto { get; set; }
+        public string Gebruikersnaam { get; set; }
+        public string Wachtwoord { get; set; }
+        public string Voornaam { get; set; }
+        public string Achternaam { get; set; }
+        public string GebruikerInfo { get; set; }
+        public string Rol { get; set; }
+        public string VOG { get; set; }
+        public DateTime GeboorteDatum { get; set; }
+        public bool Auto { get; set; }
+        public bool Approved { get; set; }
         
-
-        //Properties
-        
-        public int GebruikersID { get; private set; }
-        public string Gebruikersnaam { get; private set; }
-        public string Voornaam { get; private set; }
-        public string Achternaam { get; private set; }
-        public DateTime GeboorteDatum { get; private set; }
-        public Image Pasfoto { get; private set; }
-        public string Email { get; private set; }
-        public bool Auto { get; private set; }
-
-
         //Constructor
-        public Gebruiker(string gebruikersnaam, string voornaam, string achternaam, Image pasfoto, string email, DateTime geboorteDatum)
+        public Gebruiker()
         {
-            Gebruikersnaam = gebruikersnaam;
-            Voornaam = voornaam;
-            Achternaam = achternaam;
-            Pasfoto = pasfoto;
-            Email = email;
-            GeboorteDatum = geboorteDatum;
+            agendaPuntList = new List<AgendaPunt>();
         }
-
         //Methoden
-
-            //Maakt een nieuw chatbericht aan met de huidige tijd en de inhoud die word meegegeven
-        public void Chatberichtmaken(string inhoud)
+        public void AgendaPuntToevoegen(AgendaPunt agendaPunt)
         {
-            Chatbericht bericht = new Chatbericht(inhoud);
-            //Bericht in database zetten
+            agendaPuntList.Add(agendaPunt);
         }
+        public List<AgendaPunt> GetAgendaPunten()
+        {
+            return agendaPuntList;
+        }
+            //Maakt een nieuw chatbericht aan met de huidige tijd en de inhoud die word meegegeven
+        //public void Chatberichtmaken(string inhoud)
+        //{
+        //    Chatbericht bericht = new Chatbericht(inhoud);
+        //    //Bericht in database zetten
+        //}
     }
 }

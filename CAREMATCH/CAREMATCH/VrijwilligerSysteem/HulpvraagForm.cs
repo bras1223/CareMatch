@@ -25,6 +25,7 @@ namespace CAREMATCH.VrijwilligerSysteem
 
             if (gebruiker.GetType() == typeof(Hulpbehoevende) && hulpvraagIndienen == true)
             {
+                txtHulpvrager.Text = gebruiker.Gebruikersnaam;
                 rtxtReactieInhoud.Enabled = false;
                 btnReactieOpslaan.Visible = false;
             }
@@ -34,40 +35,64 @@ namespace CAREMATCH.VrijwilligerSysteem
 
                 cbUrgent.Enabled = false;
                 rtxtHulpvraag.Enabled = false;
-
                 txtDuur.Enabled = false;
                 txtFrequentie.Enabled = false;
                 txtHulpvrager.Enabled = false;
                 txtTitel.Enabled = false;
             }
 
-            txtDuur.Text = hulpvraag.Duur.ToString();
-            txtFrequentie.Text = hulpvraag.Frequentie;
-            txtHulpvrager.Text = hulpvraag.Hulpbehoevende;
-            txtTitel.Text = hulpvraag.Titel;
-            rtxtHulpvraag.Text = hulpvraag.HulpvraagInhoud;
-            rtxtReactieInhoud.Text = hulpvraag.Reactie;
-
-            if (hulpvraag.Urgent)
+            if(hulpvraag != null)
             {
-                cbUrgent.Checked = true;
+                txtDuur.Text = hulpvraag.Duur.ToString();
+                txtFrequentie.Text = hulpvraag.Frequentie;
+                txtHulpvrager.Text = hulpvraag.Hulpbehoevende;
+                txtTitel.Text = hulpvraag.Titel;
+                rtxtHulpvraag.Text = hulpvraag.HulpvraagInhoud;
+                rtxtReactieInhoud.Text = hulpvraag.Reactie + "\n" + DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt") + "   " + gebruiker.Gebruikersnaam + " Zegt:\n";
+
+                if (hulpvraag.Urgent)
+                {
+                    cbUrgent.Checked = true;
+                }
             }
         }
-
         private void btnSluit_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             this.Close();
         }
-
+        //Vrijwilliger past hulpvraag aan.
         private void btnSlaOp_Click(object sender, EventArgs e)
         {
             rtxtReactieInhoud.Enabled = false;
             hulpvraag.Vrijwilliger = gebruiker.Gebruikersnaam;
             hulpvraag.HulpvraagInhoud = rtxtHulpvraag.Text;
             hulpvraag.Urgent = cbUrgent.Checked;
-            hulpvraag.Reactie = hulpvraag.Reactie + "\n" + DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt") + "   " + gebruiker.Gebruikersnaam + "\n" + rtxtReactieInhoud.Text;
-            database.HulpvraagAanpassen(gebruiker.GebruikersID, hulpvraag);
+            hulpvraag.Reactie = rtxtReactieInhoud.Text + "\n";
+            database.HulpvraagAanpassen(gebruiker, hulpvraag);
+        }
+        //Hulpbehoevende dient hulpvraag in.
+        private void btnHulpvraagOpslaan_Click(object sender, EventArgs e)
+        {
+            hulpvraag = new Hulpvragen.Hulpvraag();
+            hulpvraag.Duur = txtDuur.Text;
+            hulpvraag.Frequentie = txtFrequentie.Text;
+            hulpvraag.Hulpbehoevende = gebruiker.Gebruikersnaam;
+            hulpvraag.Titel = txtTitel.Text;
+            hulpvraag.HulpvraagInhoud = rtxtHulpvraag.Text;
+            hulpvraag.Urgent = cbUrgent.Checked;
+            hulpvraag.HulpbehoevendeFoto = gebruiker.Pasfoto;
+            hulpvraag.Locatie = txtLocatie.Text;
+
+            try
+            {
+                database.HulpvraagToevoegen(hulpvraag, gebruiker);
+                MessageBox.Show("Hulpvraag opgeslagen.");
+            }
+            catch
+            {
+                MessageBox.Show("Er is iets foutgegaan bij het opslaan van de hulpvraag. Neem contact op met CareMatch.");
+            }
         }
     }
 }

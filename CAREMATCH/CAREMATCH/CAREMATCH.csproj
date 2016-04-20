@@ -61,6 +61,10 @@
       <HintPath>..\packages\Oracle.ManagedDataAccess.12.1.2400\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Phidget21.NET, Version=2.1.8.243, Culture=neutral, PublicKeyToken=c2b1f2a3594bce52, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\phidget21-windevel\Phidget21.NET.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.OracleClient" />
@@ -75,6 +79,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agenda\AgendaPunt.cs" />
+    <Compile Include="Agenda\AgendaPuntToevoegenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Agenda\AgendaPuntToevoegenForm.Designer.cs">
+      <DependentUpon>AgendaPuntToevoegenForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Agenda\AgendaDagOverzicht.cs" />
+    <Compile Include="Agenda\DagOverzichtForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Agenda\DagOverzichtForm.Designer.cs">
+      <DependentUpon>DagOverzichtForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Beheerder\BeheerdersForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +120,12 @@
     </Compile>
     <Compile Include="Hulpvragen\Hulpvraag.cs" />
     <Compile Include="Hulpvragen\Reactie.cs" />
+    <Compile Include="LoginSysteem\RFIDLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginSysteem\RFIDLogin.Designer.cs">
+      <DependentUpon>RFIDLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginSysteem\SignupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,12 +159,12 @@
     <Compile Include="VrijwilligerSysteem\ProfielForm.Designer.cs">
       <DependentUpon>ProfielForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="VrijwilligerSysteem\AgendaForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VrijwilligerSysteem\AgendaForm.Designer.cs">
-      <DependentUpon>AgendaForm.cs</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="Agenda\AgendaPuntToevoegenForm.resx">
+      <DependentUpon>AgendaPuntToevoegenForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Agenda\DagOverzichtForm.resx">
+      <DependentUpon>DagOverzichtForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Beheerder\BeheerdersForm.resx">
       <DependentUpon>BeheerdersForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -149,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginSysteem\RFIDLogin.resx">
+      <DependentUpon>RFIDLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginSysteem\SignupForm.resx">
       <DependentUpon>SignupForm.cs</DependentUpon>
@@ -176,9 +203,6 @@
     <EmbeddedResource Include="VrijwilligerSysteem\ProfielForm.resx">
       <DependentUpon>ProfielForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VrijwilligerSysteem\AgendaForm.resx">
-      <DependentUpon>AgendaForm.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -197,7 +221,14 @@
     <None Include="Resources\users.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Agenda\" />
+    <None Include="Resources\arrows.png" />
+    <Content Include="Resources\buildings.png" />
+    <None Include="Resources\CAREMATCHLOGO.png" />
+    <None Include="Resources\up-arrow.png" />
+    <None Include="Resources\interface.png" />
+    <None Include="Resources\circle%281%29.png" />
+    <None Include="Resources\circle.png" />
+    <None Include="Resources\buildings1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CAREMATCH.Agenda;
 
 namespace CAREMATCH
 {
@@ -16,10 +17,8 @@ namespace CAREMATCH
     {
         private Gebruiker gebruiker;
         private Hulpvragen.Hulpvraag hulpvraag;
-        private Database database;
-
+        private Agenda.DagOverzichtForm weekrooster;
         private ChatForm chatForm;
-        private AgendaForm agendaForm;
         private HulpvraagForm hulpvraagForm;
         private HulpvraagOverzichtForm hulpvraagOverzichtForm;
         private ProfielForm profielForm;
@@ -28,14 +27,9 @@ namespace CAREMATCH
         {
             InitializeComponent();
             this.gebruiker = gebruiker;
-
-            //was bezig met de database doorgeven via de constructor
-            //this.database = database;
-            
+                        
             if (gebruiker.GetType() == typeof(Hulpbehoevende))
             {
-                btnAangenomenHulpvragen.Visible = false;
-
                 btnOngepasteBerichten.Visible = false;
                 btnAccountOverzicht.Visible = false;
             }
@@ -48,7 +42,6 @@ namespace CAREMATCH
             }
             else
             {
-                btnAangenomenHulpvragen.Visible = false;
                 btnHulpvraagIndienen.Visible = false;
             }
         }
@@ -67,36 +60,23 @@ namespace CAREMATCH
         private void btnHulpvraagAannemen_Click(object sender, EventArgs e)
         {
             this.Hide();
-            hulpvraagOverzichtForm = new HulpvraagOverzichtForm(gebruiker);
+            hulpvraagOverzichtForm = new HulpvraagOverzichtForm(gebruiker, false);
             hulpvraagOverzichtForm.ShowDialog();
             if(hulpvraagOverzichtForm.DialogResult == DialogResult.OK || hulpvraagOverzichtForm.DialogResult == DialogResult.Cancel)
             {
                 this.Show();
             }
         }
-
-        private void btnAangenomenHulpvragen_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            hulpvraagOverzichtForm = new HulpvraagOverzichtForm(gebruiker);
-            hulpvraagOverzichtForm.ShowDialog();
-            if (hulpvraagOverzichtForm.DialogResult == DialogResult.OK || hulpvraagOverzichtForm.DialogResult == DialogResult.Cancel)
-            {
-                this.Show();
-            }
-        }
-
         private void btnAgenda_Click(object sender, EventArgs e)
         {
             this.Hide();
-            agendaForm = new AgendaForm(gebruiker);
-            agendaForm.ShowDialog();
-            if (agendaForm.DialogResult == DialogResult.OK || agendaForm.DialogResult == DialogResult.Cancel)
+            weekrooster = new Agenda.DagOverzichtForm(gebruiker);
+            weekrooster.ShowDialog();
+            if (weekrooster.DialogResult == DialogResult.OK || weekrooster.DialogResult == DialogResult.Cancel)
             {
                 this.Show();
             }
         }
-
         private void btnBerichten_Click(object sender, EventArgs e)
         {
             this.Hide();

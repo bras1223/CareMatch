@@ -31,12 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.tbBericht = new System.Windows.Forms.TextBox();
             this.btnVerzenden = new System.Windows.Forms.Button();
-            this.pbProfielFoto = new System.Windows.Forms.PictureBox();
             this.lblGebruikersnaam = new System.Windows.Forms.Label();
-            this.btnTerug = new System.Windows.Forms.Button();
             this.lbChat = new System.Windows.Forms.ListBox();
             this.lbGebruikerLijst = new System.Windows.Forms.ListBox();
             this.tmrLaadberichten = new System.Windows.Forms.Timer(this.components);
+            this.btnTerug = new System.Windows.Forms.Button();
+            this.pbProfielFoto = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,16 +60,6 @@
             this.btnVerzenden.UseVisualStyleBackColor = true;
             this.btnVerzenden.Click += new System.EventHandler(this.btnVerzenden_Click);
             // 
-            // pbProfielFoto
-            // 
-            this.pbProfielFoto.Location = new System.Drawing.Point(213, 15);
-            this.pbProfielFoto.Margin = new System.Windows.Forms.Padding(6);
-            this.pbProfielFoto.Name = "pbProfielFoto";
-            this.pbProfielFoto.Size = new System.Drawing.Size(98, 96);
-            this.pbProfielFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbProfielFoto.TabIndex = 4;
-            this.pbProfielFoto.TabStop = false;
-            // 
             // lblGebruikersnaam
             // 
             this.lblGebruikersnaam.AutoSize = true;
@@ -79,17 +69,6 @@
             this.lblGebruikersnaam.Size = new System.Drawing.Size(173, 26);
             this.lblGebruikersnaam.TabIndex = 5;
             this.lblGebruikersnaam.Text = "Gebruikersnaam";
-            // 
-            // btnTerug
-            // 
-            this.btnTerug.Location = new System.Drawing.Point(15, 15);
-            this.btnTerug.Margin = new System.Windows.Forms.Padding(6);
-            this.btnTerug.Name = "btnTerug";
-            this.btnTerug.Size = new System.Drawing.Size(112, 45);
-            this.btnTerug.TabIndex = 6;
-            this.btnTerug.Text = "Terug";
-            this.btnTerug.UseVisualStyleBackColor = true;
-            this.btnTerug.Click += new System.EventHandler(this.btnTerug_Click_1);
             // 
             // lbChat
             // 
@@ -105,7 +84,7 @@
             // 
             this.lbGebruikerLijst.FormattingEnabled = true;
             this.lbGebruikerLijst.ItemHeight = 25;
-            this.lbGebruikerLijst.Location = new System.Drawing.Point(12, 139);
+            this.lbGebruikerLijst.Location = new System.Drawing.Point(12, 12);
             this.lbGebruikerLijst.Name = "lbGebruikerLijst";
             this.lbGebruikerLijst.Size = new System.Drawing.Size(192, 479);
             this.lbGebruikerLijst.TabIndex = 8;
@@ -113,7 +92,31 @@
             // 
             // tmrLaadberichten
             // 
+            this.tmrLaadberichten.Interval = 2000;
             this.tmrLaadberichten.Tick += new System.EventHandler(this.tmrLaadberichten_Tick);
+            // 
+            // btnTerug
+            // 
+            this.btnTerug.BackColor = System.Drawing.Color.Transparent;
+            this.btnTerug.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTerug.Image = global::CAREMATCH.Properties.Resources.buildings;
+            this.btnTerug.Location = new System.Drawing.Point(58, 524);
+            this.btnTerug.Margin = new System.Windows.Forms.Padding(6);
+            this.btnTerug.Name = "btnTerug";
+            this.btnTerug.Size = new System.Drawing.Size(91, 86);
+            this.btnTerug.TabIndex = 6;
+            this.btnTerug.UseVisualStyleBackColor = false;
+            this.btnTerug.Click += new System.EventHandler(this.btnTerug_Click_1);
+            // 
+            // pbProfielFoto
+            // 
+            this.pbProfielFoto.Location = new System.Drawing.Point(213, 15);
+            this.pbProfielFoto.Margin = new System.Windows.Forms.Padding(6);
+            this.pbProfielFoto.Name = "pbProfielFoto";
+            this.pbProfielFoto.Size = new System.Drawing.Size(98, 96);
+            this.pbProfielFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbProfielFoto.TabIndex = 4;
+            this.pbProfielFoto.TabStop = false;
             // 
             // ChatForm
             // 

@@ -30,6 +30,8 @@ namespace Login
             DateTime vandaag = new DateTime();
             Image piet = CAREMATCH.Properties.Resources.users;
 
+            //foutmeldingen
+            #region
             if (textBox1.Text == "" || textBox2.Text == "")
             {
                 MessageBox.Show("Niet alle velden zijn ingevuld");
@@ -38,10 +40,10 @@ namespace Login
             {
                 MessageBox.Show("Gebruikersnaam of Wachtwoord incorrect");
             }
+            #endregion
 
-
-
-
+            //beheerder
+            #region
             else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "beheerder")
             {
                 gebruiker = new Beheerder(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
@@ -53,6 +55,8 @@ namespace Login
                     this.Show();
                 }
             }
+           
+
             else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "Beheerder")
             {
                 gebruiker = new Beheerder(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
@@ -64,14 +68,10 @@ namespace Login
                     this.Show();
                 }
             }
+            #endregion
 
-
-
-
-
-
-
-
+            //vrijwilliger
+            #region
             else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "vrijwilliger")
             {
                 //vrijwilliger is nu standaard goedgekeurd, hoort niet maar is handig voor testen
@@ -85,6 +85,7 @@ namespace Login
                     this.Show();
                 }
             }
+          
             else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "Vrijwilliger")
             {
                 //vrijwilliger is nu standaard goedgekeurd, hoort niet maar is handig voor testen
@@ -98,6 +99,10 @@ namespace Login
                     this.Show();
                 }
             }
+            #endregion
+
+            //hulpbehoevende
+            #region
             else if (dbQuery.Login(textBox1.Text, textBox2.Text) == "hulpbehoevende")
             {
                 hulpbehoevende = new Hulpbehoevende(textBox1.Text, "piet", "piet", piet, "piet", vandaag);
@@ -120,6 +125,7 @@ namespace Login
                     this.Show();
                 }
             }
+            #endregion
         }
 
         //Cursor hand

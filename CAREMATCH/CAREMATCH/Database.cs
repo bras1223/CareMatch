@@ -259,7 +259,10 @@ namespace CAREMATCH
         }
         public void BAccountOverzicht()
         {
-
+            con.Open();
+            OracleCommand command = new OracleCommand("SELECT* FROM GEBRUIKER", con);
+            OracleDataReader reader = command.ExecuteReader();
+            con.Close();
         }
         public void BAccountActiveren()
         {

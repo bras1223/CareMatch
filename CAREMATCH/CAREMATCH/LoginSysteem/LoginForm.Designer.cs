@@ -1,4 +1,4 @@
-﻿namespace Login
+﻿namespace CAREMATCH.LoginSysteem
 {
     partial class LoginForm
     {

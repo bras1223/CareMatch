@@ -13,6 +13,22 @@ using Oracle.ManagedDataAccess.Client;
 using System.Security.Cryptography;
 using CAREMATCH.Gebruikers;
 
+/* 
+public void HulpvraagToevoegen(Hulpvragen.Hulpvraag hulpvraag, Gebruiker gebruiker)
+        {
+            con.Open();
+            if(hulpvraag.Urgent)
+            {
+                tempString = "Y";
+            }
+            else
+            {
+                tempString = "N";
+            }
+            command = new OracleCommand("INSERT INTO Hulpvraag(GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie, Titel, HulpbehoevendeFoto, Locatie) VALUES('" + gebruiker.GebruikersID + "','" + hulpvraag.HulpvraagInhoud + "','" + tempString + "', '" + hulpvraag.DatumTijd + "','" + hulpvraag.Duur + "', '" + hulpvraag.Frequentie+ "', '" +hulpvraag.Titel + "', '"+gebruiker.Pasfoto+"', '"+hulpvraag.Locatie+"')", con);
+            command.ExecuteNonQuery();
+            con.Close();
+        */
 namespace CAREMATCH
 {
     class Database

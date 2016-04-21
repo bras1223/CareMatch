@@ -62,7 +62,6 @@
             this.btnBack.TabIndex = 2;
             this.btnBack.Text = "terug";
             this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // cmbKiesBerichten
             // 

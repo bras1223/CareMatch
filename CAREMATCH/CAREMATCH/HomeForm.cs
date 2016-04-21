@@ -142,7 +142,7 @@ namespace CAREMATCH
         private void btnOngepasteBerichten_Click(object sender, EventArgs e)
         {
             this.Hide();
-            OngepasteBerichtenForm = new OngepasteBerichtenForm();
+            OngepasteBerichtenForm = new OngepasteBerichtenForm(gebruiker);
             OngepasteBerichtenForm.ShowDialog();
             if (OngepasteBerichtenForm.DialogResult == DialogResult.Cancel || chatForm.DialogResult == DialogResult.Cancel)
             {

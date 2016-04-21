@@ -22,16 +22,17 @@ namespace CAREMATCH.VrijwilligerSysteem
             database = new Database();
             this.gebruiker = gebruiker;
             this.hulpvraag = hulpvraag;
-            dtpDatum.Format = DateTimePickerFormat.Custom;
-            dtpDatum.CustomFormat = "d, HH, m, yyyy";
 
-            if (gebruiker.GetType() == typeof(Hulpbehoevende) && hulpvraagIndienen == true)
+            dtpDatum.Format = DateTimePickerFormat.Custom;
+            dtpDatum.CustomFormat = "d, M, yyyy, HH, m";
+            //pbHulpbehoevende.Image = Image.FromFile()
+            if (gebruiker.Rol.ToLower() == "hulpbehoevende")
             {
                 txtHulpvrager.Text = gebruiker.Gebruikersnaam;
                 rtxtReactieInhoud.Enabled = false;
                 btnReactieOpslaan.Visible = false;
             }
-            else if (gebruiker.GetType() == typeof(Vrijwilliger))
+            else if (gebruiker.Rol.ToLower() == "vrijwilliger")
             {
                 btnHulpvraagOpslaan.Visible = false;
 
@@ -41,6 +42,9 @@ namespace CAREMATCH.VrijwilligerSysteem
                 txtFrequentie.Enabled = false;
                 txtHulpvrager.Enabled = false;
                 txtTitel.Enabled = false;
+                dtpDatum.Enabled = false;
+                cbAutoBenodigd.Enabled = false;
+                txtLocatie.Enabled = false;
             }
 
             if(hulpvraag != null)

@@ -67,7 +67,6 @@ namespace CAREMATCH.VrijwilligerSysteem
             lvHulpvragen.FullRowSelect = true;
             lvHulpvragen.Columns.Add("ID");
             lvHulpvragen.Columns.Add("Urgent");
-            lvHulpvragen.Columns.Add("Foto");
             lvHulpvragen.Columns.Add("Hulpbehoevende");
             lvHulpvragen.Columns.Add("Vrijwilliger");
             lvHulpvragen.Columns.Add("Laatste reactie door");
@@ -88,7 +87,6 @@ namespace CAREMATCH.VrijwilligerSysteem
                 {
                     item.SubItems[1].BackColor = Color.Green;
                 }
-                item.SubItems.Add(hulpvraag.HulpbehoevendeFoto);
                 item.SubItems.Add(hulpvraag.Hulpbehoevende);
                 item.SubItems.Add(hulpvraag.Vrijwilliger);
                 item.SubItems.Add(hulpvraag.LaatstGereageerdDoor);
@@ -97,7 +95,7 @@ namespace CAREMATCH.VrijwilligerSysteem
                 lvHulpvragen.Items.Add(item);
             }
             //Autosize collumns.
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 7; i++)
             {
                 if (i >= 6)
                 {

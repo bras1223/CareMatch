@@ -50,7 +50,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cbAutoBenodigd = new System.Windows.Forms.CheckBox();
             this.pbHulpbehoevende = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbVrijwilliger = new System.Windows.Forms.PictureBox();
             this.btnAfspraakInAgenda = new System.Windows.Forms.Button();
             this.btnStartChat = new System.Windows.Forms.Button();
             this.txtVrijwilliger = new System.Windows.Forms.TextBox();
@@ -59,7 +59,7 @@
             this.lbldatumtijd = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbHulpbehoevende)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbVrijwilliger)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -168,7 +168,7 @@
             // 
             this.lblDuur.AutoSize = true;
             this.lblDuur.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDuur.Location = new System.Drawing.Point(701, 246);
+            this.lblDuur.Location = new System.Drawing.Point(701, 232);
             this.lblDuur.Name = "lblDuur";
             this.lblDuur.Size = new System.Drawing.Size(157, 26);
             this.lblDuur.TabIndex = 15;
@@ -177,7 +177,7 @@
             // txtDuur
             // 
             this.txtDuur.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDuur.Location = new System.Drawing.Point(883, 246);
+            this.txtDuur.Location = new System.Drawing.Point(883, 229);
             this.txtDuur.Multiline = true;
             this.txtDuur.Name = "txtDuur";
             this.txtDuur.Size = new System.Drawing.Size(107, 39);
@@ -189,7 +189,7 @@
             this.txtFrequentie.Location = new System.Drawing.Point(357, 229);
             this.txtFrequentie.Multiline = true;
             this.txtFrequentie.Name = "txtFrequentie";
-            this.txtFrequentie.Size = new System.Drawing.Size(107, 39);
+            this.txtFrequentie.Size = new System.Drawing.Size(201, 39);
             this.txtFrequentie.TabIndex = 4;
             // 
             // lblFrequentie
@@ -205,7 +205,7 @@
             // cbUrgent
             // 
             this.cbUrgent.AutoSize = true;
-            this.cbUrgent.Location = new System.Drawing.Point(975, 201);
+            this.cbUrgent.Location = new System.Drawing.Point(975, 181);
             this.cbUrgent.Name = "cbUrgent";
             this.cbUrgent.Size = new System.Drawing.Size(15, 14);
             this.cbUrgent.TabIndex = 6;
@@ -215,7 +215,7 @@
             // 
             this.lblUrgent.AutoSize = true;
             this.lblUrgent.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUrgent.Location = new System.Drawing.Point(871, 192);
+            this.lblUrgent.Location = new System.Drawing.Point(871, 181);
             this.lblUrgent.Name = "lblUrgent";
             this.lblUrgent.Size = new System.Drawing.Size(83, 26);
             this.lblUrgent.TabIndex = 20;
@@ -264,7 +264,7 @@
             // cbAutoBenodigd
             // 
             this.cbAutoBenodigd.AutoSize = true;
-            this.cbAutoBenodigd.Location = new System.Drawing.Point(975, 300);
+            this.cbAutoBenodigd.Location = new System.Drawing.Point(975, 288);
             this.cbAutoBenodigd.Name = "cbAutoBenodigd";
             this.cbAutoBenodigd.Size = new System.Drawing.Size(15, 14);
             this.cbAutoBenodigd.TabIndex = 23;
@@ -280,15 +280,15 @@
             this.pbHulpbehoevende.TabStop = false;
             this.pbHulpbehoevende.Click += new System.EventHandler(this.pbHulpbehoevende_Click);
             // 
-            // pictureBox1
+            // pbVrijwilliger
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(979, 18);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(119, 142);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 27;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pbVrijwilliger.Location = new System.Drawing.Point(979, 18);
+            this.pbVrijwilliger.Name = "pbVrijwilliger";
+            this.pbVrijwilliger.Size = new System.Drawing.Size(119, 142);
+            this.pbVrijwilliger.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbVrijwilliger.TabIndex = 27;
+            this.pbVrijwilliger.TabStop = false;
+            this.pbVrijwilliger.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // btnAfspraakInAgenda
             // 
@@ -336,7 +336,7 @@
             this.dtpDatum.Location = new System.Drawing.Point(357, 181);
             this.dtpDatum.MinDate = new System.DateTime(2016, 4, 21, 0, 0, 0, 0);
             this.dtpDatum.Name = "dtpDatum";
-            this.dtpDatum.Size = new System.Drawing.Size(248, 32);
+            this.dtpDatum.Size = new System.Drawing.Size(242, 32);
             this.dtpDatum.TabIndex = 32;
             this.dtpDatum.ValueChanged += new System.EventHandler(this.dtpDatum_ValueChanged);
             // 
@@ -346,9 +346,9 @@
             this.lbldatumtijd.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbldatumtijd.Location = new System.Drawing.Point(10, 181);
             this.lbldatumtijd.Name = "lbldatumtijd";
-            this.lbldatumtijd.Size = new System.Drawing.Size(333, 26);
+            this.lbldatumtijd.Size = new System.Drawing.Size(325, 26);
             this.lbldatumtijd.TabIndex = 33;
-            this.lbldatumtijd.Text = "Datum && tijd van benodigde hulp:";
+            this.lbldatumtijd.Text = "Datum && Tijd aspraak (dd/mm/jj)";
             // 
             // groupBox1
             // 
@@ -357,7 +357,7 @@
             this.groupBox1.Controls.Add(this.lblHulpvrager);
             this.groupBox1.Controls.Add(this.pbHulpbehoevende);
             this.groupBox1.Controls.Add(this.lblVrijwilliger);
-            this.groupBox1.Controls.Add(this.pictureBox1);
+            this.groupBox1.Controls.Add(this.pbVrijwilliger);
             this.groupBox1.Controls.Add(this.txtVrijwilliger);
             this.groupBox1.Location = new System.Drawing.Point(12, 3);
             this.groupBox1.Name = "groupBox1";
@@ -369,7 +369,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1119, 796);
+            this.ClientSize = new System.Drawing.Size(1131, 796);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lbldatumtijd);
             this.Controls.Add(this.dtpDatum);
@@ -398,7 +398,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HulpvraagForm";
             ((System.ComponentModel.ISupportInitialize)(this.pbHulpbehoevende)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbVrijwilliger)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -430,7 +430,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox cbAutoBenodigd;
         private System.Windows.Forms.PictureBox pbHulpbehoevende;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbVrijwilliger;
         private System.Windows.Forms.Button btnAfspraakInAgenda;
         private System.Windows.Forms.Button btnStartChat;
         private System.Windows.Forms.TextBox txtVrijwilliger;

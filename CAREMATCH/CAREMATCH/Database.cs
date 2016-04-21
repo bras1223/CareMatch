@@ -39,8 +39,9 @@ namespace CAREMATCH
         #region Hulpvragen Queries
         public void HulpvraagToevoegen(Hulpvragen.Hulpvraag hulpvraag, Gebruiker gebruiker)
         {
+            string tempString2;
             con.Open();
-            if(hulpvraag.Urgent)
+            if (hulpvraag.Urgent)
             {
                 tempString = "Y";
             }
@@ -48,7 +49,15 @@ namespace CAREMATCH
             {
                 tempString = "N";
             }
-            command = new OracleCommand("INSERT INTO Hulpvraag(GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie, Titel, HulpbehoevendeFoto, Locatie) VALUES('" + gebruiker.GebruikersID + "','" + hulpvraag.HulpvraagInhoud + "','" + tempString + "', '" + hulpvraag.DatumTijd + "','" + hulpvraag.Duur + "', '" + hulpvraag.Frequentie+ "', '" +hulpvraag.Titel + "', '"+gebruiker.Pasfoto+"', '"+hulpvraag.Locatie+"')", con);
+            if (hulpvraag.Auto)
+            {
+                tempString2 = "Y";
+            }
+            else
+            {
+                tempString2 = "N";
+            }
+            command = new OracleCommand("INSERT INTO Hulpvraag(GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie, Titel, Locatie) VALUES('" + gebruiker.GebruikersID + "','" + hulpvraag.HulpvraagInhoud + "','" + tempString + "', '" + hulpvraag.DatumTijd + "','" + hulpvraag.Duur + "', '" + hulpvraag.Frequentie+ "', '" +hulpvraag.Titel + "', '"+hulpvraag.Locatie+"')", con);
             command.ExecuteNonQuery();
             con.Close();
         }
@@ -114,7 +123,7 @@ namespace CAREMATCH
                 hulpvraag.Reactie = reader["Reactie"].ToString();
                 hulpvraag.LaatstGereageerdDoor = reader["LaatstGereageerdDoor"].ToString();
                 hulpvraag.Duur = reader["Duur"].ToString();
-                hulpvraag.DatumTijd = reader["DatumTijd"].ToString();
+                hulpvraag.DatumTijd = Convert.ToDateTime(reader["DatumTijd"]);
                 if (reader["Urgent"].ToString() == "Y")
                 {
                     hulpvraag.Urgent = true;
@@ -130,18 +139,24 @@ namespace CAREMATCH
 
             return hulpvraagList;
         }
-        public void HulpvraagProfielFotos(Gebruiker gebruiker, Hulpvragen.Hulpvraag hulpvraag)
+        public string HulpvraagProfielFoto(Gebruiker gebruiker, Hulpvragen.Hulpvraag hulpvraag, string rol)
         {
-            command = new OracleCommand("SELECT Fo FROM Gebruiker WHERE LOWER(ROL)='vrijwilliger' ", con);
-
+            con.Open();
+            if(rol == "hulpbehoevende")
+            {
+                command = new OracleCommand("SELECT Foto FROM Gebruiker WHERE GebruikerID=(SELECT GebruikerID FROM Hulpvraag WHERE HulpvraagID='"+hulpvraag.HulpvraagID+"') ", con);
+            }
+            else if(rol == "vrijwilliger")
+            {
+                command = new OracleCommand("SELECT Foto FROM Gebruiker WHERE Gebruikersnaam='" + hulpvraag.Vrijwilliger + "' ", con);
+            }
             reader = command.ExecuteReader();
-            try
+            while (reader.Read())
             {
-                gebruiker.Pasfoto = reader["Foto"].ToString();
+                tempString = reader["Foto"].ToString();
             }
-            catch
-            {
-            }
+            con.Close();
+            return tempString;
         }
         #endregion
         #region Agenda Queries

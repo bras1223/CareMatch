@@ -8,10 +8,7 @@ namespace CAREMATCH.Hulpvragen
 {
     class Hulpvraag
     {
-        public string DatumTijd
-        {
-            get; set;
-        }
+        public DateTime DatumTijd { get; set; }
         public int HulpvraagID { get; set; }
         public string Duur { get; set; }
         public string HulpbehoevendeFoto { get; set; }
@@ -23,7 +20,7 @@ namespace CAREMATCH.Hulpvragen
         public string Frequentie { get; set; }
         public string Reactie { get; set; }
         public string LaatstGereageerdDoor { get; set; }
-        public bool Aangenomen { get; set; }
+        public bool Auto { get; set; }
         public bool Urgent { get; set; }
         public bool Afgerond { get; set; }
 

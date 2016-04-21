@@ -33,12 +33,12 @@ namespace CAREMATCH
             InitializeComponent();
             this.gebruiker = gebruiker;
                         
-            if (gebruiker.GetType() == typeof(Hulpbehoevende))
+            if (gebruiker.Rol.ToLower() == "hulpbehoevende")
             {
                 btnOngepasteBerichten.Visible = false;
                 btnAccountOverzicht.Visible = false;
             }
-            else if (gebruiker.GetType() == typeof(Vrijwilliger))
+            else if (gebruiker.Rol.ToLower() == "vrijwilliger")
             {
                 btnHulpvraagIndienen.Visible = false;
 

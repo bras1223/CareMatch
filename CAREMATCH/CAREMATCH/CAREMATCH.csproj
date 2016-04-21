@@ -93,6 +93,12 @@
     <Compile Include="Agenda\DagOverzichtForm.Designer.cs">
       <DependentUpon>DagOverzichtForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Beheerder\AgendaBeheerderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Beheerder\AgendaBeheerderForm.Designer.cs">
+      <DependentUpon>AgendaBeheerderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Beheerder\GebruikersBeheerderForm.cs">
       <SubType>Form</SubType>
     </Compile>

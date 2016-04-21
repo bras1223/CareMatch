@@ -52,9 +52,14 @@ namespace CAREMATCH
             command.ExecuteNonQuery();
             con.Close();
         }
-        public void HulpvraagVerwijderen()
+        public void HulpvraagVerwijderen(Hulpvragen.Hulpvraag hulpvraag)
         {
+            con.Open();
 
+            int id = hulpvraag.HulpvraagID;
+            command = new OracleCommand("DELETE FROM Hulpvraag WHERE HulpvraagID = " + id + ";", con);
+
+            con.Close();
         }
         public void HulpvraagAanpassen(Gebruiker gebruiker, Hulpvragen.Hulpvraag hulpvraag)
         {
@@ -72,7 +77,7 @@ namespace CAREMATCH
             reader = command.ExecuteReader();
             con.Close();
         }
-        public List<Hulpvragen.Hulpvraag> HulpvragenOverzicht(bool aangenomen, Gebruiker gebruiker, string filter)
+        public List<Hulpvragen.Hulpvraag> HulpvragenOverzicht(Gebruiker gebruiker, string filter)
         {
             List<Hulpvragen.Hulpvraag> hulpvraagList = new List<Hulpvragen.Hulpvraag>();
 
@@ -94,6 +99,17 @@ namespace CAREMATCH
             else if (filter == "Nieuwe reacties" && gebruiker.Rol.ToLower() == "hulpbehoevende")
             {
                 command = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.LaatstGereageerdDoor, Hulpvraag.HulpvraagInhoud,  Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie,  Hulpvraag.Titel, Hulpvraag.Reactie, Hulpvraag.LaatstGereageerdDoor, Hulpvraag.Duur FROM Hulpvraag WHERE GebruikerID='" + gebruiker.GebruikersID + "' AND LaatstGereageerdDoor !='" + gebruiker.Gebruikersnaam + "'", con);
+            }
+            else if(filter.ToLower() == "ongepaste hulpvragen" && gebruiker.Rol.ToLower() == "beheerder")
+            {
+                throw new NotImplementedException();
+                command = new OracleCommand("", con);
+                //nog niet af, moeten nog 2 querries bij, dus nog 2 else-if statements met 2 querries
+                //op basis van OngepasteBerichtenForm;
+            }
+            else if(filter == "")
+            {
+
             }
             else
             {

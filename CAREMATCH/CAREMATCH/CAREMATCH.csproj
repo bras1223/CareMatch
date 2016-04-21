@@ -99,11 +99,23 @@
     <Compile Include="Beheerder\AgendaBeheerderForm.Designer.cs">
       <DependentUpon>AgendaBeheerderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Beheerder\ChatBeheerderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Beheerder\ChatBeheerderForm.Designer.cs">
+      <DependentUpon>ChatBeheerderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Beheerder\GebruikersBeheerderForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Beheerder\GebruikersBeheerderForm.Designer.cs">
       <DependentUpon>GebruikersBeheerderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Beheerder\HulpvraagBeheerderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Beheerder\HulpvraagBeheerderForm.Designer.cs">
+      <DependentUpon>HulpvraagBeheerderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Chat\Chatbericht.cs" />
     <Compile Include="Chat\ChatForm.cs">
@@ -171,8 +183,17 @@
     <EmbeddedResource Include="Agenda\DagOverzichtForm.resx">
       <DependentUpon>DagOverzichtForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Beheerder\AgendaBeheerderForm.resx">
+      <DependentUpon>AgendaBeheerderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Beheerder\ChatBeheerderForm.resx">
+      <DependentUpon>ChatBeheerderForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Beheerder\GebruikersBeheerderForm.resx">
       <DependentUpon>GebruikersBeheerderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Beheerder\HulpvraagBeheerderForm.resx">
+      <DependentUpon>HulpvraagBeheerderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Chat\ChatForm.resx">
       <DependentUpon>ChatForm.cs</DependentUpon>

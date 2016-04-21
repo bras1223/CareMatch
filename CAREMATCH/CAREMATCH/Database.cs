@@ -425,11 +425,11 @@ namespace CAREMATCH
             con.Open();
             if (query == "Alles")
             {
-                tempString = "SELECT * FROM REACTIE";
+                tempString = "SELECT * FROM HULPVRAAG";
             }
-            else if (query == "Naam & Wachtwoord")
+            else if (query == "Hulpvraag info")
             {
-                tempString = "SELECT GEBRUIKERSNAAM, FREQUENTIE FROM REACTIE";
+                tempString = "SELECT GEBRUIKERSNAAM, TITEL, FREQUENTIE FROM HULPVRAAG";
             }
 
             OracleDataAdapter reader = new OracleDataAdapter(tempString, con);

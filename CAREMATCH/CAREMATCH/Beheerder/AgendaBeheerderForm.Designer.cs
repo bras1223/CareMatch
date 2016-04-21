@@ -78,6 +78,7 @@
             this.Controls.Add(this.cmbBeheer);
             this.Controls.Add(this.btnBack);
             this.Name = "AgendaBeheerderForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AgendaBeheerderForm";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

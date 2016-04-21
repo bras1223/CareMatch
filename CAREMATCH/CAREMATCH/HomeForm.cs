@@ -74,12 +74,25 @@ namespace CAREMATCH
         }
         private void btnAgenda_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            weekrooster = new Agenda.DagOverzichtForm(gebruiker);
-            weekrooster.ShowDialog();
-            if (weekrooster.DialogResult == DialogResult.OK || weekrooster.DialogResult == DialogResult.Cancel)
+            if (gebruiker.Rol.ToLower() == "vrijwilliger" || gebruiker.Rol.ToLower() == "hulpbehoevende")
             {
-                this.Show();
+                this.Hide();
+                weekrooster = new Agenda.DagOverzichtForm(gebruiker);
+                weekrooster.ShowDialog();
+                if (weekrooster.DialogResult == DialogResult.OK || weekrooster.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
+            }
+            else
+            {
+                this.Hide();
+                AgendaBeheerderForm = new AgendaBeheerderForm(gebruiker);
+                AgendaBeheerderForm.ShowDialog();
+                if (AgendaBeheerderForm.DialogResult == DialogResult.Cancel || profielForm.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
             }
         }
         private void btnBerichten_Click(object sender, EventArgs e)
@@ -127,19 +140,11 @@ namespace CAREMATCH
 
         private void btnOngepasteBerichten_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            AgendaBeheerderForm = new AgendaBeheerderForm(gebruiker);
-            AgendaBeheerderForm.ShowDialog();
-            if (AgendaBeheerderForm.DialogResult == DialogResult.Cancel|| profielForm.DialogResult == DialogResult.Cancel)
-            {
-                this.Show();
-            }
+
         }
 
         private void btnAccountOverzicht_Click(object sender, EventArgs e)
         {
-            try
-            {
                 this.Hide();
                 GebruikerBeheerderForm = new GebruikerBeheer(gebruiker);
                 GebruikerBeheerderForm.ShowDialog();
@@ -147,11 +152,8 @@ namespace CAREMATCH
                 {
                     this.Show();
                 }
-            }
-            catch(Exception f)
-            {
-                MessageBox.Show(f.Message);
-            }
+           
+
         }
     }
 }

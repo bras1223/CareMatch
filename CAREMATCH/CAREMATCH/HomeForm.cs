@@ -27,6 +27,7 @@ namespace CAREMATCH
         private GebruikerBeheer GebruikerBeheerderForm;
         private AgendaBeheerderForm AgendaBeheerderForm;
         private ChatBeheerdersForm ChatBeheerderForm;
+        private OngepasteBerichtenForm OngepasteBerichtenForm;
 
         public HomeForm(Gebruiker gebruiker)
         {
@@ -140,7 +141,13 @@ namespace CAREMATCH
 
         private void btnOngepasteBerichten_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            OngepasteBerichtenForm = new OngepasteBerichtenForm();
+            OngepasteBerichtenForm.ShowDialog();
+            if (OngepasteBerichtenForm.DialogResult == DialogResult.Cancel || chatForm.DialogResult == DialogResult.Cancel)
+            {
+                this.Show();
+            }
         }
 
         private void btnAccountOverzicht_Click(object sender, EventArgs e)

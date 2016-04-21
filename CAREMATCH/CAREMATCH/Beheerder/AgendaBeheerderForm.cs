@@ -34,13 +34,8 @@ namespace CAREMATCH.Beheerder
 
         private void btnBack_Click_1(object sender, EventArgs e)
         {
-            this.Hide();
-            homeform = new HomeForm(gebruiker);
-            homeform.ShowDialog();
-            if (homeform.DialogResult == DialogResult.OK)
-            {
-                this.Show();
-            }
+            DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }

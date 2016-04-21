@@ -12,7 +12,9 @@ namespace CAREMATCH
 {
     public partial class OngepasteBerichtenForm : Form
     {
+        private Gebruiker gebruiker;
         private Database database;
+        HomeForm homeform;
 
         public OngepasteBerichtenForm()
         {
@@ -45,6 +47,12 @@ namespace CAREMATCH
                     MessageBox.Show("default");
                     break;
             }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }

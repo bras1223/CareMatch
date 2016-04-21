@@ -52,7 +52,6 @@ namespace CAREMATCH.LoginSysteem
         }
         public void ShowDialogMethod()
         {
-            SignupForm SignUp = new SignupForm();
             this.Hide();
             homeForm.ShowDialog();
             if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
@@ -72,11 +71,12 @@ namespace CAREMATCH.LoginSysteem
             RFID attached = (RFID)sender;
         }
 
+        //detach event handler...clear all the fields, display the attached status, and disable the checkboxes.
         void rfid_Detach(object sender, DetachEventArgs e)
         {
             RFID detached = (RFID)sender;
         }
-       
+
 
         #region Command line open functions
         private void openCmdLine(Phidget p)
@@ -176,4 +176,4 @@ namespace CAREMATCH.LoginSysteem
             rfid.close();
         }
     }
-    }
+}

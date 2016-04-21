@@ -102,8 +102,7 @@ namespace CAREMATCH.VrijwilligerSysteem
             hulpvraag.Locatie = txtLocatie.Text;
             hulpvraag.Auto = cbAutoBenodigd.Checked;
             hulpvraag.DatumTijd = dtpDatum.Value;
-
-            database.HulpvraagToevoegen(hulpvraag, gebruiker);
+            
             try
             {
                 database.HulpvraagToevoegen(hulpvraag, gebruiker);

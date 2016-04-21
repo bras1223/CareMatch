@@ -121,7 +121,7 @@
             this.rtxtReactieInhoud.Location = new System.Drawing.Point(357, 612);
             this.rtxtReactieInhoud.Name = "rtxtReactieInhoud";
             this.rtxtReactieInhoud.Size = new System.Drawing.Size(635, 176);
-            this.rtxtReactieInhoud.TabIndex = 8;
+            this.rtxtReactieInhoud.TabIndex = 9;
             this.rtxtReactieInhoud.Text = "";
             // 
             // btnReactieOpslaan
@@ -141,7 +141,7 @@
             this.rtxtHulpvraag.Location = new System.Drawing.Point(357, 434);
             this.rtxtHulpvraag.Name = "rtxtHulpvraag";
             this.rtxtHulpvraag.Size = new System.Drawing.Size(635, 136);
-            this.rtxtHulpvraag.TabIndex = 7;
+            this.rtxtHulpvraag.TabIndex = 8;
             this.rtxtHulpvraag.Text = "";
             // 
             // txtTitel
@@ -151,7 +151,7 @@
             this.txtTitel.Multiline = true;
             this.txtTitel.Name = "txtTitel";
             this.txtTitel.Size = new System.Drawing.Size(548, 41);
-            this.txtTitel.TabIndex = 1;
+            this.txtTitel.TabIndex = 7;
             this.txtTitel.TextChanged += new System.EventHandler(this.txtTitel_TextChanged);
             // 
             // txtHulpvrager
@@ -181,7 +181,7 @@
             this.txtDuur.Multiline = true;
             this.txtDuur.Name = "txtDuur";
             this.txtDuur.Size = new System.Drawing.Size(107, 39);
-            this.txtDuur.TabIndex = 3;
+            this.txtDuur.TabIndex = 4;
             // 
             // txtFrequentie
             // 
@@ -190,7 +190,7 @@
             this.txtFrequentie.Multiline = true;
             this.txtFrequentie.Name = "txtFrequentie";
             this.txtFrequentie.Size = new System.Drawing.Size(201, 39);
-            this.txtFrequentie.TabIndex = 4;
+            this.txtFrequentie.TabIndex = 3;
             // 
             // lblFrequentie
             // 
@@ -208,7 +208,7 @@
             this.cbUrgent.Location = new System.Drawing.Point(975, 181);
             this.cbUrgent.Name = "cbUrgent";
             this.cbUrgent.Size = new System.Drawing.Size(15, 14);
-            this.cbUrgent.TabIndex = 6;
+            this.cbUrgent.TabIndex = 2;
             this.cbUrgent.UseVisualStyleBackColor = true;
             // 
             // lblUrgent
@@ -227,7 +227,7 @@
             this.btnHulpvraagOpslaan.Location = new System.Drawing.Point(15, 629);
             this.btnHulpvraagOpslaan.Name = "btnHulpvraagOpslaan";
             this.btnHulpvraagOpslaan.Size = new System.Drawing.Size(141, 64);
-            this.btnHulpvraagOpslaan.TabIndex = 9;
+            this.btnHulpvraagOpslaan.TabIndex = 10;
             this.btnHulpvraagOpslaan.Text = "Hulpvraag Opslaan";
             this.btnHulpvraagOpslaan.UseVisualStyleBackColor = true;
             this.btnHulpvraagOpslaan.Click += new System.EventHandler(this.btnHulpvraagOpslaan_Click);
@@ -267,7 +267,7 @@
             this.cbAutoBenodigd.Location = new System.Drawing.Point(975, 288);
             this.cbAutoBenodigd.Name = "cbAutoBenodigd";
             this.cbAutoBenodigd.Size = new System.Drawing.Size(15, 14);
-            this.cbAutoBenodigd.TabIndex = 23;
+            this.cbAutoBenodigd.TabIndex = 6;
             this.cbAutoBenodigd.UseVisualStyleBackColor = true;
             // 
             // pbHulpbehoevende
@@ -296,7 +296,7 @@
             this.btnAfspraakInAgenda.Location = new System.Drawing.Point(181, 629);
             this.btnAfspraakInAgenda.Name = "btnAfspraakInAgenda";
             this.btnAfspraakInAgenda.Size = new System.Drawing.Size(141, 64);
-            this.btnAfspraakInAgenda.TabIndex = 28;
+            this.btnAfspraakInAgenda.TabIndex = 12;
             this.btnAfspraakInAgenda.Text = "Zet afspraak in Agenda";
             this.btnAfspraakInAgenda.UseVisualStyleBackColor = true;
             // 
@@ -306,7 +306,7 @@
             this.btnStartChat.Location = new System.Drawing.Point(181, 724);
             this.btnStartChat.Name = "btnStartChat";
             this.btnStartChat.Size = new System.Drawing.Size(141, 64);
-            this.btnStartChat.TabIndex = 29;
+            this.btnStartChat.TabIndex = 13;
             this.btnStartChat.Text = "Start Chat";
             this.btnStartChat.UseVisualStyleBackColor = true;
             // 
@@ -337,7 +337,7 @@
             this.dtpDatum.MinDate = new System.DateTime(2016, 4, 21, 0, 0, 0, 0);
             this.dtpDatum.Name = "dtpDatum";
             this.dtpDatum.Size = new System.Drawing.Size(242, 32);
-            this.dtpDatum.TabIndex = 32;
+            this.dtpDatum.TabIndex = 1;
             this.dtpDatum.ValueChanged += new System.EventHandler(this.dtpDatum_ValueChanged);
             // 
             // lbldatumtijd

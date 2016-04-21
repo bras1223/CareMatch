@@ -73,7 +73,7 @@ namespace CAREMATCH
             {
                 tempString2 = "N";
             }
-            command = new OracleCommand("INSERT INTO Hulpvraag(GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie, Titel, Locatie) VALUES('" + gebruiker.GebruikersID + "','" + hulpvraag.HulpvraagInhoud + "','" + tempString + "', '" + hulpvraag.DatumTijd + "','" + hulpvraag.Duur + "', '" + hulpvraag.Frequentie+ "', '" +hulpvraag.Titel + "', '"+hulpvraag.Locatie+"')", con);
+            command = new OracleCommand("INSERT INTO Hulpvraag(GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie, Titel, Locatie, AutoBenodigd) VALUES('" + gebruiker.GebruikersID + "', '" + hulpvraag.HulpvraagInhoud + "', '" + tempString + "', '" + hulpvraag.DatumTijd + "', '" + hulpvraag.Duur + "', '" + hulpvraag.Frequentie+ "', '" +hulpvraag.Titel + "', '"+hulpvraag.Locatie+"', '"+tempString2+"')", con);
             command.ExecuteNonQuery();
             con.Close();
         }
@@ -139,7 +139,10 @@ namespace CAREMATCH
                 hulpvraag.Reactie = reader["Reactie"].ToString();
                 hulpvraag.LaatstGereageerdDoor = reader["LaatstGereageerdDoor"].ToString();
                 hulpvraag.Duur = reader["Duur"].ToString();
-                hulpvraag.DatumTijd = Convert.ToDateTime(reader["DatumTijd"]);
+                if(!(reader["DatumTijd"] is DBNull))
+                {
+                    hulpvraag.DatumTijd = Convert.ToDateTime(reader["DatumTijd"]);
+                }
                 if (reader["Urgent"].ToString() == "Y")
                 {
                     hulpvraag.Urgent = true;

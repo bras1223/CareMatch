@@ -10,16 +10,17 @@ namespace Login
     {
         private Gebruiker gebruiker;
         private Database database;
-        HomeForm homeform;
+        private HomeForm homeform;
 
+        //constructors
         public BeheerdersForm(Gebruiker gebruiker)
         {
             InitializeComponent();
             database = new Database();
-            this.gebruiker = gebruiker;
+            this.gebruiker = gebruiker; 
         }
 
-
+        // methods
         private void cmbBeheer_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();

@@ -59,6 +59,7 @@
             this.pnlWeekrooster.Size = new System.Drawing.Size(1033, 496);
             this.pnlWeekrooster.TabIndex = 1;
             this.pnlWeekrooster.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlWeekrooster_Paint);
+            this.pnlWeekrooster.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnlWeekrooster_MouseUp);
             // 
             // dtpTijdPicker
             // 

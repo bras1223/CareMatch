@@ -70,5 +70,15 @@ namespace CAREMATCH.Agenda
             database.AgendaOverzicht(gebruiker, cbFilter.Text, dtpTijdPicker.Value.Date);
             pnlWeekrooster.Refresh();
         }
+        private void pnlWeekrooster_MouseUp(object sender, MouseEventArgs e)
+        {
+            foreach (Rectangle rec in dagOverzicht.GetAgendaRectangleList())
+            {
+                if (rec.Contains(new Point(e.X, e.Y)))
+                {
+                    MessageBox.Show("clcikd");
+                }
+            }
+        }
     }
 }

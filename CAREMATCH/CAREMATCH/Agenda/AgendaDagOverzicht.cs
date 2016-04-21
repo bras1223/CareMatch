@@ -12,7 +12,9 @@ namespace CAREMATCH.Agenda
         private Gebruiker gebruiker;
         private Database database;
         private List<AgendaPunt> dagAfsprakenList;
+        private List<Rectangle> recAgendaPuntenList;
         private string filter;
+        private Rectangle recAgendaPunt;
         int lines;
         float x;
         float y;
@@ -26,6 +28,7 @@ namespace CAREMATCH.Agenda
         {
             this.gebruiker = gebruiker;
             dagAfsprakenList = new List<AgendaPunt>();
+            recAgendaPuntenList = new List<Rectangle>();
             database = new Database();
 
             lines = 22;
@@ -64,7 +67,9 @@ namespace CAREMATCH.Agenda
                         sbColor = new SolidBrush(Color.Orange);
                         break;
                 };
-                g.FillRectangle(sbColor, new Rectangle(aantalAfspraken * 200 + 50, Convert.ToInt32((xSpace * (ap.DatumTijdStart - 8))), 180, Convert.ToInt32((xSpace * (ap.DatumTijdEind - ap.DatumTijdStart)))));
+                recAgendaPunt = new Rectangle(aantalAfspraken * 200 + 50, Convert.ToInt32((xSpace * (ap.DatumTijdStart - 8))), 180, Convert.ToInt32((xSpace * (ap.DatumTijdEind - ap.DatumTijdStart))));
+                recAgendaPuntenList.Add(recAgendaPunt); 
+                g.FillRectangle(sbColor, recAgendaPunt);
                 g.DrawString("Afspraak met:\n"+ ap.Hulpbehoevende , font, sbBlack, aantalAfspraken * 200 + 50, Convert.ToInt32((xSpace * (ap.DatumTijdStart - 8))));
                 aantalAfspraken++;
             }
@@ -78,6 +83,10 @@ namespace CAREMATCH.Agenda
                 //Zorgen dat de lijnen niet naast elkaar gezet worden
                 y += xSpace;
             }                        
+        }
+        public List<Rectangle> GetAgendaRectangleList()
+        {
+            return recAgendaPuntenList;
         }
     }
 }

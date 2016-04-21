@@ -86,10 +86,18 @@ namespace CAREMATCH.VrijwilligerSysteem
             gebruiker.Auto = cbAuto.Checked;
             //Verschil maken tussen welke info veranderd is. Anders wordt er een encryptie 
             //over uitgevoerd over het al, geencrypte wachtwoord elke keer dat je iets aan het profiel aanpast
-            if (txtHerhaalWachtwoord.Text != "")
+            if (txtHerhaalWachtwoord.Text == txtNieuwWachtwoord.Text)
             {
                 gebruiker.Wachtwoord = txtNieuwWachtwoord.Text;
                 database.GebruikerProfielAanpassen(gebruiker,true,false);
+            }
+            else
+            {
+                MessageBox.Show("'Nieuw Wachtwoord' is niet gelijk aan het 'Herhaal Wachtwoord'.");
+            }
+            if(gebruiker.Wachtwoord != database.EncryptString(txtActueelWachtwoord.Text))
+            {
+                MessageBox.Show("Actueel wachtwoord klopt niet.");
             }
             if(gebruiker.Pasfoto != @"\")
             {

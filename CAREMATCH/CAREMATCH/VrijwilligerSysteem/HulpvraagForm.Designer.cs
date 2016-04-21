@@ -51,7 +51,6 @@
             this.cbAutoBenodigd = new System.Windows.Forms.CheckBox();
             this.pbHulpbehoevende = new System.Windows.Forms.PictureBox();
             this.pbVrijwilliger = new System.Windows.Forms.PictureBox();
-            this.btnAfspraakInAgenda = new System.Windows.Forms.Button();
             this.btnStartChat = new System.Windows.Forms.Button();
             this.txtVrijwilliger = new System.Windows.Forms.TextBox();
             this.lblVrijwilliger = new System.Windows.Forms.Label();
@@ -290,16 +289,6 @@
             this.pbVrijwilliger.TabStop = false;
             this.pbVrijwilliger.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // btnAfspraakInAgenda
-            // 
-            this.btnAfspraakInAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAfspraakInAgenda.Location = new System.Drawing.Point(181, 629);
-            this.btnAfspraakInAgenda.Name = "btnAfspraakInAgenda";
-            this.btnAfspraakInAgenda.Size = new System.Drawing.Size(141, 64);
-            this.btnAfspraakInAgenda.TabIndex = 12;
-            this.btnAfspraakInAgenda.Text = "Zet afspraak in Agenda";
-            this.btnAfspraakInAgenda.UseVisualStyleBackColor = true;
-            // 
             // btnStartChat
             // 
             this.btnStartChat.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -374,7 +363,6 @@
             this.Controls.Add(this.lbldatumtijd);
             this.Controls.Add(this.dtpDatum);
             this.Controls.Add(this.btnStartChat);
-            this.Controls.Add(this.btnAfspraakInAgenda);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cbAutoBenodigd);
             this.Controls.Add(this.txtLocatie);
@@ -431,7 +419,6 @@
         private System.Windows.Forms.CheckBox cbAutoBenodigd;
         private System.Windows.Forms.PictureBox pbHulpbehoevende;
         private System.Windows.Forms.PictureBox pbVrijwilliger;
-        private System.Windows.Forms.Button btnAfspraakInAgenda;
         private System.Windows.Forms.Button btnStartChat;
         private System.Windows.Forms.TextBox txtVrijwilliger;
         private System.Windows.Forms.Label lblVrijwilliger;

@@ -102,7 +102,7 @@ namespace CAREMATCH.VrijwilligerSysteem
             hulpvraag.Locatie = txtLocatie.Text;
             hulpvraag.Auto = cbAutoBenodigd.Checked;
             hulpvraag.DatumTijd = dtpDatum.Value;
-            
+
             try
             {
                 database.HulpvraagToevoegen(hulpvraag, gebruiker);
@@ -112,6 +112,7 @@ namespace CAREMATCH.VrijwilligerSysteem
             {
                 MessageBox.Show("Er is iets foutgegaan bij het opslaan van de hulpvraag. Neem contact op met CareMatch.");
             }
+            Close();
         }
 
         private void txtTitel_TextChanged(object sender, EventArgs e)

@@ -459,15 +459,15 @@ namespace CAREMATCH
                 //Nieuwe gebruiker aanmaken op basis van de rol
                 if (reader["ROL"].ToString().ToLower() == "hulpbehoevende")
                 {
-                    gebruiker = new Hulpbehoevende();
+                    gebruiker = new Gebruiker();
                 }
                 else if (reader["ROL"].ToString().ToLower() == "beheerder")
                 {
-                    gebruiker = new Beheerder();
+                    gebruiker = new Gebruiker();
                 }
                 else if (reader["ROL"].ToString().ToLower() == "vrijwilliger")
                 {
-                    gebruiker = new Vrijwilliger();
+                    gebruiker = new Gebruiker();
                     gebruiker.Approved = true;
                 }
                 //Properties toekennen aan gebruiken.

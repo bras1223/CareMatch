@@ -1,6 +1,6 @@
 ﻿namespace Login
 {
-    partial class BeheerdersForm
+    partial class GebruikerBeheer
     {
         /// <summary>
         /// Required designer variable.
@@ -41,11 +41,13 @@
             this.cmbBeheer.FormattingEnabled = true;
             this.cmbBeheer.Items.AddRange(new object[] {
             "Alles",
-            "Naam & Wachtwoord"});
+            "Naam & Wachtwoord",
+            "Niet goedgekeurde gebruikers",
+            "Vrijwilligers zonder VOG"});
             this.cmbBeheer.Location = new System.Drawing.Point(12, 214);
             this.cmbBeheer.Margin = new System.Windows.Forms.Padding(2);
             this.cmbBeheer.Name = "cmbBeheer";
-            this.cmbBeheer.Size = new System.Drawing.Size(214, 33);
+            this.cmbBeheer.Size = new System.Drawing.Size(571, 33);
             this.cmbBeheer.TabIndex = 17;
             this.cmbBeheer.SelectedIndexChanged += new System.EventHandler(this.cmbBeheer_SelectedIndexChanged);
             // 
@@ -69,7 +71,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(788, 197);
             this.dataGridView1.TabIndex = 18;
             // 
-            // BeheerdersForm
+            // GebruikerBeheer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -78,7 +80,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.cmbBeheer);
             this.Controls.Add(this.btnBack);
-            this.Name = "BeheerdersForm";
+            this.Name = "GebruikerBeheer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BeheerdersForm";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

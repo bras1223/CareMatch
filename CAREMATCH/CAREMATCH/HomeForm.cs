@@ -23,9 +23,7 @@ namespace CAREMATCH
         private HulpvraagForm hulpvraagForm;
         private HulpvraagOverzichtForm hulpvraagOverzichtForm;
         private ProfielForm profielForm;
-        private BeheerdersForm beheerdersForm;
-        private OngepasteBerichtenForm OngBerichtForm;
-
+        private GebruikerBeheer beheerdersForm;
         public HomeForm(Gebruiker gebruiker)
         {
             InitializeComponent();
@@ -112,9 +110,8 @@ namespace CAREMATCH
         private void btnOngepasteBerichten_Click(object sender, EventArgs e)
         {
             this.Hide();
-            OngBerichtForm = new OngepasteBerichtenForm(gebruiker);
-            
-            OngBerichtForm.ShowDialog();
+            beheerdersForm = new GebruikerBeheer(gebruiker);
+            beheerdersForm.ShowDialog();
             if (beheerdersForm.DialogResult == DialogResult.OK || profielForm.DialogResult == DialogResult.Cancel)
             {
                 this.Show();
@@ -126,7 +123,7 @@ namespace CAREMATCH
             try
             {
                 this.Hide();
-                beheerdersForm = new BeheerdersForm(gebruiker);
+                beheerdersForm = new GebruikerBeheer(gebruiker);
                 beheerdersForm.ShowDialog();
                 if (beheerdersForm.DialogResult == DialogResult.OK || profielForm.DialogResult == DialogResult.Cancel)
                 {

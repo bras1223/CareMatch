@@ -110,7 +110,7 @@ namespace CAREMATCH
             else
             {
                 this.Hide();
-                ChatBeheerderForm = new ChatBeheerdersForm();
+                ChatBeheerderForm = new ChatBeheerdersForm(gebruiker);
                 ChatBeheerderForm.ShowDialog();
                 if (ChatBeheerderForm.DialogResult == DialogResult.Cancel || chatForm.DialogResult == DialogResult.Cancel)
                 {

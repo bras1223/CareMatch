@@ -10,14 +10,15 @@ namespace CAREMATCH.LoginSysteem
     {
         private Login login;
         private Database database;
-        HomeForm homeForm;        
+        HomeForm homeForm; 
+               
 
         public LoginForm()
         {
             InitializeComponent();
             login = new Login();
             database = new Database();
-            ActiveControl = txtGebruikersnaam;
+            ActiveControl = txtGebruikersnaam;   
         }
         //Logincheck
         private void btnLogin_Click(object sender, EventArgs e)
@@ -74,6 +75,8 @@ namespace CAREMATCH.LoginSysteem
                 this.Show();
             }
         }
+
+ 
         private void LoginForm_Load(object sender, EventArgs e)
         {
 

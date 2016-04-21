@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CAREMATCH.Agenda;
+using Login;
 
 namespace CAREMATCH
 {
@@ -22,7 +23,7 @@ namespace CAREMATCH
         private HulpvraagForm hulpvraagForm;
         private HulpvraagOverzichtForm hulpvraagOverzichtForm;
         private ProfielForm profielForm;
-
+        private BeheerdersForm beheerdersForm;
         public HomeForm(Gebruiker gebruiker)
         {
             InitializeComponent();
@@ -113,7 +114,9 @@ namespace CAREMATCH
 
         private void btnAccountOverzicht_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            beheerdersForm = new BeheerdersForm(gebruiker);
+            beheerdersForm.ShowDialog();
         }
     }
 }

@@ -47,13 +47,19 @@
             this.btnHulpvraagOpslaan = new System.Windows.Forms.Button();
             this.txtLocatie = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbAutoBenodigd = new System.Windows.Forms.CheckBox();
+            this.pbHulpbehoevende = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHulpbehoevende)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitel
             // 
             this.lblTitel.AutoSize = true;
             this.lblTitel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitel.Location = new System.Drawing.Point(45, 9);
+            this.lblTitel.Location = new System.Drawing.Point(197, 12);
             this.lblTitel.Name = "lblTitel";
             this.lblTitel.Size = new System.Drawing.Size(58, 26);
             this.lblTitel.TabIndex = 0;
@@ -63,7 +69,7 @@
             // 
             this.lblOmschrijving.AutoSize = true;
             this.lblOmschrijving.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOmschrijving.Location = new System.Drawing.Point(205, 269);
+            this.lblOmschrijving.Location = new System.Drawing.Point(357, 272);
             this.lblOmschrijving.Name = "lblOmschrijving";
             this.lblOmschrijving.Size = new System.Drawing.Size(145, 26);
             this.lblOmschrijving.TabIndex = 2;
@@ -73,7 +79,7 @@
             // 
             this.lblHulpvrager.AutoSize = true;
             this.lblHulpvrager.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHulpvrager.Location = new System.Drawing.Point(45, 66);
+            this.lblHulpvrager.Location = new System.Drawing.Point(197, 69);
             this.lblHulpvrager.Name = "lblHulpvrager";
             this.lblHulpvrager.Size = new System.Drawing.Size(130, 26);
             this.lblHulpvrager.TabIndex = 4;
@@ -94,7 +100,7 @@
             // 
             this.lblReactie.AutoSize = true;
             this.lblReactie.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReactie.Location = new System.Drawing.Point(205, 449);
+            this.lblReactie.Location = new System.Drawing.Point(357, 450);
             this.lblReactie.Name = "lblReactie";
             this.lblReactie.Size = new System.Drawing.Size(92, 26);
             this.lblReactie.TabIndex = 4;
@@ -103,7 +109,7 @@
             // rtxtReactieInhoud
             // 
             this.rtxtReactieInhoud.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtxtReactieInhoud.Location = new System.Drawing.Point(210, 478);
+            this.rtxtReactieInhoud.Location = new System.Drawing.Point(362, 479);
             this.rtxtReactieInhoud.Name = "rtxtReactieInhoud";
             this.rtxtReactieInhoud.Size = new System.Drawing.Size(635, 196);
             this.rtxtReactieInhoud.TabIndex = 8;
@@ -123,7 +129,7 @@
             // rtxtHulpvraag
             // 
             this.rtxtHulpvraag.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtxtHulpvraag.Location = new System.Drawing.Point(210, 298);
+            this.rtxtHulpvraag.Location = new System.Drawing.Point(362, 301);
             this.rtxtHulpvraag.Name = "rtxtHulpvraag";
             this.rtxtHulpvraag.Size = new System.Drawing.Size(635, 136);
             this.rtxtHulpvraag.TabIndex = 7;
@@ -132,7 +138,7 @@
             // txtTitel
             // 
             this.txtTitel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTitel.Location = new System.Drawing.Point(224, 9);
+            this.txtTitel.Location = new System.Drawing.Point(376, 12);
             this.txtTitel.Multiline = true;
             this.txtTitel.Name = "txtTitel";
             this.txtTitel.Size = new System.Drawing.Size(548, 41);
@@ -140,8 +146,9 @@
             // 
             // txtHulpvrager
             // 
+            this.txtHulpvrager.Enabled = false;
             this.txtHulpvrager.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHulpvrager.Location = new System.Drawing.Point(224, 66);
+            this.txtHulpvrager.Location = new System.Drawing.Point(376, 69);
             this.txtHulpvrager.Multiline = true;
             this.txtHulpvrager.Name = "txtHulpvrager";
             this.txtHulpvrager.Size = new System.Drawing.Size(548, 39);
@@ -151,7 +158,7 @@
             // 
             this.lblDuur.AutoSize = true;
             this.lblDuur.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDuur.Location = new System.Drawing.Point(45, 130);
+            this.lblDuur.Location = new System.Drawing.Point(197, 133);
             this.lblDuur.Name = "lblDuur";
             this.lblDuur.Size = new System.Drawing.Size(157, 26);
             this.lblDuur.TabIndex = 15;
@@ -160,7 +167,7 @@
             // txtDuur
             // 
             this.txtDuur.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDuur.Location = new System.Drawing.Point(224, 130);
+            this.txtDuur.Location = new System.Drawing.Point(376, 133);
             this.txtDuur.Multiline = true;
             this.txtDuur.Name = "txtDuur";
             this.txtDuur.Size = new System.Drawing.Size(107, 39);
@@ -169,7 +176,7 @@
             // txtFrequentie
             // 
             this.txtFrequentie.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFrequentie.Location = new System.Drawing.Point(665, 130);
+            this.txtFrequentie.Location = new System.Drawing.Point(817, 133);
             this.txtFrequentie.Multiline = true;
             this.txtFrequentie.Name = "txtFrequentie";
             this.txtFrequentie.Size = new System.Drawing.Size(107, 39);
@@ -179,7 +186,7 @@
             // 
             this.lblFrequentie.AutoSize = true;
             this.lblFrequentie.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFrequentie.Location = new System.Drawing.Point(415, 130);
+            this.lblFrequentie.Location = new System.Drawing.Point(567, 133);
             this.lblFrequentie.Name = "lblFrequentie";
             this.lblFrequentie.Size = new System.Drawing.Size(213, 26);
             this.lblFrequentie.TabIndex = 17;
@@ -188,7 +195,7 @@
             // cbUrgent
             // 
             this.cbUrgent.AutoSize = true;
-            this.cbUrgent.Location = new System.Drawing.Point(665, 196);
+            this.cbUrgent.Location = new System.Drawing.Point(982, 247);
             this.cbUrgent.Name = "cbUrgent";
             this.cbUrgent.Size = new System.Drawing.Size(15, 14);
             this.cbUrgent.TabIndex = 6;
@@ -198,11 +205,11 @@
             // 
             this.lblUrgent.AutoSize = true;
             this.lblUrgent.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUrgent.Location = new System.Drawing.Point(539, 193);
+            this.lblUrgent.Location = new System.Drawing.Point(878, 238);
             this.lblUrgent.Name = "lblUrgent";
-            this.lblUrgent.Size = new System.Drawing.Size(89, 26);
+            this.lblUrgent.Size = new System.Drawing.Size(83, 26);
             this.lblUrgent.TabIndex = 20;
-            this.lblUrgent.Text = "Urgent: ";
+            this.lblUrgent.Text = "Urgent:";
             // 
             // btnHulpvraagOpslaan
             // 
@@ -218,7 +225,7 @@
             // txtLocatie
             // 
             this.txtLocatie.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLocatie.Location = new System.Drawing.Point(224, 193);
+            this.txtLocatie.Location = new System.Drawing.Point(376, 196);
             this.txtLocatie.Multiline = true;
             this.txtLocatie.Name = "txtLocatie";
             this.txtLocatie.Size = new System.Drawing.Size(201, 45);
@@ -228,17 +235,60 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(45, 190);
+            this.label1.Location = new System.Drawing.Point(197, 193);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(173, 26);
             this.label1.TabIndex = 22;
             this.label1.Text = "Afspreek locatie:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(592, 184);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(369, 26);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Vink aan als er een auto benodigd is:";
+            // 
+            // cbAutoBenodigd
+            // 
+            this.cbAutoBenodigd.AutoSize = true;
+            this.cbAutoBenodigd.Location = new System.Drawing.Point(982, 196);
+            this.cbAutoBenodigd.Name = "cbAutoBenodigd";
+            this.cbAutoBenodigd.Size = new System.Drawing.Size(15, 14);
+            this.cbAutoBenodigd.TabIndex = 23;
+            this.cbAutoBenodigd.UseVisualStyleBackColor = true;
+            // 
+            // pbHulpbehoevende
+            // 
+            this.pbHulpbehoevende.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbHulpbehoevende.Location = new System.Drawing.Point(20, 12);
+            this.pbHulpbehoevende.Name = "pbHulpbehoevende";
+            this.pbHulpbehoevende.Size = new System.Drawing.Size(119, 142);
+            this.pbHulpbehoevende.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbHulpbehoevende.TabIndex = 26;
+            this.pbHulpbehoevende.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Location = new System.Drawing.Point(20, 259);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(119, 142);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 27;
+            this.pictureBox1.TabStop = false;
             // 
             // HulpvraagForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1015, 687);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pbHulpbehoevende);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cbAutoBenodigd);
             this.Controls.Add(this.txtLocatie);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnHulpvraagOpslaan);
@@ -261,6 +311,8 @@
             this.Name = "HulpvraagForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HulpvraagForm";
+            ((System.ComponentModel.ISupportInitialize)(this.pbHulpbehoevende)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,5 +339,9 @@
         private System.Windows.Forms.Button btnHulpvraagOpslaan;
         private System.Windows.Forms.TextBox txtLocatie;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox cbAutoBenodigd;
+        private System.Windows.Forms.PictureBox pbHulpbehoevende;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

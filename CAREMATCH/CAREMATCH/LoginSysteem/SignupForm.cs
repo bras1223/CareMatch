@@ -17,6 +17,7 @@ namespace CAREMATCH.LoginSysteem
 {
     public partial class SignupForm : Form
     {
+        private RFID rfid;
         private Database database;
         private OpenFileDialog ofd;
         private string vog;
@@ -154,11 +155,10 @@ namespace CAREMATCH.LoginSysteem
             }
         }
         #region RFID
-        RFID rfid;
         private void SignupForm_Load(object sender, EventArgs e)
         {
             rfid = new RFID();
-
+            rfid.open();
             rfid.Attach += new AttachEventHandler(rfid_Attach);
             rfid.Detach += new DetachEventHandler(rfid_Detach);
 
@@ -174,8 +174,11 @@ namespace CAREMATCH.LoginSysteem
             }
             else
             {
-                tbGebruikersnaam.Text = e.Tag;
-                tbWachtwoord.Text = e.Tag;
+                tbGebruikersnaam.Visible = false;
+                tbWachtwoord.Visible = false;
+                tbHerhWachtwoord.Visible = false;
+                lblRFIDAttached.Visible = true;
+                lblRFIDUitleg.Visible = false;
             }
 
             //This sends the RFID tag and an enter to the active application
@@ -187,7 +190,14 @@ namespace CAREMATCH.LoginSysteem
         {
             tbGebruikersnaam.Text = "";
             tbWachtwoord.Text = "";
+            tbHerhWachtwoord.Text = "";
+            tbGebruikersnaam.Visible = true;
+            tbWachtwoord.Visible = true;
+            tbHerhWachtwoord.Visible = true;
+            lblRFIDAttached.Visible = false;
+            lblRFIDUitleg.Visible = false;
 
+            rfid.close();
         }
 
         void rfid_Attach(object sender, AttachEventArgs e)

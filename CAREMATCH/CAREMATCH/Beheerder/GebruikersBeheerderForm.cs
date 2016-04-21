@@ -6,13 +6,13 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace Login
 {
-    public partial class BeheerdersForm : Form
+    public partial class GebruikerBeheer : Form
     {
         private Gebruiker gebruiker;
         private Database database;
         HomeForm homeform;
 
-        public BeheerdersForm(Gebruiker gebruiker)
+        public GebruikerBeheer(Gebruiker gebruiker)
         {
             InitializeComponent();
             database = new Database();
@@ -23,7 +23,7 @@ namespace Login
         private void cmbBeheer_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
-            database.BAccountOverzicht(cmbBeheer.Text).Fill(dt);
+            database.GebruikerBeheer(cmbBeheer.Text).Fill(dt);
             dataGridView1.DataSource = dt;
         }
 

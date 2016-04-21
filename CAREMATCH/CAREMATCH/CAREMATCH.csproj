@@ -93,11 +93,11 @@
     <Compile Include="Agenda\DagOverzichtForm.Designer.cs">
       <DependentUpon>DagOverzichtForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Beheerder\BeheerdersForm.cs">
+    <Compile Include="Beheerder\GebruikersBeheerderForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Beheerder\BeheerdersForm.Designer.cs">
-      <DependentUpon>BeheerdersForm.cs</DependentUpon>
+    <Compile Include="Beheerder\GebruikersBeheerderForm.Designer.cs">
+      <DependentUpon>GebruikersBeheerderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Chat\Chatbericht.cs" />
     <Compile Include="Chat\ChatForm.cs">
@@ -165,8 +165,8 @@
     <EmbeddedResource Include="Agenda\DagOverzichtForm.resx">
       <DependentUpon>DagOverzichtForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Beheerder\BeheerdersForm.resx">
-      <DependentUpon>BeheerdersForm.cs</DependentUpon>
+    <EmbeddedResource Include="Beheerder\GebruikersBeheerderForm.resx">
+      <DependentUpon>GebruikersBeheerderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Chat\ChatForm.resx">
       <DependentUpon>ChatForm.cs</DependentUpon>

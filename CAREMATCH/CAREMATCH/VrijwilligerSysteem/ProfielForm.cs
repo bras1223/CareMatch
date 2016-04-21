@@ -26,7 +26,15 @@ namespace CAREMATCH.VrijwilligerSysteem
             //afbeelding in de picturebox zetten als een gebruiker deze heeft.
             if (gebruiker.Pasfoto != "")
             {
-                pbProfielFoto.Image = Image.FromFile(gebruiker.Pasfoto);
+                try
+                {
+                    pbProfielFoto.Image = Image.FromFile(gebruiker.Pasfoto);
+                }
+                catch (FileNotFoundException)
+                {
+                     
+                }
+                
             }
             txtGebruikersInfo.Text = gebruiker.GebruikerInfo;
             txtAchternaam.Text = gebruiker.Achternaam;

@@ -22,6 +22,8 @@ namespace CAREMATCH.VrijwilligerSysteem
             database = new Database();
             this.gebruiker = gebruiker;
             this.hulpvraag = hulpvraag;
+            dtpDatum.Format = DateTimePickerFormat.Custom;
+            dtpDatum.CustomFormat = "d, HH, m, yyyy";
 
             if (gebruiker.GetType() == typeof(Hulpbehoevende) && hulpvraagIndienen == true)
             {
@@ -93,6 +95,31 @@ namespace CAREMATCH.VrijwilligerSysteem
             {
                 MessageBox.Show("Er is iets foutgegaan bij het opslaan van de hulpvraag. Neem contact op met CareMatch.");
             }
+        }
+
+        private void txtTitel_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTitel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpDatum_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pbHulpbehoevende_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

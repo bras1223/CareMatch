@@ -55,7 +55,9 @@ namespace Login
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            //tijdelijk voor testen
+            this.Close();
+            DialogResult = DialogResult.OK;
         }
     }
 }

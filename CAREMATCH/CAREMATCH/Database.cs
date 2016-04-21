@@ -24,6 +24,7 @@ namespace CAREMATCH
         private Agenda.AgendaPunt agendaPunt;
         private DateTime vandaag;
         private string tempString;
+
         public Database()
         {
             vandaag = new DateTime();
@@ -33,6 +34,7 @@ namespace CAREMATCH
                           + "User ID=DBI327544; PASSWORD=CareMatch;";
 
             con = new OracleConnection(constr);
+
         }
         #region Hulpvragen Queries
         public void HulpvraagToevoegen(Hulpvragen.Hulpvraag hulpvraag, Gebruiker gebruiker)
@@ -367,14 +369,26 @@ namespace CAREMATCH
         }
         public void BVerwijderOngepasteBerichten()
         {
-
+            
         }
-        public void BAccountOverzicht()
+        public OracleDataAdapter BAccountOverzicht(string query)
         {
             con.Open();
-            OracleCommand command = new OracleCommand("SELECT* FROM GEBRUIKER", con);
-            OracleDataReader reader = command.ExecuteReader();
+            if (query == "Alles")
+            {
+                tempString = "SELECT * FROM GEBRUIKER";
+            }
+            else if (query == "Naam")
+            {
+                tempString = "SELECT GEBRUIKERSNAAM FROM GEBRUIKER";
+            }
+            else if (query == "Wachtwoord")
+            {
+                tempString = "SELECT WACHTWOORD FROM GEBRUIKER";
+            }
+            OracleDataAdapter reader = new OracleDataAdapter(tempString, con);
             con.Close();
+            return reader;
         }
         public void BAccountActiveren()
         {

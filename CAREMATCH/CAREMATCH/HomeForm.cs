@@ -109,7 +109,13 @@ namespace CAREMATCH
 
         private void btnOngepasteBerichten_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            beheerdersForm = new BeheerdersForm(gebruiker);
+            beheerdersForm.ShowDialog();
+            if (beheerdersForm.DialogResult == DialogResult.OK || profielForm.DialogResult == DialogResult.Cancel)
+            {
+                this.Show();
+            }
         }
 
         private void btnAccountOverzicht_Click(object sender, EventArgs e)

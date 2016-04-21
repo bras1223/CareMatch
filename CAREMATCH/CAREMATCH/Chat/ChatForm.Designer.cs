@@ -51,13 +51,14 @@
             // 
             // btnVerzenden
             // 
+            this.btnVerzenden.BackColor = System.Drawing.Color.Transparent;
+            this.btnVerzenden.Image = global::CAREMATCH.Properties.Resources._interface;
             this.btnVerzenden.Location = new System.Drawing.Point(1050, 552);
             this.btnVerzenden.Margin = new System.Windows.Forms.Padding(6);
             this.btnVerzenden.Name = "btnVerzenden";
             this.btnVerzenden.Size = new System.Drawing.Size(128, 74);
             this.btnVerzenden.TabIndex = 3;
-            this.btnVerzenden.Text = "Verzenden";
-            this.btnVerzenden.UseVisualStyleBackColor = true;
+            this.btnVerzenden.UseVisualStyleBackColor = false;
             this.btnVerzenden.Click += new System.EventHandler(this.btnVerzenden_Click);
             // 
             // lblGebruikersnaam
@@ -66,27 +67,27 @@
             this.lblGebruikersnaam.Location = new System.Drawing.Point(343, 25);
             this.lblGebruikersnaam.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblGebruikersnaam.Name = "lblGebruikersnaam";
-            this.lblGebruikersnaam.Size = new System.Drawing.Size(173, 26);
+            this.lblGebruikersnaam.Size = new System.Drawing.Size(214, 31);
             this.lblGebruikersnaam.TabIndex = 5;
             this.lblGebruikersnaam.Text = "Gebruikersnaam";
             // 
             // lbChat
             // 
             this.lbChat.FormattingEnabled = true;
-            this.lbChat.ItemHeight = 25;
+            this.lbChat.ItemHeight = 31;
             this.lbChat.Location = new System.Drawing.Point(213, 139);
             this.lbChat.Name = "lbChat";
             this.lbChat.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.lbChat.Size = new System.Drawing.Size(965, 404);
+            this.lbChat.Size = new System.Drawing.Size(965, 376);
             this.lbChat.TabIndex = 7;
             // 
             // lbGebruikerLijst
             // 
             this.lbGebruikerLijst.FormattingEnabled = true;
-            this.lbGebruikerLijst.ItemHeight = 25;
+            this.lbGebruikerLijst.ItemHeight = 31;
             this.lbGebruikerLijst.Location = new System.Drawing.Point(12, 12);
             this.lbGebruikerLijst.Name = "lbGebruikerLijst";
-            this.lbGebruikerLijst.Size = new System.Drawing.Size(192, 479);
+            this.lbGebruikerLijst.Size = new System.Drawing.Size(192, 469);
             this.lbGebruikerLijst.TabIndex = 8;
             this.lbGebruikerLijst.SelectedIndexChanged += new System.EventHandler(this.lbGebruikerLijst_SelectedIndexChanged_1);
             // 
@@ -120,7 +121,7 @@
             // 
             // ChatForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1193, 641);
             this.Controls.Add(this.lbChat);

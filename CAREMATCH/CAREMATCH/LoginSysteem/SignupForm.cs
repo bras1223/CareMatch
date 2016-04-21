@@ -105,20 +105,22 @@ namespace CAREMATCH.LoginSysteem
         {
             if (tbWachtwoord.Text.Length < 5)
             {
-                label4.Visible = true;
-                label5.Visible = false;
+                lblZwakWW.Visible = true;
+                lblSterkWW.Visible = false;
             }
             if (tbWachtwoord.Text.Length >= 5)
             {
-                label4.Visible = false;
-                label5.Visible = true;
+                lblZwakWW.Visible = false;
+                lblSterkWW.Visible = true;
             }
         }
         //Terug naar LoginForm
         private void button2_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
+            RFIDClose();
             Close();
+            Dispose();
         }
         private void btnUploadVOG_Click(object sender, EventArgs e)
         {
@@ -171,6 +173,10 @@ namespace CAREMATCH.LoginSysteem
             if (database.GebruikerLogin(e.Tag, e.Tag) !=null)
             {
                 MessageBox.Show("Deze tag is reeds aangemeld, klik op OK om u in te loggen.");
+                RFIDLogin login = new RFIDLogin();
+                this.Close();
+                this.Dispose();
+                login.Show();
             }
             else
             {
@@ -179,6 +185,12 @@ namespace CAREMATCH.LoginSysteem
                 tbHerhWachtwoord.Visible = false;
                 lblRFIDAttached.Visible = true;
                 lblRFIDUitleg.Visible = false;
+                lblGebruikersnaam.Visible = false;
+                lblWachtwoord.Visible = false;
+                lblWachtwoord2.Visible = false;
+                lblSterkWW.Visible = false;
+                lblZwakWW.Visible = false;
+                
             }
 
             //This sends the RFID tag and an enter to the active application
@@ -188,16 +200,16 @@ namespace CAREMATCH.LoginSysteem
         //Tag lost event handler...here we simply want to clear our tag field in the GUI
         void rfid_TagLost(object sender, TagEventArgs e)
         {
-            tbGebruikersnaam.Text = "";
-            tbWachtwoord.Text = "";
-            tbHerhWachtwoord.Text = "";
             tbGebruikersnaam.Visible = true;
             tbWachtwoord.Visible = true;
             tbHerhWachtwoord.Visible = true;
+            lblGebruikersnaam.Visible = true;
+            lblWachtwoord.Visible = true;
+            lblWachtwoord2.Visible = true;
+            lblSterkWW.Visible = true;
+            lblZwakWW.Visible = true;
             lblRFIDAttached.Visible = false;
-            lblRFIDUitleg.Visible = false;
-
-            rfid.close();
+            lblRFIDUitleg.Visible = true;
         }
 
         void rfid_Attach(object sender, AttachEventArgs e)
@@ -296,7 +308,7 @@ namespace CAREMATCH.LoginSysteem
         }
         #endregion
 
-        private void RFIDLogin_FormClosing(object sender, FormClosingEventArgs e)
+        private void RFIDClose()
         {
             rfid.Attach -= new AttachEventHandler(rfid_Attach);
             rfid.Detach -= new DetachEventHandler(rfid_Detach);

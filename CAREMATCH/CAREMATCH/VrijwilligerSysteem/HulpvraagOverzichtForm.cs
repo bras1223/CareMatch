@@ -30,21 +30,14 @@ namespace CAREMATCH.VrijwilligerSysteem
         }
         private void btnBekijkHulpvraag_Click(object sender, EventArgs e)
         {
-            try
+            this.Hide();
+            //geselecteerde hulpvraag openen.
+            hulpvraag = database.HulpvragenOverzicht(aangenomen, gebruiker, cbFilter.Text)[lvHulpvragen.FocusedItem.Index];
+            hulpvraagForm = new HulpvraagForm(hulpvraag, gebruiker, false);
+            hulpvraagForm.ShowDialog();
+            if (hulpvraagForm.DialogResult == DialogResult.OK || hulpvraagForm.DialogResult == DialogResult.Cancel)
             {
-                this.Hide();
-                //geselecteerde hulpvraag openen.
-                hulpvraag = database.HulpvragenOverzicht(gebruiker, cbFilter.Text)[lvHulpvragen.FocusedItem.Index];
-                hulpvraagForm = new HulpvraagForm(hulpvraag, gebruiker, false);
-                hulpvraagForm.ShowDialog();
-                if (hulpvraagForm.DialogResult == DialogResult.OK || hulpvraagForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Selecteer eerst een hulpvraag");
+                this.Show();
             }
         }
         private void btnLogUit_Click(object sender, EventArgs e)
@@ -73,7 +66,7 @@ namespace CAREMATCH.VrijwilligerSysteem
             lvHulpvragen.Columns.Add("Titel");
             lvHulpvragen.Columns.Add("Hulpvraag inhoud");
             // Hulpvragen Overzicht weergeven met inhoud.
-            foreach (Hulpvragen.Hulpvraag hulpvraag in database.HulpvragenOverzicht(gebruiker, cbFilter.Text))
+            foreach (Hulpvragen.Hulpvraag hulpvraag in database.HulpvragenOverzicht(aangenomen, gebruiker, cbFilter.Text))
             {
                 ListViewItem item = new ListViewItem(hulpvraag.ToString());
                 item.UseItemStyleForSubItems = false;

@@ -11,13 +11,12 @@ using CAREMATCH;
 
 namespace CAREMATCH.Beheerder
 {
-    public partial class AgendaBeheerderForm : Form
+    public partial class ChatBeheerderForm : Form
     {
         private Gebruiker gebruiker;
         private Database database;
         HomeForm homeform;
-
-        public AgendaBeheerderForm(Gebruiker gebruiker)
+        public ChatBeheerderForm(Gebruiker gebruiker)
         {
             InitializeComponent();
             database = new Database();
@@ -28,11 +27,11 @@ namespace CAREMATCH.Beheerder
         private void cmbBeheer_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
-            database.AgendaBeheer(cmbBeheer.Text).Fill(dt);
+            database.ChatBeheer(cmbBeheer.Text).Fill(dt);
             dataGridView1.DataSource = dt;
         }
 
-        private void btnBack_Click_1(object sender, EventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
         {
             this.Hide();
             homeform = new HomeForm(gebruiker);

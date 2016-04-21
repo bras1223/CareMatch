@@ -23,9 +23,11 @@ namespace CAREMATCH.VrijwilligerSysteem
             this.gebruiker = gebruiker;
             this.hulpvraag = hulpvraag;
 
+            //Datum en tijd Format aanpassen voor de hulpbehoevende om aan te passen.
             dtpDatum.Format = DateTimePickerFormat.Custom;
-            dtpDatum.CustomFormat = "d, M, yyyy, HH, m";
-            //pbHulpbehoevende.Image = Image.FromFile()
+            dtpDatum.CustomFormat = "d/MM/yyyy:HH:m";
+            
+            //Knoppen weergeven/Verwijderen op basis van gebruiker rol.
             if (gebruiker.Rol.ToLower() == "hulpbehoevende")
             {
                 txtHulpvrager.Text = gebruiker.Gebruikersnaam;
@@ -46,9 +48,18 @@ namespace CAREMATCH.VrijwilligerSysteem
                 cbAutoBenodigd.Enabled = false;
                 txtLocatie.Enabled = false;
             }
-
             if(hulpvraag != null)
             {
+                //Profiel foto in de hulpvraag zetten als een gebruiker deze ingesteld heeft.
+                if (database.HulpvraagProfielFoto(gebruiker, hulpvraag, "hulpbehoevende") != null)
+                {
+                    pbHulpbehoevende.Image = Image.FromFile(database.HulpvraagProfielFoto(gebruiker, hulpvraag, "hulpbehoevende"));
+                }
+                if (database.HulpvraagProfielFoto(gebruiker, hulpvraag, "vrijwilliger") != null)
+                {
+                    pbVrijwilliger.Image = Image.FromFile(database.HulpvraagProfielFoto(gebruiker, hulpvraag, "vrijwilliger"));
+                }
+                //Waardes in Textboxes zetten.
                 txtDuur.Text = hulpvraag.Duur.ToString();
                 txtFrequentie.Text = hulpvraag.Frequentie;
                 txtHulpvrager.Text = hulpvraag.Hulpbehoevende;
@@ -89,7 +100,9 @@ namespace CAREMATCH.VrijwilligerSysteem
             hulpvraag.Urgent = cbUrgent.Checked;
             hulpvraag.HulpbehoevendeFoto = gebruiker.Pasfoto;
             hulpvraag.Locatie = txtLocatie.Text;
-
+            hulpvraag.Auto = cbAutoBenodigd.Checked;
+            hulpvraag.DatumTijd = dtpDatum.Value;
+            
             try
             {
                 database.HulpvraagToevoegen(hulpvraag, gebruiker);

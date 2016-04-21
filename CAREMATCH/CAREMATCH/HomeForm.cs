@@ -1,5 +1,6 @@
 ﻿using CAREMATCH.VrijwilligerSysteem;
 using CAREMATCH.Gebruikers;
+using CAREMATCH.Beheerder;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,18 +24,21 @@ namespace CAREMATCH
         private HulpvraagForm hulpvraagForm;
         private HulpvraagOverzichtForm hulpvraagOverzichtForm;
         private ProfielForm profielForm;
-        private GebruikerBeheer beheerdersForm;
+        private GebruikerBeheer GebruikerBeheerderForm;
+        private AgendaBeheerderForm AgendaBeheerderForm;
+        private ChatBeheerdersForm ChatBeheerderForm;
+
         public HomeForm(Gebruiker gebruiker)
         {
             InitializeComponent();
             this.gebruiker = gebruiker;
                         
-            if (gebruiker.GetType() == typeof(Hulpbehoevende))
+            if (gebruiker.Rol.ToLower() == "hulpbehoevende")
             {
                 btnOngepasteBerichten.Visible = false;
                 btnAccountOverzicht.Visible = false;
             }
-            else if (gebruiker.GetType() == typeof(Vrijwilliger))
+            else if (gebruiker.Rol.ToLower() == "vrijwilliger")
             {
                 btnHulpvraagIndienen.Visible = false;
 
@@ -70,23 +74,50 @@ namespace CAREMATCH
         }
         private void btnAgenda_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            weekrooster = new Agenda.DagOverzichtForm(gebruiker);
-            weekrooster.ShowDialog();
-            if (weekrooster.DialogResult == DialogResult.OK || weekrooster.DialogResult == DialogResult.Cancel)
+            if (gebruiker.Rol.ToLower() == "vrijwilliger" || gebruiker.Rol.ToLower() == "hulpbehoevende")
             {
-                this.Show();
+                this.Hide();
+                weekrooster = new Agenda.DagOverzichtForm(gebruiker);
+                weekrooster.ShowDialog();
+                if (weekrooster.DialogResult == DialogResult.OK || weekrooster.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
+            }
+            else
+            {
+                this.Hide();
+                AgendaBeheerderForm = new AgendaBeheerderForm(gebruiker);
+                AgendaBeheerderForm.ShowDialog();
+                if (AgendaBeheerderForm.DialogResult == DialogResult.Cancel || profielForm.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
             }
         }
         private void btnBerichten_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            chatForm = new ChatForm(gebruiker);
-            chatForm.ShowDialog();
-            if (chatForm.DialogResult == DialogResult.OK || chatForm.DialogResult == DialogResult.Cancel)
+            if (gebruiker.Rol.ToLower() =="vrijwilliger"|| gebruiker.Rol.ToLower() == "hulpbehoevende")
             {
-                this.Show();
+                this.Hide();
+                chatForm = new ChatForm(gebruiker);
+                chatForm.ShowDialog();
+                if (chatForm.DialogResult == DialogResult.Cancel || chatForm.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
             }
+            else
+            {
+                this.Hide();
+                ChatBeheerderForm = new ChatBeheerdersForm(gebruiker);
+                ChatBeheerderForm.ShowDialog();
+                if (ChatBeheerderForm.DialogResult == DialogResult.Cancel || chatForm.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
+            }
+
         }
 
         private void btnProfiel_Click(object sender, EventArgs e)
@@ -109,31 +140,20 @@ namespace CAREMATCH
 
         private void btnOngepasteBerichten_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            beheerdersForm = new GebruikerBeheer(gebruiker);
-            beheerdersForm.ShowDialog();
-            if (beheerdersForm.DialogResult == DialogResult.OK || profielForm.DialogResult == DialogResult.Cancel)
-            {
-                this.Show();
-            }
+
         }
 
         private void btnAccountOverzicht_Click(object sender, EventArgs e)
         {
-            try
-            {
                 this.Hide();
-                beheerdersForm = new GebruikerBeheer(gebruiker);
-                beheerdersForm.ShowDialog();
-                if (beheerdersForm.DialogResult == DialogResult.OK || profielForm.DialogResult == DialogResult.Cancel)
+                GebruikerBeheerderForm = new GebruikerBeheer(gebruiker);
+                GebruikerBeheerderForm.ShowDialog();
+                if (GebruikerBeheerderForm.DialogResult == DialogResult.Cancel|| profielForm.DialogResult == DialogResult.Cancel)
                 {
                     this.Show();
                 }
-            }
-            catch(Exception f)
-            {
-                MessageBox.Show(f.Message);
-            }
+           
+
         }
     }
 }

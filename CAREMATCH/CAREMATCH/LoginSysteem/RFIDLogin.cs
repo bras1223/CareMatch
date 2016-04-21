@@ -25,6 +25,10 @@ namespace CAREMATCH.LoginSysteem
 
         private void RFIDLogin_Load(object sender, EventArgs e)
         {
+            RFID_Create();
+        }
+        private void RFID_Create()
+        {
             rfid = new RFID();
 
             rfid.Attach += new AttachEventHandler(rfid_Attach);
@@ -37,16 +41,24 @@ namespace CAREMATCH.LoginSysteem
         void rfid_Tag(object sender, TagEventArgs e)
         {
             textBox1.Text = e.Tag;
-            if (database.GebruikerLogin(e.Tag, e.Tag) == null)
+          if (database.GebruikerLogin(e.Tag, e.Tag) == null)
             {
-                MessageBox.Show("Deze tag is nog niet aangemeld, klik op OK om u aan te melden.");
+               MessageBox.Show("Deze tag is nog niet aangemeld, klik op OK om u aan te melden.");
+                this.Hide();
+                SignupForm signup = new SignupForm();
+                signup.ShowDialog();
+                if (signup.DialogResult == DialogResult.OK || signup.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
+
             }
             else if (database.GebruikerLogin(e.Tag, e.Tag).Rol.ToLower() == "hulpbehoevende")
             {
                 homeForm = new HomeForm(database.GebruikerLogin(e.Tag, e.Tag));
                 ShowDialogMethod();
             }
-
+            
             //This sends the RFID tag and an enter to the active application
 
         }
@@ -59,7 +71,6 @@ namespace CAREMATCH.LoginSysteem
                 this.Show();
             }
         }
-
         //Tag lost event handler...here we simply want to clear our tag field in the GUI
         void rfid_TagLost(object sender, TagEventArgs e)
         {
@@ -165,6 +176,7 @@ namespace CAREMATCH.LoginSysteem
 
         private void RFIDLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
+            
             rfid.Attach -= new AttachEventHandler(rfid_Attach);
             rfid.Detach -= new DetachEventHandler(rfid_Detach);
             rfid.Tag -= new TagEventHandler(rfid_Tag);

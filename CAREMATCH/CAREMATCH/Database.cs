@@ -13,6 +13,22 @@ using Oracle.ManagedDataAccess.Client;
 using System.Security.Cryptography;
 using CAREMATCH.Gebruikers;
 
+/* 
+public void HulpvraagToevoegen(Hulpvragen.Hulpvraag hulpvraag, Gebruiker gebruiker)
+        {
+            con.Open();
+            if(hulpvraag.Urgent)
+            {
+                tempString = "Y";
+            }
+            else
+            {
+                tempString = "N";
+            }
+            command = new OracleCommand("INSERT INTO Hulpvraag(GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie, Titel, HulpbehoevendeFoto, Locatie) VALUES('" + gebruiker.GebruikersID + "','" + hulpvraag.HulpvraagInhoud + "','" + tempString + "', '" + hulpvraag.DatumTijd + "','" + hulpvraag.Duur + "', '" + hulpvraag.Frequentie+ "', '" +hulpvraag.Titel + "', '"+gebruiker.Pasfoto+"', '"+hulpvraag.Locatie+"')", con);
+            command.ExecuteNonQuery();
+            con.Close();
+        */
 namespace CAREMATCH
 {
     class Database
@@ -378,15 +394,40 @@ namespace CAREMATCH
 
         #endregion
         #region Beheerder Queries
-        public void BOverzichtOngepasteBerichten()
+        //Agenda Queries
+        public OracleDataAdapter AgendaBeheer(string query)
         {
-            //Overzicht ongepaste hulpvragen - Recensies - Reacties
+            con.Open();
+            if (query == "Alles")
+            {
+                tempString = "SELECT * FROM AGENDA";
+            }
+            else if (query == "Afspraak")
+            {
+                tempString = "SELECT TITEL, OMSCHRIJVING, HULPBEHOEVENDE, VRIJWILLIGER  FROM AGENDA";
+            }
+            OracleDataAdapter reader = new OracleDataAdapter(tempString, con);
+            con.Close();
+            return reader;
         }
-        public void BVerwijderOngepasteBerichten()
+        //Chat en Reactie Queries
+        public OracleDataAdapter ChatBeheer(string query)
         {
-            
+            con.Open();
+            if (query == "Chat")
+            {
+                tempString = "SELECT * FROM CHAT";
+            }
+            else if (query == "Reactie")
+            {
+                tempString = "SELECT * FROM REACTIE";
+            }
+            OracleDataAdapter reader = new OracleDataAdapter(tempString, con);
+            con.Close();
+            return reader;
         }
-        public OracleDataAdapter BAccountOverzicht(string query)
+        //Gebruiker Queries
+        public OracleDataAdapter GebruikerBeheer(string query)
         {
             con.Open();
             if (query == "Alles")
@@ -397,21 +438,34 @@ namespace CAREMATCH
             {
                 tempString = "SELECT GEBRUIKERSNAAM, WACHTWOORD FROM GEBRUIKER";
             }
-            else if (query == "Wachtwoord")
+            else if (query == "Niet goedgekeurde gebruikers")
             {
-                tempString = "SELECT WACHTWOORD FROM GEBRUIKER";
+                tempString = "SELECT * FROM GEBRUIKER WHERE APPROVED = 'N'";
+            }
+            else if (query == "Vrijwilligers zonder VOG")
+            {
+                tempString = "SELECT * FROM GEBRUIKER WHERE ROL = 'vrijwilliger' AND VOG IS NULL";
             }
             OracleDataAdapter reader = new OracleDataAdapter(tempString, con);
             con.Close();
             return reader;
         }
-        public void BAccountActiveren()
+        //Hulpvraag Queries
+        public OracleDataAdapter HulpvraagBeheer(string query)
         {
+            con.Open();
+            if (query == "Alles")
+            {
+                tempString = "SELECT * FROM REACTIE";
+            }
+            else if (query == "Naam & Wachtwoord")
+            {
+                tempString = "SELECT GEBRUIKERSNAAM, FREQUENTIE FROM REACTIE";
+            }
 
-        }
-        public void BAccountVerwijderen()
-        {
-
+            OracleDataAdapter reader = new OracleDataAdapter(tempString, con);
+            con.Close();
+            return reader;
         }
         #endregion
         #region Gebruiker Queries
@@ -436,15 +490,15 @@ namespace CAREMATCH
                 //Nieuwe gebruiker aanmaken op basis van de rol
                 if (reader["ROL"].ToString().ToLower() == "hulpbehoevende")
                 {
-                    gebruiker = new Hulpbehoevende();
+                    gebruiker = new Gebruiker();
                 }
                 else if (reader["ROL"].ToString().ToLower() == "beheerder")
                 {
-                    gebruiker = new Beheerder();
+                    gebruiker = new Gebruiker();
                 }
                 else if (reader["ROL"].ToString().ToLower() == "vrijwilliger")
                 {
-                    gebruiker = new Vrijwilliger();
+                    gebruiker = new Gebruiker();
                     gebruiker.Approved = true;
                 }
                 //Properties toekennen aan gebruiken.

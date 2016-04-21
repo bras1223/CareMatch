@@ -67,7 +67,6 @@ namespace CAREMATCH.LoginSysteem
         }
         public void ShowDialogMethod()
         {
-            SignupForm SignUp = new SignupForm();
             this.Hide();
             homeForm.ShowDialog();
             if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
@@ -86,6 +85,14 @@ namespace CAREMATCH.LoginSysteem
         {
             RFIDLogin RfidLogin = new RFIDLogin();
             RfidLogin.ShowDialog();
+            if (RfidLogin.DialogResult == DialogResult.OK)
+            {
+                this.Show();
+            }
+            else if(RfidLogin.DialogResult == DialogResult.Cancel)
+            {
+                this.Show();
+            }
         }
     }
 }

@@ -32,7 +32,7 @@ namespace CAREMATCH.VrijwilligerSysteem
         {
             this.Hide();
             //geselecteerde hulpvraag openen.
-            hulpvraag = database.HulpvragenOverzicht(aangenomen, gebruiker, cbFilter.Text)[lvHulpvragen.FocusedItem.Index];
+            hulpvraag = database.HulpvragenOverzicht(gebruiker, cbFilter.Text)[lvHulpvragen.FocusedItem.Index];
             hulpvraagForm = new HulpvraagForm(hulpvraag, gebruiker, false);
             hulpvraagForm.ShowDialog();
             if (hulpvraagForm.DialogResult == DialogResult.OK || hulpvraagForm.DialogResult == DialogResult.Cancel)
@@ -66,7 +66,7 @@ namespace CAREMATCH.VrijwilligerSysteem
             lvHulpvragen.Columns.Add("Titel");
             lvHulpvragen.Columns.Add("Hulpvraag inhoud");
             // Hulpvragen Overzicht weergeven met inhoud.
-            foreach (Hulpvragen.Hulpvraag hulpvraag in database.HulpvragenOverzicht(aangenomen, gebruiker, cbFilter.Text))
+            foreach (Hulpvragen.Hulpvraag hulpvraag in database.HulpvragenOverzicht(gebruiker, cbFilter.Text))
             {
                 ListViewItem item = new ListViewItem(hulpvraag.ToString());
                 item.UseItemStyleForSubItems = false;

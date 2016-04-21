@@ -26,7 +26,7 @@ namespace CAREMATCH
         private ProfielForm profielForm;
         private GebruikerBeheer GebruikerBeheerderForm;
         private AgendaBeheerderForm AgendaBeheerderForm;
-        private ChatBeheerderForm ChatBeheerderForm;
+        private ChatBeheerdersForm ChatBeheerderForm;
 
         public HomeForm(Gebruiker gebruiker)
         {
@@ -110,7 +110,7 @@ namespace CAREMATCH
             else
             {
                 this.Hide();
-                ChatBeheerderForm = new ChatBeheerderForm(gebruiker);
+                ChatBeheerderForm = new ChatBeheerdersForm();
                 ChatBeheerderForm.ShowDialog();
                 if (ChatBeheerderForm.DialogResult == DialogResult.Cancel || chatForm.DialogResult == DialogResult.Cancel)
                 {

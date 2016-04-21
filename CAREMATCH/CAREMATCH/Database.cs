@@ -378,9 +378,9 @@ namespace CAREMATCH
             {
                 tempString = "SELECT * FROM GEBRUIKER";
             }
-            else if (query == "Naam")
+            else if (query == "Naam & Wachtwoord")
             {
-                tempString = "SELECT GEBRUIKERSNAAM FROM GEBRUIKER";
+                tempString = "SELECT GEBRUIKERSNAAM, WACHTWOORD FROM GEBRUIKER";
             }
             else if (query == "Wachtwoord")
             {

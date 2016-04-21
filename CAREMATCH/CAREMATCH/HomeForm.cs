@@ -120,9 +120,20 @@ namespace CAREMATCH
 
         private void btnAccountOverzicht_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            beheerdersForm = new BeheerdersForm(gebruiker);
-            beheerdersForm.ShowDialog();
+            try
+            {
+                this.Hide();
+                beheerdersForm = new BeheerdersForm(gebruiker);
+                beheerdersForm.ShowDialog();
+                if (beheerdersForm.DialogResult == DialogResult.OK || profielForm.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
+            }
+            catch(Exception f)
+            {
+                MessageBox.Show(f.Message);
+            }
         }
     }
 }

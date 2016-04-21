@@ -388,7 +388,16 @@ namespace CAREMATCH
         #region Gebruiker Queries
         public Gebruiker GebruikerLogin(string naam, string wachtwoord)
         {
-            con.Open();
+            try
+            {
+                con.Open();
+            }
+            catch (OracleException)
+            {
+                MessageBox.Show("kon de verbinding met de database niet tot stand brengen");
+                
+            }
+
             //Gebruikersnaam zoeken waar gebruikersnaam gelijk is aan de ingevoerde naam + w8woord
             command = new OracleCommand("SELECT * FROM gebruiker WHERE gebruikersnaam = '"+naam+"' AND wachtwoord = '"+EncryptString(wachtwoord)+"'", con);
             reader = command.ExecuteReader();
@@ -440,7 +449,16 @@ namespace CAREMATCH
         }
         public void GebruikerAccountToevoegen(string Gebruikersnaam, string Wachtwoord, string Approved, string Rol, string filenameFoto, string filenameVOG, string voornaam, string achternaam, string geslacht, DateTime geboortedatum)
         {
-            con.Open();
+
+            try
+            {
+                con.Open();
+            }
+            catch (OracleException)
+            {
+                MessageBox.Show("kon de verbinding met de database niet tot stand brengen");
+            }
+
             //Hulpbehoevende hoeft geen VOG te inserten.
             if (Rol.ToLower() == "hulpbehoevende") 
             {
@@ -457,7 +475,15 @@ namespace CAREMATCH
         public bool GebruikerControlleerUsername(string Gebruikersnaam)
         {
 
-            con.Open();
+            try
+            {
+                con.Open();
+            }
+            catch (OracleException)
+            {
+                MessageBox.Show("kon de verbinding met de database niet tot stand brengen");
+            }
+
             command = new OracleCommand("SELECT Gebruikersnaam FROM GEBRUIKER WHERE Gebruikersnaam ='" + Gebruikersnaam + "'", con);
             reader = command.ExecuteReader();
             while (reader.Read())
@@ -476,7 +502,15 @@ namespace CAREMATCH
         }
         public void GebruikerProfielAanpassen(Gebruiker gebruiker, bool wachtwoordChanged, bool fotoChanged)
         {
-            con.Open();
+            try
+            {
+                con.Open();
+            }
+            catch (OracleException)
+            {
+                MessageBox.Show("kon de verbinding met de database niet tot stand brengen");
+            }
+
             if (gebruiker.Auto)
             {
                 tempString = "Y";
@@ -524,7 +558,15 @@ namespace CAREMATCH
         }        
         public void GebruikerActiveren(string filename)
         {
-            con.Open();
+            try
+            {
+                con.Open();
+            }
+            catch (OracleException)
+            {
+                MessageBox.Show("kon de verbinding met de database niet tot stand brengen");
+            }
+
             //query aanpassen
             //command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, APPROVED, ROL) VALUES('" + Gebruikersnaam + "','" + EncryptString(Wachtwoord) + "', '" + Approved + "','" + Rol + "')", con);
             command.ExecuteNonQuery();

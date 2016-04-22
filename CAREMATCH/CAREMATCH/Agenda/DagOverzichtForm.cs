@@ -32,6 +32,13 @@ namespace CAREMATCH.Agenda
                 cbFilter.Items.Add(vrijwilliger);
             }
             lblDatumWaarde.Text = dtpTijdPicker.Value.ToString();
+            //Waarde van de filter zetten op de gebruikersnaam.
+            cbFilter.SelectedItem = gebruiker.Gebruikersnaam;
+            if(cbFilter.SelectedText == "")
+            {
+                //Als een hulpbehoevende de agenda opent; altijd eerste item selecteren.
+                cbFilter.SelectedIndex = 0;
+            }
         }
 
         private void btnAgendaPuntToevoegen_Click(object sender, EventArgs e)

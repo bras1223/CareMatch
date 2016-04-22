@@ -23,6 +23,7 @@ namespace CAREMATCH.Hulpvragen
         public bool Auto { get; set; }
         public bool Urgent { get; set; }
         public bool Afgerond { get; set; }
+        public string Beoordeling { get; set; }
 
         public Hulpvraag()
         {

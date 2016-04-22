@@ -76,7 +76,7 @@ namespace CAREMATCH
             lvOngepasteBerichten.Columns.Add("Hulpvraag");
 
 
-            ListViewItem item = new ListViewItem()
+            ListViewItem item = new ListViewItem();
 
 
         }

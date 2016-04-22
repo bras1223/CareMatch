@@ -29,7 +29,7 @@ namespace CAREMATCH.LoginSysteem
         }
         private void RFID_Create()
         {
-            rfid = new RFID();
+            //rfid = new RFID(); -------------------------------------------------------
 
             rfid.Attach += new AttachEventHandler(rfid_Attach);
             rfid.Detach += new DetachEventHandler(rfid_Detach);

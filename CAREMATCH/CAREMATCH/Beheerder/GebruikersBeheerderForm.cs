@@ -16,6 +16,8 @@ namespace Login
             InitializeComponent();
             database = new Database();
             this.gebruiker = gebruiker;
+
+            cmbBeheer.SelectedIndex = 0;
         }
 
 
@@ -30,6 +32,11 @@ namespace Login
         {
             DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

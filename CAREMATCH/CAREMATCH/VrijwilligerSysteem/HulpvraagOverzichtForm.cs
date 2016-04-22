@@ -10,7 +10,7 @@ namespace CAREMATCH.VrijwilligerSysteem
         private Hulpvragen.Hulpvraag hulpvraag;
         private Database database;
         private HulpvraagForm hulpvraagForm;
-
+        ListViewItem item;
         private bool aangenomen;
         public HulpvraagOverzichtForm(Gebruiker gebruiker, bool aangenomen)
         {
@@ -25,7 +25,7 @@ namespace CAREMATCH.VrijwilligerSysteem
             {
                 cbFilter.Items.Add("Alle hulpvragen");
             }
-            cbFilter.SelectedIndex = 0;
+            cbFilter.SelectedIndex = 2;
             HulpvragenOverzichtWeergeven();
         }
         private void btnBekijkHulpvraag_Click(object sender, EventArgs e)
@@ -68,7 +68,7 @@ namespace CAREMATCH.VrijwilligerSysteem
             // Hulpvragen Overzicht weergeven met inhoud.
             foreach (Hulpvragen.Hulpvraag hulpvraag in database.HulpvragenOverzicht(gebruiker, cbFilter.Text))
             {
-                ListViewItem item = new ListViewItem(hulpvraag.ToString());
+                item = new ListViewItem(hulpvraag.ToString());
                 item.UseItemStyleForSubItems = false;
 
                 item.SubItems.Add("    ");
@@ -85,18 +85,18 @@ namespace CAREMATCH.VrijwilligerSysteem
                 item.SubItems.Add(hulpvraag.LaatstGereageerdDoor);
                 item.SubItems.Add(hulpvraag.Titel);
                 item.SubItems.Add(hulpvraag.HulpvraagInhoud);
-                lvHulpvragen.Items.Add(item);
+                lvHulpvragen.Items.Add(item);                
             }
-            //Autosize collumns.
-            for (int i = 0; i < 7; i++)
+            //Autosize columns in listview.
+            foreach (ColumnHeader column in lvHulpvragen.Columns)
             {
-                if (i >= 6)
+                if (column.Text.Length > item.Text.Length)
                 {
-                    lvHulpvragen.AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.ColumnContent);
+                    lvHulpvragen.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                 }
                 else
                 {
-                    lvHulpvragen.AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.HeaderSize);
+                    lvHulpvragen.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                 }
             }
         }

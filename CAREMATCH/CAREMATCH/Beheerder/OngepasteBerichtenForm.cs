@@ -13,7 +13,6 @@ namespace CAREMATCH
 {
     public partial class OngepasteBerichtenForm : Form
     {
-        private string filter;
         private Database database;
         private Gebruiker gebruiker;
         private List<Hulpvraag> hulpvragen;
@@ -41,7 +40,7 @@ namespace CAREMATCH
                 case "gemarkeerde hulpvragen":
                     MessageBox.Show("gemarkeerde hulpvragen");
                     filter = "ongepaste hulpvragen";
-                    VulListViewMetHulpvragen();
+                    database.HulpvragenOverzicht(gebruiker, filter);
                     break;
                 case "gemarkeerde beoordeling":
                     MessageBox.Show("gemarkeerde beoordeling");
@@ -57,7 +56,7 @@ namespace CAREMATCH
             }
             if(filter != "")
             {
-                hulpvragen = database.HulpvragenOverzicht(gebruiker, filter);
+                database.HulpvragenOverzicht(gebruiker, filter);
             }
             
             //listview vullen met de gekregen list;
@@ -70,23 +69,14 @@ namespace CAREMATCH
 
         }
 
-        private void VulListViewMetHulpvragen()
+        private void VulListViewMetHulpvragen(List<Hulpvraag> hulpvragen)
         {
-            
-            hulpvragen = database.HulpvragenOverzicht(gebruiker, filter);
-
             lvOngepasteBerichten.Columns.Add("ID");
             lvOngepasteBerichten.Columns.Add("Titel");
             lvOngepasteBerichten.Columns.Add("Hulpvraag");
 
-            foreach(Hulpvraag hulpvraag in hulpvragen)
-            {
-                ListViewItem item = new ListViewItem();
-                item.SubItems.Add(hulpvraag.Titel);
-                item.SubItems.Add(hulpvraag.HulpvraagInhoud);
-                lvOngepasteBerichten.Items.Add(item);
-            }
-                
+
+            ListViewItem item = new ListViewItem();
 
 
         }

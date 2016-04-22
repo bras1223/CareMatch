@@ -115,29 +115,14 @@ namespace CAREMATCH.VrijwilligerSysteem
             Close();
         }
 
-        private void txtTitel_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblTitel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dtpDatum_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void pbHulpbehoevende_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void pbVrijwilliger_Click(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

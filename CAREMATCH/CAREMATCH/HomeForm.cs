@@ -147,7 +147,7 @@ namespace CAREMATCH
                 this.Hide();
                 GebruikerBeheerderForm = new GebruikerBeheer(gebruiker);
                 GebruikerBeheerderForm.ShowDialog();
-                if (GebruikerBeheerderForm.DialogResult == DialogResult.Cancel|| profielForm.DialogResult == DialogResult.Cancel)
+                if (GebruikerBeheerderForm.DialogResult == DialogResult.OK|| profielForm.DialogResult == DialogResult.Cancel)
                 {
                     this.Show();
                 }

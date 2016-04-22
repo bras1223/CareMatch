@@ -10,13 +10,14 @@ namespace Login
     {
         private Gebruiker gebruiker;
         private Database database;
-        HomeForm homeform;
 
         public GebruikerBeheer(Gebruiker gebruiker)
         {
             InitializeComponent();
             database = new Database();
             this.gebruiker = gebruiker;
+
+            cmbBeheer.SelectedIndex = 0;
         }
 
 
@@ -31,6 +32,11 @@ namespace Login
         {
             DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

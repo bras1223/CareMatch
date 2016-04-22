@@ -29,7 +29,9 @@ namespace CAREMATCH
             this.gebruiker = gebruiker;
             database = new Database();
 
+            
             lvOngepasteBerichten.View = View.Details;
+            lvOngepasteBerichten.CheckBoxes = true;
         }
 
         private void cmbKiesBerichten_SelectedValueChanged(object sender, EventArgs e)
@@ -44,6 +46,11 @@ namespace CAREMATCH
                     //MessageBox.Show("gemarkeerde hulpvragen");
                     filter = "ongepaste hulpvragen";
                     
+                    //prepare listview
+                    lvOngepasteBerichten.Columns.Add("Check");
+                    lvOngepasteBerichten.Columns.Add("ID");
+                    lvOngepasteBerichten.Columns.Add("Titel");
+                    lvOngepasteBerichten.Columns.Add("Hulpvraag");
                     break;
                 case "gemarkeerde beoordeling":
                    // MessageBox.Show("gemarkeerde beoordeling");
@@ -61,7 +68,8 @@ namespace CAREMATCH
             {
                 hulpvragen = database.HulpvragenOverzicht(gebruiker, filter);
             }
-            
+
+            VulListViewMetHulpvragen(hulpvragen);
             //listview vullen met de gekregen list;
         }
 
@@ -74,13 +82,12 @@ namespace CAREMATCH
 
         private void VulListViewMetHulpvragen(List<Hulpvraag> hulpvragen)
         {
-            lvOngepasteBerichten.Columns.Add("ID");
-            lvOngepasteBerichten.Columns.Add("Titel");
-            lvOngepasteBerichten.Columns.Add("Hulpvraag");
+         
 
             foreach(Hulpvraag hulpvraag in hulpvragen)
             {
                 ListViewItem item = new ListViewItem();
+                item.SubItems.Add(hulpvraag.HulpvraagID.ToString());
                 item.SubItems.Add(hulpvraag.Titel);
                 item.SubItems.Add(hulpvraag.HulpvraagInhoud);
                 lvOngepasteBerichten.Items.Add(item);
@@ -117,6 +124,16 @@ namespace CAREMATCH
         {
             DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void btnDeleteSelection_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OngepasteBerichtenForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
         }
     }
 }

@@ -142,10 +142,10 @@ namespace CAREMATCH
                 //nog niet af, moeten nog 2 querries bij, dus nog 2 else-if statements met 2 querries
                 //op basis van OngepasteBerichtenForm;
             }
-            else if(filter == "")
-            {
-
-            }
+            // else if(filter == "iets")
+            // {
+                //doe iets;
+            // }
             else
             {
                 //Overzicht eigen hulpvragen voor hulpbehoevende.

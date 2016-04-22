@@ -134,7 +134,7 @@ namespace CAREMATCH
             else if(filter == "Eigen hulpvragen" && gebruiker.Rol.ToLower() == "vrijwilliger")
             {
                 //overzicht eigen toegekende hulpvragen voor vrijwilligers
-                command = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.HulpvraagInhoud,  Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie,  Hulpvraag.Titel, Hulpvraag.Reactie, Hulpvraag.Duur, Hulpvraag.LaatstGereageerdDoor FROM Hulpvraag WHERE VrijwilligerID= :gebruikerid", con);
+                command = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.HulpvraagInhoud,  Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie,  Hulpvraag.Titel, Hulpvraag.Reactie, Hulpvraag.Duur, Hulpvraag.LaatstGereageerdDoor FROM Hulpvraag WHERE VrijwilligerID ='"+gebruiker.GebruikersID+"'", con); // VrijwilligerID =:gebruikerid  geeft exception. Whyyyyy? I dunno.
 
             }
             else if(filter == "Nieuwe reacties" && gebruiker.Rol.ToLower() == "vrijwilliger")
@@ -153,8 +153,7 @@ namespace CAREMATCH
             {
                 //throw new NotImplementedException();
                 command = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.HulpvraagInhoud,  Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie, Hulpvraag.Titel, Hulpvraag.Reactie, Hulpvraag.LaatstGereageerdDoor, Hulpvraag.Duur FROM Hulpvraag -- WHERE Hulpvraag.Flagged = 'Y'", con);
-                //Hulpvraag.Flagged Y or N moet nog in de database
-                
+                //Hulpvraag.Flagged Y or N moet nog in de database                
 
                 //nog niet af, moeten nog 2 querries bij, dus nog 2 else-if statements met 2 querries
                 //op basis van OngepasteBerichtenForm;
@@ -482,7 +481,6 @@ namespace CAREMATCH
 
         #endregion
         #region Beheerder Queries
-        //Agenda Queries
         public OracleDataAdapter AgendaBeheer(string query)
         {
             con.Open();
@@ -617,7 +615,6 @@ namespace CAREMATCH
         }
         public void GebruikerAccountToevoegen(string Gebruikersnaam, string Wachtwoord, string Approved, string Rol, string filenameFoto, string filenameVOG, string voornaam, string achternaam, string geslacht, DateTime geboortedatum)
         {
-
             try
             {
                 con.Open();
@@ -707,19 +704,19 @@ namespace CAREMATCH
             //over encryptie van het wachtwoord gedaan elke keer dat je iets aan het profiel aanpast
             if(fotoChanged)
             {
-                command = new OracleCommand("UPDATE Gebruiker SET GebruikerInfo=:info, Foto=:pasfoto, Auto=:temp, Voornaam=:voornaam, Achternaam=:achternaam  WHERE GebruikerID =:gebruikerid", con);
+                command = new OracleCommand("UPDATE Gebruiker SET GebruikerInfo=:info, Foto=:pasfoto, Auto=:auto, Voornaam=:voornaam, Achternaam=:achternaam  WHERE GebruikerID =:gebruikerid", con);
             }
             else if(wachtwoordChanged)
             {
-                command = new OracleCommand("UPDATE Gebruiker SET Wachtwoord = :password, GebruikerInfo=:info, Auto=:temp, Voornaam=:voornaam, Achternaam=:achternaam WHERE GebruikerID =:gebruikerid", con);
+                command = new OracleCommand("UPDATE Gebruiker SET Wachtwoord = :password, GebruikerInfo=:info, Auto=:auto, Voornaam=:voornaam, Achternaam=:achternaam WHERE GebruikerID =:gebruikerid", con);
             }
             else
             {
-                command = new OracleCommand("UPDATE Gebruiker SET GebruikerInfo=:info, Auto=:temp , Voornaam=:voornaam, Achternaam=:achternaam WHERE GebruikerID =:gebruikerid", con);
+                command = new OracleCommand("UPDATE Gebruiker SET GebruikerInfo=:info, Auto=:auto, Voornaam=:voornaam, Achternaam=:achternaam WHERE GebruikerID =:gebruikerid", con);
             }
             command.Parameters.Add("info", gebruiker.GebruikerInfo);
             command.Parameters.Add("pasfoto", gebruiker.Pasfoto);
-            command.Parameters.Add("temp", tempString);
+            command.Parameters.Add("auto", tempString);
             command.Parameters.Add("voornaam", gebruiker.Voornaam);
             command.Parameters.Add("achternaam", gebruiker.Achternaam);
             command.Parameters.Add("gebruikerid", gebruiker.GebruikersID);

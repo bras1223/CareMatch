@@ -75,7 +75,18 @@ namespace CAREMATCH
             {
                 tempString2 = "N";
             }
-            command = new OracleCommand("INSERT INTO Hulpvraag(GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie, Titel, Locatie, AutoBenodigd) VALUES('" + gebruiker.GebruikersID + "', '" + hulpvraag.HulpvraagInhoud + "', '" + tempString + "', '" + hulpvraag.DatumTijd + "', '" + hulpvraag.Duur + "', '" + hulpvraag.Frequentie+ "', '" +hulpvraag.Titel + "', '"+hulpvraag.Locatie+"', '"+tempString2+"')", con);
+            command = new OracleCommand("INSERT INTO Hulpvraag(GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie, Titel, Locatie, AutoBenodigd) VALUES(:gebruikerid, :hulpvraaginhoud, :temp, :datumtijd, :duur, :frequentie, :titel, :locatie, :string2')", con);
+            command.Parameters.Add("gebruikerid", gebruiker.GebruikersID);
+            command.Parameters.Add("reactie", hulpvraag.Reactie);
+            command.Parameters.Add("hulpvraaginhoud", hulpvraag.HulpvraagInhoud);
+            command.Parameters.Add("temp", tempString);
+            command.Parameters.Add("hulpvraagid", hulpvraag.HulpvraagID);
+            command.Parameters.Add("titel", hulpvraag.Titel);
+            command.Parameters.Add("datumtijd", hulpvraag.DatumTijd);
+            command.Parameters.Add("duur", hulpvraag.Duur);
+            command.Parameters.Add("frequentie", hulpvraag.Frequentie);
+            command.Parameters.Add("locatie", hulpvraag.Locatie);
+            command.Parameters.Add("string", tempString2);
             command.ExecuteNonQuery();
             con.Close();
         }
@@ -188,12 +199,14 @@ namespace CAREMATCH
             con.Open();
             if(rol == "hulpbehoevende")
             {
-                command = new OracleCommand("SELECT Foto FROM Gebruiker WHERE GebruikerID=(SELECT GebruikerID FROM Hulpvraag WHERE HulpvraagID='"+hulpvraag.HulpvraagID+"') ", con);
+                command = new OracleCommand("SELECT Foto FROM Gebruiker WHERE GebruikerID=(SELECT GebruikerID FROM Hulpvraag WHERE HulpvraagID=:hulpvraagid) ", con);
             }
             else if(rol == "vrijwilliger")
             {
-                command = new OracleCommand("SELECT Foto FROM Gebruiker WHERE Gebruikersnaam='" + hulpvraag.Vrijwilliger + "' ", con);
+                command = new OracleCommand("SELECT Foto FROM Gebruiker WHERE Gebruikersnaam=:vrijwilliger", con);
             }
+            command.Parameters.Add("hulpvraagid", hulpvraag.HulpvraagID);
+            command.Parameters.Add("vrijwilliger", hulpvraag.Vrijwilliger);
             reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -541,7 +554,9 @@ namespace CAREMATCH
                 
             }
             //Gebruikersnaam zoeken waar gebruikersnaam gelijk is aan de ingevoerde naam + w8woord
-            command = new OracleCommand("SELECT * FROM gebruiker WHERE gebruikersnaam = '"+naam+"' AND wachtwoord = '"+EncryptString(wachtwoord)+"'", con);
+            command = new OracleCommand("SELECT * FROM gebruiker WHERE gebruikersnaam = :naam AND wachtwoord = :pw", con);
+            command.Parameters.Add("naam", naam);
+            command.Parameters.Add("pw", EncryptString(wachtwoord));
             reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -637,7 +652,8 @@ namespace CAREMATCH
                 MessageBox.Show("kon de verbinding met de database niet tot stand brengen");
             }
 
-            command = new OracleCommand("SELECT Gebruikersnaam FROM GEBRUIKER WHERE Gebruikersnaam ='" + Gebruikersnaam + "'", con);
+            command = new OracleCommand("SELECT Gebruikersnaam FROM GEBRUIKER WHERE Gebruikersnaam =:gebruikersnaam", con);
+            command.Parameters.Add("Gebruikersnaam", Gebruikersnaam);
             reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -676,16 +692,23 @@ namespace CAREMATCH
             //over encryptie van het wachtwoord gedaan elke keer dat je iets aan het profiel aanpast
             if(fotoChanged)
             {
-                command = new OracleCommand("UPDATE Gebruiker SET GebruikerInfo='" + gebruiker.GebruikerInfo + "', Foto='" + gebruiker.Pasfoto + "', Auto='" + tempString + "', Voornaam='"+gebruiker.Voornaam+"', Achternaam='"+gebruiker.Achternaam+"'  WHERE GebruikerID ='" + gebruiker.GebruikersID + "'", con);
+                command = new OracleCommand("UPDATE Gebruiker SET GebruikerInfo=:info, Foto=:pasfoto, Auto=:temp, Voornaam=:voornaam, Achternaam=:achternaam  WHERE GebruikerID =:gebruikerid", con);
             }
             else if(wachtwoordChanged)
             {
-                command = new OracleCommand("UPDATE Gebruiker SET Wachtwoord = '" + EncryptString(gebruiker.Wachtwoord) + "', GebruikerInfo='" + gebruiker.GebruikerInfo + "', Auto='" + tempString + "', Voornaam='" + gebruiker.Voornaam + "', Achternaam='" + gebruiker.Achternaam + "' WHERE GebruikerID ='" + gebruiker.GebruikersID + "'", con);
+                command = new OracleCommand("UPDATE Gebruiker SET Wachtwoord = :password, GebruikerInfo=:info, Auto=:temp, Voornaam=:voornaam, Achternaam=:achternaam WHERE GebruikerID =:gebruikerid", con);
             }
             else
             {
-                command = new OracleCommand("UPDATE Gebruiker SET GebruikerInfo='" + gebruiker.GebruikerInfo + "', Auto='" + tempString + "', Voornaam='" + gebruiker.Voornaam + "', Achternaam='" + gebruiker.Achternaam + "' WHERE GebruikerID ='" + gebruiker.GebruikersID + "'", con);
+                command = new OracleCommand("UPDATE Gebruiker SET GebruikerInfo=:info, Auto=:temp , Voornaam=:voornaam, Achternaam=:achternaam WHERE GebruikerID =:gebruikerid", con);
             }
+            command.Parameters.Add("info", gebruiker.GebruikerInfo);
+            command.Parameters.Add("pasfoto", gebruiker.Pasfoto);
+            command.Parameters.Add("temp", tempString);
+            command.Parameters.Add("voornaam", gebruiker.Voornaam);
+            command.Parameters.Add("achternaam", gebruiker.Achternaam);
+            command.Parameters.Add("gebruikerid", gebruiker.GebruikersID);
+            command.Parameters.Add("password", EncryptString(gebruiker.Wachtwoord));
             reader = command.ExecuteReader();
             con.Close();
         }
@@ -693,9 +716,10 @@ namespace CAREMATCH
         {
             List<string> ProfielInfo = new List<string>();
             con.Open();
-            command = new OracleCommand("SELECT * FROM GEBRUIKER WHERE ROL ='"+rol+"'", con);
+            command = new OracleCommand("SELECT * FROM GEBRUIKER WHERE ROL =:rol", con);
+            command.Parameters.Add("rol", rol);
             reader = command.ExecuteReader();
-
+            
             while (reader.Read())
             {
                 tempString = reader["Auto"].ToString();

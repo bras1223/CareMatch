@@ -52,14 +52,14 @@ namespace CAREMATCH.VrijwilligerSysteem
             if(hulpvraag != null)
             {
                 //Profiel foto in de hulpvraag zetten als een gebruiker deze ingesteld heeft.
-                if (database.HulpvraagProfielFoto(gebruiker, hulpvraag, "hulpbehoevende") != null)
-                {
-                    pbHulpbehoevende.Image = Image.FromFile(database.HulpvraagProfielFoto(gebruiker, hulpvraag, "hulpbehoevende"));
-                }
-                if (database.HulpvraagProfielFoto(gebruiker, hulpvraag, "vrijwilliger") != null)
-                {
-                    pbVrijwilliger.Image = Image.FromFile(database.HulpvraagProfielFoto(gebruiker, hulpvraag, "vrijwilliger"));
-                }
+                //if (database.HulpvraagProfielFoto(gebruiker, hulpvraag, "hulpbehoevende") != null)
+                //{
+                //    pbHulpbehoevende.Image = Image.FromFile(database.HulpvraagProfielFoto(gebruiker, hulpvraag, "hulpbehoevende"));
+                //}
+                //if (database.HulpvraagProfielFoto(gebruiker, hulpvraag, "vrijwilliger") != null)
+                //{
+                //    pbVrijwilliger.Image = Image.FromFile(database.HulpvraagProfielFoto(gebruiker, hulpvraag, "vrijwilliger"));
+                //}
                 //Waardes in Textboxes zetten.
                 txtDuur.Text = hulpvraag.Duur.ToString();
                 txtFrequentie.Text = hulpvraag.Frequentie;

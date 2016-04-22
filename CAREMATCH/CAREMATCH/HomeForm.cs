@@ -69,20 +69,20 @@ namespace CAREMATCH
         {
             if (gebruiker.Rol.ToLower() == "vrijwilliger" || gebruiker.Rol.ToLower() == "hulpbehoevende")
             {
-            this.Hide();
-            weekrooster = new Agenda.DagOverzichtForm(gebruiker);
-            weekrooster.ShowDialog();
-            if (weekrooster.DialogResult == DialogResult.OK || weekrooster.DialogResult == DialogResult.Cancel)
-            {
-                this.Show();
+                this.Hide();
+                weekrooster = new Agenda.DagOverzichtForm(gebruiker);
+                weekrooster.ShowDialog();
+                if (weekrooster.DialogResult == DialogResult.OK || weekrooster.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
             }
-        }
             else
             {
                 this.Hide();
                 AgendaBeheerderForm = new AgendaBeheerderForm(gebruiker);
                 AgendaBeheerderForm.ShowDialog();
-                if (AgendaBeheerderForm.DialogResult == DialogResult.Cancel || profielForm.DialogResult == DialogResult.Cancel)
+                if (AgendaBeheerderForm.DialogResult == DialogResult.OK || profielForm.DialogResult == DialogResult.Cancel)
                 {
                     this.Show();
                 }
@@ -95,7 +95,7 @@ namespace CAREMATCH
                 this.Hide();
                 chatForm = new ChatForm(gebruiker);
                 chatForm.ShowDialog();
-                if (chatForm.DialogResult == DialogResult.Cancel || chatForm.DialogResult == DialogResult.Cancel)
+                if (chatForm.DialogResult == DialogResult.OK || chatForm.DialogResult == DialogResult.Cancel)
                 {
                     this.Show();
                 }
@@ -105,7 +105,7 @@ namespace CAREMATCH
                 this.Hide();
                 ChatBeheerderForm = new ChatBeheerdersForm(gebruiker);
                 ChatBeheerderForm.ShowDialog();
-                if (ChatBeheerderForm.DialogResult == DialogResult.Cancel || chatForm.DialogResult == DialogResult.Cancel)
+                if (ChatBeheerderForm.DialogResult == DialogResult.OK || chatForm.DialogResult == DialogResult.Cancel)
                 {
                     this.Show();
                 }
@@ -136,7 +136,7 @@ namespace CAREMATCH
             this.Hide();
             OngepasteBerichtenForm = new OngepasteBerichtenForm(gebruiker);
             OngepasteBerichtenForm.ShowDialog();
-            if (OngepasteBerichtenForm.DialogResult == DialogResult.Cancel || chatForm.DialogResult == DialogResult.Cancel)
+            if (OngepasteBerichtenForm.DialogResult == DialogResult.OK || chatForm.DialogResult == DialogResult.Cancel)
             {
                 this.Show();
             }

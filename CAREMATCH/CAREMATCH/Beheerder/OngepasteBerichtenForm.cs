@@ -45,28 +45,43 @@ namespace CAREMATCH
                 case "gemarkeerde hulpvragen":
                     //MessageBox.Show("gemarkeerde hulpvragen");
                     filter = "ongepaste hulpvragen";
-                    
+
                     //prepare listview
+                    lvOngepasteBerichten.Clear();
                     lvOngepasteBerichten.Columns.Add("Check");
                     lvOngepasteBerichten.Columns.Add("ID");
                     lvOngepasteBerichten.Columns.Add("Titel");
                     lvOngepasteBerichten.Columns.Add("Hulpvraag");
+                    lvOngepasteBerichten.Columns.Add("Uitzetter");
                     break;
                 case "gemarkeerde beoordeling":
                    // MessageBox.Show("gemarkeerde beoordeling");
                     filter = "ongepaste beoordelingen";
+
+                    //prepare listview
+                    lvOngepasteBerichten.Clear();
+                    lvOngepasteBerichten.Columns.Add("Check");
+                    lvOngepasteBerichten.Columns.Add("Beoordeling van:");
+                    lvOngepasteBerichten.Columns.Add("Beoordeling");
+                    //lvOngepasteBerichten.Columns.Add("Uitzetter");
                     break;
                 case "verdachte berichten":
                    // MessageBox.Show("verdachte hulpvragen");
                     filter = "verdachte hulpvragen";
+
+
                     break;
                 default:
                    // MessageBox.Show("default");
                     break;
             }
-            if(filter != "")
+            if(filter == "ongepaste hulpvragen")
             {
                 hulpvragen = database.HulpvragenOverzicht(gebruiker, filter);
+            }
+            else if(filter == "ongepaste beoordelingen")
+            {
+                hulpvragen = database.BeoordelingOverzicht(gebruiker);
             }
 
             VulListViewMetHulpvragen(hulpvragen);
@@ -82,21 +97,29 @@ namespace CAREMATCH
 
         private void VulListViewMetHulpvragen(List<Hulpvraag> hulpvragen)
         {
-         
-
             foreach(Hulpvraag hulpvraag in hulpvragen)
             {
                 ListViewItem item = new ListViewItem();
                 item.SubItems.Add(hulpvraag.HulpvraagID.ToString());
                 item.SubItems.Add(hulpvraag.Titel);
                 item.SubItems.Add(hulpvraag.HulpvraagInhoud);
+                item.SubItems.Add(hulpvraag.Hulpbehoevende);
+
                 lvOngepasteBerichten.Items.Add(item);
             }
-
-
-
         }
 
+        private void VulListViewMetBeoordelingen(List<Hulpvraag> hulpvragen)
+        {
+            foreach(Hulpvraag hulpvraag in hulpvragen)
+            {
+                ListViewItem item = new ListViewItem();
+                item.SubItems.Add(hulpvraag.Titel);
+                //item.SubItems.Add(hulpvraag.Beoordeling);
+                
+            }
+
+        }
         private void btnLaatZien_Click(object sender, EventArgs e)
         {
             this.Hide();

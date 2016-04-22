@@ -71,7 +71,6 @@
             this.lblTitel.Size = new System.Drawing.Size(203, 26);
             this.lblTitel.TabIndex = 0;
             this.lblTitel.Text = "Korte Omschrijving:";
-            this.lblTitel.Click += new System.EventHandler(this.lblTitel_Click);
             // 
             // lblOmschrijving
             // 
@@ -151,7 +150,6 @@
             this.txtTitel.Name = "txtTitel";
             this.txtTitel.Size = new System.Drawing.Size(548, 41);
             this.txtTitel.TabIndex = 7;
-            this.txtTitel.TextChanged += new System.EventHandler(this.txtTitel_TextChanged);
             // 
             // txtHulpvrager
             // 
@@ -287,7 +285,7 @@
             this.pbVrijwilliger.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbVrijwilliger.TabIndex = 27;
             this.pbVrijwilliger.TabStop = false;
-            this.pbVrijwilliger.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pbVrijwilliger.Click += new System.EventHandler(this.pbVrijwilliger_Click);
             // 
             // btnStartChat
             // 
@@ -327,7 +325,6 @@
             this.dtpDatum.Name = "dtpDatum";
             this.dtpDatum.Size = new System.Drawing.Size(242, 32);
             this.dtpDatum.TabIndex = 1;
-            this.dtpDatum.ValueChanged += new System.EventHandler(this.dtpDatum_ValueChanged);
             // 
             // lbldatumtijd
             // 

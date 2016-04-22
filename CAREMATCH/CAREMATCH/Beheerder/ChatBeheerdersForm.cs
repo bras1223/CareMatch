@@ -14,7 +14,6 @@ namespace CAREMATCH.Beheerder
     {
         private Gebruiker gebruiker;
         private Database database;
-        HomeForm homeform;
 
         public ChatBeheerdersForm(Gebruiker gebruiker)
         {

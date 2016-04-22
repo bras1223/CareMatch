@@ -36,8 +36,10 @@ namespace CAREMATCH
         private OracleConnection con;
         private OracleCommand command;
         private OracleDataReader reader;
+
         private Gebruiker gebruiker;
         private Agenda.AgendaPunt agendaPunt;
+
         private DateTime vandaag;
         private string tempString;
 
@@ -396,7 +398,7 @@ namespace CAREMATCH
         public void ChatWeergeven(int ontvangerID, int verzenderID)
         {
             List<string> chatverzonden;
-            List<string> chatgekregen;
+            //List<string> chatgekregen;
             chatverzonden = new List<string>();
 
 

@@ -10,7 +10,6 @@ namespace Login
     {
         private Gebruiker gebruiker;
         private Database database;
-        HomeForm homeform;
 
         public GebruikerBeheer(Gebruiker gebruiker)
         {

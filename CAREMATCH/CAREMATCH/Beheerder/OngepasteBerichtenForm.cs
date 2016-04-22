@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CAREMATCH.Hulpvragen;
+using CAREMATCH.VrijwilligerSysteem;
 
 namespace CAREMATCH
 {
@@ -22,11 +23,13 @@ namespace CAREMATCH
         {
             InitializeComponent();
             cmbKiesBerichten.Items.Add("gemarkeerde hulpvragen");
-            cmbKiesBerichten.Items.Add("gemarkeerde beoordelingen");
-            cmbKiesBerichten.Items.Add("verdachte berichten");
+            //cmbKiesBerichten.Items.Add("gemarkeerde beoordelingen");
+            //cmbKiesBerichten.Items.Add("verdachte berichten");
 
             this.gebruiker = gebruiker;
             database = new Database();
+
+            lvOngepasteBerichten.View = View.Details;
         }
 
         private void cmbKiesBerichten_SelectedValueChanged(object sender, EventArgs e)
@@ -38,25 +41,25 @@ namespace CAREMATCH
             switch (switchcase)
             {
                 case "gemarkeerde hulpvragen":
-                    MessageBox.Show("gemarkeerde hulpvragen");
+                    //MessageBox.Show("gemarkeerde hulpvragen");
                     filter = "ongepaste hulpvragen";
-                    database.HulpvragenOverzicht(gebruiker, filter);
+                    
                     break;
                 case "gemarkeerde beoordeling":
-                    MessageBox.Show("gemarkeerde beoordeling");
+                   // MessageBox.Show("gemarkeerde beoordeling");
                     filter = "ongepaste beoordelingen";
                     break;
                 case "verdachte berichten":
-                    MessageBox.Show("verdachte hulpvragen");
+                   // MessageBox.Show("verdachte hulpvragen");
                     filter = "verdachte hulpvragen";
                     break;
                 default:
-                    MessageBox.Show("default");
+                   // MessageBox.Show("default");
                     break;
             }
             if(filter != "")
             {
-                database.HulpvragenOverzicht(gebruiker, filter);
+                hulpvragen = database.HulpvragenOverzicht(gebruiker, filter);
             }
             
             //listview vullen met de gekregen list;
@@ -75,10 +78,45 @@ namespace CAREMATCH
             lvOngepasteBerichten.Columns.Add("Titel");
             lvOngepasteBerichten.Columns.Add("Hulpvraag");
 
+            foreach(Hulpvraag hulpvraag in hulpvragen)
+            {
+                ListViewItem item = new ListViewItem();
+                item.SubItems.Add(hulpvraag.Titel);
+                item.SubItems.Add(hulpvraag.HulpvraagInhoud);
+                lvOngepasteBerichten.Items.Add(item);
+            }
 
-            ListViewItem item = new ListViewItem();
 
 
+        }
+
+        private void btnLaatZien_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Hulpvraag hulpvraag;
+            //geselecteerde hulpvraag openen.
+            hulpvraag = hulpvragen[lvOngepasteBerichten.FocusedItem.Index];
+            if(hulpvraag != null)
+            {
+                HulpvraagForm hulpvraagForm = new HulpvraagForm(hulpvraag, gebruiker, false);
+                hulpvraagForm.ShowDialog();
+                if (hulpvraagForm.DialogResult == DialogResult.OK || hulpvraagForm.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
+            }
+            else
+            {
+                MessageBox.Show("selecteer AUB een hulpvraag");
+            }
+
+
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }

@@ -134,8 +134,11 @@ namespace CAREMATCH
             }
             else if(filter.ToLower() == "ongepaste hulpvragen" && gebruiker.Rol.ToLower() == "beheerder")
             {
-                throw new NotImplementedException();
-                command = new OracleCommand("", con);
+                //throw new NotImplementedException();
+                command = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.HulpvraagInhoud,  Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie, Hulpvraag.Titel, Hulpvraag.Reactie, Hulpvraag.LaatstGereageerdDoor, Hulpvraag.Duur FROM Hulpvraag -- WHERE Hulpvraag.Flagged = 'Y'", con);
+                //Hulpvraag.Flagged Y or N moet nog in de database
+                
+
                 //nog niet af, moeten nog 2 querries bij, dus nog 2 else-if statements met 2 querries
                 //op basis van OngepasteBerichtenForm;
             }

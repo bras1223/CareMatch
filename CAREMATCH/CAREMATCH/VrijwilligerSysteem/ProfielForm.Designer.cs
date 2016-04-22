@@ -157,7 +157,6 @@
             this.lblHerhaalWachtwoord.Size = new System.Drawing.Size(275, 31);
             this.lblHerhaalWachtwoord.TabIndex = 11;
             this.lblHerhaalWachtwoord.Text = "Herhaal Wachtwoord:";
-            this.lblHerhaalWachtwoord.Click += new System.EventHandler(this.lblHerhaalWachtwoord_Click);
             // 
             // txtHerhaalWachtwoord
             // 

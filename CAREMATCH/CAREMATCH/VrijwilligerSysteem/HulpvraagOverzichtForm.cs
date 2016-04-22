@@ -25,7 +25,7 @@ namespace CAREMATCH.VrijwilligerSysteem
             {
                 cbFilter.Items.Add("Alle hulpvragen");
             }
-            cbFilter.SelectedIndex = 2;
+            cbFilter.SelectedIndex = 0;
             HulpvragenOverzichtWeergeven();
         }
         private void btnBekijkHulpvraag_Click(object sender, EventArgs e)

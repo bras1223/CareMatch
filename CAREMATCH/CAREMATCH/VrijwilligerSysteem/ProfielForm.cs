@@ -17,35 +17,72 @@ namespace CAREMATCH.VrijwilligerSysteem
         private Database database;
         private OpenFileDialog zoekFotoDialog;
 
-        public ProfielForm(Gebruiker gebruiker)
+        public ProfielForm(Gebruiker gebruiker, bool bekijkProfiel, string rol)
         {
             InitializeComponent();
             this.gebruiker = gebruiker;
             database = new Database();
 
-            //afbeelding in de picturebox zetten als een gebruiker deze heeft.
-            if (gebruiker.Pasfoto != "")
+            if (bekijkProfiel)
             {
-                try
-                {
-                    pbProfielFoto.Image = Image.FromFile(gebruiker.Pasfoto);
-                }
-                catch (FileNotFoundException)
-                {
-                     
-                }
-                
-            }
-            txtGebruikersInfo.Text = gebruiker.GebruikerInfo;
-            txtAchternaam.Text = gebruiker.Achternaam;
-            txtVoornaam.Text = gebruiker.Voornaam;
-            cbAuto.Checked = gebruiker.Auto;
-            if(gebruiker.Auto)
-            {
-                cbAuto.Checked = true;
-            }
-        }
+                btnOpslaan.Visible = false;
+                btnWijzig.Visible = false;
+                txtActueelWachtwoord.Visible = false;
+                txtHerhaalWachtwoord.Visible = false;
+                txtNieuwWachtwoord.Visible = false;
 
+                txtAchternaam.Enabled = false;
+                txtVoornaam.Enabled = false;
+                txtGebruikersInfo.Enabled = false;
+                cbAuto.Enabled = false;
+
+                txtAchternaam.Text = database.GebruikerProfielOpvragen(rol)[2];
+                txtVoornaam.Text = database.GebruikerProfielOpvragen(rol)[3];
+                txtGebruikersInfo.Text = database.GebruikerProfielOpvragen(rol)[1];
+                if (database.GebruikerProfielOpvragen(rol)[4] != "")
+                {
+                    try
+                    {
+                        pbProfielFoto.Image = Image.FromFile(database.GebruikerProfielOpvragen(rol)[4]);
+                    }
+                    catch
+                    {
+                        // als er geen profiel foto is hoeft er geen foutmelding weergeven te worden.
+                    }
+                }
+                if (database.GebruikerProfielOpvragen(rol)[0] == "Y")
+                {
+                    cbAuto.Checked = true;
+                }
+                else
+                {
+                    cbAuto.Checked = false;
+                }
+            }
+            else
+            {
+                //afbeelding in de picturebox zetten als een gebruiker deze heeft.
+                if (gebruiker.Pasfoto != "")
+                {
+                    try
+                    {
+                        pbProfielFoto.Image = Image.FromFile(gebruiker.Pasfoto);
+                    }
+                    catch
+                    {
+
+                    }
+                }
+                txtGebruikersInfo.Text = gebruiker.GebruikerInfo;
+                txtAchternaam.Text = gebruiker.Achternaam;
+                txtVoornaam.Text = gebruiker.Voornaam;
+                cbAuto.Checked = gebruiker.Auto;
+                if (gebruiker.Auto)
+                {
+                    cbAuto.Checked = true;
+                }
+            }            
+        }
         private void btnOpslaan_Click(object sender, EventArgs e)
         {
             //dubbele IF anders foutmelding.
@@ -131,11 +168,6 @@ namespace CAREMATCH.VrijwilligerSysteem
             {
                 gebruiker.Auto = false;
             }
-        }
-
-        private void lblHerhaalWachtwoord_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

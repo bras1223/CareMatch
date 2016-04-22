@@ -537,10 +537,9 @@ namespace CAREMATCH
             }
             catch (OracleException)
             {
-                MessageBox.Show("kon de verbinding met de database niet tot stand brengen");
+                MessageBox.Show("Kan de verbinding met de database niet tot stand brengen");
                 
             }
-
             //Gebruikersnaam zoeken waar gebruikersnaam gelijk is aan de ingevoerde naam + w8woord
             command = new OracleCommand("SELECT * FROM gebruiker WHERE gebruikersnaam = '"+naam+"' AND wachtwoord = '"+EncryptString(wachtwoord)+"'", con);
             reader = command.ExecuteReader();
@@ -548,18 +547,14 @@ namespace CAREMATCH
             while (reader.Read())
             {
                 //Nieuwe gebruiker aanmaken op basis van de rol
-                if (reader["ROL"].ToString().ToLower() == "hulpbehoevende")
-                {
-                    gebruiker = new Gebruiker();
-                }
-                else if (reader["ROL"].ToString().ToLower() == "beheerder")
-                {
-                    gebruiker = new Gebruiker();
-                }
-                else if (reader["ROL"].ToString().ToLower() == "vrijwilliger")
+                if (reader["ROL"].ToString().ToLower() == "vrijwilliger")
                 {
                     gebruiker = new Gebruiker();
                     gebruiker.Approved = true;
+                }
+                else
+                {
+                    gebruiker = new Gebruiker();
                 }
                 //Properties toekennen aan gebruiken.
                 gebruiker.Achternaam = reader["Achternaam"].ToString();
@@ -633,7 +628,6 @@ namespace CAREMATCH
         }
         public bool GebruikerControlleerUsername(string Gebruikersnaam)
         {
-
             try
             {
                 con.Open();
@@ -694,6 +688,30 @@ namespace CAREMATCH
             }
             reader = command.ExecuteReader();
             con.Close();
+        }
+        public List<string> GebruikerProfielOpvragen(string rol)
+        {
+            List<string> ProfielInfo = new List<string>();
+            con.Open();
+            command = new OracleCommand("SELECT * FROM GEBRUIKER WHERE ROL ='"+rol+"'", con);
+            reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                tempString = reader["Auto"].ToString();
+                ProfielInfo.Add(tempString);
+                tempString = reader["GebruikerInfo"].ToString();
+                ProfielInfo.Add(tempString);
+                tempString = reader["Achternaam"].ToString();
+                ProfielInfo.Add(tempString);
+                tempString = reader["Voornaam"].ToString();
+                ProfielInfo.Add(tempString);
+                tempString = reader["Foto"].ToString();
+                ProfielInfo.Add(tempString);
+            }
+            con.Close();
+
+            return ProfielInfo;
         }
         public void GebruikerBeoordelingToevoegen()
         {

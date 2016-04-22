@@ -16,6 +16,7 @@ namespace CAREMATCH.VrijwilligerSysteem
         private Database database;
         private Gebruiker gebruiker;
         private Hulpvragen.Hulpvraag hulpvraag;
+        private ProfielForm profielform;
         public HulpvraagForm(Hulpvragen.Hulpvraag hulpvraag, Gebruiker gebruiker, bool hulpvraagIndienen)
         {
             InitializeComponent();
@@ -25,7 +26,7 @@ namespace CAREMATCH.VrijwilligerSysteem
 
             //Datum en tijd Format aanpassen voor de hulpbehoevende om aan te passen.
             dtpDatum.Format = DateTimePickerFormat.Custom;
-            dtpDatum.CustomFormat = "d/MM/yyyy:HH:m";
+            dtpDatum.CustomFormat = "d/MM/yyyy:HH:mm";
             
             //Knoppen weergeven/Verwijderen op basis van gebruiker rol.
             if (gebruiker.Rol.ToLower() == "hulpbehoevende")
@@ -117,12 +118,17 @@ namespace CAREMATCH.VrijwilligerSysteem
 
         private void pbHulpbehoevende_Click(object sender, EventArgs e)
         {
-
+            profielform = new ProfielForm(gebruiker, true, "hulpbehoevende");
         }
 
         private void pbVrijwilliger_Click(object sender, EventArgs e)
         {
-            
+            profielform = new ProfielForm(gebruiker, true, "vrijwilliger");
+        }
+
+        private void dtpDatum_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

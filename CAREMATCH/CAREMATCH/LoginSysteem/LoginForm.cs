@@ -18,7 +18,7 @@ namespace CAREMATCH.LoginSysteem
             InitializeComponent();
             login = new Login();
             database = new Database();
-            ActiveControl = txtGebruikersnaam;   
+            ActiveControl = txtGebruikersnaam;
         }
         //Logincheck
         private void btnLogin_Click(object sender, EventArgs e)

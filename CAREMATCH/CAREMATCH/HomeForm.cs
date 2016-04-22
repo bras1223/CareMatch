@@ -116,7 +116,7 @@ namespace CAREMATCH
         private void btnProfiel_Click(object sender, EventArgs e)
         {
             this.Hide();
-            profielForm = new ProfielForm(gebruiker);
+            profielForm = new ProfielForm(gebruiker, false, "");
             profielForm.ShowDialog();
             if (profielForm.DialogResult == DialogResult.OK || profielForm.DialogResult == DialogResult.Cancel)
             {

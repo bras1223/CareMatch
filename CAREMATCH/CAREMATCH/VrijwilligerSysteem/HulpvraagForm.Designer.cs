@@ -325,6 +325,7 @@
             this.dtpDatum.Name = "dtpDatum";
             this.dtpDatum.Size = new System.Drawing.Size(242, 32);
             this.dtpDatum.TabIndex = 1;
+            this.dtpDatum.ValueChanged += new System.EventHandler(this.dtpDatum_ValueChanged);
             // 
             // lbldatumtijd
             // 

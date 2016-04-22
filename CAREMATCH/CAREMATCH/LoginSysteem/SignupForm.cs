@@ -89,7 +89,7 @@ namespace CAREMATCH.LoginSysteem
                             }
                             catch
                             {
-                                MessageBox.Show("Er is iets fout gegaan bij het uploaden van een VOG. Contacteer een beheerder.");
+                                MessageBox.Show("Er is iets fout gegaan bij het uploaden van uw VOG. Contacteer een beheerder.");
                             }
                         }
                     }

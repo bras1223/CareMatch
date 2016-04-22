@@ -84,8 +84,8 @@ namespace CAREMATCH
             con.Open();
 
             int id = hulpvraag.HulpvraagID;
-            command = new OracleCommand("DELETE FROM Hulpvraag WHERE HulpvraagID = " + id + ";", con);
-
+            command = new OracleCommand("DELETE FROM Hulpvraag WHERE HulpvraagID =:id;", con);
+            command.Parameters.Add("id", id);
             con.Close();
         }
         public void HulpvraagAanpassen(Gebruiker gebruiker, Hulpvragen.Hulpvraag hulpvraag)
@@ -100,7 +100,12 @@ namespace CAREMATCH
                 tempString = "N";
             }
 
-            command = new OracleCommand("UPDATE Hulpvraag SET Reactie ='"+hulpvraag.Reactie+"', LaatstGereageerdDoor='"+gebruiker.Gebruikersnaam+"', VrijwilligerID=(SELECT GebruikerID FROM Gebruiker WHERE GebruikerID ='"+gebruiker.GebruikersID+"' AND LOWER(ROL)='vrijwilliger'), Hulpvraaginhoud='"+hulpvraag.HulpvraagInhoud+"', Urgent='"+tempString+"' WHERE HulpvraagID='"+hulpvraag.HulpvraagID+"' ", con);
+            command = new OracleCommand("UPDATE Hulpvraag SET Reactie =:reactie, LaatstGereageerdDoor=:gebruikersnaam, VrijwilligerID=(SELECT GebruikerID FROM Gebruiker WHERE GebruikerID =:gebruikerid AND LOWER(ROL)='vrijwilliger'), Hulpvraaginhoud=:hulpvraaginhoud, Urgent=:temp WHERE HulpvraagID=:hulpvraagid ", con);
+            command.Parameters.Add("gebruikerid", gebruiker.GebruikersID);
+            command.Parameters.Add("reactie", hulpvraag.Reactie);
+            command.Parameters.Add("hulpvraaginhoud", hulpvraag.HulpvraagInhoud);
+            command.Parameters.Add("temp", tempString);
+            command.Parameters.Add("hulpvraagid", hulpvraag.HulpvraagID);
             reader = command.ExecuteReader();
             con.Close();
         }
@@ -117,15 +122,15 @@ namespace CAREMATCH
             else if(filter == "Eigen hulpvragen" && gebruiker.Rol.ToLower() == "vrijwilliger")
             {
                 //overzicht eigen toegekende hulpvragen voor vrijwilligers
-                command = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.HulpvraagInhoud,  Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie,  Hulpvraag.Titel, Hulpvraag.Reactie, Hulpvraag.Duur, Hulpvraag.LaatstGereageerdDoor FROM Hulpvraag WHERE VrijwilligerID='" + gebruiker.GebruikersID+"'", con);
+                command = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.HulpvraagInhoud,  Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie,  Hulpvraag.Titel, Hulpvraag.Reactie, Hulpvraag.Duur, Hulpvraag.LaatstGereageerdDoor FROM Hulpvraag WHERE VrijwilligerID=:gebruikerid", con);
             }
             else if(filter == "Nieuwe reacties" && gebruiker.Rol.ToLower() == "vrijwilliger")
             {
-                command = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.LaatstGereageerdDoor, Hulpvraag.HulpvraagInhoud,  Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie,  Hulpvraag.Titel, Hulpvraag.Reactie, Hulpvraag.LaatstGereageerdDoor, Hulpvraag.Duur FROM Hulpvraag WHERE VrijwilligerID='" + gebruiker.GebruikersID+"' AND LaatstGereageerdDoor !='"+gebruiker.Gebruikersnaam+"'", con);
+                command = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.LaatstGereageerdDoor, Hulpvraag.HulpvraagInhoud,  Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie,  Hulpvraag.Titel, Hulpvraag.Reactie, Hulpvraag.LaatstGereageerdDoor, Hulpvraag.Duur FROM Hulpvraag WHERE VrijwilligerID=:gebruikerid AND LaatstGereageerdDoor !=:gebruikersnaam", con);
             }
             else if (filter == "Nieuwe reacties" && gebruiker.Rol.ToLower() == "hulpbehoevende")
             {
-                command = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.LaatstGereageerdDoor, Hulpvraag.HulpvraagInhoud,  Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie,  Hulpvraag.Titel, Hulpvraag.Reactie, Hulpvraag.LaatstGereageerdDoor, Hulpvraag.Duur FROM Hulpvraag WHERE GebruikerID='" + gebruiker.GebruikersID + "' AND LaatstGereageerdDoor !='" + gebruiker.Gebruikersnaam + "'", con);
+                command = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.LaatstGereageerdDoor, Hulpvraag.HulpvraagInhoud,  Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie,  Hulpvraag.Titel, Hulpvraag.Reactie, Hulpvraag.LaatstGereageerdDoor, Hulpvraag.Duur FROM Hulpvraag WHERE GebruikerID=:gebruikerid AND LaatstGereageerdDoor !=:gebruikersnaam", con);
             }
             else if(filter.ToLower() == "ongepaste hulpvragen" && gebruiker.Rol.ToLower() == "beheerder")
             {
@@ -141,8 +146,10 @@ namespace CAREMATCH
             else
             {
                 //Overzicht eigen hulpvragen voor hulpbehoevende.
-                command = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.HulpvraagInhoud,  Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie,  Hulpvraag.Titel, Hulpvraag.Reactie, Hulpvraag.Duur, Hulpvraag.LaatstGereageerdDoor FROM Hulpvraag WHERE (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID)='" + gebruiker.Gebruikersnaam+ "'", con);
+                command = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.HulpvraagInhoud,  Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie,  Hulpvraag.Titel, Hulpvraag.Reactie, Hulpvraag.Duur, Hulpvraag.LaatstGereageerdDoor FROM Hulpvraag WHERE (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID)=:gebruikersnaam", con);
             }
+            command.Parameters.Add("gebruikerid", gebruiker.GebruikersID);
+            command.Parameters.Add("gebruikersnaam", gebruiker.Gebruikersnaam);
             reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -225,12 +232,16 @@ namespace CAREMATCH
             if(filter == "")
             {
                 //Standaard eigen agenda weergeven.
-                command = new OracleCommand("SELECT * FROM Agenda WHERE EigenaarID ='" + gebruiker.GebruikersID + "' AND AfspraakDatum='"+datum+"' ", con);
+                command = new OracleCommand("SELECT * FROM Agenda WHERE EigenaarID =:gebruikersid AND AfspraakDatum=:datum", con);
+                command.Parameters.Add("gebruikersid", gebruiker.GebruikersID);
+                command.Parameters.Add("datum", datum);
             }
             else
             {
                 //Anders de agenda van de geselecteerde persoon weergeven.
-                command = new OracleCommand("SELECT * FROM Agenda WHERE EigenaarID =(SELECT GebruikerID FROM Gebruiker WHERE Gebruikersnaam='" +filter+ "' AND AfspraakDatum='"+datum+"') ", con);
+                command = new OracleCommand("SELECT * FROM Agenda WHERE EigenaarID =(SELECT GebruikerID FROM Gebruiker WHERE Gebruikersnaam=:filter AND AfspraakDatum=:datum) ", con);
+                command.Parameters.Add("filter", filter);
+                command.Parameters.Add("datum", datum);
             }
             try
             {
@@ -262,14 +273,24 @@ namespace CAREMATCH
         public void AgendaPuntToevoegen(Agenda.AgendaPunt agendaPunt, Gebruiker gebruiker, DateTime datum)
         {
             con.Open();
-            command = new OracleCommand("INSERT INTO Agenda(EigenaarID, Omschrijving, StartTijd, EindTijd, Titel, Hulpbehoevende, Vrijwilliger, AfspraakDatum) VALUES('"+gebruiker.GebruikersID+"','"+agendaPunt.Beschrijving+"','"+agendaPunt.DatumTijdStart+"', '"+agendaPunt.DatumTijdEind+"','"+agendaPunt.Titel+"', '"+agendaPunt.Hulpbehoevende+"', '"+agendaPunt.Vrijwilliger+"', '"+datum+"')", con);
+            command = new OracleCommand("INSERT INTO Agenda(EigenaarID, Omschrijving, StartTijd, EindTijd, Titel, Hulpbehoevende, Vrijwilliger, AfspraakDatum) VALUES(:gebruikersid,:beschrijving ,:starttijd ,:eindtijd ,:titel ,:hulpbehoevende ,:vrijwilliger ,:datum)", con);
+            command.Parameters.Add("gebruikersid", gebruiker.GebruikersID);
+            command.Parameters.Add("beschrijving", agendaPunt.Beschrijving);
+            command.Parameters.Add("starttijd", agendaPunt.DatumTijdStart);
+            command.Parameters.Add("eindtijd", agendaPunt.DatumTijdEind);
+            command.Parameters.Add("titel", agendaPunt.Titel);
+            command.Parameters.Add("hulpbehoevende", agendaPunt.Hulpbehoevende);
+            command.Parameters.Add("vrijwilliger", agendaPunt.Vrijwilliger);
+            command.Parameters.Add("datum", datum);
             command.ExecuteNonQuery();
             con.Close();
         }
         public Agenda.AgendaPunt AgendaInhoudWeergeven(Gebruiker gebruiker, int agendaID)
         {
             agendaPunt = new Agenda.AgendaPunt();
-            command = new OracleCommand("SELECT * FROM Agenda WHERE GebruikerID ='" + gebruiker.GebruikersID + "' AND AgendaID='" + agendaID + "'", con);
+            command = new OracleCommand("SELECT * FROM Agenda WHERE GebruikerID =:gebruikersid AND AgendaID=:agendaID", con);
+            command.Parameters.Add("gebruikersid", gebruiker.GebruikersID);
+            command.Parameters.Add("agendaID", agendaID);
             reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -286,7 +307,14 @@ namespace CAREMATCH
         }
         public void AgendaAanpassen(Gebruiker gebruiker, Agenda.AgendaPunt agendaPunt)
         {
-            command = new OracleCommand("UPDATE Agenda SET AfspraakID ='" + agendaPunt.AfspraakID + "', Omschrijving='" + agendaPunt.Beschrijving + "', StartTijd='" + agendaPunt.DatumTijdStart + "', EindTijd='" + agendaPunt.DatumTijdEind + "', Titel='" + agendaPunt.Titel + "',Hulpbehoevende='" + agendaPunt.Hulpbehoevende + "', Vrijwilliger='" + agendaPunt.Vrijwilliger + "'", con);
+            command = new OracleCommand("UPDATE Agenda SET AfspraakID =:afspraakid, Omschrijving=:beschrijving, StartTijd=:starttijd, EindTijd=:eindtijd, Titel=:titel ,Hulpbehoevende=:hulpbehoevende, Vrijwilliger=:vrijwilliger", con);
+            command.Parameters.Add("afspraakid", agendaPunt.AfspraakID);
+            command.Parameters.Add("beschrijving", agendaPunt.Beschrijving);
+            command.Parameters.Add("starttijd", agendaPunt.DatumTijdStart);
+            command.Parameters.Add("eindtijd", agendaPunt.DatumTijdEind);
+            command.Parameters.Add("titel", agendaPunt.Titel);
+            command.Parameters.Add("hulpbehoevende", agendaPunt.Hulpbehoevende);
+            command.Parameters.Add("vrijwilliger", agendaPunt.Vrijwilliger);
             reader = command.ExecuteReader();
             con.Close();
 
@@ -341,7 +369,8 @@ namespace CAREMATCH
         {
             int id = 0;
             con.Open();
-            command = new OracleCommand("SELECT GebruikerID FROM gebruiker WHERE gebruikersnaam = '" + naam + "'", con);
+            command = new OracleCommand("SELECT GebruikerID FROM gebruiker WHERE gebruikersnaam = :naam", con);
+            command.Parameters.Add("naam", naam);
             reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -367,14 +396,22 @@ namespace CAREMATCH
 
             if(Chatcount > 0)
             {
-                command = new OracleCommand("INSERT INTO Chat(ChatID, OntvangerID, VerzenderID, BerichtInhoud, Datumtijd) VALUES('1','" + ControlleerMaxChatID() + 1 + "', '" + verzenderID + "', '" + inhoud + "', TO_TIMESTAMP('" + datum + "','DD-MON HH24.MI'))", con);
+                command = new OracleCommand("INSERT INTO Chat(ChatID, OntvangerID, VerzenderID, BerichtInhoud, Datumtijd) VALUES('1', :maxid, :verzenderid, :inhoud, TO_TIMESTAMP(:datum,'DD-MON HH24.MI'))", con);
+                command.Parameters.Add("maxid", (ControlleerMaxChatID() + 1));
+                command.Parameters.Add("verzenderid", verzenderID);
+                command.Parameters.Add("inhoud", inhoud);
+                command.Parameters.Add("datum", datum);
                 command.ExecuteNonQuery();
                 con.Close();
             }
 
             else if(Chatcount <= 0)
             {
-                command = new OracleCommand("INSERT INTO Chat(ChatID, OntvangerID, VerzenderID, BerichtInhoud, Datumtijd) VALUES('1','0', '" + verzenderID + "', '" + inhoud + "', TO_TIMESTAMP('" + datum + "','DD-MON HH24.MI'))", con);
+                command = new OracleCommand("INSERT INTO Chat(ChatID, OntvangerID, VerzenderID, BerichtInhoud, Datumtijd) VALUES('1','0', :verzenderid, :inhoud, TO_TIMESTAMP(:datum,'DD-MON HH24.MI'))", con);
+                command.Parameters.Add("verzenderid", verzenderID);
+                command.Parameters.Add("inhoud", inhoud);
+                command.Parameters.Add("datum", datum);
+
                 command.ExecuteNonQuery();
                 con.Close();
             }
@@ -403,7 +440,9 @@ namespace CAREMATCH
 
 
             con.Open();
-            command = new OracleCommand("SELECT Inhoud FROM chat WHERE ontvangerID = '"+ontvangerID+"' AND verzenderID = '"+verzenderID+"'", con);
+            command = new OracleCommand("SELECT Inhoud FROM chat WHERE ontvangerID = :ontvangerid AND verzenderID = :verzenderid", con);
+            command.Parameters.Add("ontvangerid", ontvangerID);
+            command.Parameters.Add("verzenderid", verzenderID);
             reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -566,12 +605,28 @@ namespace CAREMATCH
             //Hulpbehoevende hoeft geen VOG te inserten.
             if (Rol.ToLower() == "hulpbehoevende") 
             {
-                command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, VOORNAAM, ACHTERNAAM, FOTO, APPROVED, ROL) VALUES('" + Gebruikersnaam + "','" + EncryptString(Wachtwoord) + "', '" + voornaam + "', '" + achternaam + "', '" + filenameFoto + "', '" + Approved + "','" + Rol + "')", con);
+                command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, VOORNAAM, ACHTERNAAM, FOTO, APPROVED, ROL) VALUES(:gebruikersnaam, :wachtwoord, :voornaam, :achternaam, :filenamefoto, :Approved, :Rol)", con);
+                command.Parameters.Add("gebruikersnaam", Gebruikersnaam);
+                command.Parameters.Add("wachtwoord", EncryptString(Wachtwoord));
+                command.Parameters.Add("voornaam", voornaam);
+                command.Parameters.Add("achternaam", achternaam);
+                command.Parameters.Add("filenamefoto", filenameFoto);
+                command.Parameters.Add("Approved", Approved);
+                command.Parameters.Add("Rol", Rol);
+
             }
             //Vrijwilliger wel.
             else
             {
-                command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, VOORNAAM, ACHTERNAAM, FOTO, APPROVED, ROL, VOG) VALUES('" + Gebruikersnaam + "','" + EncryptString(Wachtwoord) + "', '" + voornaam + "', '" + achternaam + "', '" + filenameFoto + "', '" + Approved + "','" + Rol + "', '"+filenameVOG+"')", con);
+                command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, VOORNAAM, ACHTERNAAM, FOTO, APPROVED, ROL, VOG) VALUES(:gebruikersnaam, :wachtwoord, :voornaam, :achternaam, :filenamefoto, :Approved, :Rol, :filenameVOG)", con);
+                command.Parameters.Add("gebruikersnaam", Gebruikersnaam);
+                command.Parameters.Add("wachtwoord", EncryptString(Wachtwoord));
+                command.Parameters.Add("voornaam", voornaam);
+                command.Parameters.Add("achternaam", achternaam);
+                command.Parameters.Add("filenamefoto", filenameFoto);
+                command.Parameters.Add("Approved", Approved);
+                command.Parameters.Add("Rol", Rol);
+                command.Parameters.Add("filenameVOG", filenameVOG);
             }
             command.ExecuteNonQuery();
             con.Close();

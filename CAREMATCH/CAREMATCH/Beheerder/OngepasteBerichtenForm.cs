@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CAREMATCH.Hulpvragen;
 
 namespace CAREMATCH
 {
@@ -14,6 +15,7 @@ namespace CAREMATCH
     {
         private Database database;
         private Gebruiker gebruiker;
+        private List<Hulpvraag> hulpvragen;
         
 
         public OngepasteBerichtenForm(Gebruiker gebruiker)
@@ -30,14 +32,15 @@ namespace CAREMATCH
         private void cmbKiesBerichten_SelectedValueChanged(object sender, EventArgs e)
         {
             string filter = "";
-
+            
             //
-            string switchcase = cmbKiesBerichten.SelectedText;
+            string switchcase = cmbKiesBerichten.Text.ToLower();
             switch (switchcase)
             {
                 case "gemarkeerde hulpvragen":
                     MessageBox.Show("gemarkeerde hulpvragen");
                     filter = "ongepaste hulpvragen";
+                    database.HulpvragenOverzicht(gebruiker, filter);
                     break;
                 case "gemarkeerde beoordeling":
                     MessageBox.Show("gemarkeerde beoordeling");
@@ -51,7 +54,7 @@ namespace CAREMATCH
                     MessageBox.Show("default");
                     break;
             }
-            if(filter != string.Empty)
+            if(filter != "")
             {
                 database.HulpvragenOverzicht(gebruiker, filter);
             }
@@ -59,10 +62,22 @@ namespace CAREMATCH
             //listview vullen met de gekregen list;
         }
 
-        private void VerwijderGemarkeerdeHulpvraag(Hulpvragen.Hulpvraag hulpvraag)
+        private void VerwijderGemarkeerdeHulpvraag(Hulpvraag hulpvraag)
         {
-            //Database.RemoveHulpvraagAt(lvOngepasteBerichten.selectedIndex);
+            database.HulpvraagVerwijderen(hulpvraag);
             hulpvraag = null;
+
+        }
+
+        private void VulListViewMetHulpvragen(List<Hulpvraag> hulpvragen)
+        {
+            lvOngepasteBerichten.Columns.Add("ID");
+            lvOngepasteBerichten.Columns.Add("Titel");
+            lvOngepasteBerichten.Columns.Add("Hulpvraag");
+
+
+            ListViewItem item = new ListViewItem()
+
 
         }
     }

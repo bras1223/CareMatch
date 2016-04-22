@@ -44,7 +44,7 @@
             "Naam & Wachtwoord",
             "Niet goedgekeurde gebruikers",
             "Vrijwilligers zonder VOG"});
-            this.cmbBeheer.Location = new System.Drawing.Point(12, 214);
+            this.cmbBeheer.Location = new System.Drawing.Point(11, 417);
             this.cmbBeheer.Margin = new System.Windows.Forms.Padding(2);
             this.cmbBeheer.Name = "cmbBeheer";
             this.cmbBeheer.Size = new System.Drawing.Size(571, 33);
@@ -54,7 +54,7 @@
             // btnBack
             // 
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.Location = new System.Drawing.Point(587, 214);
+            this.btnBack.Location = new System.Drawing.Point(586, 417);
             this.btnBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(214, 33);
@@ -68,7 +68,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(788, 197);
+            this.dataGridView1.Size = new System.Drawing.Size(788, 400);
             this.dataGridView1.TabIndex = 18;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -77,7 +77,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(812, 257);
+            this.ClientSize = new System.Drawing.Size(812, 461);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.cmbBeheer);
             this.Controls.Add(this.btnBack);

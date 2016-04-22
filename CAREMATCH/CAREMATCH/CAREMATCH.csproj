@@ -183,6 +183,9 @@
     <EmbeddedResource Include="Agenda\DagOverzichtForm.resx">
       <DependentUpon>DagOverzichtForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Beheerder\AgendaBeheerderForm.resx">
+      <DependentUpon>AgendaBeheerderForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Beheerder\ChatBeheerdersForm.resx">
       <DependentUpon>ChatBeheerdersForm.cs</DependentUpon>
     </EmbeddedResource>

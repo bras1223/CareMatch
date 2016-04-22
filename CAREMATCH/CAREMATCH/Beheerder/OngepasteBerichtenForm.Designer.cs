@@ -53,6 +53,7 @@
             this.btnLaatZien.TabIndex = 1;
             this.btnLaatZien.Text = "laat zien";
             this.btnLaatZien.UseVisualStyleBackColor = true;
+            this.btnLaatZien.Click += new System.EventHandler(this.btnLaatZien_Click);
             // 
             // btnBack
             // 
@@ -62,6 +63,7 @@
             this.btnBack.TabIndex = 2;
             this.btnBack.Text = "terug";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // cmbKiesBerichten
             // 

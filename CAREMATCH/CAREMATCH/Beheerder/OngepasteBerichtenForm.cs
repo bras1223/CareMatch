@@ -23,7 +23,7 @@ namespace CAREMATCH
         {
             InitializeComponent();
             cmbKiesBerichten.Items.Add("gemarkeerde hulpvragen");
-            //cmbKiesBerichten.Items.Add("gemarkeerde beoordelingen");
+            cmbKiesBerichten.Items.Add("gemarkeerde beoordelingen");
             //cmbKiesBerichten.Items.Add("verdachte berichten");
 
             this.gebruiker = gebruiker;
@@ -63,7 +63,7 @@ namespace CAREMATCH
                     lvOngepasteBerichten.Columns.Add("Check");
                     lvOngepasteBerichten.Columns.Add("Beoordeling van:");
                     lvOngepasteBerichten.Columns.Add("Beoordeling");
-                    //lvOngepasteBerichten.Columns.Add("Uitzetter");
+                    lvOngepasteBerichten.Columns.Add("Uitzetter");
                     break;
                 case "verdachte berichten":
                    // MessageBox.Show("verdachte hulpvragen");
@@ -75,14 +75,11 @@ namespace CAREMATCH
                    // MessageBox.Show("default");
                     break;
             }
-            if(filter == "ongepaste hulpvragen")
+            if(filter == "ongepaste hulpvragen" || filter == "ongepaste beoordelingen")
             {
                 hulpvragen = database.HulpvragenOverzicht(gebruiker, filter);
             }
-            else if(filter == "ongepaste beoordelingen")
-            {
-                hulpvragen = database.BeoordelingOverzicht(gebruiker);
-            }
+
 
             VulListViewMetHulpvragen(hulpvragen);
             //listview vullen met de gekregen list;
@@ -115,7 +112,8 @@ namespace CAREMATCH
             {
                 ListViewItem item = new ListViewItem();
                 item.SubItems.Add(hulpvraag.Titel);
-                //item.SubItems.Add(hulpvraag.Beoordeling);
+                item.SubItems.Add(hulpvraag.Beoordeling);
+                item.SubItems.Add(hulpvraag.Hulpbehoevende);
                 
             }
 

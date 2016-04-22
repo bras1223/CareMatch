@@ -90,14 +90,14 @@ namespace CAREMATCH.VrijwilligerSysteem
             //Autosize columns in listview.
             foreach (ColumnHeader column in lvHulpvragen.Columns)
             {
-                if (column.Text.Length > item.Text.Length)
-                {
-                    lvHulpvragen.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-                }
-                else
-                {
-                    lvHulpvragen.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                }
+                //if (column.Text.Length > item.Text.Length)
+                //{
+                //    lvHulpvragen.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                //}
+                //else
+                //{
+                //    lvHulpvragen.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                //}
             }
         }
     }

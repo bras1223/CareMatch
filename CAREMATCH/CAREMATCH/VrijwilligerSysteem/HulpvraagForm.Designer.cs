@@ -57,6 +57,8 @@
             this.dtpDatum = new System.Windows.Forms.DateTimePicker();
             this.lbldatumtijd = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnRapporteer = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbHulpbehoevende)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbVrijwilliger)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -99,7 +101,7 @@
             this.btnSluit.Name = "btnSluit";
             this.btnSluit.Size = new System.Drawing.Size(141, 64);
             this.btnSluit.TabIndex = 11;
-            this.btnSluit.Text = "Hulpvraag Sluiten";
+            this.btnSluit.Text = "Sluiten";
             this.btnSluit.UseVisualStyleBackColor = true;
             this.btnSluit.Click += new System.EventHandler(this.btnSluit_Click);
             // 
@@ -225,7 +227,7 @@
             this.btnHulpvraagOpslaan.Name = "btnHulpvraagOpslaan";
             this.btnHulpvraagOpslaan.Size = new System.Drawing.Size(141, 64);
             this.btnHulpvraagOpslaan.TabIndex = 10;
-            this.btnHulpvraagOpslaan.Text = "Hulpvraag Opslaan";
+            this.btnHulpvraagOpslaan.Text = "Opslaan && Sluiten";
             this.btnHulpvraagOpslaan.UseVisualStyleBackColor = true;
             this.btnHulpvraagOpslaan.Click += new System.EventHandler(this.btnHulpvraagOpslaan_Click);
             // 
@@ -352,11 +354,34 @@
             this.groupBox1.TabIndex = 34;
             this.groupBox1.TabStop = false;
             // 
+            // btnRapporteer
+            // 
+            this.btnRapporteer.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRapporteer.Location = new System.Drawing.Point(998, 720);
+            this.btnRapporteer.Name = "btnRapporteer";
+            this.btnRapporteer.Size = new System.Drawing.Size(128, 64);
+            this.btnRapporteer.TabIndex = 35;
+            this.btnRapporteer.Text = "Rapporteer Hulpvraag";
+            this.btnRapporteer.UseVisualStyleBackColor = true;
+            this.btnRapporteer.Click += new System.EventHandler(this.btnRapporteer_Click);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(183, 629);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(141, 64);
+            this.button1.TabIndex = 36;
+            this.button1.Text = "Hulpvraag Opslaan";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // HulpvraagForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1131, 796);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnRapporteer);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lbldatumtijd);
             this.Controls.Add(this.dtpDatum);
@@ -423,5 +448,7 @@
         private System.Windows.Forms.DateTimePicker dtpDatum;
         private System.Windows.Forms.Label lbldatumtijd;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnRapporteer;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -76,8 +76,12 @@ namespace CAREMATCH.VrijwilligerSysteem
         }
         private void btnSluit_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult result = MessageBox.Show("Weet u zeker dat u wilt sluiten zonder opslaan?", "Let Op!", MessageBoxButtons.OKCancel);
+            if(result == DialogResult.OK)
+            {
+                DialogResult = DialogResult.OK;
+                this.Close();
+            }
         }
         //Vrijwilliger past hulpvraag aan.
         private void btnSlaOp_Click(object sender, EventArgs e)
@@ -104,16 +108,16 @@ namespace CAREMATCH.VrijwilligerSysteem
             hulpvraag.Auto = cbAutoBenodigd.Checked;
             hulpvraag.DatumTijd = dtpDatum.Value;
 
+            database.HulpvraagToevoegen(hulpvraag, gebruiker);
             try
             {
-                database.HulpvraagToevoegen(hulpvraag, gebruiker);
                 MessageBox.Show("Hulpvraag opgeslagen.");
+                Close();
             }
             catch
             {
                 MessageBox.Show("Er is iets foutgegaan bij het opslaan van de hulpvraag. Neem contact op met CareMatch.");
             }
-            Close();
         }
 
         private void pbHulpbehoevende_Click(object sender, EventArgs e)
@@ -129,6 +133,12 @@ namespace CAREMATCH.VrijwilligerSysteem
         private void dtpDatum_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnRapporteer_Click(object sender, EventArgs e)
+        {
+            database.HulpvraagRapporteer(hulpvraag);
+            MessageBox.Show("hulpvraag gerapporteerd als ongewenst.");
         }
     }
 }

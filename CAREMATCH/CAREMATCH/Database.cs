@@ -296,6 +296,7 @@ namespace CAREMATCH
         }
         public Agenda.AgendaPunt AgendaInhoudWeergeven(Gebruiker gebruiker, int agendaID)
         {
+            con.Open();
             agendaPunt = new Agenda.AgendaPunt();
             command = new OracleCommand("SELECT * FROM Agenda WHERE GebruikerID =:gebruikersid AND AgendaID=:agendaID", con);
             command.Parameters.Add(new OracleParameter("gebruikersid", gebruiker.GebruikersID));
@@ -316,6 +317,7 @@ namespace CAREMATCH
         }
         public void AgendaAanpassen(Gebruiker gebruiker, Agenda.AgendaPunt agendaPunt)
         {
+            con.Open();
             command = new OracleCommand("UPDATE Agenda SET AfspraakID =:afspraakid, Omschrijving=:beschrijving, StartTijd=:starttijd, EindTijd=:eindtijd, Titel=:titel ,Hulpbehoevende=:hulpbehoevende, Vrijwilliger=:vrijwilliger", con);
             command.Parameters.Add(new OracleParameter("afspraakid", agendaPunt.AfspraakID));
             command.Parameters.Add(new OracleParameter("beschrijving", agendaPunt.Beschrijving));

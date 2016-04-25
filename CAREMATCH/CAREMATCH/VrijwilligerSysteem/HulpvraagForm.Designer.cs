@@ -58,7 +58,7 @@
             this.lbldatumtijd = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnRapporteer = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnBeoordeel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbHulpbehoevende)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbVrijwilliger)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -97,7 +97,7 @@
             // btnSluit
             // 
             this.btnSluit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSluit.Location = new System.Drawing.Point(15, 724);
+            this.btnSluit.Location = new System.Drawing.Point(12, 650);
             this.btnSluit.Name = "btnSluit";
             this.btnSluit.Size = new System.Drawing.Size(141, 64);
             this.btnSluit.TabIndex = 11;
@@ -127,7 +127,7 @@
             // btnReactieOpslaan
             // 
             this.btnReactieOpslaan.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReactieOpslaan.Location = new System.Drawing.Point(15, 629);
+            this.btnReactieOpslaan.Location = new System.Drawing.Point(12, 720);
             this.btnReactieOpslaan.Name = "btnReactieOpslaan";
             this.btnReactieOpslaan.Size = new System.Drawing.Size(141, 64);
             this.btnReactieOpslaan.TabIndex = 10;
@@ -223,7 +223,7 @@
             // btnHulpvraagOpslaan
             // 
             this.btnHulpvraagOpslaan.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHulpvraagOpslaan.Location = new System.Drawing.Point(15, 629);
+            this.btnHulpvraagOpslaan.Location = new System.Drawing.Point(12, 720);
             this.btnHulpvraagOpslaan.Name = "btnHulpvraagOpslaan";
             this.btnHulpvraagOpslaan.Size = new System.Drawing.Size(141, 64);
             this.btnHulpvraagOpslaan.TabIndex = 10;
@@ -292,7 +292,7 @@
             // btnStartChat
             // 
             this.btnStartChat.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStartChat.Location = new System.Drawing.Point(181, 724);
+            this.btnStartChat.Location = new System.Drawing.Point(183, 650);
             this.btnStartChat.Name = "btnStartChat";
             this.btnStartChat.Size = new System.Drawing.Size(141, 64);
             this.btnStartChat.TabIndex = 13;
@@ -365,22 +365,23 @@
             this.btnRapporteer.UseVisualStyleBackColor = true;
             this.btnRapporteer.Click += new System.EventHandler(this.btnRapporteer_Click);
             // 
-            // button1
+            // btnBeoordeel
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(183, 629);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(141, 64);
-            this.button1.TabIndex = 36;
-            this.button1.Text = "Hulpvraag Opslaan";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnBeoordeel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBeoordeel.Location = new System.Drawing.Point(183, 720);
+            this.btnBeoordeel.Name = "btnBeoordeel";
+            this.btnBeoordeel.Size = new System.Drawing.Size(141, 64);
+            this.btnBeoordeel.TabIndex = 36;
+            this.btnBeoordeel.Text = "Geef Beoordeling";
+            this.btnBeoordeel.UseVisualStyleBackColor = true;
+            this.btnBeoordeel.Click += new System.EventHandler(this.button1_Click);
             // 
             // HulpvraagForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1131, 796);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnBeoordeel);
             this.Controls.Add(this.btnRapporteer);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lbldatumtijd);
@@ -449,6 +450,6 @@
         private System.Windows.Forms.Label lbldatumtijd;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnRapporteer;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBeoordeel;
     }
 }

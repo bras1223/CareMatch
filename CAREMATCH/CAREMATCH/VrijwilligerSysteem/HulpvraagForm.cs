@@ -32,12 +32,20 @@ namespace CAREMATCH.VrijwilligerSysteem
             if (gebruiker.Rol.ToLower() == "hulpbehoevende")
             {
                 txtHulpvrager.Text = gebruiker.Gebruikersnaam;
-                rtxtReactieInhoud.Enabled = false;
+                if (hulpvraag != null)
+                {
+                    rtxtReactieInhoud.Enabled = true;
+                }
+                else
+                {
+                    rtxtReactieInhoud.Enabled = false;
+                }
                 btnReactieOpslaan.Visible = false;
             }
             else if (gebruiker.Rol.ToLower() == "vrijwilliger")
             {
                 btnHulpvraagOpslaan.Visible = false;
+                btnBeoordeel.Visible = false;
 
                 cbUrgent.Enabled = false;
                 rtxtHulpvraag.Enabled = false;
@@ -139,6 +147,12 @@ namespace CAREMATCH.VrijwilligerSysteem
         {
             database.HulpvraagRapporteer(hulpvraag);
             MessageBox.Show("hulpvraag gerapporteerd als ongewenst.");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            BeoordelingForm beoordelingsform = new BeoordelingForm(hulpvraag);
+            beoordelingsform.Show();
         }
     }
 }

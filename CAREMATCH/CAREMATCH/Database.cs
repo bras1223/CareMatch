@@ -31,6 +31,7 @@ namespace CAREMATCH
             con = new OracleConnection(constr);
         }
         #region Hulpvragen Queries
+        //Werkt, maar data komt niet in de goede kolom in de tabel na aanpassen oracleparameter,
         public void HulpvraagToevoegen(Hulpvragen.Hulpvraag hulpvraag, Gebruiker gebruiker)
         {
             string AutoBenodigd;
@@ -65,6 +66,7 @@ namespace CAREMATCH
             command.ExecuteNonQuery();
             con.Close();
         }
+        //Werkt.
         public void HulpvraagRapporteer(Hulpvragen.Hulpvraag hulpvraag)
         {
             con.Open();
@@ -73,6 +75,7 @@ namespace CAREMATCH
             reader = command.ExecuteReader();
             con.Close();
         }
+        //Mee bezig.
         public void HulpvraagVerwijderen(Hulpvragen.Hulpvraag hulpvraag)
         {
             con.Open();
@@ -81,6 +84,7 @@ namespace CAREMATCH
             command.Parameters.Add(new OracleParameter(":id", OracleDbType.Varchar2)).Value = hulpvraag.HulpvraagID;
             con.Close();
         }
+        //Foutmelding.
         public void HulpvraagAanpassen(Gebruiker gebruiker, Hulpvragen.Hulpvraag hulpvraag)
         {
             con.Open();
@@ -103,6 +107,7 @@ namespace CAREMATCH
             reader = command.ExecuteReader();
             con.Close();
         }
+        //Werkt behalve de nieuwe reacties van de hulpbehoevende.
         public List<Hulpvragen.Hulpvraag> HulpvragenOverzicht(Gebruiker gebruiker, string filter)
         {
             List<Hulpvragen.Hulpvraag> hulpvraagList = new List<Hulpvragen.Hulpvraag>();
@@ -184,6 +189,7 @@ namespace CAREMATCH
 
             return hulpvraagList;
         }
+        //Mee bezig.
         public string HulpvraagProfielFoto(Gebruiker gebruiker, Hulpvragen.Hulpvraag hulpvraag, string rol)
         {
             con.Open();
@@ -204,6 +210,16 @@ namespace CAREMATCH
             }
             con.Close();
             return tempString;
+        }
+        //Werkt niet.
+        public void HulpvraagBeoordelingToevoegen(Hulpvragen.Hulpvraag hulpvraag)
+        {
+            con.Open();
+            command = new OracleCommand(@"UPDATE Hulpvraag SET Beoordeling =:beoordeling WHERE HulpvraagID= :hulpvraagid", con);
+            command.Parameters.Add(new OracleParameter(":hulpvraagid", OracleDbType.Int32)).Value = hulpvraag.HulpvraagID;
+            command.Parameters.Add(new OracleParameter(":beoordeling", OracleDbType.Varchar2)).Value = hulpvraag.Beoordeling;
+            reader = command.ExecuteReader();
+            con.Close();
         }
         #endregion
         #region Agenda Queries

@@ -131,7 +131,6 @@
       <DependentUpon>HomeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Hulpvragen\Hulpvraag.cs" />
-    <Compile Include="Hulpvragen\Reactie.cs" />
     <Compile Include="LoginSysteem\RFIDLogin.cs">
       <SubType>Form</SubType>
     </Compile>

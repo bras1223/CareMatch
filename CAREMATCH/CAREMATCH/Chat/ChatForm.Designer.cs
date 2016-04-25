@@ -37,7 +37,7 @@
             this.tmrLaadberichten = new System.Windows.Forms.Timer(this.components);
             this.btnTerug = new System.Windows.Forms.Button();
             this.pbProfielFoto = new System.Windows.Forms.PictureBox();
-            this.btnMode = new System.Windows.Forms.Button();
+            this.btnModus = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -119,22 +119,22 @@
             this.pbProfielFoto.TabIndex = 4;
             this.pbProfielFoto.TabStop = false;
             // 
-            // btnMode
+            // btnModus
             // 
-            this.btnMode.Location = new System.Drawing.Point(1011, 28);
-            this.btnMode.Name = "btnMode";
-            this.btnMode.Size = new System.Drawing.Size(167, 76);
-            this.btnMode.TabIndex = 9;
-            this.btnMode.Text = "Nieuwe Chat";
-            this.btnMode.UseVisualStyleBackColor = true;
-            this.btnMode.Click += new System.EventHandler(this.btnMode_Click);
+            this.btnModus.Location = new System.Drawing.Point(1011, 28);
+            this.btnModus.Name = "btnModus";
+            this.btnModus.Size = new System.Drawing.Size(167, 76);
+            this.btnModus.TabIndex = 9;
+            this.btnModus.Text = "Nieuwe Chat";
+            this.btnModus.UseVisualStyleBackColor = true;
+            this.btnModus.Click += new System.EventHandler(this.btnMode_Click);
             // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1193, 641);
-            this.Controls.Add(this.btnMode);
+            this.Controls.Add(this.btnModus);
             this.Controls.Add(this.lbChat);
             this.Controls.Add(this.btnTerug);
             this.Controls.Add(this.lblGebruikersnaam);
@@ -165,6 +165,6 @@
         private System.Windows.Forms.ListBox lbChat;
         private System.Windows.Forms.ListBox lbGebruikerLijst;
         private System.Windows.Forms.Timer tmrLaadberichten;
-        private System.Windows.Forms.Button btnMode;
+        private System.Windows.Forms.Button btnModus;
     }
 }

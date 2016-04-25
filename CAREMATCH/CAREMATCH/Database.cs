@@ -336,6 +336,8 @@ namespace CAREMATCH
         }
         #endregion
         #region Chat Queries
+
+        //Geeft een lijst van alle vrijwilligers
         public List<string> VrijwilligersLijst()
         {
             List<string> vrijwilligerlijst;
@@ -344,7 +346,7 @@ namespace CAREMATCH
             con.Open();
             command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Vrijwilliger'", con);
             reader = command.ExecuteReader();
-            
+
             while (reader.Read())
             {
                 vrijwilligerlijst.Add(reader["Gebruikersnaam"].ToString());
@@ -352,19 +354,16 @@ namespace CAREMATCH
             con.Close();
 
             return vrijwilligerlijst;
-        }
-        public List<Chatbericht> ChatGeschiedenis(string partnerNaam, string gebruikerNaam, int partnerID, int gebruikerID)
-        {
-            List<Chatbericht> chatberichtenList = new List<Chatbericht>();
-            return chatberichtenList;
-        }
+        }        
+
+        //Geeft een lijst van alle hulpbehoevende
         public List<string> HulpbehoevendeLijst()
         {
             List<string> hulpbehoevendelijst;
             hulpbehoevendelijst = new List<string>();
 
             con.Open();
-            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'hulpbehoevende'", con);
+            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Hulpbehoevende'", con);
             reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -376,6 +375,7 @@ namespace CAREMATCH
             return hulpbehoevendelijst;
         }
 
+        //Geeft het ID van je chat partner
         public int ChatpartnerID(string naam)
         {
             int id = 0;
@@ -392,6 +392,7 @@ namespace CAREMATCH
             return id;
         }
 
+        //Voegt een chatbericht toe aan de database
         public void ChatInvoegen(int chatid, string inhoud, int ontvangerID, int verzenderID, string datum)
         {
             int Chatcount = 0;
@@ -405,67 +406,127 @@ namespace CAREMATCH
                 Chatcount = Convert.ToInt32(reader["ChatIDCount"]);
             }
 
-            if(Chatcount > 0)
+            if (Chatcount > 0)
             {
-                command = new OracleCommand("INSERT INTO Chat(ChatID, OntvangerID, VerzenderID, BerichtInhoud, Datumtijd) VALUES('1', :maxid, :verzenderid, :inhoud, TO_TIMESTAMP(:datum,'DD-MON HH24.MI'))", con);
-                command.Parameters.Add(new OracleParameter("maxid", (ControlleerMaxChatID() + 1)));
-                command.Parameters.Add(new OracleParameter("verzenderid", verzenderID));
-                command.Parameters.Add(new OracleParameter("inhoud", inhoud));
-                command.Parameters.Add(new OracleParameter("datum", datum));
-                command.ExecuteNonQuery();
-                con.Close();
-            }
-
-            else if(Chatcount <= 0)
-            {
-                command = new OracleCommand("INSERT INTO Chat(ChatID, OntvangerID, VerzenderID, BerichtInhoud, Datumtijd) VALUES('0',:ontvangerID, :verzenderid, :inhoud, TO_TIMESTAMP(:datum,'DD-MON HH24.MI'))", con);
-                //command.Parameters.Add(new OracleParameter("verzenderid", verzenderID));
-                //command.Parameters.Add(new OracleParameter("inhoud", inhoud));
-                //command.Parameters.Add(new OracleParameter("datum", datum));
+                command = new OracleCommand("INSERT INTO Chat(OntvangerID, VerzenderID, BerichtInhoud, Datumtijd) VALUES(:ontvangerid, :verzenderid, :inhoud, TO_TIMESTAMP(:datum,'DD-MON HH24.MI'))", con);
                 command.Parameters.Add(new OracleParameter("ontvangerid", OracleDbType.Int32)).Value = ontvangerID;
                 command.Parameters.Add(new OracleParameter("verzenderid", OracleDbType.Int32)).Value = verzenderID;
                 command.Parameters.Add(new OracleParameter("inhoud", OracleDbType.Varchar2)).Value = inhoud;
-                command.Parameters.Add(new OracleParameter("datum", OracleDbType.TimeStamp)).Value = datum;
-
+                command.Parameters.Add(new OracleParameter("datum", OracleDbType.Varchar2)).Value = datum;
 
                 command.ExecuteNonQuery();
                 con.Close();
             }
+
+            else if (Chatcount <= 0)
+            {
+                command = new OracleCommand("INSERT INTO Chat(OntvangerID, VerzenderID, BerichtInhoud, Datumtijd) VALUES(:ontvangerID, :verzenderid, :inhoud, TO_TIMESTAMP(:datum,'DD-MON HH24.MI'))", con);
+                command.Parameters.Add(new OracleParameter("ontvangerid", OracleDbType.Int32)).Value = ontvangerID;
+                command.Parameters.Add(new OracleParameter("verzenderid", OracleDbType.Int32)).Value = verzenderID;
+                command.Parameters.Add(new OracleParameter("inhoud", OracleDbType.Varchar2)).Value = inhoud;
+                command.Parameters.Add(new OracleParameter("datum", OracleDbType.Varchar2)).Value = datum;
+
+                command.ExecuteNonQuery();
+                con.Close();
+            }
+
+            con.Close();
         }
 
+        //Geeft de lijst van vrijwilligers waar je een open chat mee hebt
+        public List<string> BestaandeChatlijstVrijwilligers(int id)
+        {
+            List<string> vrijwilligerlijst;
+            vrijwilligerlijst = new List<string>();
+
+            con.Open();
+            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Vrijwilliger' AND GEBRUIKERID IN (SELECT ONTVANGERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id) ", con);
+            command.Parameters.Add(new OracleParameter("id", OracleDbType.Int32)).Value = id;
+            reader = command.ExecuteReader();
+
+
+            while (reader.Read())
+            {
+                vrijwilligerlijst.Add(reader["Gebruikersnaam"].ToString());
+            }
+            con.Close();
+
+            return vrijwilligerlijst;
+        }
+
+        //Geeft de lijst van hulpbehoevende waar je een open chat mee hebt
+        public List<string> BestaandeChatlijstHulpbehoevende(int id)
+        {
+            List<string> hulpbehoevendelijst;
+            hulpbehoevendelijst = new List<string>();
+
+            con.Open();
+            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Hulpbehoevende' AND GEBRUIKERID IN (SELECT ONTVANGERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id) ", con);
+            command.Parameters.Add(new OracleParameter("id", OracleDbType.Int32)).Value = id;
+            reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                hulpbehoevendelijst.Add(reader["Gebruikersnaam"].ToString());
+            }
+            con.Close();
+
+            return hulpbehoevendelijst;
+        }
+
+        //Geeft een lijst met chatberichten die bestaan tussen perssoon a en persoon b
+        public List<Chatbericht> ChatLaden(string partnerNaam, string gebruikerNaam, int partnerID, int gebruikerID)
+        {
+            List<Chatbericht> berichtenlijst = new List<Chatbericht>();
+            con.Open();
+            command = new OracleCommand("SELECT CHATID, BERICHTINHOUD, DATUMTIJD, VERZENDERID FROM CHAT WHERE (VERZENDERID = :gebruikerID AND ONTVANGERID =  :partnerID) OR (VERZENDERID = :partnerID AND ONTVANGERID = :gebruikerID) ORDER BY CHATID ASC", con);
+            command.Parameters.Add(new OracleParameter("partnerID", OracleDbType.Int32)).Value = partnerID;
+            command.Parameters.Add(new OracleParameter("gebruikerID", OracleDbType.Int32)).Value = gebruikerID;
+            reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                int verzender = Convert.ToInt32(reader["VERZENDERID"]);
+
+                if (verzender == gebruikerID)
+                {
+                    Chatbericht bericht = new Chatbericht(reader["BERICHTINHOUD"].ToString(), gebruikerNaam, Convert.ToInt32(reader["CHATID"]), Convert.ToDateTime(reader["DATUMTIJD"]));
+                    berichtenlijst.Add(bericht);
+                }
+
+                else if (verzender == partnerID)
+                {
+                    Chatbericht bericht = new Chatbericht(reader["BERICHTINHOUD"].ToString(), partnerNaam, Convert.ToInt32(reader["CHATID"]), Convert.ToDateTime(reader["DATUMTIJD"]));
+                    berichtenlijst.Add(bericht);
+                }
+            }
+
+            con.Close();
+            return berichtenlijst;
+        }
+        
+        //Geeft het hoogste chat id
         public int ControlleerMaxChatID()
         {
             int id = 0;
+
             con.Open();
             command = new OracleCommand("SELECT MAX(CHATID) as MAXID FROM CHAT", con);
             reader = command.ExecuteReader();
             while (reader.Read())
             {
-                id = Convert.ToInt32(reader["MAXID"]);
+                try
+                {
+                    id = Convert.ToInt32(reader["MAXID"]);
+                }
+                catch (InvalidCastException)
+                {
+                    id = 0;
+                }
             }
             con.Close();
 
             return id;
-        }
-
-        public void ChatWeergeven(int ontvangerID, int verzenderID)
-        {
-            List<string> chatverzonden;
-            //List<string> chatgekregen;
-            chatverzonden = new List<string>();
-
-
-            con.Open();
-            command = new OracleCommand("SELECT Inhoud FROM chat WHERE ontvangerID = :ontvangerid AND verzenderID = :verzenderid", con);
-            command.Parameters.Add(new OracleParameter("ontvangerid", ontvangerID));
-            command.Parameters.Add(new OracleParameter("verzenderid", verzenderID));
-            reader = command.ExecuteReader();
-
-            while (reader.Read())
-            {
-                chatverzonden.Add(reader["Inhoud"].ToString());
-            }
-            con.Close();
         }
 
         #endregion

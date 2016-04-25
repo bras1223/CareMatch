@@ -60,9 +60,8 @@ namespace CAREMATCH
 
         private void ChatForm_Load_1(object sender, EventArgs e)
         {
-            LbVullen();
             tmrLaadberichten.Start();
-           // BestaandeChatLijst();
+            BestaandeChatLijst();
             ChatGeschiedenisLaden();
         }
 
@@ -73,25 +72,10 @@ namespace CAREMATCH
             partnerid = database.ChatpartnerID(partnernaam);
             lbChat.Items.Clear();
             ChatGeschiedenisLaden();
-            //oudchatbericht = database.ChatGeschiedenis(partnernaam, gebruiker.Gebruikersnaam, partnerid, gebruiker.GebruikersID);
-
-            foreach (Chatbericht c in database.ChatGeschiedenis(partnernaam, gebruiker.Gebruikersnaam, partnerid, gebruiker.GebruikersID))
-            {
-                lbChat.Items.Add(c);
-            }
         }
 
         private void tmrLaadberichten_Tick(object sender, EventArgs e)
         {
-            //    List<Chatbericht> lijst = database.ChatGeschiedenis(partnernaam, gebruiker.Gebruikersnaam, partnerid, gebruiker.GebruikersID + 1);
-            //    //lbChat.Items.Clear();
-            //        if(lijst.Count > oudchatbericht.Count)
-            //        {
-            //            lbChat.Items.Add(lijst.Count - 1);
-            //            oudchatbericht = lijst;
-            //        }
-            //}
-
             foreach (Chatbericht c in database.ChatLaden(lblGebruikersnaam.Text, gebruiker.Gebruikersnaam, database.ChatpartnerID(lblGebruikersnaam.Text), gebruiker.GebruikersID))
             {
                 if (BerichtNietWeergegeven(c))
@@ -104,9 +88,27 @@ namespace CAREMATCH
             }
         }
 
+        private void btnMode_Click(object sender, EventArgs e)
+        {
+            if (btnModus.Text == "Bestaande Chats")
+            {
+                btnModus.Text = "Nieuwe Chat";
+                lbGebruikerLijst.Items.Clear();
+                lbChat.Items.Clear();
+                BestaandeChatLijst();
+            }
+
+            else if (btnModus.Text == "Nieuwe Chat")
+            {
+                btnModus.Text = "Bestaande Chats";
+                lbGebruikerLijst.Items.Clear();
+                lbChat.Items.Clear();
+                LbVullen();
+            }
+        }
+
         //Methodes
 
-        //Kijk of de gebruiker hulpbehoevende of vrijwilliger is en vult de listbox met vrijwilligers of hulpbehoevende
         //vult de lb met alle vrijwilligers/hulpbehoevende
         public void LbVullen()
         {
@@ -121,6 +123,26 @@ namespace CAREMATCH
             else if (gebruiker.Rol == "Vrijwilliger")
             {
                 foreach (String h in database.HulpbehoevendeLijst())
+                {
+                    lbGebruikerLijst.Items.Add(h);
+                }
+            }
+        }
+
+        //Kijkt of de gebruiker hulpbehoevende of vrijwilliger is en vult de listbox met vrijwilligers of hulpbehoevende waarmee dde gebruiker een openstaande chat mee heeft.
+        public void BestaandeChatLijst()
+        {
+            if (gebruiker.Rol == "Hulpbehoevende")
+            {
+                foreach (String v in database.BestaandeChatlijstVrijwilligers(gebruiker.GebruikersID))
+                {
+                    lbGebruikerLijst.Items.Add(v);
+                }
+            }
+
+            else if (gebruiker.Rol == "Vrijwilliger")
+            {
+                foreach (String h in database.BestaandeChatlijstHulpbehoevende(gebruiker.GebruikersID))
                 {
                     lbGebruikerLijst.Items.Add(h);
                 }
@@ -187,11 +209,6 @@ namespace CAREMATCH
             }
 
             return weergegeven;
-        }
-
-        private void btnMode_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

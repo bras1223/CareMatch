@@ -97,14 +97,14 @@ namespace CAREMATCH
                 tempString = "N";
             }
 
-            command = new OracleCommand(@"UPDATE Hulpvraag SET Reactie =:reactie, LaatstGereageerdDoor=:gebruikersnaam, VrijwilligerID=(SELECT GebruikerID FROM Gebruiker WHERE GebruikerID =:gebruikerid AND LOWER(ROL)='vrijwilliger'), Hulpvraaginhoud=:hulpvraaginhoud, Urgent=:temp WHERE HulpvraagID=:hulpvraagid", con);
+            command = new OracleCommand("UPDATE Hulpvraag SET Reactie =:reactie, LaatstGereageerdDoor=:gebruikersnaam, VrijwilligerID=(SELECT GebruikerID FROM Gebruiker WHERE GebruikerID =:gebruikerid AND LOWER(ROL)='vrijwilliger'), Hulpvraaginhoud=:hulpvraaginhoud, Urgent=:temp WHERE HulpvraagID=:hulpvraagid", con);
             command.Parameters.Add(new OracleParameter(":gebruikerid", OracleDbType.Int32)).Value = gebruiker.GebruikersID;
             command.Parameters.Add(new OracleParameter(":gebruikersnaam", OracleDbType.Varchar2)).Value = gebruiker.Gebruikersnaam;
             command.Parameters.Add(new OracleParameter(":reactie", OracleDbType.Varchar2)).Value = hulpvraag.Reactie;
             command.Parameters.Add(new OracleParameter(":hulpvraaginhoud", OracleDbType.Varchar2)).Value = hulpvraag.HulpvraagInhoud;
             command.Parameters.Add(new OracleParameter(":temp", OracleDbType.Char)).Value = tempString;
             command.Parameters.Add(new OracleParameter(":hulpvraagid", OracleDbType.Int32)).Value = hulpvraag.HulpvraagID;
-            reader = command.ExecuteReader();
+            command.ExecuteNonQuery();
             con.Close();
         }
         //Werkt behalve de nieuwe reacties van de hulpbehoevende.
@@ -215,10 +215,10 @@ namespace CAREMATCH
         public void HulpvraagBeoordelingToevoegen(Hulpvragen.Hulpvraag hulpvraag)
         {
             con.Open();
-            command = new OracleCommand(@"UPDATE Hulpvraag SET Beoordeling =:beoordeling WHERE HulpvraagID= :hulpvraagid", con);
+            command = new OracleCommand("UPDATE Hulpvraag SET Beoordeling =:beoordeling WHERE HulpvraagID= :hulpvraagid", con);
             command.Parameters.Add(new OracleParameter(":hulpvraagid", OracleDbType.Int32)).Value = hulpvraag.HulpvraagID;
             command.Parameters.Add(new OracleParameter(":beoordeling", OracleDbType.Varchar2)).Value = hulpvraag.Beoordeling;
-            reader = command.ExecuteReader();
+            command.ExecuteNonQuery();
             con.Close();
         }
         #endregion
@@ -324,7 +324,7 @@ namespace CAREMATCH
             command.Parameters.Add(new OracleParameter("titel", agendaPunt.Titel));
             command.Parameters.Add(new OracleParameter("hulpbehoevende", agendaPunt.Hulpbehoevende));
             command.Parameters.Add(new OracleParameter("vrijwilliger", agendaPunt.Vrijwilliger));
-            reader = command.ExecuteReader();
+            command.ExecuteNonQuery();
             con.Close();
 
         }
@@ -710,7 +710,7 @@ namespace CAREMATCH
             command.Parameters.Add("achternaam", gebruiker.Achternaam);
             command.Parameters.Add("gebruikerid", gebruiker.GebruikersID);
             command.Parameters.Add("password", EncryptString(gebruiker.Wachtwoord));
-            reader = command.ExecuteReader();
+            command.ExecuteNonQuery();
             con.Close();
         }
         public List<string> GebruikerProfielOpvragen(string rol)

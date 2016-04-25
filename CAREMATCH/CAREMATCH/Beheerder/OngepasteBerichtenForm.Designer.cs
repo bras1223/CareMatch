@@ -32,6 +32,7 @@
             this.btnLaatZien = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.cmbKiesBerichten = new System.Windows.Forms.ComboBox();
+            this.btnDeleteSelection = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lvOngepasteBerichten
@@ -49,7 +50,7 @@
             // 
             this.btnLaatZien.Location = new System.Drawing.Point(13, 428);
             this.btnLaatZien.Name = "btnLaatZien";
-            this.btnLaatZien.Size = new System.Drawing.Size(148, 82);
+            this.btnLaatZien.Size = new System.Drawing.Size(148, 36);
             this.btnLaatZien.TabIndex = 1;
             this.btnLaatZien.Text = "laat zien";
             this.btnLaatZien.UseVisualStyleBackColor = true;
@@ -74,17 +75,29 @@
             this.cmbKiesBerichten.TabIndex = 3;
             this.cmbKiesBerichten.SelectedValueChanged += new System.EventHandler(this.cmbKiesBerichten_SelectedValueChanged);
             // 
+            // btnDeleteSelection
+            // 
+            this.btnDeleteSelection.Location = new System.Drawing.Point(13, 478);
+            this.btnDeleteSelection.Name = "btnDeleteSelection";
+            this.btnDeleteSelection.Size = new System.Drawing.Size(148, 32);
+            this.btnDeleteSelection.TabIndex = 4;
+            this.btnDeleteSelection.Text = "verwijder selectie";
+            this.btnDeleteSelection.UseVisualStyleBackColor = true;
+            this.btnDeleteSelection.Click += new System.EventHandler(this.btnDeleteSelection_Click);
+            // 
             // OngepasteBerichtenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 516);
+            this.Controls.Add(this.btnDeleteSelection);
             this.Controls.Add(this.cmbKiesBerichten);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnLaatZien);
             this.Controls.Add(this.lvOngepasteBerichten);
             this.Name = "OngepasteBerichtenForm";
             this.Text = "OngepasteBerichtenForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OngepasteBerichtenForm_FormClosing);
             this.ResumeLayout(false);
 
         }
@@ -95,5 +108,6 @@
         private System.Windows.Forms.Button btnLaatZien;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.ComboBox cmbKiesBerichten;
+        private System.Windows.Forms.Button btnDeleteSelection;
     }
 }

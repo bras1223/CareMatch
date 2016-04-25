@@ -81,7 +81,7 @@ namespace CAREMATCH
             con.Open();
             
             command = new OracleCommand("DELETE FROM Hulpvraag WHERE HulpvraagID =:id;", con);
-            command.Parameters.Add(new OracleParameter(":id", OracleDbType.Varchar2)).Value = hulpvraag.HulpvraagID;
+            command.Parameters.Add(new OracleParameter(":id", OracleDbType.Int32)).Value = hulpvraag.HulpvraagID;
             con.Close();
         }
         //Foutmelding.
@@ -102,7 +102,7 @@ namespace CAREMATCH
             command.Parameters.Add(new OracleParameter(":gebruikersnaam", OracleDbType.Varchar2)).Value = gebruiker.Gebruikersnaam;
             command.Parameters.Add(new OracleParameter(":reactie", OracleDbType.Varchar2)).Value = hulpvraag.Reactie;
             command.Parameters.Add(new OracleParameter(":hulpvraaginhoud", OracleDbType.Varchar2)).Value = hulpvraag.HulpvraagInhoud;
-            command.Parameters.Add(new OracleParameter(":temp", OracleDbType.Char)).Value = tempString;
+            command.Parameters.Add(new OracleParameter(":temp", OracleDbType.Char)).Value = Convert.ToChar(tempString);
             command.Parameters.Add(new OracleParameter(":hulpvraagid", OracleDbType.Int32)).Value = hulpvraag.HulpvraagID;
             command.ExecuteNonQuery();
             con.Close();
@@ -248,9 +248,9 @@ namespace CAREMATCH
                 //Soms is de connectie niet goed afgesloten en komt er een foutmelding: CON already Open. 
                 //Als dat zo is, gewoon doorgaan met code. dus hoeft niet afgevangen te worden.
             }
-            command = new OracleCommand("SELECT * FROM Agenda WHERE EigenaarID = :filter AND AfspraakDatum =:datum ", con); 
+            command = new OracleCommand("SELECT * FROM Agenda WHERE EigenaarID =:filter AND AfspraakDatum =:datum;", con); 
             command.Parameters.Add(new OracleParameter("datum", datum));
-            command.Parameters.Add(new OracleParameter("filter", filter));
+            command.Parameters.Add(new OracleParameter("filter", Convert.ToInt32(filter)));
             try
             {
                 //Na het opnieuw inloggen als er al een keer ingelogd is, wordt de connectie niet opnieuw geopened. Vandaar nog een try catch.
@@ -703,13 +703,13 @@ namespace CAREMATCH
             {
                 command = new OracleCommand("UPDATE Gebruiker SET GebruikerInfo=:info, Auto=:temp, Voornaam=:voornaam, Achternaam=:achternaam WHERE GebruikerID =:gebruikerid", con);
             }
-            command.Parameters.Add("info", gebruiker.GebruikerInfo);
-            command.Parameters.Add("pasfoto", gebruiker.Pasfoto);
-            command.Parameters.Add("temp", tempString);
-            command.Parameters.Add("voornaam", gebruiker.Voornaam);
-            command.Parameters.Add("achternaam", gebruiker.Achternaam);
-            command.Parameters.Add("gebruikerid", gebruiker.GebruikersID);
-            command.Parameters.Add("password", EncryptString(gebruiker.Wachtwoord));
+            command.Parameters.Add(new OracleParameter("info", OracleDbType.Varchar2)).Value = gebruiker.GebruikerInfo;
+            command.Parameters.Add(new OracleParameter("pasfoto", OracleDbType.Varchar2)).Value = gebruiker.Pasfoto;
+            command.Parameters.Add(new OracleParameter("temp", OracleDbType.Char)).Value = Convert.ToChar(tempString);
+            command.Parameters.Add(new OracleParameter("voornaam", OracleDbType.Varchar2)).Value = gebruiker.Voornaam;
+            command.Parameters.Add(new OracleParameter("achternaam", OracleDbType.Varchar2)).Value = gebruiker.Achternaam;
+            command.Parameters.Add(new OracleParameter("gebruikerid", OracleDbType.Int32)).Value = gebruiker.GebruikersID;
+            command.Parameters.Add(new OracleParameter("password", OracleDbType.Varchar2)).Value = EncryptString(gebruiker.Wachtwoord);
             command.ExecuteNonQuery();
             con.Close();
         }

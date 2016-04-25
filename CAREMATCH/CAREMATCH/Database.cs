@@ -162,6 +162,7 @@ namespace CAREMATCH
                 //Overzicht eigen hulpvragen voor hulpbehoevende.
                 command = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.HulpvraagInhoud,  Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie,  Hulpvraag.Titel, Hulpvraag.Reactie, Hulpvraag.Duur, Hulpvraag.LaatstGereageerdDoor FROM Hulpvraag WHERE (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID)=:gebruikersnaam", con);
             }
+            
             command.Parameters.Add("gebruikerid", gebruiker.GebruikersID);
             command.Parameters.Add("gebruikersnaam", gebruiker.Gebruikersnaam);
             reader = command.ExecuteReader();
@@ -699,13 +700,13 @@ namespace CAREMATCH
             }
             else if(wachtwoordChanged)
             {
-                command = new OracleCommand("UPDATE Gebruiker SET Wachtwoord = :password, GebruikerInfo=:info, Auto=:temp, Voornaam=:voornaam, Achternaam=:achternaam WHERE GebruikerID =:gebruikerid", con);
+                command = new OracleCommand("UPDATE Gebruiker SET Wachtwoord =:password, GebruikerInfo=:info, Auto=:temp, Voornaam=:voornaam, Achternaam=:achternaam WHERE GebruikerID =:gebruikerid", con);
             }
             else
             {
-                command = new OracleCommand("UPDATE Gebruiker SET GebruikerInfo=:info, Auto=:temp , Voornaam=:voornaam, Achternaam=:achternaam WHERE GebruikerID =:gebruikerid", con);
+                command = new OracleCommand("UPDATE Gebruiker SET GebruikerInfo=:info, Auto=:temp, Voornaam=:voornaam, Achternaam=:achternaam WHERE GebruikerID =:gebruikerid", con);
             }
-            command.Parameters.Add("info", gebruiker.GebruikerInfo);
+            command.Parameters.Add("info", gebruiker.GebruikerInfo)s;
             command.Parameters.Add("pasfoto", gebruiker.Pasfoto);
             command.Parameters.Add("temp", tempString);
             command.Parameters.Add("voornaam", gebruiker.Voornaam);

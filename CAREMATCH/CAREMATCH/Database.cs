@@ -382,11 +382,12 @@ namespace CAREMATCH
 
             if(Chatcount > 0)
             {
-                command = new OracleCommand("INSERT INTO Chat(ChatID, OntvangerID, VerzenderID, BerichtInhoud, Datumtijd) VALUES('1', :maxid, :verzenderid, :inhoud, TO_TIMESTAMP(:datum,'DD-MON HH24.MI'))", con);
-                command.Parameters.Add(new OracleParameter("maxid", (ControlleerMaxChatID() + 1)));
-                command.Parameters.Add(new OracleParameter("verzenderid", verzenderID));
-                command.Parameters.Add(new OracleParameter("inhoud", inhoud));
-                command.Parameters.Add(new OracleParameter("datum", datum));
+                command = new OracleCommand("INSERT INTO Chat(ChatID, OntvangerID, VerzenderID, BerichtInhoud, Datumtijd) VALUES(:maxid, :ontvangerID, :verzenderid, :inhoud, TO_TIMESTAMP(:datum,'DD-MON HH24.MI'))", con);
+                command.Parameters.Add(new OracleParameter("ontvangerid", OracleDbType.Int32)).Value = ontvangerID;
+                command.Parameters.Add(new OracleParameter("verzenderid", OracleDbType.Int32)).Value = verzenderID;
+                command.Parameters.Add(new OracleParameter("inhoud", OracleDbType.Varchar2)).Value = inhoud;
+                command.Parameters.Add(new OracleParameter("datum", OracleDbType.TimeStamp)).Value = datum;
+
                 command.ExecuteNonQuery();
                 con.Close();
             }
@@ -401,7 +402,6 @@ namespace CAREMATCH
                 command.Parameters.Add(new OracleParameter("verzenderid", OracleDbType.Int32)).Value = verzenderID;
                 command.Parameters.Add(new OracleParameter("inhoud", OracleDbType.Varchar2)).Value = inhoud;
                 command.Parameters.Add(new OracleParameter("datum", OracleDbType.TimeStamp)).Value = datum;
-
 
                 command.ExecuteNonQuery();
                 con.Close();

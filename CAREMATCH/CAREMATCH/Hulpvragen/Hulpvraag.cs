@@ -19,11 +19,10 @@ namespace CAREMATCH.Hulpvragen
         public string HulpvraagInhoud { get; set; }
         public string Frequentie { get; set; }
         public string Reactie { get; set; }
+        public string Beoordeling { get; set; } //hulpvraag is afgerond als er een beoordeling gegeven is.
         public string LaatstGereageerdDoor { get; set; }
         public bool Auto { get; set; }
         public bool Urgent { get; set; }
-        public bool Afgerond { get; set; }
-        public string Beoordeling { get; set; }
 
         public Hulpvraag()
         {

@@ -131,7 +131,6 @@
       <DependentUpon>HomeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Hulpvragen\Hulpvraag.cs" />
-    <Compile Include="Hulpvragen\Reactie.cs" />
     <Compile Include="LoginSysteem\RFIDLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +158,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VrijwilligerSysteem\BeoordelingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VrijwilligerSysteem\BeoordelingForm.Designer.cs">
+      <DependentUpon>BeoordelingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="VrijwilligerSysteem\HulpvraagForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +226,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="VrijwilligerSysteem\BeoordelingForm.resx">
+      <DependentUpon>BeoordelingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VrijwilligerSysteem\HulpvraagForm.resx">
       <DependentUpon>HulpvraagForm.cs</DependentUpon>
     </EmbeddedResource>

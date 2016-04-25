@@ -3,29 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace CAREMATCH
 {
     class Chatbericht
     {
         //Properties
-        public string Inhoud { get;}
+        public int ID { get; }
+        public string Inhoud { get; }
         public string VerzenderNaam { get; }
-        private DateTime datumtijd;
+        public DateTime datumtijd { get; }
 
         //Properties
 
-        public string Datumtijd
-        {
-            get { return datumtijd.ToString("dd/MMM HH:mm"); }
-        }
 
         //Constructor
-        public Chatbericht(string inhoud, string verzender)
+        public Chatbericht(string inhoud, string verzender, int id, DateTime datum)
         {
             Inhoud = inhoud;
             VerzenderNaam = verzender;
-            datumtijd = DateTime.Now;
+            ID = id;
+            datumtijd = datum;
         }
 
         public override string ToString()

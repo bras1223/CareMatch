@@ -37,6 +37,7 @@
             this.tmrLaadberichten = new System.Windows.Forms.Timer(this.components);
             this.btnTerug = new System.Windows.Forms.Button();
             this.pbProfielFoto = new System.Windows.Forms.PictureBox();
+            this.btnMode = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,33 +68,32 @@
             this.lblGebruikersnaam.Location = new System.Drawing.Point(343, 25);
             this.lblGebruikersnaam.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblGebruikersnaam.Name = "lblGebruikersnaam";
-            this.lblGebruikersnaam.Size = new System.Drawing.Size(214, 31);
+            this.lblGebruikersnaam.Size = new System.Drawing.Size(173, 26);
             this.lblGebruikersnaam.TabIndex = 5;
             this.lblGebruikersnaam.Text = "Gebruikersnaam";
             // 
             // lbChat
             // 
             this.lbChat.FormattingEnabled = true;
-            this.lbChat.ItemHeight = 31;
+            this.lbChat.ItemHeight = 25;
             this.lbChat.Location = new System.Drawing.Point(213, 139);
             this.lbChat.Name = "lbChat";
             this.lbChat.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.lbChat.Size = new System.Drawing.Size(965, 376);
+            this.lbChat.Size = new System.Drawing.Size(965, 354);
             this.lbChat.TabIndex = 7;
             // 
             // lbGebruikerLijst
             // 
             this.lbGebruikerLijst.FormattingEnabled = true;
-            this.lbGebruikerLijst.ItemHeight = 31;
+            this.lbGebruikerLijst.ItemHeight = 25;
             this.lbGebruikerLijst.Location = new System.Drawing.Point(12, 12);
             this.lbGebruikerLijst.Name = "lbGebruikerLijst";
-            this.lbGebruikerLijst.Size = new System.Drawing.Size(192, 469);
+            this.lbGebruikerLijst.Size = new System.Drawing.Size(192, 454);
             this.lbGebruikerLijst.TabIndex = 8;
             this.lbGebruikerLijst.SelectedIndexChanged += new System.EventHandler(this.lbGebruikerLijst_SelectedIndexChanged_1);
             // 
             // tmrLaadberichten
             // 
-            this.tmrLaadberichten.Interval = 2000;
             this.tmrLaadberichten.Tick += new System.EventHandler(this.tmrLaadberichten_Tick);
             // 
             // btnTerug
@@ -119,11 +119,22 @@
             this.pbProfielFoto.TabIndex = 4;
             this.pbProfielFoto.TabStop = false;
             // 
+            // btnMode
+            // 
+            this.btnMode.Location = new System.Drawing.Point(1011, 28);
+            this.btnMode.Name = "btnMode";
+            this.btnMode.Size = new System.Drawing.Size(167, 76);
+            this.btnMode.TabIndex = 9;
+            this.btnMode.Text = "Nieuwe Chat";
+            this.btnMode.UseVisualStyleBackColor = true;
+            this.btnMode.Click += new System.EventHandler(this.btnMode_Click);
+            // 
             // ChatForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1193, 641);
+            this.Controls.Add(this.btnMode);
             this.Controls.Add(this.lbChat);
             this.Controls.Add(this.btnTerug);
             this.Controls.Add(this.lblGebruikersnaam);
@@ -154,5 +165,6 @@
         private System.Windows.Forms.ListBox lbChat;
         private System.Windows.Forms.ListBox lbGebruikerLijst;
         private System.Windows.Forms.Timer tmrLaadberichten;
+        private System.Windows.Forms.Button btnMode;
     }
 }

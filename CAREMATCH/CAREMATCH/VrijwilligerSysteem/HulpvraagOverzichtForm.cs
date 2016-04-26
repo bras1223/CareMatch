@@ -87,20 +87,24 @@ namespace CAREMATCH.VrijwilligerSysteem
                 item.SubItems.Add(hulpvraag.HulpvraagInhoud);
                 lvHulpvragen.Items.Add(item);
 
-                //Autosize columns in listview.
-                foreach (ColumnHeader column in lvHulpvragen.Columns)
-                {
-                    if (column.Text.Length > item.Text.Length)
-                    {
-                        lvHulpvragen.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-                    }
-                    else
-                    {
-                        lvHulpvragen.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                    }
-                }
+                AutoSizeColumns(lvHulpvragen);
             }
             
+        }
+        public void AutoSizeColumns(ListView lv)
+        {
+            //Autosize columns in listview.
+            foreach (ColumnHeader column in lv.Columns)
+            {
+                if (column.Text.Length > item.Text.Length)
+                {
+                    lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                }
+                else
+                {
+                    lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                }
+            }
         }
     }
 }

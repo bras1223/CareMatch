@@ -105,6 +105,7 @@ namespace CAREMATCH.VrijwilligerSysteem
                     }
                     catch
                     {
+                        if(pbProfielFoto.Image != null) pbProfielFoto.Image.Dispose();
                         //alle afbeeldingen verwijderen in de map. dan opnieuw bestand kopieren.
                         System.IO.DirectoryInfo di = new DirectoryInfo(gebruiker.Gebruikersnaam + @"\");
                         foreach (FileInfo file in di.GetFiles())
@@ -113,7 +114,6 @@ namespace CAREMATCH.VrijwilligerSysteem
                         }
                         File.Copy(zoekFotoDialog.FileName, gebruiker.Gebruikersnaam + @"\" + gebruiker.Gebruikersnaam + Path.GetExtension(zoekFotoDialog.FileName));
                     }
-                    Refresh();
                 }
             }
             //Info opslaan

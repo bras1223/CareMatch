@@ -16,27 +16,47 @@ namespace CAREMATCH
         Gebruiker gebruiker;
         string partnernaam = "";
         int partnerid = -1;
-        List<Chatbericht> oudchatbericht;
         List<Chatbericht> weergegevenberichten;
         Database database;
+        bool done = false;
 
         //Constructors
         public ChatForm(Gebruiker gebruiker)
         {
-            opstarten(gebruiker);
+            InitializeComponent();
+            this.gebruiker = gebruiker;
+            database = new Database();
+            lbChat.DrawMode = DrawMode.OwnerDrawFixed;
+            lbChat.DrawItem += new DrawItemEventHandler(lbChat_DrawItem);
+            lbGebruikerLijst.DrawMode = DrawMode.OwnerDrawFixed;
+            lbGebruikerLijst.DrawItem += new DrawItemEventHandler(lbGebruikerLijst_DrawItem);
+            weergegevenberichten = new List<Chatbericht>();
+            Controls.Add(lbChat);
+            database.ZetOnline(gebruiker.GebruikersID);
         }
 
         public ChatForm(Gebruiker gebruiker, string partnernaam)
         {
-            opstarten(gebruiker);
+            InitializeComponent();
+            this.gebruiker = gebruiker;
+            database = new Database();
+            lbChat.DrawMode = DrawMode.OwnerDrawFixed;
+            lbChat.DrawItem += new DrawItemEventHandler(lbChat_DrawItem);
+            lbGebruikerLijst.DrawMode = DrawMode.OwnerDrawFixed;
+            lbGebruikerLijst.DrawItem += new DrawItemEventHandler(lbGebruikerLijst_DrawItem);
+            weergegevenberichten = new List<Chatbericht>();
+            Controls.Add(lbChat);
+            database.ZetOnline(gebruiker.GebruikersID);
 
-            lblGebruikersnaam.Text = partnernaam;
-            this.partnerid = database.ChatpartnerID(lblGebruikersnaam.Text);
-            VeranderStatus(partnerid);
-            lbChat.Items.Clear();
-            ChatGeschiedenisLaden();
-            lbChat.SetSelected(lbChat.Items.Count - 1, true);
-            MessageBox.Show("Dit is kut");
+            this.partnernaam = partnernaam;
+            //lblGebruikersnaam.Text = partnernaam;
+            //this.partnerid = database.ChatpartnerID(lblGebruikersnaam.Text);
+            //VeranderStatus(partnerid);
+            //lbChat.Items.Clear();
+            //ChatGeschiedenisLaden();
+            tmrTest.Start();
+
+
         }
 
         private void btnVerzenden_Click(object sender, EventArgs e)
@@ -100,6 +120,11 @@ namespace CAREMATCH
             if(partnerid != -1)
             {
                 VeranderStatus(partnerid);
+            }
+
+            if (done)
+            {
+                tmrTest.Stop();
             }
 
             foreach (Chatbericht c in database.ChatLaden(lblGebruikersnaam.Text, gebruiker.Gebruikersnaam, database.ChatpartnerID(lblGebruikersnaam.Text), gebruiker.GebruikersID))
@@ -321,7 +346,6 @@ namespace CAREMATCH
             lbChat.DrawItem += new DrawItemEventHandler(lbChat_DrawItem);
             lbGebruikerLijst.DrawMode = DrawMode.OwnerDrawFixed;
             lbGebruikerLijst.DrawItem += new DrawItemEventHandler(lbGebruikerLijst_DrawItem);
-            oudchatbericht = new List<Chatbericht>();
             weergegevenberichten = new List<Chatbericht>();
             Controls.Add(lbChat);
             database.ZetOnline(gebruiker.GebruikersID);
@@ -330,6 +354,13 @@ namespace CAREMATCH
         private void lbChat_SelectedIndexChanged(object sender, EventArgs e)
         {
             //MessageBox.Show(lbChat.SelectedIndex.ToString());
+        }
+
+        private void tmrTest_Tick(object sender, EventArgs e)
+        {
+            int tset = lbGebruikerLijst.FindString(partnernaam);
+            lbGebruikerLijst.SelectedIndex = tset;
+            done = true;
         }
     }
 }

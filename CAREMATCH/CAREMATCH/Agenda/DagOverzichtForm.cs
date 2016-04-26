@@ -26,7 +26,7 @@ namespace CAREMATCH.Agenda
             dagOverzicht = new AgendaDagOverzicht(gebruiker);
 
             //Alle agendapunten ophalen van de geselecteerde vrijwilliger ind e filter. Standaard eigen agenda weergeven.
-            database.AgendaOverzicht(gebruiker, cbFilter.Text, dtpTijdPicker.Value.Date);
+            database.AgendaOverzicht(gebruiker, cbFilter.Text, dtpTijdPicker.Value.Date.ToString("dd-MMM-yy"));
             foreach (string vrijwilliger in database.AgendaSelecteerVrijwilligers())
             {
                 cbFilter.Items.Add(vrijwilliger);
@@ -34,7 +34,7 @@ namespace CAREMATCH.Agenda
             lblDatumWaarde.Text = dtpTijdPicker.Value.ToString();
             //Waarde van de filter zetten op de gebruikersnaam.
             cbFilter.SelectedItem = gebruiker.Gebruikersnaam;
-            if(cbFilter.SelectedText == "")
+            if(gebruiker.Rol.ToLower() == "hulpbehoevende")
             {
                 //Als een hulpbehoevende de agenda opent; altijd eerste item selecteren.
                 cbFilter.SelectedIndex = 0;
@@ -47,7 +47,7 @@ namespace CAREMATCH.Agenda
             agendaPuntToevoegen.ShowDialog();
             if (agendaPuntToevoegen.DialogResult == DialogResult.OK)
             {
-                pnlWeekrooster.Refresh();
+                GetAgendaOverzicht();
             }
         }
         private void pnlWeekrooster_Paint(object sender, PaintEventArgs e)
@@ -67,25 +67,31 @@ namespace CAREMATCH.Agenda
         }
         private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            gebruiker.GetAgendaPunten().Clear();
-            database.AgendaOverzicht(gebruiker, cbFilter.Text, dtpTijdPicker.Value.Date);
-            pnlWeekrooster.Refresh();
+            GetAgendaOverzicht();
         }
         private void dtpTijdPicker_ValueChanged(object sender, EventArgs e)
         {
-            gebruiker.GetAgendaPunten().Clear();
-            database.AgendaOverzicht(gebruiker, cbFilter.Text, dtpTijdPicker.Value.Date);
-            pnlWeekrooster.Refresh();
+            GetAgendaOverzicht();
         }
         private void pnlWeekrooster_MouseUp(object sender, MouseEventArgs e)
         {
-            foreach (Rectangle rec in dagOverzicht.GetAgendaRectangleList())
+            foreach (Rectangle p in dagOverzicht.GetAgendaRectangleList())
             {
-                if (rec.Contains(new Point(e.X, e.Y)))
+                if (p.X < e.X && p.Y < e.Y &&
+                    p.Right > e.X && p.Bottom > e.Y)
                 {
-                    MessageBox.Show("clcikd");
+                    foreach(AgendaPunt ap in gebruiker.GetAgendaPunten())
+                    {
+                        
+                    }
                 }
             }
+        }
+        public void GetAgendaOverzicht()
+        {
+            gebruiker.GetAgendaPunten().Clear();
+            database.AgendaOverzicht(gebruiker, cbFilter.Text, dtpTijdPicker.Value.Date.ToString("dd-MMM-yy"));
+            pnlWeekrooster.Refresh();
         }
     }
 }

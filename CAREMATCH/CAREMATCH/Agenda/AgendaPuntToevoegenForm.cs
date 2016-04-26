@@ -55,7 +55,7 @@ namespace CAREMATCH.Agenda
                     agendaPunt.DatumTijdStart = agendaPunt.DatumTijdStart / 10;
                 }
                 //Agendainfo inserten.
-                database.AgendaPuntToevoegen(agendaPunt, gebruiker, dtpAfspraakDatum.Value.Date);
+                database.AgendaPuntToevoegen(agendaPunt, gebruiker, dtpAfspraakDatum.Value.Date.ToString("dd-MMM-yy"));
                 gebruiker.AgendaPuntToevoegen(agendaPunt);
 
                 DialogResult = DialogResult.OK;

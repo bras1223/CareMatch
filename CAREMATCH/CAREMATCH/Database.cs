@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
 using System.Security.Cryptography;
 using System.Data;
+using System.Globalization;
 
 namespace CAREMATCH
 {
@@ -236,7 +237,7 @@ namespace CAREMATCH
             }
             return vrijwilligersList;
         }
-        public void AgendaOverzicht(Gebruiker gebruiker, string filter, DateTime datum)
+        public void AgendaOverzicht(Gebruiker gebruiker, string filter, string datum)
         {
             try
             {
@@ -247,20 +248,11 @@ namespace CAREMATCH
                 //Soms is de connectie niet goed afgesloten en komt er een foutmelding: CON already Open. 
                 //Als dat zo is, gewoon doorgaan met code. dus hoeft niet afgevangen te worden.
             }
-            command = new OracleCommand("SELECT * FROM Agenda WHERE EigenaarID =:filter AND AfspraakDatum =:datum;", con); 
-            command.Parameters.Add(new OracleParameter("datum", datum));
-            command.Parameters.Add(new OracleParameter("filter", Convert.ToInt32(filter)));
-            try
-            {
-                //Na het opnieuw inloggen als er al een keer ingelogd is, wordt de connectie niet opnieuw geopened. Vandaar nog een try catch.
-                reader = command.ExecuteReader();
-            }
-            catch
-            {
-                con.Close();
-                con.Open();
-                reader = command.ExecuteReader();
-            }
+            command = new OracleCommand("SELECT * FROM Agenda WHERE EigenaarID =(SELECT GebruikerID FROM Gebruiker WHERE Gebruikersnaam =:filter) AND AfspraakDatum =:datum", con);
+            command.Parameters.Add(new OracleParameter(":filter", OracleDbType.Varchar2)).Value = filter;
+            command.Parameters.Add(new OracleParameter(":datum", OracleDbType.Varchar2)).Value = datum;
+            reader = command.ExecuteReader();
+
             while (reader.Read())
             {
                 agendaPunt = new Agenda.AgendaPunt();
@@ -270,7 +262,7 @@ namespace CAREMATCH
                 agendaPunt.Hulpbehoevende = reader["HulpBehoevende"].ToString();
                 agendaPunt.Vrijwilliger = reader["Vrijwilliger"].ToString();
                 agendaPunt.Beschrijving = reader["Omschrijving"].ToString();
-                agendaPunt.AgendaEigenaar = Convert.ToInt32(reader["AFSPRAAKID"]);
+                agendaPunt.AgendaEigenaar = Convert.ToInt32(reader["EigenaarID"]);
                 agendaPunt.DatumTijdStart = Convert.ToInt32(reader["StartTijd"]);
                 agendaPunt.DatumTijdEind = Convert.ToInt32(reader["EindTijd"]);
 
@@ -278,18 +270,20 @@ namespace CAREMATCH
             }
             con.Close();
         }
-        public void AgendaPuntToevoegen(Agenda.AgendaPunt agendaPunt, Gebruiker gebruiker, DateTime datum)
+        public void AgendaPuntToevoegen(Agenda.AgendaPunt agendaPunt, Gebruiker gebruiker, string datum)
         {
             con.Open();
-            command = new OracleCommand("INSERT INTO Agenda(EigenaarID, Omschrijving, StartTijd, EindTijd, Titel, Hulpbehoevende, Vrijwilliger, AfspraakDatum) VALUES(:gebruikersid,:beschrijving ,:starttijd ,:eindtijd ,:titel ,:hulpbehoevende ,:vrijwilliger ,:datum)", con);
-            command.Parameters.Add(new OracleParameter("gebruikersid", gebruiker.GebruikersID));
-            command.Parameters.Add(new OracleParameter("beschrijving", agendaPunt.Beschrijving));
-            command.Parameters.Add(new OracleParameter("starttijd", agendaPunt.DatumTijdStart));
-            command.Parameters.Add(new OracleParameter("eindtijd", agendaPunt.DatumTijdEind));
-            command.Parameters.Add(new OracleParameter("titel", agendaPunt.Titel));
-            command.Parameters.Add(new OracleParameter("hulpbehoevende", agendaPunt.Hulpbehoevende));
-            command.Parameters.Add(new OracleParameter("vrijwilliger", agendaPunt.Vrijwilliger));
-            command.Parameters.Add(new OracleParameter("datum", datum));
+            command = new OracleCommand("INSERT INTO Agenda(EigenaarID, Omschrijving, StartTijd, EindTijd, Titel, Hulpbehoevende, Vrijwilliger, AfspraakDatum)"+ 
+                                                "VALUES(:gebruikersid,:beschrijving ,:starttijd ,:eindtijd ,:titel ,:hulpbehoevende ,:vrijwilliger ,:datum)", con);
+           
+            command.Parameters.Add(new OracleParameter(":gebruikersid", OracleDbType.Int32)).Value = gebruiker.GebruikersID;
+            command.Parameters.Add(new OracleParameter(":beschrijving", OracleDbType.Varchar2)).Value = agendaPunt.Beschrijving;
+            command.Parameters.Add(new OracleParameter(":starttijd", OracleDbType.Varchar2)).Value = agendaPunt.DatumTijdStart;
+            command.Parameters.Add(new OracleParameter(":eindtijd", OracleDbType.Varchar2)).Value = agendaPunt.DatumTijdEind;
+            command.Parameters.Add(new OracleParameter(":titel", OracleDbType.Varchar2)).Value = agendaPunt.Titel;
+            command.Parameters.Add(new OracleParameter(":hulpbehoevende", OracleDbType.Varchar2)).Value = agendaPunt.Hulpbehoevende;
+            command.Parameters.Add(new OracleParameter(":vrijwilliger", OracleDbType.Varchar2)).Value = agendaPunt.Vrijwilliger;
+            command.Parameters.Add(new OracleParameter(":datum", OracleDbType.Varchar2)).Value = datum;
             command.ExecuteNonQuery();
             con.Close();
         }
@@ -838,22 +832,32 @@ namespace CAREMATCH
             if(fotoChanged)
             {
                 command = new OracleCommand("UPDATE Gebruiker SET GebruikerInfo=:info, Foto=:pasfoto, Auto=:temp, Voornaam=:voornaam, Achternaam=:achternaam  WHERE GebruikerID =:gebruikerid", con);
+                command.Parameters.Add(new OracleParameter("info", OracleDbType.Varchar2)).Value = gebruiker.GebruikerInfo;
                 command.Parameters.Add(new OracleParameter("pasfoto", OracleDbType.Varchar2)).Value = gebruiker.Pasfoto;
+                command.Parameters.Add(new OracleParameter("temp", OracleDbType.Char)).Value = Convert.ToChar(tempString);
+                command.Parameters.Add(new OracleParameter("voornaam", OracleDbType.Varchar2)).Value = gebruiker.Voornaam;
+                command.Parameters.Add(new OracleParameter("achternaam", OracleDbType.Varchar2)).Value = gebruiker.Achternaam;
+                command.Parameters.Add(new OracleParameter("gebruikerid", OracleDbType.Int32)).Value = gebruiker.GebruikersID;
             }
             else if(wachtwoordChanged)
             {
                 command = new OracleCommand("UPDATE Gebruiker SET Wachtwoord =:password, GebruikerInfo=:info, Auto=:temp, Voornaam=:voornaam, Achternaam=:achternaam WHERE GebruikerID =:gebruikerid", con);
                 command.Parameters.Add(new OracleParameter("password", OracleDbType.Varchar2)).Value = EncryptString(gebruiker.Wachtwoord);
+                command.Parameters.Add(new OracleParameter("info", OracleDbType.Varchar2)).Value = gebruiker.GebruikerInfo;
+                command.Parameters.Add(new OracleParameter("temp", OracleDbType.Char)).Value = Convert.ToChar(tempString);
+                command.Parameters.Add(new OracleParameter("voornaam", OracleDbType.Varchar2)).Value = gebruiker.Voornaam;
+                command.Parameters.Add(new OracleParameter("achternaam", OracleDbType.Varchar2)).Value = gebruiker.Achternaam;
+                command.Parameters.Add(new OracleParameter("gebruikerid", OracleDbType.Int32)).Value = gebruiker.GebruikersID;
             }
             else
             {
                 command = new OracleCommand("UPDATE Gebruiker SET GebruikerInfo=:info, Auto=:temp, Voornaam=:voornaam, Achternaam=:achternaam WHERE GebruikerID =:gebruikerid", con);
+                command.Parameters.Add(new OracleParameter("info", OracleDbType.Varchar2)).Value = gebruiker.GebruikerInfo;
+                command.Parameters.Add(new OracleParameter("temp", OracleDbType.Char)).Value = Convert.ToChar(tempString);
+                command.Parameters.Add(new OracleParameter("voornaam", OracleDbType.Varchar2)).Value = gebruiker.Voornaam;
+                command.Parameters.Add(new OracleParameter("achternaam", OracleDbType.Varchar2)).Value = gebruiker.Achternaam;
+                command.Parameters.Add(new OracleParameter("gebruikerid", OracleDbType.Int32)).Value = gebruiker.GebruikersID;
             }
-            command.Parameters.Add(new OracleParameter("info", OracleDbType.Varchar2)).Value = gebruiker.GebruikerInfo;
-            command.Parameters.Add(new OracleParameter("temp", OracleDbType.Char)).Value = Convert.ToChar(tempString);
-            command.Parameters.Add(new OracleParameter("voornaam", OracleDbType.Varchar2)).Value = gebruiker.Voornaam;
-            command.Parameters.Add(new OracleParameter("achternaam", OracleDbType.Varchar2)).Value = gebruiker.Achternaam;
-            command.Parameters.Add(new OracleParameter("gebruikerid", OracleDbType.Int32)).Value = gebruiker.GebruikersID;
             command.ExecuteNonQuery();
             con.Close();
         }

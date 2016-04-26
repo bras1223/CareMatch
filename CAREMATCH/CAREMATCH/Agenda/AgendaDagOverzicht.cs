@@ -68,7 +68,8 @@ namespace CAREMATCH.Agenda
                         break;
                 };
                 recAgendaPunt = new Rectangle(aantalAfspraken * 200 + 50, Convert.ToInt32((xSpace * (ap.DatumTijdStart - 8))), 180, Convert.ToInt32((xSpace * (ap.DatumTijdEind - ap.DatumTijdStart))));
-                recAgendaPuntenList.Add(recAgendaPunt); 
+                recAgendaPuntenList.Add(recAgendaPunt);
+                ap.Locatie = new Point(aantalAfspraken * 200 + 50, Convert.ToInt32((xSpace * (ap.DatumTijdStart - 8))));
                 g.FillRectangle(sbColor, recAgendaPunt);
                 g.DrawString("Afspraak met:\n"+ ap.Hulpbehoevende , font, sbBlack, aantalAfspraken * 200 + 50, Convert.ToInt32((xSpace * (ap.DatumTijdStart - 8))));
                 aantalAfspraken++;

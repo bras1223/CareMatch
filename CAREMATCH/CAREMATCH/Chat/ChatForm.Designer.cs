@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
             this.tbBericht = new System.Windows.Forms.TextBox();
             this.btnVerzenden = new System.Windows.Forms.Button();
             this.lblGebruikersnaam = new System.Windows.Forms.Label();
@@ -40,6 +39,7 @@
             this.pbProfielFoto = new System.Windows.Forms.PictureBox();
             this.btnModus = new System.Windows.Forms.Button();
             this.lblParterStatus = new System.Windows.Forms.Label();
+            this.tmrTest = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -141,10 +141,15 @@
             this.lblParterStatus.Size = new System.Drawing.Size(0, 26);
             this.lblParterStatus.TabIndex = 10;
             // 
+            // tmrTest
+            // 
+            this.tmrTest.Tick += new System.EventHandler(this.tmrTest_Tick);
+            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1193, 641);
             this.Controls.Add(this.lblParterStatus);
             this.Controls.Add(this.btnModus);
@@ -157,7 +162,6 @@
             this.Controls.Add(this.lbGebruikerLijst);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "ChatForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -181,5 +185,6 @@
         private System.Windows.Forms.Timer tmrLaadberichten;
         private System.Windows.Forms.Button btnModus;
         private System.Windows.Forms.Label lblParterStatus;
+        private System.Windows.Forms.Timer tmrTest;
     }
 }

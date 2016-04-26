@@ -66,7 +66,7 @@ namespace CAREMATCH
                 item.SubItems.Add(hulpvraag.HulpvraagInhoud);
                 item.SubItems.Add(hulpvraag.Hulpbehoevende);
                 item.SubItems.Add(hulpvraag.Beoordeling);
-                item.SubItems.Add(hulpvraag.cijfer);
+                item.SubItems.Add(hulpvraag.Cijfer.ToString());
 
                 lvOngepasteBerichten.Items.Add(item);
             }

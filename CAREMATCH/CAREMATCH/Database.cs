@@ -76,12 +76,12 @@ namespace CAREMATCH
             con.Close();
         }
         //Mee bezig.
-        public void HulpvraagVerwijderen(Hulpvragen.Hulpvraag hulpvraag)
+        public void HulpvraagVerwijderen(int hulpvraagID)
         {
             con.Open();
             
             command = new OracleCommand("DELETE FROM Hulpvraag WHERE HulpvraagID =:id;", con);
-            command.Parameters.Add(new OracleParameter(":id", OracleDbType.Int32)).Value = hulpvraag.HulpvraagID;
+            command.Parameters.Add(new OracleParameter(":id", OracleDbType.Int32)).Value = hulpvraagID;
             con.Close();
         }
         //Foutmelding.

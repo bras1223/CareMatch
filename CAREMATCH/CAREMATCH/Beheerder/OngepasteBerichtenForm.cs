@@ -88,24 +88,19 @@ namespace CAREMATCH
             this.Hide();
             Hulpvraag hulpvraag = null;
             //geselecteerde hulpvraag openen.
-            try
-            {
-                hulpvraag = hulpvragen[lvOngepasteBerichten.FocusedItem.Index];
-            }
-            catch (NullReferenceException)
-            {
-                MessageBox.Show("selecteer AUB een hulpvraag");
-                
-            }
+
+            hulpvraag = hulpvragen[lvOngepasteBerichten.FocusedItem.Index];
+            //werkt niet, misschien wel met een eventhandler? idk ik kijk zom thuis
             
-            
-            HulpvraagForm hulpvraagForm = new HulpvraagForm(hulpvraag, gebruiker, false);
-            hulpvraagForm.ShowDialog();
-            if (hulpvraagForm.DialogResult == DialogResult.OK || hulpvraagForm.DialogResult == DialogResult.Cancel)
+            if(hulpvraag != null)
             {
-                 this.Show();
+                HulpvraagForm hulpvraagForm = new HulpvraagForm(hulpvraag, gebruiker, false);
+                hulpvraagForm.ShowDialog();
+                if (hulpvraagForm.DialogResult == DialogResult.OK || hulpvraagForm.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
             }
-            
             else
             {
                 MessageBox.Show("selecteer AUB een hulpvraag");

@@ -256,7 +256,17 @@
     <None Include="Resources\users.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\note%281%29.png" />
+    <None Include="Resources\shapes.png" />
+    <None Include="Resources\squares.png" />
+    <None Include="Resources\library.png" />
+    <None Include="Resources\tool.png" />
+    <None Include="Resources\tool%281%29.png" />
+    <None Include="Resources\computers.png" />
+    <None Include="Resources\avatar.png" />
+    <None Include="Resources\agenda%281%29.png" />
     <Content Include="Resources\Favicon.ico" />
+    <None Include="Resources\new_message_32.png" />
     <None Include="Resources\FilledStar.png" />
     <None Include="Resources\EmptyStar.png" />
     <None Include="Resources\arrows.png" />

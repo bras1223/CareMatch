@@ -4,13 +4,14 @@ using System;
 using System.Windows.Forms;
 using Login;
 using CAREMATCH.Beheerder;
+using System.Drawing;
 
 namespace CAREMATCH
 {
     public partial class HomeForm : Form
     {
         private Gebruiker gebruiker;
-        private Hulpvragen.Hulpvraag hulpvraag;
+        private Database database;
         private Agenda.DagOverzichtForm weekrooster;
         private ChatForm chatForm;
         private HulpvraagForm hulpvraagForm;
@@ -21,11 +22,14 @@ namespace CAREMATCH
         private ChatBeheerdersForm ChatBeheerderForm;
         private OngepasteBerichtenForm OngepasteBerichtenForm;
 
+        PictureBox img;
         public HomeForm(Gebruiker gebruiker)
         {
             InitializeComponent();
             this.gebruiker = gebruiker;
-                        
+            database = new Database();
+            img = new PictureBox();
+
             if (gebruiker.Rol.ToLower() == "hulpbehoevende")
             {
                 btnOngepasteBerichten.Visible = false;
@@ -42,10 +46,14 @@ namespace CAREMATCH
             {
                 btnHulpvraagIndienen.Visible = false;
             }
+            RefreshNieuwBerichtImg();
         }
 
         private void btnHulpvraagIndienen_Click(object sender, EventArgs e)
         {
+            //De hulpvraag hoeft niet gevuld te zijn. Bestaat nog niet.
+            Hulpvragen.Hulpvraag hulpvraag = null;
+
             this.Hide();
             hulpvraagForm = new HulpvraagForm(hulpvraag, gebruiker, true);
             hulpvraagForm.ShowDialog();
@@ -96,6 +104,7 @@ namespace CAREMATCH
                 chatForm.ShowDialog();
                 if (chatForm.DialogResult == DialogResult.OK || chatForm.DialogResult == DialogResult.Cancel)
                 {
+                    RefreshNieuwBerichtImg();
                     this.Show();
                 }
             }
@@ -143,15 +152,28 @@ namespace CAREMATCH
 
         private void btnAccountOverzicht_Click(object sender, EventArgs e)
         {
-                this.Hide();
-                GebruikerBeheerderForm = new GebruikerBeheer(gebruiker);
-                GebruikerBeheerderForm.ShowDialog();
-                if (GebruikerBeheerderForm.DialogResult == DialogResult.OK|| profielForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
-           
-
+            this.Hide();
+            GebruikerBeheerderForm = new GebruikerBeheer(gebruiker);
+            GebruikerBeheerderForm.ShowDialog();
+            if (GebruikerBeheerderForm.DialogResult == DialogResult.OK|| profielForm.DialogResult == DialogResult.Cancel)
+            {
+                this.Show();
+            }   
+        }
+        private void RefreshNieuwBerichtImg()
+        {
+            //Icon laten zien als er een nieuw bericht is voor de gebruiker.
+            if (database.ChatNieuwBericht(gebruiker))
+            {
+                img.Parent = btnBerichten;
+                img.Image = Properties.Resources.new_message_32;
+                img.BackColor = Color.Transparent;
+                img.SizeMode = PictureBoxSizeMode.AutoSize;
+            }
+            else
+            {
+                img.Image = null;
+            }
         }
     }
 }

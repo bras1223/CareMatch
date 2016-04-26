@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HulpvraagForm));
             this.lblTitel = new System.Windows.Forms.Label();
             this.lblOmschrijving = new System.Windows.Forms.Label();
             this.lblHulpvrager = new System.Windows.Forms.Label();
@@ -407,9 +408,10 @@
             this.Controls.Add(this.btnSluit);
             this.Controls.Add(this.lblOmschrijving);
             this.Controls.Add(this.lblTitel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HulpvraagForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "HulpvraagForm";
+            this.Text = "Hulpvraag - CareMatch";
             this.Load += new System.EventHandler(this.HulpvraagForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbHulpbehoevende)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbVrijwilliger)).EndInit();

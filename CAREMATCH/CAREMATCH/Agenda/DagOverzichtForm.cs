@@ -16,7 +16,7 @@ namespace CAREMATCH.Agenda
         private Gebruiker gebruiker;
         private AgendaDagOverzicht dagOverzicht;
         private AgendaPuntToevoegenForm agendaPuntToevoegen;
-        
+        AgendaPuntToevoegenForm agt;
         public DagOverzichtForm(Gebruiker gebruiker)
         {
             InitializeComponent();
@@ -27,7 +27,7 @@ namespace CAREMATCH.Agenda
 
             //Alle agendapunten ophalen van de geselecteerde vrijwilliger ind e filter. Standaard eigen agenda weergeven.
             database.AgendaOverzicht(gebruiker, cbFilter.Text, dtpTijdPicker.Value.Date.ToString("dd-MMM-yy"));
-            foreach (string vrijwilliger in database.AgendaSelecteerVrijwilligers())
+            foreach (string vrijwilliger in database.GebruikerSelecteerVrijwilligers())
             {
                 cbFilter.Items.Add(vrijwilliger);
             }
@@ -38,6 +38,8 @@ namespace CAREMATCH.Agenda
             {
                 //Als een hulpbehoevende de agenda opent; altijd eerste item selecteren.
                 cbFilter.SelectedIndex = 0;
+                btnAgendaPuntToevoegen.Visible = false;
+                lblToevoegen.Visible = false;
             }
         }
 
@@ -73,19 +75,30 @@ namespace CAREMATCH.Agenda
         {
             GetAgendaOverzicht();
         }
+        //Form wordt 2x geopend. even naar kijken.
         private void pnlWeekrooster_MouseUp(object sender, MouseEventArgs e)
         {
-            foreach (Rectangle p in dagOverzicht.GetAgendaRectangleList())
+            //Als de agenda geselecteerd is van diegene die de agendapunt aanklikt, dan de agenda openen. Anders niets doen.
+            if (cbFilter.Text == gebruiker.Gebruikersnaam)
             {
-                if (p.X < e.X && p.Y < e.Y &&
-                    p.Right > e.X && p.Bottom > e.Y)
+                foreach (Rectangle p in dagOverzicht.GetAgendaRectangleList())
                 {
-                    foreach(AgendaPunt ap in gebruiker.GetAgendaPunten())
+                    //checken of een vierkant aan is geklikt waar een rectangle in zit.
+                    if (p.X < e.X && p.Y < e.Y &&
+                        p.Right > e.X && p.Bottom > e.Y)
                     {
-                        
+                        //Elke agendapunt afgaan in de list die overeenkomt met de coordinaten.
+                        foreach (AgendaPunt ap in gebruiker.GetAgendaPunten())
+                        {
+                            if (ap.Locatie.X == p.X && ap.Locatie.Y == p.Y)
+                            {
+                                agt = new AgendaPuntToevoegenForm(gebruiker, ap, true);
+                                agt.Show();
+                            }
+                        }
                     }
                 }
-            }
+            }                
         }
         public void GetAgendaOverzicht()
         {

@@ -36,7 +36,7 @@
             this.lblDatumWaarde = new System.Windows.Forms.Label();
             this.cbFilter = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblToevoegen = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnAgendaPuntToevoegen = new System.Windows.Forms.Button();
             this.btnSluiten = new System.Windows.Forms.Button();
@@ -100,15 +100,15 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Agenda van:";
             // 
-            // label8
+            // lblToevoegen
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(37, 344);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(88, 20);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "Toevoegen";
+            this.lblToevoegen.AutoSize = true;
+            this.lblToevoegen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblToevoegen.Location = new System.Drawing.Point(37, 344);
+            this.lblToevoegen.Name = "lblToevoegen";
+            this.lblToevoegen.Size = new System.Drawing.Size(88, 20);
+            this.lblToevoegen.TabIndex = 19;
+            this.lblToevoegen.Text = "Toevoegen";
             // 
             // label2
             // 
@@ -152,7 +152,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1216, 571);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.lblToevoegen);
             this.Controls.Add(this.btnAgendaPuntToevoegen);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbFilter);
@@ -182,7 +182,7 @@
         private System.Windows.Forms.Label lblDatumWaarde;
         private System.Windows.Forms.ComboBox cbFilter;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblToevoegen;
         private System.Windows.Forms.Label label2;
     }
 }

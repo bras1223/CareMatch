@@ -28,9 +28,9 @@ namespace CAREMATCH.VrijwilligerSysteem
 
             database.HulpvraagBeoordelingToevoegen(hulpvraag);
             MessageBox.Show("U heeft een " + hulpvraag.Cijfer + "/5 gegeven voor de gekregen hulp.\n Beoordeling opgeslagen.");
-
             Close();
         }
+        #region Mouseleave
         private void pbStar4_MouseLeave(object sender, EventArgs e)
         {
             pbStar3_MouseLeave(sender, e);
@@ -59,7 +59,8 @@ namespace CAREMATCH.VrijwilligerSysteem
             pbStar4_MouseLeave(sender, e);
             pbStar5.Image = Properties.Resources.EmptyStar;
         }
-
+        #endregion
+        #region MouseEnter
         private void pbStar1_MouseEnter(object sender, EventArgs e)
         {
             pbStar1.Image = Properties.Resources.FilledStar;
@@ -88,11 +89,13 @@ namespace CAREMATCH.VrijwilligerSysteem
             pbStar4_MouseEnter(sender, e);
             pbStar5.Image = Properties.Resources.FilledStar;
         }
-
+        #endregion
+        #region MouseClick
         private void pbStar1_Click(object sender, EventArgs e)
         {
             pbStar1.Image = Properties.Resources.FilledStar;
             hulpvraag.Cijfer = 1;
+            RemoveMouseLeave(hulpvraag.Cijfer);
         }
 
         private void pbStar2_Click(object sender, EventArgs e)
@@ -100,6 +103,7 @@ namespace CAREMATCH.VrijwilligerSysteem
             pbStar1_Click(sender, e);
             pbStar2.Image = Properties.Resources.FilledStar;
             hulpvraag.Cijfer = 2;
+            RemoveMouseLeave(hulpvraag.Cijfer);
         }
 
         private void pbStar3_Click(object sender, EventArgs e)
@@ -107,6 +111,7 @@ namespace CAREMATCH.VrijwilligerSysteem
             pbStar2_Click(sender, e);
             pbStar3.Image = Properties.Resources.FilledStar;
             hulpvraag.Cijfer = 3;
+            RemoveMouseLeave(hulpvraag.Cijfer);
         }
 
         private void pbStar4_Click(object sender, EventArgs e)
@@ -114,6 +119,7 @@ namespace CAREMATCH.VrijwilligerSysteem
             pbStar3_Click(sender, e);
             pbStar4.Image = Properties.Resources.FilledStar;
             hulpvraag.Cijfer = 4;
+            RemoveMouseLeave(hulpvraag.Cijfer);
         }
 
         private void pbStar5_Click(object sender, EventArgs e)
@@ -121,6 +127,39 @@ namespace CAREMATCH.VrijwilligerSysteem
             pbStar4_Click(sender, e);
             pbStar5.Image = Properties.Resources.FilledStar;
             hulpvraag.Cijfer = 5;
+            RemoveMouseLeave(hulpvraag.Cijfer);
+        }
+        #endregion
+        private void RemoveMouseLeave(int i)
+        {
+            switch(i)
+            {
+                case 1:
+                    this.pbStar1.MouseLeave -= new System.EventHandler(this.pbStar1_MouseLeave);
+                    break;
+                case 2:
+                    this.pbStar1.MouseLeave -= new System.EventHandler(this.pbStar1_MouseLeave);
+                    this.pbStar2.MouseLeave -= new System.EventHandler(this.pbStar2_MouseLeave);
+                    break;
+                case 3:
+                    this.pbStar1.MouseLeave -= new System.EventHandler(this.pbStar1_MouseLeave);
+                    this.pbStar2.MouseLeave -= new System.EventHandler(this.pbStar2_MouseLeave);
+                    this.pbStar3.MouseLeave -= new System.EventHandler(this.pbStar3_MouseLeave);
+                    break;
+                case 4:
+                    this.pbStar1.MouseLeave -= new System.EventHandler(this.pbStar1_MouseLeave);
+                    this.pbStar2.MouseLeave -= new System.EventHandler(this.pbStar2_MouseLeave);
+                    this.pbStar3.MouseLeave -= new System.EventHandler(this.pbStar3_MouseLeave);
+                    this.pbStar4.MouseLeave -= new System.EventHandler(this.pbStar4_MouseLeave);
+                    break;
+                case 5:
+                    this.pbStar1.MouseLeave -= new System.EventHandler(this.pbStar1_MouseLeave);
+                    this.pbStar2.MouseLeave -= new System.EventHandler(this.pbStar2_MouseLeave);
+                    this.pbStar3.MouseLeave -= new System.EventHandler(this.pbStar3_MouseLeave);
+                    this.pbStar4.MouseLeave -= new System.EventHandler(this.pbStar4_MouseLeave);
+                    this.pbStar5.MouseLeave -= new System.EventHandler(this.pbStar5_MouseLeave);
+                    break;
+            }
         }
     }
 }

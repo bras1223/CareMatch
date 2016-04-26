@@ -78,7 +78,7 @@
             this.lbChat.ItemHeight = 25;
             this.lbChat.Location = new System.Drawing.Point(213, 139);
             this.lbChat.Name = "lbChat";
-            this.lbChat.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbChat.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbChat.Size = new System.Drawing.Size(965, 354);
             this.lbChat.TabIndex = 7;
             // 

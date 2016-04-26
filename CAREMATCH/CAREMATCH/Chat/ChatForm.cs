@@ -15,7 +15,7 @@ namespace CAREMATCH
     {
         Gebruiker gebruiker;
         string partnernaam = "";
-        int partnerid;
+        int partnerid = -1;
         List<Chatbericht> oudchatbericht;
         List<Chatbericht> weergegevenberichten;
         Database database;
@@ -30,6 +30,7 @@ namespace CAREMATCH
             oudchatbericht = new List<Chatbericht>();
             weergegevenberichten = new List<Chatbericht>();
             Controls.Add(lbChat);
+            database.ZetOnline(gebruiker.GebruikersID);
         }
 
         private void btnVerzenden_Click(object sender, EventArgs e)
@@ -54,6 +55,7 @@ namespace CAREMATCH
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
+            database.ZetOffline(gebruiker.GebruikersID);
             tmrLaadberichten.Stop();
             DialogResult = DialogResult.OK;
         }
@@ -70,12 +72,18 @@ namespace CAREMATCH
             partnernaam = lbGebruikerLijst.SelectedItem as string;
             lblGebruikersnaam.Text = partnernaam;
             partnerid = database.ChatpartnerID(partnernaam);
+            VeranderStatus(partnerid);
             lbChat.Items.Clear();
             ChatGeschiedenisLaden();
         }
 
         private void tmrLaadberichten_Tick(object sender, EventArgs e)
         {
+            if(partnerid != -1)
+            {
+                VeranderStatus(partnerid);
+            }
+
             foreach (Chatbericht c in database.ChatLaden(lblGebruikersnaam.Text, gebruiker.Gebruikersnaam, database.ChatpartnerID(lblGebruikersnaam.Text), gebruiker.GebruikersID))
             {
                 if (BerichtNietWeergegeven(c))
@@ -193,6 +201,21 @@ namespace CAREMATCH
             }
         }
 
+        //Zet de status van je partner
+        public void VeranderStatus(int id)
+        {
+            if(database.PartnerStatus(id) == "Online")
+            {
+                lblParterStatus.ForeColor = Color.Green;
+            }
+
+            else
+            {
+                lblParterStatus.ForeColor = Color.Red;
+            }
+
+            lblParterStatus.Text = database.PartnerStatus(id);           
+        }
 
         //Kijkt of een bericht al is weergegeven
         private bool BerichtNietWeergegeven(Chatbericht bericht)

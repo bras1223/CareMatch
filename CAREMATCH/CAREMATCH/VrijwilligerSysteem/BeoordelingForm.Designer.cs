@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BeoordelingForm));
             this.txtBeoordeling = new System.Windows.Forms.RichTextBox();
             this.lblUitleg = new System.Windows.Forms.Label();
             this.btnSlaOP = new System.Windows.Forms.Button();
@@ -151,8 +152,9 @@
             this.Controls.Add(this.btnSlaOP);
             this.Controls.Add(this.lblUitleg);
             this.Controls.Add(this.txtBeoordeling);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BeoordelingForm";
-            this.Text = "BeoordelingForm";
+            this.Text = "Beoordeling - CareMatch";
             ((System.ComponentModel.ISupportInitialize)(this.pbStar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbStar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbStar3)).EndInit();

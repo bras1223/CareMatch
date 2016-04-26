@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HulpvraagOverzichtForm));
             this.btnBekijkHulpvraag = new System.Windows.Forms.Button();
             this.lblIngelogdAls = new System.Windows.Forms.Label();
             this.lblGebruikersnaam = new System.Windows.Forms.Label();
@@ -86,7 +87,6 @@
             this.lvHulpvragen.Size = new System.Drawing.Size(723, 370);
             this.lvHulpvragen.TabIndex = 1;
             this.lvHulpvragen.UseCompatibleStateImageBehavior = false;
-            this.lvHulpvragen.DoubleClick += new System.EventHandler(this.lvHulpvragen_DoubleClick);
             // 
             // cbFilter
             // 
@@ -120,9 +120,10 @@
             this.Controls.Add(this.lblGebruikersnaam);
             this.Controls.Add(this.lblIngelogdAls);
             this.Controls.Add(this.btnBekijkHulpvraag);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HulpvraagOverzichtForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "HulpvragenOverzichtForm";
+            this.Text = "Hulpvragen Overzicht - CareMatch";
             this.ResumeLayout(false);
             this.PerformLayout();
 

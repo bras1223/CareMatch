@@ -35,11 +35,11 @@
             this.txtWachtwoord = new System.Windows.Forms.TextBox();
             this.txtGebruikersnaam = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnRegister = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnRFIDLogin = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnRFIDLogin = new System.Windows.Forms.Button();
             this.pbLogo = new System.Windows.Forms.PictureBox();
+            this.btnRegister = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.SuspendLayout();
@@ -97,7 +97,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.White;
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.btnLogin);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtWachtwoord);
@@ -111,18 +111,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Login";
             // 
-            // btnRegister
-            // 
-            this.btnRegister.BackColor = System.Drawing.Color.White;
-            this.btnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegister.Location = new System.Drawing.Point(829, 107);
-            this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(166, 177);
-            this.btnRegister.TabIndex = 4;
-            this.btnRegister.Text = "Klik hier om u te registreren";
-            this.btnRegister.UseVisualStyleBackColor = false;
-            this.btnRegister.Click += new System.EventHandler(this.lbRegister_Click_1);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -133,27 +121,29 @@
             this.label3.TabIndex = 15;
             this.label3.Text = "Nog geen lid?";
             // 
-            // btnRFIDLogin
-            // 
-            this.btnRFIDLogin.BackColor = System.Drawing.Color.White;
-            this.btnRFIDLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRFIDLogin.Location = new System.Drawing.Point(829, 347);
-            this.btnRFIDLogin.Name = "btnRFIDLogin";
-            this.btnRFIDLogin.Size = new System.Drawing.Size(166, 177);
-            this.btnRFIDLogin.TabIndex = 16;
-            this.btnRFIDLogin.Text = "Met uw TAG inloggen";
-            this.btnRFIDLogin.UseVisualStyleBackColor = false;
-            this.btnRFIDLogin.Click += new System.EventHandler(this.btnRFIDLogin_Click);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(839, 309);
+            this.label4.Location = new System.Drawing.Point(843, 320);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(137, 24);
             this.label4.TabIndex = 17;
             this.label4.Text = "Snel inloggen?";
+            // 
+            // btnRFIDLogin
+            // 
+            this.btnRFIDLogin.BackColor = System.Drawing.Color.White;
+            this.btnRFIDLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRFIDLogin.Image = global::CAREMATCH.Properties.Resources.computers;
+            this.btnRFIDLogin.Location = new System.Drawing.Point(829, 347);
+            this.btnRFIDLogin.Name = "btnRFIDLogin";
+            this.btnRFIDLogin.Size = new System.Drawing.Size(166, 177);
+            this.btnRFIDLogin.TabIndex = 16;
+            this.btnRFIDLogin.Text = "TAG Login";
+            this.btnRFIDLogin.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnRFIDLogin.UseVisualStyleBackColor = false;
+            this.btnRFIDLogin.Click += new System.EventHandler(this.btnRFIDLogin_Click);
             // 
             // pbLogo
             // 
@@ -164,6 +154,20 @@
             this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbLogo.TabIndex = 14;
             this.pbLogo.TabStop = false;
+            // 
+            // btnRegister
+            // 
+            this.btnRegister.BackColor = System.Drawing.Color.White;
+            this.btnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegister.Image = global::CAREMATCH.Properties.Resources.avatar;
+            this.btnRegister.Location = new System.Drawing.Point(829, 107);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(166, 177);
+            this.btnRegister.TabIndex = 4;
+            this.btnRegister.Text = "Registreren";
+            this.btnRegister.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnRegister.UseVisualStyleBackColor = false;
+            this.btnRegister.Click += new System.EventHandler(this.lbRegister_Click_1);
             // 
             // LoginForm
             // 

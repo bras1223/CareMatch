@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
@@ -96,6 +97,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.White;
             this.groupBox1.Controls.Add(this.btnLogin);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtWachtwoord);
@@ -111,13 +113,14 @@
             // 
             // btnRegister
             // 
+            this.btnRegister.BackColor = System.Drawing.Color.White;
             this.btnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegister.Location = new System.Drawing.Point(829, 107);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(166, 177);
             this.btnRegister.TabIndex = 4;
             this.btnRegister.Text = "Klik hier om u te registreren";
-            this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.UseVisualStyleBackColor = false;
             this.btnRegister.Click += new System.EventHandler(this.lbRegister_Click_1);
             // 
             // label3
@@ -132,13 +135,14 @@
             // 
             // btnRFIDLogin
             // 
+            this.btnRFIDLogin.BackColor = System.Drawing.Color.White;
             this.btnRFIDLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRFIDLogin.Location = new System.Drawing.Point(829, 347);
             this.btnRFIDLogin.Name = "btnRFIDLogin";
             this.btnRFIDLogin.Size = new System.Drawing.Size(166, 177);
             this.btnRFIDLogin.TabIndex = 16;
             this.btnRFIDLogin.Text = "Met uw TAG inloggen";
-            this.btnRFIDLogin.UseVisualStyleBackColor = true;
+            this.btnRFIDLogin.UseVisualStyleBackColor = false;
             this.btnRFIDLogin.Click += new System.EventHandler(this.btnRFIDLogin_Click);
             // 
             // label4
@@ -172,10 +176,11 @@
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LoginForm";
-            this.Text = "LoginForm";
+            this.Text = "Login - CareMatch";
             this.Load += new System.EventHandler(this.LoginForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

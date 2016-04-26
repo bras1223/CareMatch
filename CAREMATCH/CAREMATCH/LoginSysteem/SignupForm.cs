@@ -159,14 +159,14 @@ namespace CAREMATCH.LoginSysteem
         #region RFID
         private void SignupForm_Load(object sender, EventArgs e)
         {
-            //rfid = new RFID(); ---------------------------------
-            //rfid.open();
-            //rfid.Attach += new AttachEventHandler(rfid_Attach);
-            //rfid.Detach += new DetachEventHandler(rfid_Detach);
+        rfid = new RFID();
+            rfid.open();
+            rfid.Attach += new AttachEventHandler(rfid_Attach);
+            rfid.Detach += new DetachEventHandler(rfid_Detach);
 
-            //rfid.Tag += new TagEventHandler(rfid_Tag);
-            //rfid.TagLost += new TagEventHandler(rfid_TagLost);
-            //openCmdLine(rfid);
+            rfid.Tag += new TagEventHandler(rfid_Tag);
+            rfid.TagLost += new TagEventHandler(rfid_TagLost);
+            openCmdLine(rfid);
         }
         void rfid_Tag(object sender, TagEventArgs e)
         {

@@ -148,11 +148,7 @@ namespace CAREMATCH
                 //parameters erbij?
                 //misschien niet nodig omdat je deze nergens kunt invullen?
             }
-            else if (filter.ToLower() == "ongepaste beoordelingen" && gebruiker.Rol.ToLower() == "beheerder")
-            {
-                command = new OracleCommand("", con);
-                //deze query moet alle gemarkeerde beoordelingen opvragen
-            }
+
             else
             {
                 //Overzicht eigen hulpvragen voor hulpbehoevende.

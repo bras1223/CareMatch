@@ -82,6 +82,7 @@
             this.lbChat.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbChat.Size = new System.Drawing.Size(965, 354);
             this.lbChat.TabIndex = 7;
+            this.lbChat.SelectedIndexChanged += new System.EventHandler(this.lbChat_SelectedIndexChanged);
             // 
             // lbGebruikerLijst
             // 

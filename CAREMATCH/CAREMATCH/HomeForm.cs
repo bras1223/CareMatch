@@ -92,7 +92,6 @@ namespace CAREMATCH
         {
             if (gebruiker.Rol.ToLower() =="vrijwilliger"|| gebruiker.Rol.ToLower() == "hulpbehoevende")
             {
-                this.Hide();
                 chatForm = new ChatForm(gebruiker);
                 chatForm.ShowDialog();
                 if (chatForm.DialogResult == DialogResult.OK || chatForm.DialogResult == DialogResult.Cancel)

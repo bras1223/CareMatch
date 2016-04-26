@@ -338,6 +338,57 @@ namespace CAREMATCH
         }
         #endregion
         #region Chat Queries
+        
+        //Geeft de onlinestatus van je chatpartner
+        public string PartnerStatus(int id)
+        {
+            string status = "";
+
+            con.Open();
+            command = new OracleCommand("SELECT onlinestatus FROM gebruiker WHERE gebruikerid = :id", con);
+            command.Parameters.Add(new OracleParameter("id", OracleDbType.Int32)).Value = id;
+            reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                status = reader["onlinestatus"].ToString();
+            }
+
+            if(status == "Y")
+            {
+                con.Close();
+                return "Online";
+            }
+
+            else
+            {
+                con.Close();
+                return "Offline";
+            }
+        }
+        
+        //Zet de gebruiker online
+        public void ZetOnline(int gebruikerID)
+        {
+            con.Open();
+            command = new OracleCommand("UPDATE Gebruiker SET ONLINESTATUS =:STATUS WHERE GebruikerID =:gebruikerid", con);
+            command.Parameters.Add(new OracleParameter("STATUS", OracleDbType.Char)).Value = "Y";
+            command.Parameters.Add(new OracleParameter("gebruikerid", OracleDbType.Int32)).Value = gebruikerID;
+            command.ExecuteNonQuery();
+            con.Close();
+        }
+
+        //Zet de gebruiker Offline
+        public void ZetOffline(int gebruikerID)
+        {
+            con.Open();
+            command = new OracleCommand("UPDATE Gebruiker SET ONLINESTATUS =:STATUS WHERE GebruikerID =:gebruikerid", con);
+            command.Parameters.Add(new OracleParameter("STATUS", OracleDbType.Char)).Value = "N";
+            command.Parameters.Add(new OracleParameter("gebruikerid", OracleDbType.Int32)).Value = gebruikerID;
+            command.ExecuteNonQuery();
+            con.Close();
+        }
+
 
         //Geeft een lijst van alle vrijwilligers
         public List<string> VrijwilligersLijst()

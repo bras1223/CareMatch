@@ -28,29 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnSluiten = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DagOverzichtForm));
             this.pnlWeekrooster = new System.Windows.Forms.Panel();
             this.dtpTijdPicker = new System.Windows.Forms.DateTimePicker();
-            this.btnAgendaPuntToevoegen = new System.Windows.Forms.Button();
             this.cdKiesKleur = new System.Windows.Forms.ColorDialog();
             this.lblDatumVandaag = new System.Windows.Forms.Label();
             this.lblDatumWaarde = new System.Windows.Forms.Label();
             this.cbFilter = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnAgendaPuntToevoegen = new System.Windows.Forms.Button();
+            this.btnSluiten = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnSluiten
-            // 
-            this.btnSluiten.BackColor = System.Drawing.Color.Transparent;
-            this.btnSluiten.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSluiten.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSluiten.Image = global::CAREMATCH.Properties.Resources.buildings;
-            this.btnSluiten.Location = new System.Drawing.Point(41, 470);
-            this.btnSluiten.Name = "btnSluiten";
-            this.btnSluiten.Size = new System.Drawing.Size(82, 78);
-            this.btnSluiten.TabIndex = 2;
-            this.btnSluiten.UseVisualStyleBackColor = false;
-            this.btnSluiten.Click += new System.EventHandler(this.btnSluiten_Click);
             // 
             // pnlWeekrooster
             // 
@@ -69,19 +59,6 @@
             this.dtpTijdPicker.Size = new System.Drawing.Size(142, 32);
             this.dtpTijdPicker.TabIndex = 1;
             this.dtpTijdPicker.ValueChanged += new System.EventHandler(this.dtpTijdPicker_ValueChanged);
-            // 
-            // btnAgendaPuntToevoegen
-            // 
-            this.btnAgendaPuntToevoegen.BackColor = System.Drawing.Color.Transparent;
-            this.btnAgendaPuntToevoegen.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAgendaPuntToevoegen.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgendaPuntToevoegen.Image = global::CAREMATCH.Properties.Resources.circle;
-            this.btnAgendaPuntToevoegen.Location = new System.Drawing.Point(41, 367);
-            this.btnAgendaPuntToevoegen.Name = "btnAgendaPuntToevoegen";
-            this.btnAgendaPuntToevoegen.Size = new System.Drawing.Size(82, 78);
-            this.btnAgendaPuntToevoegen.TabIndex = 3;
-            this.btnAgendaPuntToevoegen.UseVisualStyleBackColor = false;
-            this.btnAgendaPuntToevoegen.Click += new System.EventHandler(this.btnAgendaPuntToevoegen_Click);
             // 
             // lblDatumVandaag
             // 
@@ -123,11 +100,59 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Agenda van:";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(37, 344);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(88, 20);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "Toevoegen";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(35, 453);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(100, 20);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Homepagina";
+            // 
+            // btnAgendaPuntToevoegen
+            // 
+            this.btnAgendaPuntToevoegen.BackColor = System.Drawing.Color.Transparent;
+            this.btnAgendaPuntToevoegen.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAgendaPuntToevoegen.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgendaPuntToevoegen.Image = global::CAREMATCH.Properties.Resources.circle;
+            this.btnAgendaPuntToevoegen.Location = new System.Drawing.Point(41, 367);
+            this.btnAgendaPuntToevoegen.Name = "btnAgendaPuntToevoegen";
+            this.btnAgendaPuntToevoegen.Size = new System.Drawing.Size(82, 78);
+            this.btnAgendaPuntToevoegen.TabIndex = 3;
+            this.btnAgendaPuntToevoegen.UseVisualStyleBackColor = false;
+            this.btnAgendaPuntToevoegen.Click += new System.EventHandler(this.btnAgendaPuntToevoegen_Click);
+            // 
+            // btnSluiten
+            // 
+            this.btnSluiten.BackColor = System.Drawing.Color.Transparent;
+            this.btnSluiten.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSluiten.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSluiten.Image = global::CAREMATCH.Properties.Resources.buildings;
+            this.btnSluiten.Location = new System.Drawing.Point(41, 476);
+            this.btnSluiten.Name = "btnSluiten";
+            this.btnSluiten.Size = new System.Drawing.Size(82, 78);
+            this.btnSluiten.TabIndex = 2;
+            this.btnSluiten.UseVisualStyleBackColor = false;
+            this.btnSluiten.Click += new System.EventHandler(this.btnSluiten_Click);
+            // 
             // DagOverzichtForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1216, 571);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.btnAgendaPuntToevoegen);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbFilter);
@@ -136,9 +161,10 @@
             this.Controls.Add(this.dtpTijdPicker);
             this.Controls.Add(this.pnlWeekrooster);
             this.Controls.Add(this.btnSluiten);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DagOverzichtForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Agenda Dag Overzicht";
+            this.Text = "Agenda - CareMatch";
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DagOverzichtForm_MouseDown);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -156,5 +182,7 @@
         private System.Windows.Forms.Label lblDatumWaarde;
         private System.Windows.Forms.ComboBox cbFilter;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label2;
     }
 }

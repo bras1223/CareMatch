@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
             this.tbBericht = new System.Windows.Forms.TextBox();
             this.btnVerzenden = new System.Windows.Forms.Button();
             this.lblGebruikersnaam = new System.Windows.Forms.Label();
@@ -154,10 +155,11 @@
             this.Controls.Add(this.lbGebruikerLijst);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "ChatForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ChatForm";
+            this.Text = "Chat - CareMatch";
             this.Load += new System.EventHandler(this.ChatForm_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).EndInit();
             this.ResumeLayout(false);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgendaBeheerderForm));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.cmbBeheer = new System.Windows.Forms.ComboBox();
             this.btnBack = new System.Windows.Forms.Button();
@@ -77,9 +78,10 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.cmbBeheer);
             this.Controls.Add(this.btnBack);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AgendaBeheerderForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AgendaBeheerderForm";
+            this.Text = "Agenda Beheer - CareMatch";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

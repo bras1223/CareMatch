@@ -186,7 +186,7 @@
             this.btnOpslaanEnSluiten.BackColor = System.Drawing.Color.Transparent;
             this.btnOpslaanEnSluiten.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnOpslaanEnSluiten.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpslaanEnSluiten.Image = global::CAREMATCH.Properties.Resources._interface;
+            this.btnOpslaanEnSluiten.Image = global::CAREMATCH.Properties.Resources.Interface;
             this.btnOpslaanEnSluiten.Location = new System.Drawing.Point(141, 416);
             this.btnOpslaanEnSluiten.Name = "btnOpslaanEnSluiten";
             this.btnOpslaanEnSluiten.Size = new System.Drawing.Size(73, 71);
@@ -199,7 +199,7 @@
             this.btnAnnuleren.BackColor = System.Drawing.Color.Transparent;
             this.btnAnnuleren.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAnnuleren.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnnuleren.Image = global::CAREMATCH.Properties.Resources.circle_1_;
+            this.btnAnnuleren.Image = global::CAREMATCH.Properties.Resources.Circle2;
             this.btnAnnuleren.Location = new System.Drawing.Point(41, 416);
             this.btnAnnuleren.Name = "btnAnnuleren";
             this.btnAnnuleren.Size = new System.Drawing.Size(73, 71);
@@ -212,7 +212,7 @@
             this.btnWijzigingOpslaan.BackColor = System.Drawing.Color.Transparent;
             this.btnWijzigingOpslaan.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnWijzigingOpslaan.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWijzigingOpslaan.Image = global::CAREMATCH.Properties.Resources._interface;
+            this.btnWijzigingOpslaan.Image = global::CAREMATCH.Properties.Resources.Interface;
             this.btnWijzigingOpslaan.Location = new System.Drawing.Point(141, 416);
             this.btnWijzigingOpslaan.Name = "btnWijzigingOpslaan";
             this.btnWijzigingOpslaan.Size = new System.Drawing.Size(73, 71);

@@ -217,21 +217,7 @@ namespace CAREMATCH
             con.Close();
         }
         #endregion
-        #region Agenda Queries
-        public List<string> AgendaSelecteerVrijwilligers()
-        {
-            List<string> vrijwilligersList = new List<string>();
-            con.Open();
-
-            command = new OracleCommand("SELECT Gebruikersnaam FROM Gebruiker WHERE LOWER(ROL)='vrijwilliger' ", con);
-
-            reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                vrijwilligersList.Add(reader["Gebruikersnaam"].ToString());
-            }
-            return vrijwilligersList;
-        }
+        #region Agenda Queries        
         public void AgendaOverzicht(Gebruiker gebruiker, string filter, string datum)
         {
             try
@@ -303,7 +289,7 @@ namespace CAREMATCH
         #endregion
         #region Chat Queries
         
-        public int checkgelezen(int ontvangerid, int verzenderid)
+        public int ChatCheckGelezen(int ontvangerid, int verzenderid)
         {
             int count = 0;
             con.Open();
@@ -320,9 +306,26 @@ namespace CAREMATCH
             con.Close();
             return count;
         }
+        public bool ChatNieuwBericht(Gebruiker gebruiker)
+        {
+            bool nieuwBericht = false;
+            con.Open();
+            command = new OracleCommand("SELECT Gelezen FROM Chat WHERE OntvangerID =:gebruikerID ", con);
+            command.Parameters.Add(new OracleParameter("gebruikerid", OracleDbType.Int32)).Value = gebruiker.GebruikersID;
+            reader = command.ExecuteReader();
 
+            while (reader.Read())
+            {
+                if(Convert.ToChar(reader["Gelezen"]) == 'N')
+                {
+                    nieuwBericht = true;
+                }
+            }
+            con.Close();
+            return nieuwBericht;
+        }
         //Bericht is gelezen
-        public void berichtgelezen(int berichtid)
+        public void ChatBerichtGelezen(int berichtid)
         {
             con.Open();
             command = new OracleCommand("UPDATE CHAT SET GELEZEN =:STATUS WHERE CHATID =:berichtid", con);
@@ -331,9 +334,8 @@ namespace CAREMATCH
             command.ExecuteNonQuery();
             con.Close();
         }
-
         //Geeft de onlinestatus van je chatpartner
-        public string PartnerStatus(int id)
+        public string ChatPartnerStatus(int id)
         {
             string status = "";
 
@@ -358,10 +360,9 @@ namespace CAREMATCH
                 con.Close();
                 return "Offline";
             }
-        }
-        
+        }        
         //Zet de gebruiker online
-        public void ZetOnline(int gebruikerID)
+        public void ChatZetOnline(int gebruikerID)
         {
             con.Open();
             command = new OracleCommand("UPDATE Gebruiker SET ONLINESTATUS =:STATUS WHERE GebruikerID =:gebruikerid", con);
@@ -370,9 +371,8 @@ namespace CAREMATCH
             command.ExecuteNonQuery();
             con.Close();
         }
-
         //Zet de gebruiker Offline
-        public void ZetOffline(int gebruikerID)
+        public void ChatZetOffline(int gebruikerID)
         {
             con.Open();
             command = new OracleCommand("UPDATE Gebruiker SET ONLINESTATUS =:STATUS WHERE GebruikerID =:gebruikerid", con);
@@ -381,8 +381,6 @@ namespace CAREMATCH
             command.ExecuteNonQuery();
             con.Close();
         }
-
-
         //Geeft een lijst van alle vrijwilligers
         public List<string> VrijwilligersLijst()
         {
@@ -865,6 +863,20 @@ namespace CAREMATCH
             con.Close();
 
             return ProfielInfo;
+        }
+        public List<string> GebruikerSelecteerVrijwilligers()
+        {
+            List<string> vrijwilligersList = new List<string>();
+            con.Open();
+
+            command = new OracleCommand("SELECT Gebruikersnaam FROM Gebruiker WHERE LOWER(ROL)='vrijwilliger' ", con);
+
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                vrijwilligersList.Add(reader["Gebruikersnaam"].ToString());
+            }
+            return vrijwilligersList;
         }
         #endregion
         public string EncryptString(string toEncrypt)

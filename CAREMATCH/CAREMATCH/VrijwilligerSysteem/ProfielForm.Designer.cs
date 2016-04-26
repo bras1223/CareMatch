@@ -55,7 +55,7 @@
             // 
             this.btnWijzig.BackColor = System.Drawing.Color.Transparent;
             this.btnWijzig.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWijzig.Image = global::CAREMATCH.Properties.Resources.up_arrow;
+            this.btnWijzig.Image = global::CAREMATCH.Properties.Resources.UpArrow;
             this.btnWijzig.Location = new System.Drawing.Point(12, 160);
             this.btnWijzig.Name = "btnWijzig";
             this.btnWijzig.Size = new System.Drawing.Size(119, 51);
@@ -77,7 +77,7 @@
             this.btnOpslaan.BackColor = System.Drawing.Color.Transparent;
             this.btnOpslaan.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnOpslaan.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpslaan.Image = global::CAREMATCH.Properties.Resources._interface;
+            this.btnOpslaan.Image = global::CAREMATCH.Properties.Resources.Interface;
             this.btnOpslaan.Location = new System.Drawing.Point(31, 396);
             this.btnOpslaan.Name = "btnOpslaan";
             this.btnOpslaan.Size = new System.Drawing.Size(62, 60);

@@ -32,7 +32,7 @@ namespace CAREMATCH
             lbGebruikerLijst.DrawItem += new DrawItemEventHandler(lbGebruikerLijst_DrawItem);
             weergegevenberichten = new List<Chatbericht>();
             Controls.Add(lbChat);
-            database.ZetOnline(gebruiker.GebruikersID);
+            database.ChatZetOnline(gebruiker.GebruikersID);
         }
 
         public ChatForm(Gebruiker gebruiker, string partnernaam)
@@ -46,7 +46,7 @@ namespace CAREMATCH
             lbGebruikerLijst.DrawItem += new DrawItemEventHandler(lbGebruikerLijst_DrawItem);
             weergegevenberichten = new List<Chatbericht>();
             Controls.Add(lbChat);
-            database.ZetOnline(gebruiker.GebruikersID);
+            database.ChatZetOnline(gebruiker.GebruikersID);
 
             this.partnernaam = partnernaam;
             //lblGebruikersnaam.Text = partnernaam;
@@ -79,7 +79,7 @@ namespace CAREMATCH
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            database.ZetOffline(gebruiker.GebruikersID);
+            database.ChatZetOffline(gebruiker.GebruikersID);
             tmrLaadberichten.Stop();
             DialogResult = DialogResult.OK;
         }
@@ -133,7 +133,7 @@ namespace CAREMATCH
                 {
                     if (c.VerzenderNaam != gebruiker.Gebruikersnaam)
                     {
-                        database.berichtgelezen(c.ID);
+                        database.ChatBerichtGelezen(c.ID);
                     }
                     lbChat.Items.Add(c);
                     lbChat.Items.Add(c.datumtijd.ToString("dd / MMM HH: mm"));
@@ -210,7 +210,7 @@ namespace CAREMATCH
             {
                 foreach (String v in database.BestaandeChatlijstVrijwilligers(gebruiker.GebruikersID))
                 {
-                    if(database.checkgelezen(gebruiker.GebruikersID, database.ChatpartnerID(v)) != 0)
+                    if(database.ChatCheckGelezen(gebruiker.GebruikersID, database.ChatpartnerID(v)) != 0)
                     {
                         
                     }
@@ -268,7 +268,7 @@ namespace CAREMATCH
         
             try
             {
-                if (database.checkgelezen(database.ChatpartnerID(test), gebruiker.GebruikersID) != 0)
+                if (database.ChatCheckGelezen(database.ChatpartnerID(test), gebruiker.GebruikersID) != 0)
                 {
                     myBrush = Brushes.Orange;
                 }
@@ -294,7 +294,7 @@ namespace CAREMATCH
             {
                 if(c.VerzenderNaam != gebruiker.Gebruikersnaam)
                 {
-                    database.berichtgelezen(c.ID);
+                    database.ChatBerichtGelezen(c.ID);
                 }
                 lbChat.Items.Add(c);
                 lbChat.Items.Add(c.datumtijd.ToString("dd / MMM HH: mm"));
@@ -306,7 +306,7 @@ namespace CAREMATCH
         //Zet de status van je partner
         public void VeranderStatus(int id)
         {
-            if(database.PartnerStatus(id) == "Online")
+            if(database.ChatPartnerStatus(id) == "Online")
             {
                 lblParterStatus.ForeColor = Color.Green;
             }
@@ -316,7 +316,7 @@ namespace CAREMATCH
                 lblParterStatus.ForeColor = Color.Red;
             }
 
-            lblParterStatus.Text = database.PartnerStatus(id);           
+            lblParterStatus.Text = database.ChatPartnerStatus(id);           
         }
 
         //Kijkt of een bericht al is weergegeven
@@ -348,7 +348,7 @@ namespace CAREMATCH
             lbGebruikerLijst.DrawItem += new DrawItemEventHandler(lbGebruikerLijst_DrawItem);
             weergegevenberichten = new List<Chatbericht>();
             Controls.Add(lbChat);
-            database.ZetOnline(gebruiker.GebruikersID);
+            database.ChatZetOnline(gebruiker.GebruikersID);
         }
 
         private void lbChat_SelectedIndexChanged(object sender, EventArgs e)

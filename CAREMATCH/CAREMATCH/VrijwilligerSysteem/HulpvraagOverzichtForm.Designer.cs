@@ -87,6 +87,7 @@
             this.lvHulpvragen.Size = new System.Drawing.Size(723, 370);
             this.lvHulpvragen.TabIndex = 1;
             this.lvHulpvragen.UseCompatibleStateImageBehavior = false;
+            this.lvHulpvragen.DoubleClick += new System.EventHandler(this.lvHulpvragen_DoubleClick);
             // 
             // cbFilter
             // 

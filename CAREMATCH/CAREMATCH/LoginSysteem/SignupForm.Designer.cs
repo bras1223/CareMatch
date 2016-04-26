@@ -297,7 +297,7 @@
             // btnPasfotoToevoegen
             // 
             this.btnPasfotoToevoegen.BackColor = System.Drawing.Color.Transparent;
-            this.btnPasfotoToevoegen.BackgroundImage = global::CAREMATCH.Properties.Resources.up_arrow;
+            this.btnPasfotoToevoegen.BackgroundImage = global::CAREMATCH.Properties.Resources.UpArrow;
             this.btnPasfotoToevoegen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPasfotoToevoegen.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnPasfotoToevoegen.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -312,7 +312,7 @@
             // btnUploadVOG
             // 
             this.btnUploadVOG.BackColor = System.Drawing.Color.Transparent;
-            this.btnUploadVOG.BackgroundImage = global::CAREMATCH.Properties.Resources.up_arrow;
+            this.btnUploadVOG.BackgroundImage = global::CAREMATCH.Properties.Resources.UpArrow;
             this.btnUploadVOG.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnUploadVOG.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnUploadVOG.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -330,7 +330,7 @@
             this.btnTerug.BackColor = System.Drawing.Color.Transparent;
             this.btnTerug.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnTerug.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTerug.Image = global::CAREMATCH.Properties.Resources.circle_1_;
+            this.btnTerug.Image = global::CAREMATCH.Properties.Resources.Circle2;
             this.btnTerug.Location = new System.Drawing.Point(43, 450);
             this.btnTerug.Name = "btnTerug";
             this.btnTerug.Size = new System.Drawing.Size(75, 74);
@@ -343,7 +343,7 @@
             this.btnRegistreer.BackColor = System.Drawing.Color.Transparent;
             this.btnRegistreer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRegistreer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistreer.Image = global::CAREMATCH.Properties.Resources._interface;
+            this.btnRegistreer.Image = global::CAREMATCH.Properties.Resources.Interface;
             this.btnRegistreer.Location = new System.Drawing.Point(891, 450);
             this.btnRegistreer.Name = "btnRegistreer";
             this.btnRegistreer.Size = new System.Drawing.Size(75, 74);

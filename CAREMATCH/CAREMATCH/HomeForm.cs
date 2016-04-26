@@ -4,6 +4,7 @@ using System;
 using System.Windows.Forms;
 using Login;
 using CAREMATCH.Beheerder;
+using System.Drawing;
 
 namespace CAREMATCH
 {
@@ -18,9 +19,9 @@ namespace CAREMATCH
         private ProfielForm profielForm;
         private GebruikerBeheer GebruikerBeheerderForm;
         private AgendaBeheerderForm AgendaBeheerderForm;
+
         private ChatBeheerdersForm ChatBeheerderForm;
         private OngepasteBerichtenForm OngepasteBerichtenForm;
-
         public HomeForm(Gebruiker gebruiker)
         {
             InitializeComponent();
@@ -43,7 +44,15 @@ namespace CAREMATCH
             {
                 btnHulpvraagIndienen.Visible = false;
             }
-            
+            //Icon laten zien als er een nieuw bericht is voor de gebruiker.
+            if (database.ChatNieuwBericht(gebruiker))
+            {
+                PictureBox img = new PictureBox();
+                img.Parent = btnBerichten;
+                img.Image = Properties.Resources.new_message_32;
+                img.BackColor = Color.Transparent;
+                img.SizeMode = PictureBoxSizeMode.AutoSize;
+            }
         }
 
         private void btnHulpvraagIndienen_Click(object sender, EventArgs e)

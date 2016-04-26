@@ -42,9 +42,9 @@
             // btnProfiel
             // 
             this.btnProfiel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProfiel.Location = new System.Drawing.Point(26, 48);
+            this.btnProfiel.Location = new System.Drawing.Point(26, 30);
             this.btnProfiel.Name = "btnProfiel";
-            this.btnProfiel.Size = new System.Drawing.Size(189, 341);
+            this.btnProfiel.Size = new System.Drawing.Size(189, 359);
             this.btnProfiel.TabIndex = 8;
             this.btnProfiel.Text = "Profiel";
             this.btnProfiel.UseVisualStyleBackColor = true;
@@ -55,9 +55,9 @@
             this.btnAccountOverzicht.BackColor = System.Drawing.Color.White;
             this.btnAccountOverzicht.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAccountOverzicht.Image = global::CAREMATCH.Properties.Resources.library;
-            this.btnAccountOverzicht.Location = new System.Drawing.Point(243, 30);
+            this.btnAccountOverzicht.Location = new System.Drawing.Point(243, 32);
             this.btnAccountOverzicht.Name = "btnAccountOverzicht";
-            this.btnAccountOverzicht.Size = new System.Drawing.Size(152, 168);
+            this.btnAccountOverzicht.Size = new System.Drawing.Size(152, 166);
             this.btnAccountOverzicht.TabIndex = 4;
             this.btnAccountOverzicht.Text = "Accounts Overzicht";
             this.btnAccountOverzicht.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -68,7 +68,7 @@
             // 
             this.btnOngepasteBerichten.BackColor = System.Drawing.Color.White;
             this.btnOngepasteBerichten.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOngepasteBerichten.Image = global::CAREMATCH.Properties.Resources.tool_1_;
+            this.btnOngepasteBerichten.Image = global::CAREMATCH.Properties.Resources.tool;
             this.btnOngepasteBerichten.Location = new System.Drawing.Point(26, 32);
             this.btnOngepasteBerichten.Name = "btnOngepasteBerichten";
             this.btnOngepasteBerichten.Size = new System.Drawing.Size(189, 357);
@@ -97,7 +97,7 @@
             this.btnUitloggen.BackColor = System.Drawing.Color.White;
             this.btnUitloggen.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUitloggen.Image = global::CAREMATCH.Properties.Resources.shapes;
-            this.btnUitloggen.Location = new System.Drawing.Point(427, 225);
+            this.btnUitloggen.Location = new System.Drawing.Point(427, 221);
             this.btnUitloggen.Name = "btnUitloggen";
             this.btnUitloggen.Size = new System.Drawing.Size(152, 168);
             this.btnUitloggen.TabIndex = 9;
@@ -110,10 +110,10 @@
             // 
             this.btnBerichten.BackColor = System.Drawing.Color.White;
             this.btnBerichten.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBerichten.Image = global::CAREMATCH.Properties.Resources.note_1_;
-            this.btnBerichten.Location = new System.Drawing.Point(610, 30);
+            this.btnBerichten.Image = global::CAREMATCH.Properties.Resources.Note;
+            this.btnBerichten.Location = new System.Drawing.Point(610, 32);
             this.btnBerichten.Name = "btnBerichten";
-            this.btnBerichten.Size = new System.Drawing.Size(189, 367);
+            this.btnBerichten.Size = new System.Drawing.Size(189, 365);
             this.btnBerichten.TabIndex = 7;
             this.btnBerichten.Text = "Berichten";
             this.btnBerichten.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -124,10 +124,10 @@
             // 
             this.btnAgenda.BackColor = System.Drawing.Color.White;
             this.btnAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgenda.Image = global::CAREMATCH.Properties.Resources.agenda_1_;
+            this.btnAgenda.Image = global::CAREMATCH.Properties.Resources.Agenda;
             this.btnAgenda.Location = new System.Drawing.Point(427, 32);
             this.btnAgenda.Name = "btnAgenda";
-            this.btnAgenda.Size = new System.Drawing.Size(152, 168);
+            this.btnAgenda.Size = new System.Drawing.Size(152, 166);
             this.btnAgenda.TabIndex = 6;
             this.btnAgenda.Text = "Agenda";
             this.btnAgenda.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -139,9 +139,9 @@
             this.btnHulpvraagIndienen.BackColor = System.Drawing.Color.White;
             this.btnHulpvraagIndienen.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHulpvraagIndienen.Image = global::CAREMATCH.Properties.Resources.tool;
-            this.btnHulpvraagIndienen.Location = new System.Drawing.Point(243, 225);
+            this.btnHulpvraagIndienen.Location = new System.Drawing.Point(243, 221);
             this.btnHulpvraagIndienen.Name = "btnHulpvraagIndienen";
-            this.btnHulpvraagIndienen.Size = new System.Drawing.Size(152, 164);
+            this.btnHulpvraagIndienen.Size = new System.Drawing.Size(152, 168);
             this.btnHulpvraagIndienen.TabIndex = 3;
             this.btnHulpvraagIndienen.Text = "Hulpvraag Indienen";
             this.btnHulpvraagIndienen.TextAlign = System.Drawing.ContentAlignment.BottomCenter;

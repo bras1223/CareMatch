@@ -139,13 +139,13 @@
   <data name="CAREMATCHLOGO" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CAREMATCHLOGO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="interface" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Interface" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\interface.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="arrows" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="circle(1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Circle2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\circle(1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="avatar" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -154,7 +154,7 @@
   <data name="buildings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\buildings1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tool(1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="bel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tool(1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="tool" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -166,13 +166,13 @@
   <data name="squares" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\squares.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="agenda(1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Agenda" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\agenda(1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="up-arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="UpArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\up-arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="note(1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Note" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\note(1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="new_message_32" type="System.Resources.ResXFileRef, System.Windows.Forms">

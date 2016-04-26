@@ -27,7 +27,7 @@ namespace CAREMATCH.Agenda
 
             //Alle agendapunten ophalen van de geselecteerde vrijwilliger ind e filter. Standaard eigen agenda weergeven.
             database.AgendaOverzicht(gebruiker, cbFilter.Text, dtpTijdPicker.Value.Date.ToString("dd-MMM-yy"));
-            foreach (string vrijwilliger in database.AgendaSelecteerVrijwilligers())
+            foreach (string vrijwilliger in database.GebruikerSelecteerVrijwilligers())
             {
                 cbFilter.Items.Add(vrijwilliger);
             }

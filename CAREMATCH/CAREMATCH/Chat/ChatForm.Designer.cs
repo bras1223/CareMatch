@@ -58,7 +58,7 @@
             // btnVerzenden
             // 
             this.btnVerzenden.BackColor = System.Drawing.Color.Transparent;
-            this.btnVerzenden.Image = global::CAREMATCH.Properties.Resources._interface;
+            this.btnVerzenden.Image = global::CAREMATCH.Properties.Resources.Interface;
             this.btnVerzenden.Location = new System.Drawing.Point(1050, 552);
             this.btnVerzenden.Margin = new System.Windows.Forms.Padding(6);
             this.btnVerzenden.Name = "btnVerzenden";

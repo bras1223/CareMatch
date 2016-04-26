@@ -47,6 +47,7 @@
             this.txtAchternaam = new System.Windows.Forms.TextBox();
             this.txtVoornaam = new System.Windows.Forms.TextBox();
             this.lblVoornaam = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).BeginInit();
             this.gbWijzigWachtwoord.SuspendLayout();
             this.SuspendLayout();
@@ -91,9 +92,9 @@
             this.lblOverJezelf.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOverJezelf.Location = new System.Drawing.Point(171, 13);
             this.lblOverJezelf.Name = "lblOverJezelf";
-            this.lblOverJezelf.Size = new System.Drawing.Size(186, 26);
+            this.lblOverJezelf.Size = new System.Drawing.Size(351, 26);
             this.lblOverJezelf.TabIndex = 4;
-            this.lblOverJezelf.Text = "Vertel over jezelf: ";
+            this.lblOverJezelf.Text = "Text wordt geplaatst during runtime";
             // 
             // pbProfielFoto
             // 
@@ -230,11 +231,25 @@
             this.lblVoornaam.TabIndex = 13;
             this.lblVoornaam.Text = "Voornaam:";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.Transparent;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Image = global::CAREMATCH.Properties.Resources.Interface;
+            this.btnCancel.Location = new System.Drawing.Point(31, 396);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(62, 60);
+            this.btnCancel.TabIndex = 16;
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // ProfielForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(973, 474);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblAchternaam);
             this.Controls.Add(this.lblAuto);
             this.Controls.Add(this.txtAchternaam);
@@ -279,5 +294,6 @@
         private System.Windows.Forms.TextBox txtAchternaam;
         private System.Windows.Forms.TextBox txtVoornaam;
         private System.Windows.Forms.Label lblVoornaam;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

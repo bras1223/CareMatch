@@ -839,12 +839,12 @@ namespace CAREMATCH
             command.ExecuteNonQuery();
             con.Close();
         }
-        public List<string> GebruikerProfielOpvragen(string rol)
+        public List<string> GebruikerProfielOpvragen(string gebruiker)
         {
             List<string> ProfielInfo = new List<string>();
             con.Open();
-            command = new OracleCommand("SELECT * FROM GEBRUIKER WHERE ROL =:rol", con);
-            command.Parameters.Add(new OracleParameter("rol", rol));
+            command = new OracleCommand("SELECT * FROM GEBRUIKER WHERE Gebruikersnaam =:gebruiker", con);
+            command.Parameters.Add(new OracleParameter("gebruiker", gebruiker));
             reader = command.ExecuteReader();
             
             while (reader.Read())

@@ -17,7 +17,7 @@ namespace CAREMATCH.VrijwilligerSysteem
         private Database database;
         private OpenFileDialog zoekFotoDialog;
 
-        public ProfielForm(Gebruiker gebruiker, bool bekijkProfiel, string rol)
+        public ProfielForm(Gebruiker gebruiker, bool bekijkProfiel, string gebruikerInfo)
         {
             InitializeComponent();
             this.gebruiker = gebruiker;
@@ -25,32 +25,42 @@ namespace CAREMATCH.VrijwilligerSysteem
 
             if (bekijkProfiel)
             {
+                lblOverJezelf.Text = "Persoonlijke Informatie:";
+                btnCancel.Visible = true;
+
                 btnOpslaan.Visible = false;
                 btnWijzig.Visible = false;
-                txtActueelWachtwoord.Visible = false;
-                txtHerhaalWachtwoord.Visible = false;
-                txtNieuwWachtwoord.Visible = false;
+                gbWijzigWachtwoord.Visible = false;
 
                 txtAchternaam.Enabled = false;
                 txtVoornaam.Enabled = false;
                 txtGebruikersInfo.Enabled = false;
                 cbAuto.Enabled = false;
 
-                txtAchternaam.Text = database.GebruikerProfielOpvragen(rol)[2];
-                txtVoornaam.Text = database.GebruikerProfielOpvragen(rol)[3];
-                txtGebruikersInfo.Text = database.GebruikerProfielOpvragen(rol)[1];
-                if (database.GebruikerProfielOpvragen(rol)[4] != "")
+                if(database.GebruikerProfielOpvragen(gebruikerInfo)[2] != "")
+                {
+                    txtAchternaam.Text = database.GebruikerProfielOpvragen(gebruikerInfo)[2];
+                }
+                if(database.GebruikerProfielOpvragen(gebruikerInfo)[3] != "")
+                {
+                    txtVoornaam.Text = database.GebruikerProfielOpvragen(gebruikerInfo)[3];
+                }
+                if(database.GebruikerProfielOpvragen(gebruikerInfo)[1] != "")
+                {
+                    txtGebruikersInfo.Text = database.GebruikerProfielOpvragen(gebruikerInfo)[1];
+                }
+                if (database.GebruikerProfielOpvragen(gebruikerInfo)[4] != "")
                 {
                     try
                     {
-                        pbProfielFoto.Image = Image.FromFile(database.GebruikerProfielOpvragen(rol)[4]);
+                        pbProfielFoto.Image = Image.FromFile(database.GebruikerProfielOpvragen(gebruikerInfo)[4]);
                     }
                     catch
                     {
                         // als er geen profiel foto is hoeft er geen foutmelding weergeven te worden.
                     }
                 }
-                if (database.GebruikerProfielOpvragen(rol)[0] == "Y")
+                if (database.GebruikerProfielOpvragen(gebruikerInfo)[0] == "Y")
                 {
                     cbAuto.Checked = true;
                 }
@@ -59,8 +69,14 @@ namespace CAREMATCH.VrijwilligerSysteem
                     cbAuto.Checked = false;
                 }
             }
+            //Als een gebruiker zijn eigen profiel bekijkt wordt het volgende uitgevoerd
             else
             {
+                lblOverJezelf.Text = "Vertel iets over jezelf:";
+                txtGebruikersInfo.Text = gebruiker.GebruikerInfo;
+                txtAchternaam.Text = gebruiker.Achternaam;
+                txtVoornaam.Text = gebruiker.Voornaam;
+                cbAuto.Checked = gebruiker.Auto;
                 //afbeelding in de picturebox zetten als een gebruiker deze heeft.
                 if (gebruiker.Pasfoto != "")
                 {
@@ -73,10 +89,6 @@ namespace CAREMATCH.VrijwilligerSysteem
 
                     }
                 }
-                txtGebruikersInfo.Text = gebruiker.GebruikerInfo;
-                txtAchternaam.Text = gebruiker.Achternaam;
-                txtVoornaam.Text = gebruiker.Voornaam;
-                cbAuto.Checked = gebruiker.Auto;
                 if (gebruiker.Auto)
                 {
                     cbAuto.Checked = true;
@@ -168,6 +180,10 @@ namespace CAREMATCH.VrijwilligerSysteem
             {
                 gebruiker.Auto = false;
             }
+        }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -135,11 +135,13 @@ namespace CAREMATCH.VrijwilligerSysteem
 
         private void pbHulpbehoevende_Click(object sender, EventArgs e)
         {
-            profielform = new ProfielForm(gebruiker, true, "hulpbehoevende");
+            profielform = new ProfielForm(gebruiker, true, txtHulpvrager.Text);
+            profielform.Show();
         }
         private void pbVrijwilliger_Click(object sender, EventArgs e)
         {
-            profielform = new ProfielForm(gebruiker, true, "vrijwilliger");
+            profielform = new ProfielForm(gebruiker, true, txtVrijwilliger.Text);
+            profielform.Show();
         }
         private void dtpDatum_ValueChanged(object sender, EventArgs e)
         {

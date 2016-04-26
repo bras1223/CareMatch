@@ -49,6 +49,7 @@ namespace CAREMATCH.VrijwilligerSysteem
 
         private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int count = 0;
             lvHulpvragen.Clear();
             //Inlognaam weergeven links in de hoek
             lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;
@@ -86,18 +87,23 @@ namespace CAREMATCH.VrijwilligerSysteem
                 item.SubItems.Add(hulpvraag.HulpvraagInhoud);
                 lvHulpvragen.Items.Add(item);
 
-                
-            }
-            //Autosize columns in listview.
-            foreach (ColumnHeader column in lvHulpvragen.Columns)
-            {
-                if (column.Text.Length > item.Text.Length)
+                count++;
+                //Na de laatste hulpvraag de columns resizen. 
+                if (hulpvraaglist.Count -1 == count)
                 {
-                    lvHulpvragen.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-                }
-                else
-                {
-                    lvHulpvragen.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                    //Autosize columns. column title < column inhoud = column title wordt weergeven. 
+                    //is inhoud groter dan title dan resizen op inhoud.
+                    foreach (ColumnHeader column in lvHulpvragen.Columns)
+                    {
+                        if (column.Text.Length > item.Text.Length)
+                        {
+                            lvHulpvragen.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                        }
+                        else
+                        {
+                            lvHulpvragen.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                        }
+                    }
                 }
             }
         }

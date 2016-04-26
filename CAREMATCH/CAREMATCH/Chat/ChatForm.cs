@@ -27,6 +27,8 @@ namespace CAREMATCH
             InitializeComponent();
             lbChat.DrawMode = DrawMode.OwnerDrawFixed;
             lbChat.DrawItem += new DrawItemEventHandler(lbChat_DrawItem);
+            lbGebruikerLijst.DrawMode = DrawMode.OwnerDrawFixed;
+            lbGebruikerLijst.DrawItem += new DrawItemEventHandler(lbGebruikerLijst_DrawItem);
             oudchatbericht = new List<Chatbericht>();
             weergegevenberichten = new List<Chatbericht>();
             Controls.Add(lbChat);
@@ -38,14 +40,12 @@ namespace CAREMATCH
             int id = gebruiker.GebruikersID;
             DateTime datum;
             datum = DateTime.Now;
-            database.ChatInvoegen(database.ControlleerMaxChatID() + 1, tbBericht.Text, partnerid, gebruiker.GebruikersID, datum.ToString("dd/MMM HH:mm"));
+            try
+            {
+                database.ChatInvoegen(database.ControlleerMaxChatID() + 1, tbBericht.Text, partnerid, gebruiker.GebruikersID, datum.ToString("dd/MMM HH:mm"));
+            }
+            catch { MessageBox.Show("Selecteer een Persoon"); }
             tbBericht.Clear();
-            //database.closeCon();
-            //Chatbericht bericht = new Chatbericht(tbBericht.Text);
-            //Database
-            //lbChat.Items.Add(gebruiker.Gebruikersnaam+": "+bericht.Inhoud);
-            //lbChat.Items.Add(bericht.Datumtijd);
-            //lbChat.Items.Add(" ");
         }
 
         private void btnTerug_Click_1(object sender, EventArgs e)
@@ -75,6 +75,20 @@ namespace CAREMATCH
             VeranderStatus(partnerid);
             lbChat.Items.Clear();
             ChatGeschiedenisLaden();
+            lbChat.SelectedIndex = lbChat.Items.Count - 1;
+            lbChat.SelectedIndex = -1;
+
+            if (btnModus.Text == "Bestaande Chats")
+            {
+                lbGebruikerLijst.Items.Clear();
+                LbVullen();
+            }
+            else
+            {
+
+                lbGebruikerLijst.Items.Clear();
+                BestaandeChatLijst();
+            }
         }
 
         private void tmrLaadberichten_Tick(object sender, EventArgs e)
@@ -88,11 +102,16 @@ namespace CAREMATCH
             {
                 if (BerichtNietWeergegeven(c))
                 {
+                    if (c.VerzenderNaam != gebruiker.Gebruikersnaam)
+                    {
+                        database.berichtgelezen(c.ID);
+                    }
                     lbChat.Items.Add(c);
                     lbChat.Items.Add(c.datumtijd.ToString("dd / MMM HH: mm"));
                     lbChat.Items.Add(" ");
                     weergegevenberichten.Add(c);
                     lbChat.SelectedIndex = lbChat.Items.Count - 1;
+                    lbChat.SelectedIndex = -1;
                 }
             }
         }
@@ -145,6 +164,11 @@ namespace CAREMATCH
             {
                 foreach (String v in database.BestaandeChatlijstVrijwilligers(gebruiker.GebruikersID))
                 {
+                    if(database.checkgelezen(gebruiker.GebruikersID, database.ChatpartnerID(v)) != 0)
+                    {
+                        
+                    }
+
                     lbGebruikerLijst.Items.Add(v);
                 }
             }
@@ -164,9 +188,6 @@ namespace CAREMATCH
             e.DrawBackground();
             Brush myBrush = Brushes.Black;
             Font myFont = new Font("Microsoft Sans Serif", 16); ;
-            string test;
-
-            test = lbChat.Items.ToString();
             try
             {
                 if (lbChat.Items[e.Index].ToString().StartsWith(" ") || lbChat.Items[e.Index].ToString().StartsWith(gebruiker.Gebruikersnaam) || lbChat.Items[e.Index].ToString().StartsWith(partnernaam))
@@ -180,13 +201,44 @@ namespace CAREMATCH
                 }
                 e.Graphics.DrawString(lbChat.Items[e.Index].ToString(),
                 myFont, myBrush, e.Bounds, StringFormat.GenericDefault);
-            }
+        }
             catch
             {
             }
-
         }
 
+        //Zorgt ervoor dat de namen waar je ongelezen berichten hebt een ander kleur zijn
+        private void lbGebruikerLijst_DrawItem(object sender, System.Windows.Forms.DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            Brush myBrush = Brushes.Black;
+            Font myFont = new Font("Microsoft Sans Serif", 16); ;
+            string test = "";
+            try
+            {
+                test = lbGebruikerLijst.Items[e.Index].ToString();
+            }
+            catch { }
+        
+            try
+            {
+                if (database.checkgelezen(database.ChatpartnerID(test), gebruiker.GebruikersID) != 0)
+                {
+                    myBrush = Brushes.Orange;
+                }
+                else
+                {
+                    myBrush = Brushes.Black;
+                }
+
+                e.Graphics.DrawString(test,
+                myFont, myBrush, e.Bounds, StringFormat.GenericDefault);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         //Laad alle berichten die al gestuurd zijn en zet de inhoud en datum in de listbox.
         public void ChatGeschiedenisLaden()
@@ -194,7 +246,10 @@ namespace CAREMATCH
             lbChat.Items.Clear();
             foreach (Chatbericht c in database.ChatLaden(lblGebruikersnaam.Text, gebruiker.Gebruikersnaam, database.ChatpartnerID(lblGebruikersnaam.Text), gebruiker.GebruikersID))
             {
-
+                if(c.VerzenderNaam != gebruiker.Gebruikersnaam)
+                {
+                    database.berichtgelezen(c.ID);
+                }
                 lbChat.Items.Add(c);
                 lbChat.Items.Add(c.datumtijd.ToString("dd / MMM HH: mm"));
                 lbChat.Items.Add(" ");

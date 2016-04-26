@@ -47,14 +47,14 @@
             this.cmbBeheer.Location = new System.Drawing.Point(11, 417);
             this.cmbBeheer.Margin = new System.Windows.Forms.Padding(2);
             this.cmbBeheer.Name = "cmbBeheer";
-            this.cmbBeheer.Size = new System.Drawing.Size(571, 33);
+            this.cmbBeheer.Size = new System.Drawing.Size(789, 33);
             this.cmbBeheer.TabIndex = 17;
             this.cmbBeheer.SelectedIndexChanged += new System.EventHandler(this.cmbBeheer_SelectedIndexChanged);
             // 
             // btnBack
             // 
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.Location = new System.Drawing.Point(586, 417);
+            this.btnBack.Location = new System.Drawing.Point(12, 458);
             this.btnBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(214, 33);
@@ -71,13 +71,14 @@
             this.dataGridView1.Size = new System.Drawing.Size(788, 400);
             this.dataGridView1.TabIndex = 18;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             // 
             // GebruikerBeheer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(812, 461);
+            this.ClientSize = new System.Drawing.Size(812, 502);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.cmbBeheer);
             this.Controls.Add(this.btnBack);

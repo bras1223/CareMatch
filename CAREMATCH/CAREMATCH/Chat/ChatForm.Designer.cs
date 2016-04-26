@@ -51,6 +51,7 @@
             this.tbBericht.Name = "tbBericht";
             this.tbBericht.Size = new System.Drawing.Size(825, 74);
             this.tbBericht.TabIndex = 0;
+            this.tbBericht.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbBericht_KeyDown);
             // 
             // btnVerzenden
             // 
@@ -82,6 +83,7 @@
             this.lbChat.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbChat.Size = new System.Drawing.Size(965, 354);
             this.lbChat.TabIndex = 7;
+            this.lbChat.SelectedIndexChanged += new System.EventHandler(this.lbChat_SelectedIndexChanged);
             // 
             // lbGebruikerLijst
             // 

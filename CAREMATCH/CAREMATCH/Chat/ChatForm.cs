@@ -20,19 +20,23 @@ namespace CAREMATCH
         List<Chatbericht> weergegevenberichten;
         Database database;
 
+        //Constructors
         public ChatForm(Gebruiker gebruiker)
         {
-            this.gebruiker = gebruiker;
-            database = new Database();
-            InitializeComponent();
-            lbChat.DrawMode = DrawMode.OwnerDrawFixed;
-            lbChat.DrawItem += new DrawItemEventHandler(lbChat_DrawItem);
-            lbGebruikerLijst.DrawMode = DrawMode.OwnerDrawFixed;
-            lbGebruikerLijst.DrawItem += new DrawItemEventHandler(lbGebruikerLijst_DrawItem);
-            oudchatbericht = new List<Chatbericht>();
-            weergegevenberichten = new List<Chatbericht>();
-            Controls.Add(lbChat);
-            database.ZetOnline(gebruiker.GebruikersID);
+            opstarten(gebruiker);
+        }
+
+        public ChatForm(Gebruiker gebruiker, string partnernaam)
+        {
+            opstarten(gebruiker);
+
+            lblGebruikersnaam.Text = partnernaam;
+            this.partnerid = database.ChatpartnerID(lblGebruikersnaam.Text);
+            VeranderStatus(partnerid);
+            lbChat.Items.Clear();
+            ChatGeschiedenisLaden();
+            lbChat.SetSelected(lbChat.Items.Count - 1, true);
+            MessageBox.Show("Dit is kut");
         }
 
         private void btnVerzenden_Click(object sender, EventArgs e)
@@ -110,6 +114,7 @@ namespace CAREMATCH
                     lbChat.Items.Add(c.datumtijd.ToString("dd / MMM HH: mm"));
                     lbChat.Items.Add(" ");
                     weergegevenberichten.Add(c);
+                    lbChat.SetSelected(lbChat.Items.Count - 1, true);
                     lbChat.SelectedIndex = lbChat.Items.Count - 1;
                     lbChat.SelectedIndex = -1;
                 }
@@ -132,6 +137,22 @@ namespace CAREMATCH
                 lbGebruikerLijst.Items.Clear();
                 lbChat.Items.Clear();
                 LbVullen();
+            }
+        }
+
+        private void tbBericht_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                int id = gebruiker.GebruikersID;
+                DateTime datum;
+                datum = DateTime.Now;
+                try
+                {
+                    database.ChatInvoegen(database.ControlleerMaxChatID() + 1, tbBericht.Text, partnerid, gebruiker.GebruikersID, datum.ToString("dd/MMM HH:mm"));
+                }
+                catch { MessageBox.Show("Selecteer een Persoon"); }
+                tbBericht.Clear();
             }
         }
 
@@ -288,6 +309,27 @@ namespace CAREMATCH
             }
 
             return weergegeven;
+        }
+
+         //Bij opstarten
+         public void opstarten(Gebruiker gebruiker)
+        {
+            InitializeComponent();
+            this.gebruiker = gebruiker;
+            database = new Database();
+            lbChat.DrawMode = DrawMode.OwnerDrawFixed;
+            lbChat.DrawItem += new DrawItemEventHandler(lbChat_DrawItem);
+            lbGebruikerLijst.DrawMode = DrawMode.OwnerDrawFixed;
+            lbGebruikerLijst.DrawItem += new DrawItemEventHandler(lbGebruikerLijst_DrawItem);
+            oudchatbericht = new List<Chatbericht>();
+            weergegevenberichten = new List<Chatbericht>();
+            Controls.Add(lbChat);
+            database.ZetOnline(gebruiker.GebruikersID);
+        }
+
+        private void lbChat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //MessageBox.Show(lbChat.SelectedIndex.ToString());
         }
     }
 }

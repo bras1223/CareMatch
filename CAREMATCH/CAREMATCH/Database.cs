@@ -52,18 +52,20 @@ namespace CAREMATCH
             {
                 AutoBenodigd = "N";
             }
-            command = new OracleCommand("INSERT INTO Hulpvraag(GebruikerID, HulpvraagInhoud, Reactie, Urgent, DatumTijd, Duur, Frequentie, Titel, Locatie, AutoBenodigd) VALUES(:gebruikerid, :hulpvraaginhoud, :reactie, :temp, :datumtijd, :duur, :frequentie, :titel, :locatie, :auto)", con);
-            command.Parameters.Add(new OracleParameter(":gebruikerid", OracleDbType.Int32)).Value = gebruiker.GebruikersID;
-            command.Parameters.Add(new OracleParameter(":hulpvraaginhoud", OracleDbType.Varchar2)).Value = hulpvraag.HulpvraagInhoud;
-            command.Parameters.Add(new OracleParameter(":reactie", OracleDbType.Varchar2)).Value = hulpvraag.Reactie;
-            command.Parameters.Add(new OracleParameter(":temp", OracleDbType.Varchar2)).Value = tempString; //urgent
-            command.Parameters.Add(new OracleParameter(":titel", OracleDbType.Varchar2)).Value = hulpvraag.Titel;
-            command.Parameters.Add(new OracleParameter(":datumtijd", OracleDbType.Date)).Value = hulpvraag.DatumTijd;
-            command.Parameters.Add(new OracleParameter(":duur", OracleDbType.Varchar2)).Value = hulpvraag.Duur;
-            command.Parameters.Add(new OracleParameter(":frequentie", OracleDbType.Varchar2)).Value = hulpvraag.Frequentie;
-            command.Parameters.Add(new OracleParameter(":locatie", OracleDbType.Varchar2)).Value = hulpvraag.Locatie;
-            command.Parameters.Add(new OracleParameter(":auto", OracleDbType.Varchar2)).Value = AutoBenodigd;
-            command.ExecuteNonQuery();
+            using (command = new OracleCommand(@"INSERT INTO Hulpvraag(GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie, Titel, Locatie, AutoBenodigd)"+
+                                                              "VALUES(:gebruikerid, :hulpvraaginhoud, :temp, :datumtijd, :duur, :frequentie, :titel, :locatie, :auto)", con))
+            {
+                command.Parameters.Add(new OracleParameter(":gebruikerid", OracleDbType.Int32)).Value = gebruiker.GebruikersID;
+                command.Parameters.Add(new OracleParameter(":hulpvraaginhoud", OracleDbType.Varchar2)).Value = hulpvraag.HulpvraagInhoud;
+                command.Parameters.Add(new OracleParameter(":temp", OracleDbType.Varchar2)).Value = tempString; //urgent
+                command.Parameters.Add(new OracleParameter(":datumtijd", OracleDbType.Varchar2)).Value = hulpvraag.DatumTijd;
+                command.Parameters.Add(new OracleParameter(":duur", OracleDbType.Varchar2)).Value = hulpvraag.Duur;
+                command.Parameters.Add(new OracleParameter(":frequentie", OracleDbType.Varchar2)).Value = hulpvraag.Frequentie;
+                command.Parameters.Add(new OracleParameter(":titel", OracleDbType.Varchar2)).Value = hulpvraag.Titel;
+                command.Parameters.Add(new OracleParameter(":locatie", OracleDbType.Varchar2)).Value = hulpvraag.Locatie;
+                command.Parameters.Add(new OracleParameter(":auto", OracleDbType.Varchar2)).Value = AutoBenodigd;
+                command.ExecuteNonQuery();
+            }                
             con.Close();
         }
         //Werkt.
@@ -336,6 +338,57 @@ namespace CAREMATCH
         }
         #endregion
         #region Chat Queries
+        
+        //Geeft de onlinestatus van je chatpartner
+        public string PartnerStatus(int id)
+        {
+            string status = "";
+
+            con.Open();
+            command = new OracleCommand("SELECT onlinestatus FROM gebruiker WHERE gebruikerid = :id", con);
+            command.Parameters.Add(new OracleParameter("id", OracleDbType.Int32)).Value = id;
+            reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                status = reader["onlinestatus"].ToString();
+            }
+
+            if(status == "Y")
+            {
+                con.Close();
+                return "Online";
+            }
+
+            else
+            {
+                con.Close();
+                return "Offline";
+            }
+        }
+        
+        //Zet de gebruiker online
+        public void ZetOnline(int gebruikerID)
+        {
+            con.Open();
+            command = new OracleCommand("UPDATE Gebruiker SET ONLINESTATUS =:STATUS WHERE GebruikerID =:gebruikerid", con);
+            command.Parameters.Add(new OracleParameter("STATUS", OracleDbType.Char)).Value = "Y";
+            command.Parameters.Add(new OracleParameter("gebruikerid", OracleDbType.Int32)).Value = gebruikerID;
+            command.ExecuteNonQuery();
+            con.Close();
+        }
+
+        //Zet de gebruiker Offline
+        public void ZetOffline(int gebruikerID)
+        {
+            con.Open();
+            command = new OracleCommand("UPDATE Gebruiker SET ONLINESTATUS =:STATUS WHERE GebruikerID =:gebruikerid", con);
+            command.Parameters.Add(new OracleParameter("STATUS", OracleDbType.Char)).Value = "N";
+            command.Parameters.Add(new OracleParameter("gebruikerid", OracleDbType.Int32)).Value = gebruikerID;
+            command.ExecuteNonQuery();
+            con.Close();
+        }
+
 
         //Geeft een lijst van alle vrijwilligers
         public List<string> VrijwilligersLijst()

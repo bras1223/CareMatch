@@ -38,6 +38,7 @@
             this.btnTerug = new System.Windows.Forms.Button();
             this.pbProfielFoto = new System.Windows.Forms.PictureBox();
             this.btnModus = new System.Windows.Forms.Button();
+            this.lblParterStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,9 +69,8 @@
             this.lblGebruikersnaam.Location = new System.Drawing.Point(343, 25);
             this.lblGebruikersnaam.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblGebruikersnaam.Name = "lblGebruikersnaam";
-            this.lblGebruikersnaam.Size = new System.Drawing.Size(173, 26);
+            this.lblGebruikersnaam.Size = new System.Drawing.Size(0, 26);
             this.lblGebruikersnaam.TabIndex = 5;
-            this.lblGebruikersnaam.Text = "Gebruikersnaam";
             // 
             // lbChat
             // 
@@ -78,7 +78,7 @@
             this.lbChat.ItemHeight = 25;
             this.lbChat.Location = new System.Drawing.Point(213, 139);
             this.lbChat.Name = "lbChat";
-            this.lbChat.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbChat.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbChat.Size = new System.Drawing.Size(965, 354);
             this.lbChat.TabIndex = 7;
             // 
@@ -129,11 +129,21 @@
             this.btnModus.UseVisualStyleBackColor = true;
             this.btnModus.Click += new System.EventHandler(this.btnMode_Click);
             // 
+            // lblParterStatus
+            // 
+            this.lblParterStatus.AutoSize = true;
+            this.lblParterStatus.ForeColor = System.Drawing.Color.Red;
+            this.lblParterStatus.Location = new System.Drawing.Point(343, 54);
+            this.lblParterStatus.Name = "lblParterStatus";
+            this.lblParterStatus.Size = new System.Drawing.Size(0, 26);
+            this.lblParterStatus.TabIndex = 10;
+            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1193, 641);
+            this.Controls.Add(this.lblParterStatus);
             this.Controls.Add(this.btnModus);
             this.Controls.Add(this.lbChat);
             this.Controls.Add(this.btnTerug);
@@ -166,5 +176,6 @@
         private System.Windows.Forms.ListBox lbGebruikerLijst;
         private System.Windows.Forms.Timer tmrLaadberichten;
         private System.Windows.Forms.Button btnModus;
+        private System.Windows.Forms.Label lblParterStatus;
     }
 }

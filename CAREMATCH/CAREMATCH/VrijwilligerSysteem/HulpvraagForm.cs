@@ -74,6 +74,7 @@ namespace CAREMATCH.VrijwilligerSysteem
                 txtHulpvrager.Text = hulpvraag.Hulpbehoevende;
                 txtTitel.Text = hulpvraag.Titel;
                 rtxtHulpvraag.Text = hulpvraag.HulpvraagInhoud;
+                dtpDatum.Value = hulpvraag.DatumTijd;
                 rtxtReactieInhoud.Text = hulpvraag.Reactie + "\n" + DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt") + "   " + gebruiker.Gebruikersnaam + " Zegt:\n";
 
                 if (hulpvraag.Urgent)

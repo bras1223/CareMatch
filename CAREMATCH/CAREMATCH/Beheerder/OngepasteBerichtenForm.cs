@@ -29,7 +29,7 @@ namespace CAREMATCH
             this.gebruiker = gebruiker;
             database = new Database();
 
-            
+            cmbKiesBerichten.SelectedIndex = 0;
             lvOngepasteBerichten.View = View.Details;
             lvOngepasteBerichten.CheckBoxes = true;
         }

@@ -136,7 +136,7 @@ namespace CAREMATCH
             this.Hide();
             OngepasteBerichtenForm = new OngepasteBerichtenForm(gebruiker);
             OngepasteBerichtenForm.ShowDialog();
-            if (OngepasteBerichtenForm.DialogResult == DialogResult.OK || chatForm.DialogResult == DialogResult.Cancel)
+            if (OngepasteBerichtenForm.DialogResult == DialogResult.OK || OngepasteBerichtenForm.DialogResult == DialogResult.Cancel)
             {
                 this.Show();
             }

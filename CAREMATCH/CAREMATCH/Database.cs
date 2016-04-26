@@ -32,7 +32,6 @@ namespace CAREMATCH
             con = new OracleConnection(constr);
         }
         #region Hulpvragen Queries
-        //Werkt, maar data komt niet in de goede kolom in de tabel na aanpassen oracleparameter,
         public void HulpvraagToevoegen(Hulpvragen.Hulpvraag hulpvraag, Gebruiker gebruiker)
         {
             string AutoBenodigd;
@@ -69,7 +68,6 @@ namespace CAREMATCH
             }                
             con.Close();
         }
-        //Werkt.
         public void HulpvraagRapporteer(Hulpvragen.Hulpvraag hulpvraag)
         {
             con.Open();
@@ -87,7 +85,6 @@ namespace CAREMATCH
             command.Parameters.Add(new OracleParameter(":id", OracleDbType.Int32)).Value = hulpvraagID;
             con.Close();
         }
-        //Foutmelding.
         public void HulpvraagAanpassen(Gebruiker gebruiker, Hulpvragen.Hulpvraag hulpvraag)
         {
             con.Open();
@@ -100,7 +97,7 @@ namespace CAREMATCH
                 tempString = "N";
             }
 
-            command = new OracleCommand("UPDATE Hulpvraag SET Reactie =:reactie, LaatstGereageerdDoor=:gebruikersnaam, VrijwilligerID=(SELECT GebruikerID FROM Gebruiker WHERE GebruikerID =:gebruikerid AND LOWER(ROL)='vrijwilliger'), Hulpvraaginhoud=:hulpvraaginhoud, Urgent=:temp WHERE HulpvraagID=:hulpvraagid", con);
+            command = new OracleCommand(@"UPDATE Hulpvraag SET Reactie =:reactie, LaatstGereageerdDoor=:gebruikersnaam, VrijwilligerID=(SELECT GebruikerID FROM Gebruiker WHERE GebruikerID =:gebruikerid AND LOWER(ROL)='vrijwilliger'), Hulpvraaginhoud=:hulpvraaginhoud, Urgent=:temp WHERE HulpvraagID=:hulpvraagid", con);
             command.Parameters.Add(new OracleParameter(":reactie", OracleDbType.Varchar2)).Value = hulpvraag.Reactie;
             command.Parameters.Add(new OracleParameter(":gebruikersnaam", OracleDbType.Varchar2)).Value = gebruiker.Gebruikersnaam;
             command.Parameters.Add(new OracleParameter(":gebruikerid", OracleDbType.Int32)).Value = gebruiker.GebruikersID;
@@ -110,7 +107,6 @@ namespace CAREMATCH
             command.ExecuteNonQuery();
             con.Close();
         }
-        //Werkt behalve de nieuwe reacties van de hulpbehoevende.
         public List<Hulpvragen.Hulpvraag> HulpvragenOverzicht(Gebruiker gebruiker, string filter)
         {
             List<Hulpvragen.Hulpvraag> hulpvraagList = new List<Hulpvragen.Hulpvraag>();
@@ -118,8 +114,8 @@ namespace CAREMATCH
             con.Open();
             if ((filter == "Alle hulpvragen" || filter == "") && gebruiker.Rol.ToLower() == "vrijwilliger")
             {
-                //Standaard alle hulpvragen laten zien voor vrijwilligers.
-                command = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.HulpvraagInhoud,  Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie, Hulpvraag.Titel, Hulpvraag.Reactie, Hulpvraag.LaatstGereageerdDoor, Hulpvraag.Duur FROM Hulpvraag", con);
+                //Standaard alle hulpvragen laten zien voor vrijwilligers. - Gerapporteerde hulpvragen niet laten zien. - Gesloten hulpvragen ook niet(waar beoordeling is ingevuld)
+                command = new OracleCommand("SELECT Hulpvraag.HulpvraagID, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.GebruikerID = Gebruiker.GebruikerID) as hulpbeh, (SELECT Gebruikersnaam FROM Gebruiker WHERE Hulpvraag.VrijwilligerID = Gebruiker.GebruikerID) as vrijwilliger, Hulpvraag.HulpvraagInhoud,  Hulpvraag.DatumTijd, Hulpvraag.Urgent, Hulpvraag.Frequentie, Hulpvraag.Titel, Hulpvraag.Reactie, Hulpvraag.LaatstGereageerdDoor, Hulpvraag.Duur FROM Hulpvraag WHERE Flagged != 'Y' AND Beoordeling IS NULL", con);
                
             }
             else if (filter == "Eigen hulpvragen" && gebruiker.Rol.ToLower() == "vrijwilliger")
@@ -189,7 +185,6 @@ namespace CAREMATCH
 
             return hulpvraagList;
         }
-        //Mee bezig.
         public string HulpvraagProfielFoto(Gebruiker gebruiker, Hulpvragen.Hulpvraag hulpvraag, string rol)
         {
             con.Open();
@@ -211,13 +206,13 @@ namespace CAREMATCH
             con.Close();
             return tempString;
         }
-        //Werkt niet.
         public void HulpvraagBeoordelingToevoegen(Hulpvragen.Hulpvraag hulpvraag)
         {
             con.Open();
-            command = new OracleCommand("UPDATE Hulpvraag SET Beoordeling =:beoordeling WHERE HulpvraagID= :hulpvraagid", con);
-            command.Parameters.Add(new OracleParameter(":hulpvraagid", OracleDbType.Int32)).Value = hulpvraag.HulpvraagID;
+            command = new OracleCommand(@"UPDATE Hulpvraag SET Beoordeling =:beoordeling, Cijfer =:cijfer WHERE HulpvraagID=:hulpvraagid", con);
             command.Parameters.Add(new OracleParameter(":beoordeling", OracleDbType.Varchar2)).Value = hulpvraag.Beoordeling;
+            command.Parameters.Add(new OracleParameter(":cijfer", OracleDbType.Int32)).Value = hulpvraag.Cijfer;
+            command.Parameters.Add(new OracleParameter(":hulpvraagid", OracleDbType.Int32)).Value = hulpvraag.HulpvraagID;
             command.ExecuteNonQuery();
             con.Close();
         }
@@ -676,6 +671,11 @@ namespace CAREMATCH
                     gebruiker = new Gebruiker();
                     if (reader["ROL"].ToString().ToLower() == "vrijwilliger")
                     {
+                        //Kan niet vergelijken met string & char. Database approved column moet naar varchar2. alle gebruikers eerst verwijderen.
+                        //if(reader["Approved"].ToString() == 'Y')
+                        //{
+
+                        //}
                         gebruiker.Approved = true;
                     }
                     //Properties toekennen aan gebruiken.

@@ -61,15 +61,6 @@ namespace CAREMATCH.VrijwilligerSysteem
             }
             if(hulpvraag != null)
             {
-                //Profiel foto in de hulpvraag zetten als een gebruiker deze ingesteld heeft.
-                if (database.HulpvraagProfielFoto(gebruiker, hulpvraag, "hulpbehoevende") != "")
-                {
-                    pbHulpbehoevende.Image = Image.FromFile(database.HulpvraagProfielFoto(gebruiker, hulpvraag, "hulpbehoevende"));
-                }
-                if (database.HulpvraagProfielFoto(gebruiker, hulpvraag, "vrijwilliger") != "")
-                {
-                    pbVrijwilliger.Image = Image.FromFile(database.HulpvraagProfielFoto(gebruiker, hulpvraag, "vrijwilliger"));
-                }
                 //Waardes in Textboxes zetten.
                 txtDuur.Text = hulpvraag.Duur.ToString();
                 txtFrequentie.Text = hulpvraag.Frequentie;
@@ -87,6 +78,16 @@ namespace CAREMATCH.VrijwilligerSysteem
                 if (hulpvraag.Urgent)
                 {
                     cbUrgent.Checked = true;
+                }
+
+                //Profiel foto in de hulpvraag zetten als een gebruiker deze ingesteld heeft.
+                if (database.HulpvraagProfielFoto(gebruiker, hulpvraag, "hulpbehoevende") != "")
+                {
+                    pbHulpbehoevende.Image = Image.FromFile(database.HulpvraagProfielFoto(gebruiker, hulpvraag, "hulpbehoevende"));
+                }
+                if (database.HulpvraagProfielFoto(gebruiker, hulpvraag, "vrijwilliger") != "" && txtVrijwilliger.Text != "")
+                {
+                    pbVrijwilliger.Image = Image.FromFile(database.HulpvraagProfielFoto(gebruiker, hulpvraag, "vrijwilliger"));
                 }
             }
         }
@@ -107,7 +108,10 @@ namespace CAREMATCH.VrijwilligerSysteem
             hulpvraag.HulpvraagInhoud = rtxtHulpvraag.Text;
             hulpvraag.Urgent = cbUrgent.Checked;
             hulpvraag.Reactie = rtxtReactieInhoud.Text + "\n";
+
             database.HulpvraagAanpassen(gebruiker, hulpvraag);
+            MessageBox.Show("Aanpassingen opgeslagen.");
+            Close();
         }
         //Hulpbehoevende dient hulpvraag in.
         private void btnHulpvraagOpslaan_Click(object sender, EventArgs e)
@@ -125,15 +129,8 @@ namespace CAREMATCH.VrijwilligerSysteem
             hulpvraag.DatumTijd = dtpDatum.Value;
 
             database.HulpvraagToevoegen(hulpvraag, gebruiker);
-            try
-            {
-                MessageBox.Show("Hulpvraag opgeslagen.");
-                Close();
-            }
-            catch
-            {
-                MessageBox.Show("Er is iets foutgegaan bij het opslaan van de hulpvraag. Neem contact op met CareMatch.");
-            }
+            MessageBox.Show("Hulpvraag opgeslagen.");
+            Close();            
         }
 
         private void pbHulpbehoevende_Click(object sender, EventArgs e)

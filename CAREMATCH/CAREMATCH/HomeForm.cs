@@ -10,7 +10,7 @@ namespace CAREMATCH
     public partial class HomeForm : Form
     {
         private Gebruiker gebruiker;
-        private Hulpvragen.Hulpvraag hulpvraag;
+        private Database database;
         private Agenda.DagOverzichtForm weekrooster;
         private ChatForm chatForm;
         private HulpvraagForm hulpvraagForm;
@@ -25,7 +25,8 @@ namespace CAREMATCH
         {
             InitializeComponent();
             this.gebruiker = gebruiker;
-                        
+            database = new Database();
+               
             if (gebruiker.Rol.ToLower() == "hulpbehoevende")
             {
                 btnOngepasteBerichten.Visible = false;
@@ -42,10 +43,14 @@ namespace CAREMATCH
             {
                 btnHulpvraagIndienen.Visible = false;
             }
+            
         }
 
         private void btnHulpvraagIndienen_Click(object sender, EventArgs e)
         {
+            //De hulpvraag hoeft niet gevuld te zijn. Bestaat nog niet.
+            Hulpvragen.Hulpvraag hulpvraag = null;
+
             this.Hide();
             hulpvraagForm = new HulpvraagForm(hulpvraag, gebruiker, true);
             hulpvraagForm.ShowDialog();

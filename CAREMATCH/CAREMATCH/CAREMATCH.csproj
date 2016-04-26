@@ -257,6 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Favicon.ico" />
+    <None Include="Resources\new_message_32.png" />
     <None Include="Resources\FilledStar.png" />
     <None Include="Resources\EmptyStar.png" />
     <None Include="Resources\arrows.png" />

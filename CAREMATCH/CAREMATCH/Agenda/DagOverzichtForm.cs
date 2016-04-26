@@ -38,8 +38,8 @@ namespace CAREMATCH.Agenda
             {
                 //Als een hulpbehoevende de agenda opent; altijd eerste item selecteren.
                 cbFilter.SelectedIndex = 0;
-                //Zorgen dat vrijwilligers niet de inhoud van een agendapunt kunnen zien.
-                pnlWeekrooster.MouseUp -= new System.Windows.Forms.MouseEventHandler(this.pnlWeekrooster_MouseUp);
+                btnAgendaPuntToevoegen.Visible = false;
+                lblToevoegen.Visible = false;
             }
         }
 
@@ -70,14 +70,6 @@ namespace CAREMATCH.Agenda
         private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             GetAgendaOverzicht();
-            if(cbFilter.Text != gebruiker.Gebruikersnaam)
-            {
-                pnlWeekrooster.MouseUp -= new System.Windows.Forms.MouseEventHandler(this.pnlWeekrooster_MouseUp);
-            }
-            else
-            {
-                pnlWeekrooster.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnlWeekrooster_MouseUp);
-            }
         }
         private void dtpTijdPicker_ValueChanged(object sender, EventArgs e)
         {
@@ -86,23 +78,27 @@ namespace CAREMATCH.Agenda
         //Form wordt 2x geopend. even naar kijken.
         private void pnlWeekrooster_MouseUp(object sender, MouseEventArgs e)
         {
-            foreach (Rectangle p in dagOverzicht.GetAgendaRectangleList())
+            //Als de agenda geselecteerd is van diegene die de agendapunt aanklikt, dan de agenda openen. Anders niets doen.
+            if (cbFilter.Text == gebruiker.Gebruikersnaam)
             {
-                //checken of een vierkant aan is geklikt waar een rectangle in zit.
-                if (p.X < e.X && p.Y < e.Y &&
-                    p.Right > e.X && p.Bottom > e.Y)
+                foreach (Rectangle p in dagOverzicht.GetAgendaRectangleList())
                 {
-                    //Elke agendapunt afgaan in de list die overeenkomt met de coordinaten.
-                    foreach(AgendaPunt ap in gebruiker.GetAgendaPunten())
+                    //checken of een vierkant aan is geklikt waar een rectangle in zit.
+                    if (p.X < e.X && p.Y < e.Y &&
+                        p.Right > e.X && p.Bottom > e.Y)
                     {
-                        if (ap.Locatie.X == p.X && ap.Locatie.Y == p.Y)
+                        //Elke agendapunt afgaan in de list die overeenkomt met de coordinaten.
+                        foreach (AgendaPunt ap in gebruiker.GetAgendaPunten())
                         {
-                            agt = new AgendaPuntToevoegenForm(gebruiker, ap, true);
-                            agt.Show();
+                            if (ap.Locatie.X == p.X && ap.Locatie.Y == p.Y)
+                            {
+                                agt = new AgendaPuntToevoegenForm(gebruiker, ap, true);
+                                agt.Show();
+                            }
                         }
                     }
                 }
-            }
+            }                
         }
         public void GetAgendaOverzicht()
         {

@@ -17,7 +17,7 @@ namespace Login
             database = new Database();
             this.gebruiker = gebruiker;
 
-
+            cmbBeheer.SelectedIndex = 0;
         }
 
 
@@ -72,11 +72,18 @@ namespace Login
             cmd.ExecuteNonQuery();
             con.Close();
 
-            con.Open();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "UPDATE GEBRUIKER SET ROL ='" + dataGridView1.Rows[e.RowIndex].Cells["ROL"].Value.ToString() + "' WHERE GEBRUIKERID = " + Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERID"].Value);
-            cmd.ExecuteNonQuery();
-            con.Close();
+            if(dataGridView1.Rows[e.RowIndex].Cells["ROL"].Value.ToString().ToLower() != "beheerder" || dataGridView1.Rows[e.RowIndex].Cells["ROL"].Value.ToString().ToLower() != "vrijwilliger" || dataGridView1.Rows[e.RowIndex].Cells["ROL"].Value.ToString().ToLower() != "hulpbehoevende")
+            {
+                MessageBox.Show("De rol moet gelijk zijn aan 'Beheerder', 'Vrijwilliger' of 'Hulpbehoevende'\n Het gaat om: "+dataGridView1.Rows[e.RowIndex].Cells["APPROVED"].Value.ToString());
+            }
+            else
+            {
+                con.Open();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "UPDATE GEBRUIKER SET ROL ='" + dataGridView1.Rows[e.RowIndex].Cells["ROL"].Value.ToString() + "' WHERE GEBRUIKERID = " + Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERID"].Value);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
 
         }
 

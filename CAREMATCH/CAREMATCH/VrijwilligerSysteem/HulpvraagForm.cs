@@ -56,6 +56,8 @@ namespace CAREMATCH.VrijwilligerSysteem
                 dtpDatum.Enabled = false;
                 cbAutoBenodigd.Enabled = false;
                 txtLocatie.Enabled = false;
+
+                btnReactieOpslaan.Visible = true;
             }
             if(hulpvraag != null)
             {
@@ -72,6 +74,7 @@ namespace CAREMATCH.VrijwilligerSysteem
                 txtDuur.Text = hulpvraag.Duur.ToString();
                 txtFrequentie.Text = hulpvraag.Frequentie;
                 txtHulpvrager.Text = hulpvraag.Hulpbehoevende;
+                txtVrijwilliger.Text = hulpvraag.Vrijwilliger;
                 txtTitel.Text = hulpvraag.Titel;
                 rtxtHulpvraag.Text = hulpvraag.HulpvraagInhoud;
                 dtpDatum.Value = hulpvraag.DatumTijd;
@@ -156,10 +159,9 @@ namespace CAREMATCH.VrijwilligerSysteem
             beoordelingsform.Show();
         }
 
-        private void btnStartChat_Click(object sender, EventArgs e)
+        private void HulpvraagForm_Load(object sender, EventArgs e)
         {
-            ChatForm form = new ChatForm(gebruiker, txtVrijwilliger.Text);
-            form.Show();
+
         }
     }
 }

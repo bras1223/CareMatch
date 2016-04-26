@@ -410,6 +410,7 @@
             this.Name = "HulpvraagForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HulpvraagForm";
+            this.Load += new System.EventHandler(this.HulpvraagForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbHulpbehoevende)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbVrijwilliger)).EndInit();
             this.groupBox1.ResumeLayout(false);

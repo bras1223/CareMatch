@@ -196,13 +196,13 @@ namespace CAREMATCH
             if(rol == "hulpbehoevende")
             {
                 command = new OracleCommand("SELECT Foto FROM Gebruiker WHERE GebruikerID=(SELECT GebruikerID FROM Hulpvraag WHERE HulpvraagID=:hulpvraagid) ", con);
+                command.Parameters.Add(new OracleParameter("hulpvraagid", hulpvraag.HulpvraagID));
             }
             else if(rol == "vrijwilliger")
             {
                 command = new OracleCommand("SELECT Foto FROM Gebruiker WHERE Gebruikersnaam=:vrijwilliger", con);
+                command.Parameters.Add(new OracleParameter("vrijwilliger", hulpvraag.Vrijwilliger));
             }
-            command.Parameters.Add(new OracleParameter("hulpvraagid", hulpvraag.HulpvraagID));
-            command.Parameters.Add(new OracleParameter("vrijwilliger", hulpvraag.Vrijwilliger));
             reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -739,6 +739,7 @@ namespace CAREMATCH
             
             return gebruiker;
         }
+        //pasfoto toevoegen bij login geeft nog foutmelding.
         public void GebruikerAccountToevoegen(string Gebruikersnaam, string Wachtwoord, string Approved, string Rol, string filenameFoto, string filenameVOG, string voornaam, string achternaam, string geslacht, DateTime geboortedatum)
         {
 
@@ -754,28 +755,30 @@ namespace CAREMATCH
             //Hulpbehoevende hoeft geen VOG te inserten.
             if (Rol.ToLower() == "hulpbehoevende") 
             {
-                command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, VOORNAAM, ACHTERNAAM, FOTO, APPROVED, ROL) VALUES(:gebruikersnaam, :wachtwoord, :voornaam, :achternaam, :filenamefoto, :Approved, :Rol)", con);
-                command.Parameters.Add(new OracleParameter("gebruikersnaam", Gebruikersnaam));
-                command.Parameters.Add(new OracleParameter("wachtwoord", EncryptString(Wachtwoord)));
-                command.Parameters.Add(new OracleParameter("voornaam", voornaam));
-                command.Parameters.Add(new OracleParameter("achternaam", achternaam));
-                command.Parameters.Add(new OracleParameter("filenamefoto", filenameFoto));
-                command.Parameters.Add(new OracleParameter("Approved", Approved));
-                command.Parameters.Add(new OracleParameter("Rol", Rol));
+                command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, VOORNAAM, ACHTERNAAM, FOTO, APPROVED, ROL)"+
+                                                  "VALUES(:gebruikersnaam, :wachtwoord, :voornaam, :achternaam, :filenamefoto, :Approved, :Rol)", con);
+                command.Parameters.Add(new OracleParameter(":gebruikersnaam", OracleDbType.Varchar2)).Value = Gebruikersnaam;
+                command.Parameters.Add(new OracleParameter(":wachtwoord", OracleDbType.Varchar2)).Value = EncryptString(Wachtwoord);
+                command.Parameters.Add(new OracleParameter(":voornaam", OracleDbType.Varchar2)).Value = voornaam;
+                command.Parameters.Add(new OracleParameter(":achternaam", OracleDbType.Varchar2)).Value = achternaam;
+                command.Parameters.Add(new OracleParameter(":filenameFoto", OracleDbType.Varchar2)).Value = filenameFoto;
+                command.Parameters.Add(new OracleParameter(":Approved", OracleDbType.Varchar2)).Value = Approved;
+                command.Parameters.Add(new OracleParameter(":Rol", OracleDbType.Varchar2)).Value = Rol;
 
             }
             //Vrijwilliger wel.
             else
             {
-                command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, VOORNAAM, ACHTERNAAM, FOTO, APPROVED, ROL, VOG) VALUES(:gebruikersnaam, :wachtwoord, :voornaam, :achternaam, :filenamefoto, :Approved, :Rol, :filenameVOG)", con);
-                command.Parameters.Add(new OracleParameter("gebruikersnaam", Gebruikersnaam));
-                command.Parameters.Add(new OracleParameter("wachtwoord", EncryptString(Wachtwoord)));
-                command.Parameters.Add(new OracleParameter("voornaam", voornaam));
-                command.Parameters.Add(new OracleParameter("achternaam", achternaam));
-                command.Parameters.Add(new OracleParameter("filenamefoto", filenameFoto));
-                command.Parameters.Add(new OracleParameter("Approved", Approved));
-                command.Parameters.Add(new OracleParameter("Rol", Rol));
-                command.Parameters.Add(new OracleParameter("filenameVOG", filenameVOG));
+                command = new OracleCommand(@"INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, VOORNAAM, ACHTERNAAM, FOTO, APPROVED, ROL, VOG)"+ 
+                                                    "VALUES(:gebruikersnaam, :wachtwoord, :voornaam, :achternaam, :filenamefoto, :Approved, :Rol, :filenameVOG)", con);
+                command.Parameters.Add(new OracleParameter(":gebruikersnaam", OracleDbType.Varchar2)).Value = Gebruikersnaam;
+                command.Parameters.Add(new OracleParameter(":wachtwoord", OracleDbType.Varchar2)).Value = EncryptString(Wachtwoord);
+                command.Parameters.Add(new OracleParameter(":voornaam", OracleDbType.Varchar2)).Value = voornaam;
+                command.Parameters.Add(new OracleParameter(":achternaam", OracleDbType.Varchar2)).Value = achternaam;
+                command.Parameters.Add(new OracleParameter(":filenameFoto", OracleDbType.Varchar2)).Value = filenameFoto;
+                command.Parameters.Add(new OracleParameter(":Approved", OracleDbType.Varchar2)).Value = Approved;
+                command.Parameters.Add(new OracleParameter(":Rol", OracleDbType.Varchar2)).Value = Rol;
+                command.Parameters.Add(new OracleParameter(":filenameVOG", OracleDbType.Varchar2)).Value = filenameVOG;
             }
             command.ExecuteNonQuery();
             con.Close();
@@ -885,38 +888,6 @@ namespace CAREMATCH
             con.Close();
 
             return ProfielInfo;
-        }
-        public void GebruikerBeoordelingToevoegen()
-        {
-            // command = new OracleCommand("INSERT INTO Hulpvraag(HulpvraagID, GebruikerID, HulpvraagInhoud, Urgent, DatumTijd, Duur, Frequentie) VALUES('@HulpvraagID','@GebruikerID, '@HulpvraagInhoud', '@Urgent', '@DatumTijd', '@Duur', '@Frequentie');", con);
-            //command.Parameters.AddWithValue("HulpvraagID", 1);
-            //command.Parameters.AddWithValue("GebruikerID", 1);
-            //command.Parameters.AddWithValue("HulpvraagInhoud", "Testinhoud");
-            //command.Parameters.AddWithValue("Urgent", 'Y');
-            //command.Parameters.AddWithValue("DatumTijd", new DateTime(2016, 02, 03, 21, 05, 00));
-            //command.Parameters.AddWithValue("Duur", 20);
-            //command.Parameters.AddWithValue("Frequentie", 2);
-
-
-            // SqlDataAdapter command = new SqlDataAdapter("INSERT INTO Login (Username, Password) VALUES ('" + textBox1.Text + "','" + textBox2.Text + "')", sql);
-            // command.SelectCommand.ExecuteNonQuery();
-            // sql.Close();
-        }        
-        public void GebruikerActiveren(string filename)
-        {
-            try
-            {
-                con.Open();
-            }
-            catch (OracleException)
-            {
-                MessageBox.Show("kon de verbinding met de database niet tot stand brengen");
-            }
-
-            //query aanpassen
-            //command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, APPROVED, ROL) VALUES('" + Gebruikersnaam + "','" + EncryptString(Wachtwoord) + "', '" + Approved + "','" + Rol + "')", con);
-            command.ExecuteNonQuery();
-            con.Close();
         }
         #endregion
         public string EncryptString(string toEncrypt)

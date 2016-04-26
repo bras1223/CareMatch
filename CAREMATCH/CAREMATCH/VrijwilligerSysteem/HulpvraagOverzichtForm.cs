@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace CAREMATCH.VrijwilligerSysteem
 {
@@ -12,6 +13,7 @@ namespace CAREMATCH.VrijwilligerSysteem
         private HulpvraagForm hulpvraagForm;
         ListViewItem item;
         private bool aangenomen;
+        private List<Hulpvragen.Hulpvraag> hulpvraaglist;
         public HulpvraagOverzichtForm(Gebruiker gebruiker, bool aangenomen)
         {
             InitializeComponent();
@@ -26,7 +28,6 @@ namespace CAREMATCH.VrijwilligerSysteem
                 cbFilter.Items.Add("Alle hulpvragen");
             }
             cbFilter.SelectedIndex = 0;
-            HulpvragenOverzichtWeergeven();
         }
         private void btnBekijkHulpvraag_Click(object sender, EventArgs e)
         {
@@ -48,10 +49,6 @@ namespace CAREMATCH.VrijwilligerSysteem
 
         private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            HulpvragenOverzichtWeergeven();
-        }
-        public void HulpvragenOverzichtWeergeven()
-        {
             lvHulpvragen.Clear();
             //Inlognaam weergeven links in de hoek
             lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;
@@ -65,8 +62,10 @@ namespace CAREMATCH.VrijwilligerSysteem
             lvHulpvragen.Columns.Add("Laatste reactie door");
             lvHulpvragen.Columns.Add("Titel");
             lvHulpvragen.Columns.Add("Hulpvraag inhoud");
+
+            hulpvraaglist = database.HulpvragenOverzicht(gebruiker, cbFilter.Text);
             // Hulpvragen Overzicht weergeven met inhoud.
-            foreach (Hulpvragen.Hulpvraag hulpvraag in database.HulpvragenOverzicht(gebruiker, cbFilter.Text))
+            foreach (Hulpvragen.Hulpvraag hulpvraag in hulpvraaglist)
             {
                 item = new ListViewItem(hulpvraag.ToString());
                 item.UseItemStyleForSubItems = false;
@@ -87,22 +86,17 @@ namespace CAREMATCH.VrijwilligerSysteem
                 item.SubItems.Add(hulpvraag.HulpvraagInhoud);
                 lvHulpvragen.Items.Add(item);
 
-                AutoSizeColumns(lvHulpvragen);
-            }
-            
-        }
-        public void AutoSizeColumns(ListView lv)
-        {
-            //Autosize columns in listview.
-            foreach (ColumnHeader column in lv.Columns)
-            {
-                if (column.Text.Length > item.Text.Length)
+                //Autosize columns in listview.
+                foreach (ColumnHeader column in lvHulpvragen.Columns)
                 {
-                    lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-                }
-                else
-                {
-                    lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                    if (column.Text.Length > item.Text.Length)
+                    {
+                        lvHulpvragen.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                    }
+                    else
+                    {
+                        lvHulpvragen.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                    }
                 }
             }
         }

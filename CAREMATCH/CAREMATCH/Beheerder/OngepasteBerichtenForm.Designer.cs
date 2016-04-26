@@ -31,7 +31,6 @@
             this.lvOngepasteBerichten = new System.Windows.Forms.ListView();
             this.btnLaatZien = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
-            this.cmbKiesBerichten = new System.Windows.Forms.ComboBox();
             this.btnDeleteSelection = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -51,7 +50,7 @@
             this.btnLaatZien.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLaatZien.Location = new System.Drawing.Point(13, 428);
             this.btnLaatZien.Name = "btnLaatZien";
-            this.btnLaatZien.Size = new System.Drawing.Size(148, 36);
+            this.btnLaatZien.Size = new System.Drawing.Size(188, 36);
             this.btnLaatZien.TabIndex = 1;
             this.btnLaatZien.Text = "laat zien";
             this.btnLaatZien.UseVisualStyleBackColor = true;
@@ -68,22 +67,12 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // cmbKiesBerichten
-            // 
-            this.cmbKiesBerichten.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbKiesBerichten.FormattingEnabled = true;
-            this.cmbKiesBerichten.Location = new System.Drawing.Point(168, 429);
-            this.cmbKiesBerichten.Name = "cmbKiesBerichten";
-            this.cmbKiesBerichten.Size = new System.Drawing.Size(121, 33);
-            this.cmbKiesBerichten.TabIndex = 3;
-            this.cmbKiesBerichten.SelectedValueChanged += new System.EventHandler(this.cmbKiesBerichten_SelectedValueChanged);
-            // 
             // btnDeleteSelection
             // 
             this.btnDeleteSelection.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteSelection.Location = new System.Drawing.Point(13, 478);
+            this.btnDeleteSelection.Location = new System.Drawing.Point(13, 470);
             this.btnDeleteSelection.Name = "btnDeleteSelection";
-            this.btnDeleteSelection.Size = new System.Drawing.Size(148, 32);
+            this.btnDeleteSelection.Size = new System.Drawing.Size(188, 40);
             this.btnDeleteSelection.TabIndex = 4;
             this.btnDeleteSelection.Text = "verwijder selectie";
             this.btnDeleteSelection.UseVisualStyleBackColor = true;
@@ -95,7 +84,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 516);
             this.Controls.Add(this.btnDeleteSelection);
-            this.Controls.Add(this.cmbKiesBerichten);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnLaatZien);
             this.Controls.Add(this.lvOngepasteBerichten);
@@ -111,7 +99,6 @@
         private System.Windows.Forms.ListView lvOngepasteBerichten;
         private System.Windows.Forms.Button btnLaatZien;
         private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.ComboBox cmbKiesBerichten;
         private System.Windows.Forms.Button btnDeleteSelection;
     }
 }

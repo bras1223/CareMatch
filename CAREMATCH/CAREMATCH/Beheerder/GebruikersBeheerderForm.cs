@@ -57,13 +57,24 @@ namespace Login
               + "(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=fhictora)));"
               + "User ID=DBI327544; PASSWORD=CareMatch;";
             OracleConnection con = new OracleConnection(constr);
+
+
             con.Open();
-
-
-
             OracleCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "UPDATE GEBRUIKER SET GEBRUIKERSNAAM ='" +dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERSNAAM"].Value.ToString() + "' WHERE GEBRUIKERID = " + Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERID"].Value);
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+            con.Open();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "UPDATE GEBRUIKER SET APPROVED ='" + dataGridView1.Rows[e.RowIndex].Cells["APPROVED"].Value.ToString() + "' WHERE GEBRUIKERID = " + Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERID"].Value);
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+            con.Open();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "UPDATE GEBRUIKER SET ROL ='" + dataGridView1.Rows[e.RowIndex].Cells["ROL"].Value.ToString() + "' WHERE GEBRUIKERID = " + Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERID"].Value);
             cmd.ExecuteNonQuery();
             con.Close();
 

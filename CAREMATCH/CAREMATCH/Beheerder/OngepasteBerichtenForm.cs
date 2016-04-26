@@ -31,7 +31,7 @@ namespace CAREMATCH
             lvOngepasteBerichten.CheckBoxes = true;
             lvOngepasteBerichten.FullRowSelect = true;
 
-            hulpvragen = database.HulpvragenOverzicht(gebruiker, "ongepaste hulpvragen");
+            //hulpvragen = database.HulpvragenOverzicht(gebruiker, "ongepaste hulpvragen");
             CreateListView();
             VulListViewMetHulpvragen(hulpvragen);
         }
@@ -53,6 +53,7 @@ namespace CAREMATCH
         private void VerwijderGemarkeerdeHulpvraag(Hulpvraag hulpvraag)
         {
             database.HulpvraagVerwijderen(hulpvraag.HulpvraagID);
+            
             hulpvraag = null;
 
         }
@@ -60,6 +61,11 @@ namespace CAREMATCH
         private void VulListViewMetHulpvragen(List<Hulpvraag> hulpvragen)
         {
             lvOngepasteBerichten.Items.Clear();
+            if(hulpvragen != null)
+            {
+                hulpvragen.Clear();
+            }
+            
             hulpvragen = database.HulpvragenOverzicht(gebruiker, "ongepaste hulpvragen");
             foreach (Hulpvraag hulpvraag in hulpvragen)
             {
@@ -80,18 +86,26 @@ namespace CAREMATCH
         private void btnLaatZien_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Hulpvraag hulpvraag;
+            Hulpvraag hulpvraag = null;
             //geselecteerde hulpvraag openen.
-            hulpvraag = hulpvragen[lvOngepasteBerichten.FocusedItem.Index];
-            if(hulpvraag != null)
+            try
             {
-                HulpvraagForm hulpvraagForm = new HulpvraagForm(hulpvraag, gebruiker, false);
-                hulpvraagForm.ShowDialog();
-                if (hulpvraagForm.DialogResult == DialogResult.OK || hulpvraagForm.DialogResult == DialogResult.Cancel)
-                {
-                    this.Show();
-                }
+                hulpvraag = hulpvragen[lvOngepasteBerichten.FocusedItem.Index];
             }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("selecteer AUB een hulpvraag");
+                
+            }
+            
+            
+            HulpvraagForm hulpvraagForm = new HulpvraagForm(hulpvraag, gebruiker, false);
+            hulpvraagForm.ShowDialog();
+            if (hulpvraagForm.DialogResult == DialogResult.OK || hulpvraagForm.DialogResult == DialogResult.Cancel)
+            {
+                 this.Show();
+            }
+            
             else
             {
                 MessageBox.Show("selecteer AUB een hulpvraag");

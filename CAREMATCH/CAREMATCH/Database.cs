@@ -83,7 +83,7 @@ namespace CAREMATCH
         {
             con.Open();
             
-            command = new OracleCommand("DELETE FROM Hulpvraag WHERE HulpvraagID =:id;", con);
+            command = new OracleCommand("DELETE FROM Hulpvraag WHERE Hulpvraag.HulpvraagID =:id;", con);
             command.Parameters.Add(new OracleParameter(":id", OracleDbType.Int32)).Value = hulpvraagID;
             con.Close();
         }

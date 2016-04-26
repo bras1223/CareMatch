@@ -88,7 +88,7 @@ namespace CAREMATCH.VrijwilligerSysteem
                 lvHulpvragen.Items.Add(item);
 
                 count++;
-                //Na de laatste hulpvraag de columns resizen. 
+                //Na de laatste hulpvraag de columns resizen. Performance niet optimaal.
                 if (hulpvraaglist.Count -1 == count)
                 {
                     //Autosize columns. column title < column inhoud = column title wordt weergeven. 

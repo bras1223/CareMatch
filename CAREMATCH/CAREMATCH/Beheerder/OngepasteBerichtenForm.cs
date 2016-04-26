@@ -29,14 +29,15 @@ namespace CAREMATCH
 
             lvOngepasteBerichten.View = View.Details;
             lvOngepasteBerichten.CheckBoxes = true;
+            lvOngepasteBerichten.FullRowSelect = true;
 
             hulpvragen = database.HulpvragenOverzicht(gebruiker, "ongepaste hulpvragen");
-            RefreshListView();
+            CreateListView();
             VulListViewMetHulpvragen(hulpvragen);
         }
 
 
-        private void RefreshListView()
+        private void CreateListView()
         {
             lvOngepasteBerichten.Clear();
             lvOngepasteBerichten.Columns.Add("Check");
@@ -58,7 +59,9 @@ namespace CAREMATCH
 
         private void VulListViewMetHulpvragen(List<Hulpvraag> hulpvragen)
         {
-            foreach(Hulpvraag hulpvraag in hulpvragen)
+            lvOngepasteBerichten.Items.Clear();
+            hulpvragen = database.HulpvragenOverzicht(gebruiker, "ongepaste hulpvragen");
+            foreach (Hulpvraag hulpvraag in hulpvragen)
             {
                 ListViewItem item = new ListViewItem();
                 item.SubItems.Add(hulpvraag.HulpvraagID.ToString());
@@ -66,10 +69,12 @@ namespace CAREMATCH
                 item.SubItems.Add(hulpvraag.HulpvraagInhoud);
                 item.SubItems.Add(hulpvraag.Hulpbehoevende);
                 item.SubItems.Add(hulpvraag.Beoordeling);
-                item.SubItems.Add(hulpvraag.cijfer);
+                item.SubItems.Add(hulpvraag.Cijfer.ToString());
 
                 lvOngepasteBerichten.Items.Add(item);
             }
+
+            
         }
 
         private void btnLaatZien_Click(object sender, EventArgs e)
@@ -112,7 +117,7 @@ namespace CAREMATCH
                     VerwijderGemarkeerdeHulpvraag(toDelete);
                 }
             }
-            //refresh listview
+            VulListViewMetHulpvragen(hulpvragen);
         }
 
         private void OngepasteBerichtenForm_FormClosing(object sender, FormClosingEventArgs e)

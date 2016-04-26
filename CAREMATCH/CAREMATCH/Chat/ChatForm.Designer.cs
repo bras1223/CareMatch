@@ -39,6 +39,7 @@
             this.pbProfielFoto = new System.Windows.Forms.PictureBox();
             this.btnModus = new System.Windows.Forms.Button();
             this.lblParterStatus = new System.Windows.Forms.Label();
+            this.tmrTest = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,6 +51,7 @@
             this.tbBericht.Name = "tbBericht";
             this.tbBericht.Size = new System.Drawing.Size(825, 74);
             this.tbBericht.TabIndex = 0;
+            this.tbBericht.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbBericht_KeyDown);
             // 
             // btnVerzenden
             // 
@@ -81,6 +83,7 @@
             this.lbChat.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbChat.Size = new System.Drawing.Size(965, 354);
             this.lbChat.TabIndex = 7;
+            this.lbChat.SelectedIndexChanged += new System.EventHandler(this.lbChat_SelectedIndexChanged);
             // 
             // lbGebruikerLijst
             // 
@@ -138,10 +141,15 @@
             this.lblParterStatus.Size = new System.Drawing.Size(0, 26);
             this.lblParterStatus.TabIndex = 10;
             // 
+            // tmrTest
+            // 
+            this.tmrTest.Tick += new System.EventHandler(this.tmrTest_Tick);
+            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1193, 641);
             this.Controls.Add(this.lblParterStatus);
             this.Controls.Add(this.btnModus);
@@ -157,7 +165,7 @@
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "ChatForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ChatForm";
+            this.Text = "Chat - CareMatch";
             this.Load += new System.EventHandler(this.ChatForm_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).EndInit();
             this.ResumeLayout(false);
@@ -177,5 +185,6 @@
         private System.Windows.Forms.Timer tmrLaadberichten;
         private System.Windows.Forms.Button btnModus;
         private System.Windows.Forms.Label lblParterStatus;
+        private System.Windows.Forms.Timer tmrTest;
     }
 }

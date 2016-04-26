@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OngepasteBerichtenForm));
             this.lvOngepasteBerichten = new System.Windows.Forms.ListView();
             this.btnLaatZien = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
@@ -87,8 +88,9 @@
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnLaatZien);
             this.Controls.Add(this.lvOngepasteBerichten);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "OngepasteBerichtenForm";
-            this.Text = "OngepasteBerichtenForm";
+            this.Text = "Ongepaste Berichten - CareMatch";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OngepasteBerichtenForm_FormClosing);
             this.ResumeLayout(false);
 

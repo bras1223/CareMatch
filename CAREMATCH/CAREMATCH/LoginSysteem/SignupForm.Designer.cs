@@ -59,6 +59,8 @@
             this.btnRegistreer = new System.Windows.Forms.Button();
             this.lblRFIDUitleg = new System.Windows.Forms.Label();
             this.lblRFIDAttached = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblSterkWW
@@ -372,12 +374,34 @@
             this.lblRFIDAttached.Text = "U wordt op dit moment aangemeld met een \r\nongebruikte RFID tag.\r\n";
             this.lblRFIDAttached.Visible = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(881, 427);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 20);
+            this.label1.TabIndex = 36;
+            this.label1.Text = "Registreren";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(39, 427);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(82, 20);
+            this.label2.TabIndex = 37;
+            this.label2.Text = "Annuleren";
+            // 
             // SignupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1033, 536);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblRFIDAttached);
             this.Controls.Add(this.lblRFIDUitleg);
             this.Controls.Add(this.dtpGeboortedatum);
@@ -450,5 +474,7 @@
         private System.Windows.Forms.DateTimePicker dtpGeboortedatum;
         private System.Windows.Forms.Label lblRFIDUitleg;
         private System.Windows.Forms.Label lblRFIDAttached;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

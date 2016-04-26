@@ -57,7 +57,8 @@ namespace CAREMATCH.LoginSysteem
             }
             else if (cbRol.Text == "Hulpbehoevende" && tbWachtwoord.Text == tbHerhWachtwoord.Text && GebruikNaam == true)
             {
-                database.GebruikerAccountToevoegen(tbGebruikersnaam.Text, tbWachtwoord.Text,  "Y", cbRol.Text, lblPasFotoPath.Text, lblVOGPath.Text, tbVoornaam.Text, tbAchternaam.Text, cbGeslacht.Text, dtpGeboortedatum.Value);
+                PasfotoOpslaan();
+                database.GebruikerAccountToevoegen(tbGebruikersnaam.Text, tbWachtwoord.Text,  "Y", cbRol.Text, tbGebruikersnaam.Text + @"\" + tbGebruikersnaam.Text + Path.GetExtension(zoekFotoDialog.FileName), lblVOGPath.Text, tbVoornaam.Text, tbAchternaam.Text, cbGeslacht.Text, dtpGeboortedatum.Value);
                 MessageBox.Show("Account aangemaakt. U kunt nu inloggen.");
                 DialogResult = DialogResult.OK;
                 this.Close();
@@ -94,35 +95,8 @@ namespace CAREMATCH.LoginSysteem
                             }
                         }
                     }
-                    //Pasfoto uploaden. - dubbele if anders foutmelding.
-                    if (zoekFotoDialog != null)
-                    {
-                        //Als er een afbeelding geopend is.
-                        if (zoekFotoDialog.FileName != "")
-                        {
-                            //Directory aanmaken als deze nog niet bestaat.
-                            if (!File.Exists(tbGebruikersnaam.Text))
-                            {
-                                System.IO.Directory.CreateDirectory(tbGebruikersnaam.Text);
-                            }
-                            //Gekozen afbeelding kopieren naar pasfoto directory. Foto = Gebruikersnaam\Gebruikersnaam + Bestandsextensie
-                            try
-                            {
-                                File.Copy(zoekFotoDialog.FileName, tbGebruikersnaam.Text + @"\" + tbGebruikersnaam.Text + Path.GetExtension(zoekFotoDialog.FileName));
-                            }
-                            catch
-                            {
-                                //alle afbeeldingen verwijderen in de map. dan opnieuw bestand kopieren.
-                                System.IO.DirectoryInfo di = new DirectoryInfo(tbGebruikersnaam.Text + @"\");
-                                foreach (FileInfo file in di.GetFiles())
-                                {
-                                    file.Delete();
-                                }
-                                File.Copy(zoekFotoDialog.FileName, tbGebruikersnaam.Text + @"\" + tbGebruikersnaam.Text + Path.GetExtension(zoekFotoDialog.FileName));
-                            }
-                        }
-                    }
-                    database.GebruikerAccountToevoegen(tbGebruikersnaam.Text, tbWachtwoord.Text, "Y", cbRol.Text, lblPasFotoPath.Text, vog, tbVoornaam.Text, tbAchternaam.Text, cbGeslacht.Text, dtpGeboortedatum.Value);
+                    PasfotoOpslaan();
+                    database.GebruikerAccountToevoegen(tbGebruikersnaam.Text, tbWachtwoord.Text, "Y", cbRol.Text, tbGebruikersnaam.Text + @"\" + tbGebruikersnaam.Text + Path.GetExtension(zoekFotoDialog.FileName), vog, tbVoornaam.Text, tbAchternaam.Text, cbGeslacht.Text, dtpGeboortedatum.Value);
                     MessageBox.Show("Account aangemaakt. U moet wachten tot dat uw account is geactiveerd voordat u kunt inloggen.");
                     DialogResult = DialogResult.OK;
                     this.Close();
@@ -150,7 +124,7 @@ namespace CAREMATCH.LoginSysteem
             RFIDClose();
             Close();
             Dispose();
-        }
+        } //terug knop
         private void btnUploadVOG_Click(object sender, EventArgs e)
         {
             ofd = new OpenFileDialog();
@@ -179,23 +153,55 @@ namespace CAREMATCH.LoginSysteem
 
         private void btnPasfotoToevoegen_Click(object sender, EventArgs e)
         {
-            ofd = new OpenFileDialog();
-            if (ofd.ShowDialog() == DialogResult.OK)
+            zoekFotoDialog = new OpenFileDialog();
+            if (zoekFotoDialog.ShowDialog() == DialogResult.OK)
             {
-                lblPasFotoPath.Text = ofd.FileName;
+                lblPasFotoPath.Text = zoekFotoDialog.FileName;
+            }
+        }
+        public void PasfotoOpslaan()
+        {
+            //Pasfoto uploaden. - dubbele if anders foutmelding.
+            if (zoekFotoDialog != null)
+            {
+                //Als er een afbeelding geopend is.
+                if (zoekFotoDialog.FileName != "")
+                {
+                    //Directory aanmaken als deze nog niet bestaat.
+                    if (!File.Exists(tbGebruikersnaam.Text))
+                    {
+                        System.IO.Directory.CreateDirectory(tbGebruikersnaam.Text);
+                    }
+                    //Gekozen afbeelding kopieren naar pasfoto directory. Foto = Gebruikersnaam\Gebruikersnaam + Bestandsextensie
+                    try
+                    {
+                        File.Copy(zoekFotoDialog.FileName, tbGebruikersnaam.Text + @"\" + tbGebruikersnaam.Text + Path.GetExtension(zoekFotoDialog.FileName));
+                    }
+                    catch
+                    {
+                        //alle afbeeldingen verwijderen in de map. dan opnieuw bestand kopieren.
+                        System.IO.DirectoryInfo di = new DirectoryInfo(tbGebruikersnaam.Text + @"\");
+                        foreach (FileInfo file in di.GetFiles())
+                        {
+                            file.Delete();
+                        }
+                        File.Copy(zoekFotoDialog.FileName, tbGebruikersnaam.Text + @"\" + tbGebruikersnaam.Text + Path.GetExtension(zoekFotoDialog.FileName));
+                    }
+                }
             }
         }
         #region RFID
         private void SignupForm_Load(object sender, EventArgs e)
         {
-            //rfid = new RFID(); //Krijg nogsteeds foutmelding.
+            
+            //rfid = new RFID(); //Krijg nogsteeds foutmelding. 
             //rfid.open();
             //rfid.Attach += new AttachEventHandler(rfid_Attach);
             //rfid.Detach += new DetachEventHandler(rfid_Detach);
 
             //rfid.Tag += new TagEventHandler(rfid_Tag);
             //rfid.TagLost += new TagEventHandler(rfid_TagLost);
-            //openCmdLine(rfid);
+            //openCmdLine(rfid);               
         }
         void rfid_Tag(object sender, TagEventArgs e)
         {

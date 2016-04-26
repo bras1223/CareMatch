@@ -100,9 +100,9 @@ namespace CAREMATCH
             }
 
             command = new OracleCommand("UPDATE Hulpvraag SET Reactie =:reactie, LaatstGereageerdDoor=:gebruikersnaam, VrijwilligerID=(SELECT GebruikerID FROM Gebruiker WHERE GebruikerID =:gebruikerid AND LOWER(ROL)='vrijwilliger'), Hulpvraaginhoud=:hulpvraaginhoud, Urgent=:temp WHERE HulpvraagID=:hulpvraagid", con);
-            command.Parameters.Add(new OracleParameter(":gebruikerid", OracleDbType.Int32)).Value = gebruiker.GebruikersID;
-            command.Parameters.Add(new OracleParameter(":gebruikersnaam", OracleDbType.Varchar2)).Value = gebruiker.Gebruikersnaam;
             command.Parameters.Add(new OracleParameter(":reactie", OracleDbType.Varchar2)).Value = hulpvraag.Reactie;
+            command.Parameters.Add(new OracleParameter(":gebruikersnaam", OracleDbType.Varchar2)).Value = gebruiker.Gebruikersnaam;
+            command.Parameters.Add(new OracleParameter(":gebruikerid", OracleDbType.Int32)).Value = gebruiker.GebruikersID;
             command.Parameters.Add(new OracleParameter(":hulpvraaginhoud", OracleDbType.Varchar2)).Value = hulpvraag.HulpvraagInhoud;
             command.Parameters.Add(new OracleParameter(":temp", OracleDbType.Varchar2)).Value = tempString;
             command.Parameters.Add(new OracleParameter(":hulpvraagid", OracleDbType.Int32)).Value = hulpvraag.HulpvraagID;
@@ -336,6 +336,35 @@ namespace CAREMATCH
         #endregion
         #region Chat Queries
         
+        public int checkgelezen(int ontvangerid, int verzenderid)
+        {
+            int count = 0;
+            con.Open();
+            command = new OracleCommand("SELECT COUNT(*) FROM CHAT WHERE ONTVANGERID =:verzenderid AND VERZENDERID = :ontvangerid AND GELEZEN = 'N' ", con);
+            command.Parameters.Add(new OracleParameter("verzenderid", OracleDbType.Int32)).Value =verzenderid;
+            command.Parameters.Add(new OracleParameter("onvtvangerid", OracleDbType.Int32)).Value = ontvangerid;
+            reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                count = Convert.ToInt32(reader["COUNT(*)"]);
+            }
+
+            con.Close();
+            return count;
+        }
+
+        //Bericht is gelezen
+        public void berichtgelezen(int berichtid)
+        {
+            con.Open();
+            command = new OracleCommand("UPDATE CHAT SET GELEZEN =:STATUS WHERE CHATID =:berichtid", con);
+            command.Parameters.Add(new OracleParameter("STATUS", OracleDbType.Char)).Value = "Y";
+            command.Parameters.Add(new OracleParameter("berichtid", OracleDbType.Int32)).Value = berichtid;
+            command.ExecuteNonQuery();
+            con.Close();
+        }
+
         //Geeft de onlinestatus van je chatpartner
         public string PartnerStatus(int id)
         {
@@ -394,7 +423,7 @@ namespace CAREMATCH
             vrijwilligerlijst = new List<string>();
 
             con.Open();
-            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Vrijwilliger'", con);
+            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Vrijwilliger' ORDER BY Gebruikersnaam ASC", con);
             reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -413,7 +442,7 @@ namespace CAREMATCH
             hulpbehoevendelijst = new List<string>();
 
             con.Open();
-            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Hulpbehoevende'", con);
+            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Hulpbehoevende'  Gebruikersnaam ASC", con);
             reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -490,7 +519,7 @@ namespace CAREMATCH
             vrijwilligerlijst = new List<string>();
 
             con.Open();
-            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Vrijwilliger' AND GEBRUIKERID IN (SELECT ONTVANGERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id) ", con);
+            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Vrijwilliger' AND GEBRUIKERID IN (SELECT ONTVANGERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id) ORDER BY Gebruikersnaam ASC ", con);
             command.Parameters.Add(new OracleParameter("id", OracleDbType.Int32)).Value = id;
             reader = command.ExecuteReader();
 
@@ -511,7 +540,7 @@ namespace CAREMATCH
             hulpbehoevendelijst = new List<string>();
 
             con.Open();
-            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Hulpbehoevende' AND GEBRUIKERID IN (SELECT ONTVANGERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id) ", con);
+            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Hulpbehoevende' AND GEBRUIKERID IN (SELECT ONTVANGERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id) ORDER BY Gebruikersnaam ASC", con);
             command.Parameters.Add(new OracleParameter("id", OracleDbType.Int32)).Value = id;
             reader = command.ExecuteReader();
 
@@ -637,6 +666,8 @@ namespace CAREMATCH
             con.Close();
             return reader;
         }
+
+
         //Hulpvraag Queries
         public OracleDataAdapter HulpvraagBeheer(string query)
         {

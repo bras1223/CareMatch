@@ -84,6 +84,7 @@
             this.txtWachtwoord.PasswordChar = '*';
             this.txtWachtwoord.Size = new System.Drawing.Size(236, 29);
             this.txtWachtwoord.TabIndex = 2;
+            this.txtWachtwoord.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtWachtwoord_KeyDown);
             // 
             // txtGebruikersnaam
             // 

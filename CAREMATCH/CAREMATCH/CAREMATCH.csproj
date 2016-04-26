@@ -256,6 +256,8 @@
     <None Include="Resources\users.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\FilledStar.png" />
+    <None Include="Resources\EmptyStar.png" />
     <None Include="Resources\arrows.png" />
     <Content Include="Resources\buildings.png" />
     <None Include="Resources\CAREMATCHLOGO.png" />

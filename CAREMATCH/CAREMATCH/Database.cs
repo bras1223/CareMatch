@@ -259,12 +259,12 @@ namespace CAREMATCH
 
                 agendaPunt.AfspraakID = Convert.ToInt32(reader["AFSPRAAKID"]);
                 agendaPunt.Titel = reader["Titel"].ToString();
-                agendaPunt.Hulpbehoevende = reader["HulpBehoevende"].ToString();
-                agendaPunt.Vrijwilliger = reader["Vrijwilliger"].ToString();
+                agendaPunt.AfspraakMet = reader["AfspraakMet"].ToString();
                 agendaPunt.Beschrijving = reader["Omschrijving"].ToString();
                 agendaPunt.AgendaEigenaar = Convert.ToInt32(reader["EigenaarID"]);
                 agendaPunt.DatumTijdStart = Convert.ToInt32(reader["StartTijd"]);
                 agendaPunt.DatumTijdEind = Convert.ToInt32(reader["EindTijd"]);
+                agendaPunt.AfspraakDatum = Convert.ToDateTime(reader["AfspraakDatum"]);
 
                 gebruiker.AgendaPuntToevoegen(agendaPunt);
             }
@@ -273,52 +273,30 @@ namespace CAREMATCH
         public void AgendaPuntToevoegen(Agenda.AgendaPunt agendaPunt, Gebruiker gebruiker, string datum)
         {
             con.Open();
-            command = new OracleCommand("INSERT INTO Agenda(EigenaarID, Omschrijving, StartTijd, EindTijd, Titel, Hulpbehoevende, Vrijwilliger, AfspraakDatum)"+ 
-                                                "VALUES(:gebruikersid,:beschrijving ,:starttijd ,:eindtijd ,:titel ,:hulpbehoevende ,:vrijwilliger ,:datum)", con);
+            command = new OracleCommand("INSERT INTO Agenda(EigenaarID, Omschrijving, StartTijd, EindTijd, Titel, AfspraakMet, AfspraakDatum)"+
+                                                "VALUES(:gebruikersid,:beschrijving ,:starttijd ,:eindtijd ,:titel ,:afspraakmet, :datum)", con);
            
             command.Parameters.Add(new OracleParameter(":gebruikersid", OracleDbType.Int32)).Value = gebruiker.GebruikersID;
             command.Parameters.Add(new OracleParameter(":beschrijving", OracleDbType.Varchar2)).Value = agendaPunt.Beschrijving;
             command.Parameters.Add(new OracleParameter(":starttijd", OracleDbType.Varchar2)).Value = agendaPunt.DatumTijdStart;
             command.Parameters.Add(new OracleParameter(":eindtijd", OracleDbType.Varchar2)).Value = agendaPunt.DatumTijdEind;
             command.Parameters.Add(new OracleParameter(":titel", OracleDbType.Varchar2)).Value = agendaPunt.Titel;
-            command.Parameters.Add(new OracleParameter(":hulpbehoevende", OracleDbType.Varchar2)).Value = agendaPunt.Hulpbehoevende;
-            command.Parameters.Add(new OracleParameter(":vrijwilliger", OracleDbType.Varchar2)).Value = agendaPunt.Vrijwilliger;
+            command.Parameters.Add(new OracleParameter(":afspraakmet", OracleDbType.Varchar2)).Value = agendaPunt.AfspraakMet;
             command.Parameters.Add(new OracleParameter(":datum", OracleDbType.Varchar2)).Value = datum;
             command.ExecuteNonQuery();
             con.Close();
         }
-        public Agenda.AgendaPunt AgendaInhoudWeergeven(Gebruiker gebruiker, int agendaID)
+        public void AgendaAanpassen(Gebruiker gebruiker, Agenda.AgendaPunt agendaPunt, string datum)
         {
             con.Open();
-            agendaPunt = new Agenda.AgendaPunt();
-            command = new OracleCommand("SELECT * FROM Agenda WHERE GebruikerID =:gebruikersid AND AgendaID=:agendaID", con);
-            command.Parameters.Add(new OracleParameter("gebruikersid", gebruiker.GebruikersID));
-            command.Parameters.Add(new OracleParameter("agendaID", agendaID));
-            reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                agendaPunt.AgendaEigenaar = gebruiker.GebruikersID;
-                agendaPunt.Titel = reader["Titel"].ToString();
-                agendaPunt.DatumTijdStart = Convert.ToInt32(reader["StartTijd"]);
-                agendaPunt.DatumTijdEind = Convert.ToInt32(reader["EindTijd"]);
-                agendaPunt.Beschrijving = reader["Omschrijving"].ToString();
-                agendaPunt.Hulpbehoevende = reader["Hulpbehoevende"].ToString();
-                agendaPunt.Vrijwilliger = reader["Vrijwilliger"].ToString();
-            }
-            con.Close();
-            return agendaPunt;
-        }
-        public void AgendaAanpassen(Gebruiker gebruiker, Agenda.AgendaPunt agendaPunt)
-        {
-            con.Open();
-            command = new OracleCommand("UPDATE Agenda SET AfspraakID =:afspraakid, Omschrijving=:beschrijving, StartTijd=:starttijd, EindTijd=:eindtijd, Titel=:titel ,Hulpbehoevende=:hulpbehoevende, Vrijwilliger=:vrijwilliger", con);
-            command.Parameters.Add(new OracleParameter("afspraakid", agendaPunt.AfspraakID));
-            command.Parameters.Add(new OracleParameter("beschrijving", agendaPunt.Beschrijving));
-            command.Parameters.Add(new OracleParameter("starttijd", agendaPunt.DatumTijdStart));
-            command.Parameters.Add(new OracleParameter("eindtijd", agendaPunt.DatumTijdEind));
-            command.Parameters.Add(new OracleParameter("titel", agendaPunt.Titel));
-            command.Parameters.Add(new OracleParameter("hulpbehoevende", agendaPunt.Hulpbehoevende));
-            command.Parameters.Add(new OracleParameter("vrijwilliger", agendaPunt.Vrijwilliger));
+            command = new OracleCommand("UPDATE Agenda SET Omschrijving=:beschrijving, StartTijd=:starttijd, EindTijd=:eindtijd, Titel=:titel, AfspraakMet =:afspraakmet, AfspraakDatum =:datum WHERE AfspraakID =:afspraakid", con);
+            command.Parameters.Add(new OracleParameter(":beschrijving", OracleDbType.Varchar2)).Value = agendaPunt.Beschrijving;
+            command.Parameters.Add(new OracleParameter(":starttijd", OracleDbType.Varchar2)).Value = agendaPunt.DatumTijdStart;
+            command.Parameters.Add(new OracleParameter(":eindtijd", OracleDbType.Varchar2)).Value = agendaPunt.DatumTijdEind;
+            command.Parameters.Add(new OracleParameter(":titel", OracleDbType.Varchar2)).Value = agendaPunt.Titel;
+            command.Parameters.Add(new OracleParameter(":afspraakmet", OracleDbType.Varchar2)).Value = agendaPunt.AfspraakMet;
+            command.Parameters.Add(new OracleParameter(":datum", OracleDbType.Varchar2)).Value = datum;
+            command.Parameters.Add(new OracleParameter(":afspraakid", OracleDbType.Int32)).Value = agendaPunt.AfspraakID;
             command.ExecuteNonQuery();
             con.Close();
 
@@ -739,7 +717,6 @@ namespace CAREMATCH
             
             return gebruiker;
         }
-        //pasfoto toevoegen bij login geeft nog foutmelding.
         public void GebruikerAccountToevoegen(string Gebruikersnaam, string Wachtwoord, string Approved, string Rol, string filenameFoto, string filenameVOG, string voornaam, string achternaam, string geslacht, DateTime geboortedatum)
         {
 
@@ -755,7 +732,7 @@ namespace CAREMATCH
             //Hulpbehoevende hoeft geen VOG te inserten.
             if (Rol.ToLower() == "hulpbehoevende") 
             {
-                command = new OracleCommand("INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, VOORNAAM, ACHTERNAAM, FOTO, APPROVED, ROL)"+
+                command = new OracleCommand(@"INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, VOORNAAM, ACHTERNAAM, FOTO, APPROVED, ROL)"+
                                                   "VALUES(:gebruikersnaam, :wachtwoord, :voornaam, :achternaam, :filenamefoto, :Approved, :Rol)", con);
                 command.Parameters.Add(new OracleParameter(":gebruikersnaam", OracleDbType.Varchar2)).Value = Gebruikersnaam;
                 command.Parameters.Add(new OracleParameter(":wachtwoord", OracleDbType.Varchar2)).Value = EncryptString(Wachtwoord);

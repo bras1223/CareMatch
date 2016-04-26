@@ -16,6 +16,24 @@ namespace CAREMATCH.Agenda
         Gebruiker gebruiker;
         AgendaPunt agendaPunt;
         Database database;
+        public AgendaPuntToevoegenForm(Gebruiker gebruiker, AgendaPunt ap, bool agendaWijzigen)
+        {
+            InitializeComponent();
+            this.gebruiker = gebruiker;
+            this.agendaPunt = ap;
+
+            database = new Database();
+            //Als de agendapunt al bestaat. inhoud vullen met gegevens.
+            txtBeschrijving.Text = ap.Beschrijving;
+            txtEindTijd.Text = ap.DatumTijdEind.ToString();
+            txtAfspraakMet.Text = ap.AfspraakMet;
+            txtStartTijd.Text = ap.DatumTijdStart.ToString();
+            txtTitel.Text = ap.Titel;
+            dtpAfspraakDatum.Value = ap.AfspraakDatum;
+            
+            lblToevoegen.Visible = false;
+            btnOpslaanEnSluiten.Visible = false;
+        }
         public AgendaPuntToevoegenForm(Gebruiker gebruiker)
         {
             InitializeComponent();
@@ -23,6 +41,9 @@ namespace CAREMATCH.Agenda
 
             database = new Database();
             agendaPunt = new AgendaPunt();
+
+            lblWijzigingOpslaan.Visible = false;
+            btnWijzigingOpslaan.Visible = false;
         }
         private void btnSluiten_Click(object sender, EventArgs e)
         {
@@ -41,8 +62,7 @@ namespace CAREMATCH.Agenda
                 agendaPunt.AgendaEigenaar = gebruiker.GebruikersID;
                 agendaPunt.Titel = txtTitel.Text;
                 agendaPunt.DatumTijdEind = int.Parse(txtEindTijd.Text);                
-                agendaPunt.Hulpbehoevende = txtHulpbehoevende.Text;
-                agendaPunt.Vrijwilliger = txtVrijwilliger.Text;
+                agendaPunt.AfspraakMet = txtAfspraakMet.Text;
                 agendaPunt.Beschrijving = txtBeschrijving.Text;
                 //Zorgen dat alleen de eerste 2 cijfers van datum Eind & Start meegeven worden.
                 while (agendaPunt.DatumTijdEind >= 25)
@@ -61,6 +81,16 @@ namespace CAREMATCH.Agenda
                 DialogResult = DialogResult.OK;
                 this.Close();
             }
+        }
+
+        private void AgendaPuntToevoegenForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnWijzigingOpslaan_Click(object sender, EventArgs e)
+        {
+            database.AgendaAanpassen(gebruiker, agendaPunt, dtpAfspraakDatum.Value.Date.ToString("dd-MMM-yy"));
         }
     }
 }

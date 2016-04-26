@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
             this.tbBericht = new System.Windows.Forms.TextBox();
             this.btnVerzenden = new System.Windows.Forms.Button();
             this.lblGebruikersnaam = new System.Windows.Forms.Label();
@@ -150,6 +149,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1193, 641);
             this.Controls.Add(this.lblParterStatus);
             this.Controls.Add(this.btnModus);
@@ -162,7 +162,6 @@
             this.Controls.Add(this.lbGebruikerLijst);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "ChatForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

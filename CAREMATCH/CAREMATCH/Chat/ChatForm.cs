@@ -92,6 +92,7 @@ namespace CAREMATCH
                     lbChat.Items.Add(c.datumtijd.ToString("dd / MMM HH: mm"));
                     lbChat.Items.Add(" ");
                     weergegevenberichten.Add(c);
+                    lbChat.SelectedIndex = lbChat.Items.Count - 1;
                 }
             }
         }

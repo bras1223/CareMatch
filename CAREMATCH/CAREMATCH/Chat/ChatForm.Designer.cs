@@ -39,6 +39,7 @@
             this.pbProfielFoto = new System.Windows.Forms.PictureBox();
             this.btnModus = new System.Windows.Forms.Button();
             this.lblParterStatus = new System.Windows.Forms.Label();
+            this.tmrTest = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -140,6 +141,10 @@
             this.lblParterStatus.Size = new System.Drawing.Size(0, 26);
             this.lblParterStatus.TabIndex = 10;
             // 
+            // tmrTest
+            // 
+            this.tmrTest.Tick += new System.EventHandler(this.tmrTest_Tick);
+            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -179,5 +184,6 @@
         private System.Windows.Forms.Timer tmrLaadberichten;
         private System.Windows.Forms.Button btnModus;
         private System.Windows.Forms.Label lblParterStatus;
+        private System.Windows.Forms.Timer tmrTest;
     }
 }

@@ -19,24 +19,43 @@ namespace CAREMATCH
         List<Chatbericht> oudchatbericht;
         List<Chatbericht> weergegevenberichten;
         Database database;
+        bool done = false;
 
         //Constructors
         public ChatForm(Gebruiker gebruiker)
         {
-            opstarten(gebruiker);
+            InitializeComponent();
+            this.gebruiker = gebruiker;
+            database = new Database();
+            lbChat.DrawMode = DrawMode.OwnerDrawFixed;
+            lbChat.DrawItem += new DrawItemEventHandler(lbChat_DrawItem);
+            lbGebruikerLijst.DrawMode = DrawMode.OwnerDrawFixed;
+            lbGebruikerLijst.DrawItem += new DrawItemEventHandler(lbGebruikerLijst_DrawItem);
+            oudchatbericht = new List<Chatbericht>();
+            weergegevenberichten = new List<Chatbericht>();
+            Controls.Add(lbChat);
+            database.ZetOnline(gebruiker.GebruikersID);
         }
 
         public ChatForm(Gebruiker gebruiker, string partnernaam)
         {
-            opstarten(gebruiker);
-
+            InitializeComponent();
+            this.gebruiker = gebruiker;
+            database = new Database();
+            lbChat.DrawMode = DrawMode.OwnerDrawFixed;
+            lbChat.DrawItem += new DrawItemEventHandler(lbChat_DrawItem);
+            lbGebruikerLijst.DrawMode = DrawMode.OwnerDrawFixed;
+            lbGebruikerLijst.DrawItem += new DrawItemEventHandler(lbGebruikerLijst_DrawItem);
+            oudchatbericht = new List<Chatbericht>();
+            weergegevenberichten = new List<Chatbericht>();
+            Controls.Add(lbChat);
+            database.ZetOnline(gebruiker.GebruikersID);
+            tmrTest.Start();
             lblGebruikersnaam.Text = partnernaam;
             this.partnerid = database.ChatpartnerID(lblGebruikersnaam.Text);
             VeranderStatus(partnerid);
             lbChat.Items.Clear();
             ChatGeschiedenisLaden();
-            lbChat.SetSelected(lbChat.Items.Count - 1, true);
-            MessageBox.Show("Dit is kut");
         }
 
         private void btnVerzenden_Click(object sender, EventArgs e)
@@ -102,6 +121,10 @@ namespace CAREMATCH
                 VeranderStatus(partnerid);
             }
 
+            if (done)
+            {
+                tmrTest.Stop();
+            }
             foreach (Chatbericht c in database.ChatLaden(lblGebruikersnaam.Text, gebruiker.Gebruikersnaam, database.ChatpartnerID(lblGebruikersnaam.Text), gebruiker.GebruikersID))
             {
                 if (BerichtNietWeergegeven(c))
@@ -276,6 +299,7 @@ namespace CAREMATCH
                 lbChat.Items.Add(" ");
                 weergegevenberichten.Add(c);
             }
+            lbChat.SetSelected(lbChat.Items.Count - 1, true);
         }
 
         //Zet de status van je partner
@@ -330,6 +354,16 @@ namespace CAREMATCH
         private void lbChat_SelectedIndexChanged(object sender, EventArgs e)
         {
             //MessageBox.Show(lbChat.SelectedIndex.ToString());
+        }
+
+        private void tmrTest_Tick(object sender, EventArgs e)
+        {
+            lbChat.DrawMode = DrawMode.OwnerDrawFixed;
+            lbChat.DrawItem += new DrawItemEventHandler(lbChat_DrawItem);
+            lbGebruikerLijst.DrawMode = DrawMode.OwnerDrawFixed;
+            lbGebruikerLijst.DrawItem += new DrawItemEventHandler(lbGebruikerLijst_DrawItem);
+            // MessageBox.Show("Dit is kut");
+            done = true;
         }
     }
 }

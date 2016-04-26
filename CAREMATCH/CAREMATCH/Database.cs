@@ -587,6 +587,8 @@ namespace CAREMATCH
             con.Close();
             return reader;
         }
+
+
         //Hulpvraag Queries
         public OracleDataAdapter HulpvraagBeheer(string query)
         {

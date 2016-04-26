@@ -16,8 +16,6 @@ namespace Login
             InitializeComponent();
             database = new Database();
             this.gebruiker = gebruiker;
-
-
         }
 
 

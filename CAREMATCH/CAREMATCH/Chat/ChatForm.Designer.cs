@@ -50,6 +50,7 @@
             this.tbBericht.Name = "tbBericht";
             this.tbBericht.Size = new System.Drawing.Size(825, 74);
             this.tbBericht.TabIndex = 0;
+            this.tbBericht.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbBericht_KeyDown);
             // 
             // btnVerzenden
             // 

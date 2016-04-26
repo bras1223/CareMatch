@@ -298,6 +298,7 @@
             this.btnStartChat.TabIndex = 13;
             this.btnStartChat.Text = "Start Chat";
             this.btnStartChat.UseVisualStyleBackColor = true;
+            this.btnStartChat.Click += new System.EventHandler(this.btnStartChat_Click);
             // 
             // txtVrijwilliger
             // 

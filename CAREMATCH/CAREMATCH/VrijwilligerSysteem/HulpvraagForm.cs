@@ -155,5 +155,11 @@ namespace CAREMATCH.VrijwilligerSysteem
             BeoordelingForm beoordelingsform = new BeoordelingForm(hulpvraag);
             beoordelingsform.Show();
         }
+
+        private void btnStartChat_Click(object sender, EventArgs e)
+        {
+            ChatForm form = new ChatForm(gebruiker, txtVrijwilliger.Text);
+            form.Show();
+        }
     }
 }

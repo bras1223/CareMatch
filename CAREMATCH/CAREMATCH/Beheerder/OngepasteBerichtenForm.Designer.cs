@@ -48,6 +48,7 @@
             // 
             // btnLaatZien
             // 
+            this.btnLaatZien.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLaatZien.Location = new System.Drawing.Point(13, 428);
             this.btnLaatZien.Name = "btnLaatZien";
             this.btnLaatZien.Size = new System.Drawing.Size(148, 36);
@@ -58,6 +59,7 @@
             // 
             // btnBack
             // 
+            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.Location = new System.Drawing.Point(622, 428);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(148, 82);
@@ -68,15 +70,17 @@
             // 
             // cmbKiesBerichten
             // 
+            this.cmbKiesBerichten.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbKiesBerichten.FormattingEnabled = true;
             this.cmbKiesBerichten.Location = new System.Drawing.Point(168, 429);
             this.cmbKiesBerichten.Name = "cmbKiesBerichten";
-            this.cmbKiesBerichten.Size = new System.Drawing.Size(121, 21);
+            this.cmbKiesBerichten.Size = new System.Drawing.Size(121, 33);
             this.cmbKiesBerichten.TabIndex = 3;
             this.cmbKiesBerichten.SelectedValueChanged += new System.EventHandler(this.cmbKiesBerichten_SelectedValueChanged);
             // 
             // btnDeleteSelection
             // 
+            this.btnDeleteSelection.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteSelection.Location = new System.Drawing.Point(13, 478);
             this.btnDeleteSelection.Name = "btnDeleteSelection";
             this.btnDeleteSelection.Size = new System.Drawing.Size(148, 32);

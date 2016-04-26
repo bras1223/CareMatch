@@ -29,15 +29,14 @@ namespace CAREMATCH
             this.gebruiker = gebruiker;
             database = new Database();
 
-            
+            cmbKiesBerichten.SelectedIndex = 0;
             lvOngepasteBerichten.View = View.Details;
             lvOngepasteBerichten.CheckBoxes = true;
         }
-
-        private void cmbKiesBerichten_SelectedValueChanged(object sender, EventArgs e)
+        private string PickView()
         {
             string filter = "";
-            
+
             //
             string switchcase = cmbKiesBerichten.Text.ToLower();
             switch (switchcase)
@@ -55,7 +54,7 @@ namespace CAREMATCH
                     lvOngepasteBerichten.Columns.Add("Uitzetter");
                     break;
                 case "gemarkeerde beoordeling":
-                   // MessageBox.Show("gemarkeerde beoordeling");
+                    // MessageBox.Show("gemarkeerde beoordeling");
                     filter = "ongepaste beoordelingen";
 
                     //prepare listview
@@ -66,15 +65,23 @@ namespace CAREMATCH
                     lvOngepasteBerichten.Columns.Add("Uitzetter");
                     break;
                 case "verdachte berichten":
-                   // MessageBox.Show("verdachte hulpvragen");
+                    // MessageBox.Show("verdachte hulpvragen");
                     filter = "verdachte hulpvragen";
 
 
                     break;
                 default:
-                   // MessageBox.Show("default");
+                    // MessageBox.Show("default");
                     break;
+
+
             }
+            return filter;
+        }
+        private void cmbKiesBerichten_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string filter = PickView();
+            
             if(filter == "ongepaste hulpvragen" || filter == "ongepaste beoordelingen")
             {
                 hulpvragen = database.HulpvragenOverzicht(gebruiker, filter);
@@ -87,7 +94,7 @@ namespace CAREMATCH
 
         private void VerwijderGemarkeerdeHulpvraag(Hulpvraag hulpvraag)
         {
-            database.HulpvraagVerwijderen(hulpvraag);
+            database.HulpvraagVerwijderen(hulpvraag.HulpvraagID);
             hulpvraag = null;
 
         }
@@ -149,7 +156,15 @@ namespace CAREMATCH
 
         private void btnDeleteSelection_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            foreach(ListViewItem item in lvOngepasteBerichten.Items)
+            {
+                if (item.Checked)
+                {
+                    database.HulpvraagVerwijderen(item.Index);
+                }
+            }
+            
         }
 
         private void OngepasteBerichtenForm_FormClosing(object sender, FormClosingEventArgs e)

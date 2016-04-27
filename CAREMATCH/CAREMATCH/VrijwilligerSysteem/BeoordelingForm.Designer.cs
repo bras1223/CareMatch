@@ -37,6 +37,9 @@
             this.pbStar3 = new System.Windows.Forms.PictureBox();
             this.pbStar4 = new System.Windows.Forms.PictureBox();
             this.pbStar5 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbStar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbStar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbStar3)).BeginInit();
@@ -49,7 +52,7 @@
             this.txtBeoordeling.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBeoordeling.Location = new System.Drawing.Point(12, 67);
             this.txtBeoordeling.Name = "txtBeoordeling";
-            this.txtBeoordeling.Size = new System.Drawing.Size(698, 198);
+            this.txtBeoordeling.Size = new System.Drawing.Size(698, 174);
             this.txtBeoordeling.TabIndex = 0;
             this.txtBeoordeling.Text = "";
             // 
@@ -65,21 +68,17 @@
             // 
             // btnSlaOP
             // 
-            this.btnSlaOP.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSlaOP.Location = new System.Drawing.Point(12, 280);
+            this.btnSlaOP.Location = new System.Drawing.Point(0, 0);
             this.btnSlaOP.Name = "btnSlaOP";
-            this.btnSlaOP.Size = new System.Drawing.Size(168, 69);
-            this.btnSlaOP.TabIndex = 2;
-            this.btnSlaOP.Text = "Sla Beoordeling Op";
-            this.btnSlaOP.UseVisualStyleBackColor = true;
-            this.btnSlaOP.Click += new System.EventHandler(this.btnSlaOp);
+            this.btnSlaOP.Size = new System.Drawing.Size(75, 23);
+            this.btnSlaOP.TabIndex = 10;
             // 
             // pbStar1
             // 
             this.pbStar1.Image = global::CAREMATCH.Properties.Resources.EmptyStar;
-            this.pbStar1.Location = new System.Drawing.Point(186, 271);
+            this.pbStar1.Location = new System.Drawing.Point(12, 310);
             this.pbStar1.Name = "pbStar1";
-            this.pbStar1.Size = new System.Drawing.Size(100, 78);
+            this.pbStar1.Size = new System.Drawing.Size(86, 78);
             this.pbStar1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbStar1.TabIndex = 3;
             this.pbStar1.TabStop = false;
@@ -90,9 +89,9 @@
             // pbStar2
             // 
             this.pbStar2.Image = global::CAREMATCH.Properties.Resources.EmptyStar;
-            this.pbStar2.Location = new System.Drawing.Point(292, 271);
+            this.pbStar2.Location = new System.Drawing.Point(113, 310);
             this.pbStar2.Name = "pbStar2";
-            this.pbStar2.Size = new System.Drawing.Size(100, 78);
+            this.pbStar2.Size = new System.Drawing.Size(86, 78);
             this.pbStar2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbStar2.TabIndex = 4;
             this.pbStar2.TabStop = false;
@@ -103,9 +102,9 @@
             // pbStar3
             // 
             this.pbStar3.Image = global::CAREMATCH.Properties.Resources.EmptyStar;
-            this.pbStar3.Location = new System.Drawing.Point(398, 271);
+            this.pbStar3.Location = new System.Drawing.Point(216, 310);
             this.pbStar3.Name = "pbStar3";
-            this.pbStar3.Size = new System.Drawing.Size(100, 78);
+            this.pbStar3.Size = new System.Drawing.Size(86, 78);
             this.pbStar3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbStar3.TabIndex = 5;
             this.pbStar3.TabStop = false;
@@ -116,9 +115,9 @@
             // pbStar4
             // 
             this.pbStar4.Image = global::CAREMATCH.Properties.Resources.EmptyStar;
-            this.pbStar4.Location = new System.Drawing.Point(504, 271);
+            this.pbStar4.Location = new System.Drawing.Point(319, 310);
             this.pbStar4.Name = "pbStar4";
-            this.pbStar4.Size = new System.Drawing.Size(100, 78);
+            this.pbStar4.Size = new System.Drawing.Size(87, 78);
             this.pbStar4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbStar4.TabIndex = 6;
             this.pbStar4.TabStop = false;
@@ -129,9 +128,9 @@
             // pbStar5
             // 
             this.pbStar5.Image = global::CAREMATCH.Properties.Resources.EmptyStar;
-            this.pbStar5.Location = new System.Drawing.Point(610, 271);
+            this.pbStar5.Location = new System.Drawing.Point(424, 310);
             this.pbStar5.Name = "pbStar5";
-            this.pbStar5.Size = new System.Drawing.Size(100, 78);
+            this.pbStar5.Size = new System.Drawing.Size(87, 78);
             this.pbStar5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbStar5.TabIndex = 7;
             this.pbStar5.TabStop = false;
@@ -139,11 +138,44 @@
             this.pbStar5.MouseEnter += new System.EventHandler(this.pbStar5_MouseEnter);
             this.pbStar5.MouseLeave += new System.EventHandler(this.pbStar5_MouseLeave);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 271);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(178, 24);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Sterrenbeoordeling:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(590, 289);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(68, 20);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Opslaan";
+            // 
+            // button1
+            // 
+            this.button1.Image = global::CAREMATCH.Properties.Resources.Interface;
+            this.button1.Location = new System.Drawing.Point(587, 311);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 76);
+            this.button1.TabIndex = 11;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // BeoordelingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(722, 360);
+            this.ClientSize = new System.Drawing.Size(722, 400);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.pbStar5);
             this.Controls.Add(this.pbStar4);
             this.Controls.Add(this.pbStar3);
@@ -175,5 +207,8 @@
         private System.Windows.Forms.PictureBox pbStar3;
         private System.Windows.Forms.PictureBox pbStar4;
         private System.Windows.Forms.PictureBox pbStar5;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
     }
 }

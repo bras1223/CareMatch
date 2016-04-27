@@ -256,6 +256,11 @@
     <None Include="Resources\users.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\speech-bubble.png" />
+    <None Include="Resources\new-email%281%29.png" />
+    <None Include="Resources\new-email.png" />
+    <None Include="Resources\new-message.png" />
+    <None Include="Resources\picture.png" />
     <None Include="Resources\note%281%29.png" />
     <None Include="Resources\shapes.png" />
     <None Include="Resources\squares.png" />

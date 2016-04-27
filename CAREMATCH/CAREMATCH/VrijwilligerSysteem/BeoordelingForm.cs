@@ -22,14 +22,6 @@ namespace CAREMATCH.VrijwilligerSysteem
             lblUitleg.Text = "Beoordeel de hulp die u gekregen hebt van de vrijwilliger.\n Maak de beoordeling niet persoonlijk.";
         }
 
-        private void btnSlaOp(object sender, EventArgs e)
-        {
-            hulpvraag.Beoordeling = txtBeoordeling.Text;
-
-            database.HulpvraagBeoordelingToevoegen(hulpvraag);
-            MessageBox.Show("U heeft een " + hulpvraag.Cijfer + "/5 gegeven voor de gekregen hulp.\n Beoordeling opgeslagen.");
-            Close();
-        }
         #region Mouseleave
         private void pbStar4_MouseLeave(object sender, EventArgs e)
         {
@@ -160,6 +152,15 @@ namespace CAREMATCH.VrijwilligerSysteem
                     this.pbStar5.MouseLeave -= new System.EventHandler(this.pbStar5_MouseLeave);
                     break;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            hulpvraag.Beoordeling = txtBeoordeling.Text;
+
+            database.HulpvraagBeoordelingToevoegen(hulpvraag);
+            MessageBox.Show("U heeft een " + hulpvraag.Cijfer + "/5 gegeven voor de gekregen hulp.\n Beoordeling opgeslagen.");
+            Close();
         }
     }
 }

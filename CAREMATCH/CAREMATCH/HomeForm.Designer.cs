@@ -29,26 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeForm));
-            this.btnProfiel = new System.Windows.Forms.Button();
             this.btnAccountOverzicht = new System.Windows.Forms.Button();
             this.btnOngepasteBerichten = new System.Windows.Forms.Button();
             this.btnHulpvraagAannemen = new System.Windows.Forms.Button();
             this.btnUitloggen = new System.Windows.Forms.Button();
+            this.btnProfiel = new System.Windows.Forms.Button();
             this.btnBerichten = new System.Windows.Forms.Button();
             this.btnAgenda = new System.Windows.Forms.Button();
             this.btnHulpvraagIndienen = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnProfiel
-            // 
-            this.btnProfiel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProfiel.Location = new System.Drawing.Point(26, 30);
-            this.btnProfiel.Name = "btnProfiel";
-            this.btnProfiel.Size = new System.Drawing.Size(189, 359);
-            this.btnProfiel.TabIndex = 8;
-            this.btnProfiel.Text = "Profiel";
-            this.btnProfiel.UseVisualStyleBackColor = true;
-            this.btnProfiel.Click += new System.EventHandler(this.btnProfiel_Click);
             // 
             // btnAccountOverzicht
             // 
@@ -68,8 +57,8 @@
             // 
             this.btnOngepasteBerichten.BackColor = System.Drawing.Color.White;
             this.btnOngepasteBerichten.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOngepasteBerichten.Image = global::CAREMATCH.Properties.Resources.tool;
-            this.btnOngepasteBerichten.Location = new System.Drawing.Point(26, 32);
+            this.btnOngepasteBerichten.Image = global::CAREMATCH.Properties.Resources.bel;
+            this.btnOngepasteBerichten.Location = new System.Drawing.Point(26, 30);
             this.btnOngepasteBerichten.Name = "btnOngepasteBerichten";
             this.btnOngepasteBerichten.Size = new System.Drawing.Size(189, 357);
             this.btnOngepasteBerichten.TabIndex = 1;
@@ -106,14 +95,28 @@
             this.btnUitloggen.UseVisualStyleBackColor = false;
             this.btnUitloggen.Click += new System.EventHandler(this.btnUitloggen_Click);
             // 
+            // btnProfiel
+            // 
+            this.btnProfiel.BackColor = System.Drawing.Color.White;
+            this.btnProfiel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProfiel.Image = global::CAREMATCH.Properties.Resources.picture;
+            this.btnProfiel.Location = new System.Drawing.Point(26, 30);
+            this.btnProfiel.Name = "btnProfiel";
+            this.btnProfiel.Size = new System.Drawing.Size(189, 359);
+            this.btnProfiel.TabIndex = 8;
+            this.btnProfiel.Text = "Profiel";
+            this.btnProfiel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnProfiel.UseVisualStyleBackColor = false;
+            this.btnProfiel.Click += new System.EventHandler(this.btnProfiel_Click);
+            // 
             // btnBerichten
             // 
             this.btnBerichten.BackColor = System.Drawing.Color.White;
             this.btnBerichten.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBerichten.Image = global::CAREMATCH.Properties.Resources.Note;
-            this.btnBerichten.Location = new System.Drawing.Point(610, 32);
+            this.btnBerichten.Location = new System.Drawing.Point(606, 32);
             this.btnBerichten.Name = "btnBerichten";
-            this.btnBerichten.Size = new System.Drawing.Size(189, 365);
+            this.btnBerichten.Size = new System.Drawing.Size(189, 355);
             this.btnBerichten.TabIndex = 7;
             this.btnBerichten.Text = "Berichten";
             this.btnBerichten.TextAlign = System.Drawing.ContentAlignment.BottomCenter;

@@ -29,11 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfielForm));
-            this.btnWijzig = new System.Windows.Forms.Button();
             this.txtGebruikersInfo = new System.Windows.Forms.RichTextBox();
-            this.btnOpslaan = new System.Windows.Forms.Button();
             this.lblOverJezelf = new System.Windows.Forms.Label();
-            this.pbProfielFoto = new System.Windows.Forms.PictureBox();
             this.txtActueelWachtwoord = new System.Windows.Forms.TextBox();
             this.lblActueelWachtwoord = new System.Windows.Forms.Label();
             this.lblNieuwWachtwoord = new System.Windows.Forms.Label();
@@ -48,21 +45,13 @@
             this.txtVoornaam = new System.Windows.Forms.TextBox();
             this.lblVoornaam = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).BeginInit();
+            this.btnOpslaan = new System.Windows.Forms.Button();
+            this.btnWijzig = new System.Windows.Forms.Button();
+            this.pbProfielFoto = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.gbWijzigWachtwoord.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnWijzig
-            // 
-            this.btnWijzig.BackColor = System.Drawing.Color.Transparent;
-            this.btnWijzig.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWijzig.Image = global::CAREMATCH.Properties.Resources.UpArrow;
-            this.btnWijzig.Location = new System.Drawing.Point(12, 160);
-            this.btnWijzig.Name = "btnWijzig";
-            this.btnWijzig.Size = new System.Drawing.Size(119, 51);
-            this.btnWijzig.TabIndex = 1;
-            this.btnWijzig.UseVisualStyleBackColor = false;
-            this.btnWijzig.Click += new System.EventHandler(this.btnWijzig_Click);
             // 
             // txtGebruikersInfo
             // 
@@ -73,19 +62,6 @@
             this.txtGebruikersInfo.TabIndex = 2;
             this.txtGebruikersInfo.Text = "";
             // 
-            // btnOpslaan
-            // 
-            this.btnOpslaan.BackColor = System.Drawing.Color.Transparent;
-            this.btnOpslaan.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnOpslaan.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpslaan.Image = global::CAREMATCH.Properties.Resources.Interface;
-            this.btnOpslaan.Location = new System.Drawing.Point(31, 396);
-            this.btnOpslaan.Name = "btnOpslaan";
-            this.btnOpslaan.Size = new System.Drawing.Size(62, 60);
-            this.btnOpslaan.TabIndex = 9;
-            this.btnOpslaan.UseVisualStyleBackColor = false;
-            this.btnOpslaan.Click += new System.EventHandler(this.btnOpslaan_Click);
-            // 
             // lblOverJezelf
             // 
             this.lblOverJezelf.AutoSize = true;
@@ -95,17 +71,6 @@
             this.lblOverJezelf.Size = new System.Drawing.Size(351, 26);
             this.lblOverJezelf.TabIndex = 4;
             this.lblOverJezelf.Text = "Text wordt geplaatst during runtime";
-            // 
-            // pbProfielFoto
-            // 
-            this.pbProfielFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbProfielFoto.Location = new System.Drawing.Point(12, 12);
-            this.pbProfielFoto.Name = "pbProfielFoto";
-            this.pbProfielFoto.Size = new System.Drawing.Size(119, 142);
-            this.pbProfielFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbProfielFoto.TabIndex = 0;
-            this.pbProfielFoto.TabStop = false;
-            this.pbProfielFoto.Click += new System.EventHandler(this.pbProfielFoto_Click);
             // 
             // txtActueelWachtwoord
             // 
@@ -237,18 +202,65 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Image = global::CAREMATCH.Properties.Resources.Interface;
-            this.btnCancel.Location = new System.Drawing.Point(31, 396);
+            this.btnCancel.Location = new System.Drawing.Point(31, 376);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(62, 60);
+            this.btnCancel.Size = new System.Drawing.Size(74, 80);
             this.btnCancel.TabIndex = 16;
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnOpslaan
+            // 
+            this.btnOpslaan.BackColor = System.Drawing.Color.Transparent;
+            this.btnOpslaan.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnOpslaan.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpslaan.Image = global::CAREMATCH.Properties.Resources.Interface;
+            this.btnOpslaan.Location = new System.Drawing.Point(31, 396);
+            this.btnOpslaan.Name = "btnOpslaan";
+            this.btnOpslaan.Size = new System.Drawing.Size(62, 60);
+            this.btnOpslaan.TabIndex = 9;
+            this.btnOpslaan.UseVisualStyleBackColor = false;
+            this.btnOpslaan.Click += new System.EventHandler(this.btnOpslaan_Click);
+            // 
+            // btnWijzig
+            // 
+            this.btnWijzig.BackColor = System.Drawing.Color.Transparent;
+            this.btnWijzig.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWijzig.Image = global::CAREMATCH.Properties.Resources.UpArrow;
+            this.btnWijzig.Location = new System.Drawing.Point(12, 160);
+            this.btnWijzig.Name = "btnWijzig";
+            this.btnWijzig.Size = new System.Drawing.Size(119, 51);
+            this.btnWijzig.TabIndex = 1;
+            this.btnWijzig.UseVisualStyleBackColor = false;
+            this.btnWijzig.Click += new System.EventHandler(this.btnWijzig_Click);
+            // 
+            // pbProfielFoto
+            // 
+            this.pbProfielFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbProfielFoto.Location = new System.Drawing.Point(12, 12);
+            this.pbProfielFoto.Name = "pbProfielFoto";
+            this.pbProfielFoto.Size = new System.Drawing.Size(119, 142);
+            this.pbProfielFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbProfielFoto.TabIndex = 0;
+            this.pbProfielFoto.TabStop = false;
+            this.pbProfielFoto.Click += new System.EventHandler(this.pbProfielFoto_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(34, 353);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 20);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Opslaan";
             // 
             // ProfielForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(973, 474);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblAchternaam);
             this.Controls.Add(this.lblAuto);
@@ -266,9 +278,9 @@
             this.Name = "ProfielForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Profiel - CareMatch";
-            ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).EndInit();
             this.gbWijzigWachtwoord.ResumeLayout(false);
             this.gbWijzigWachtwoord.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProfielFoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -295,5 +307,6 @@
         private System.Windows.Forms.TextBox txtVoornaam;
         private System.Windows.Forms.Label lblVoornaam;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label label1;
     }
 }

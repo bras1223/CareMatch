@@ -36,6 +36,7 @@
             this.lvHulpvragen = new System.Windows.Forms.ListView();
             this.cbFilter = new System.Windows.Forms.ComboBox();
             this.lblFilter = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnBekijkHulpvraag
@@ -109,11 +110,22 @@
             this.lblFilter.TabIndex = 5;
             this.lblFilter.Text = "Filteren op:";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(29, 369);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 20);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Home";
+            // 
             // HulpvraagOverzichtForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 470);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblFilter);
             this.Controls.Add(this.cbFilter);
             this.Controls.Add(this.lvHulpvragen);
@@ -138,5 +150,6 @@
         private System.Windows.Forms.ListView lvHulpvragen;
         private System.Windows.Forms.ComboBox cbFilter;
         private System.Windows.Forms.Label lblFilter;
+        private System.Windows.Forms.Label label1;
     }
 }

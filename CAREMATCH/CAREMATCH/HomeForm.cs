@@ -166,7 +166,8 @@ namespace CAREMATCH
             if (database.ChatNieuwBericht(gebruiker))
             {
                 img.Parent = btnBerichten;
-                img.Image = Properties.Resources.new_message_32;
+                img.Location = new Point(20, 20);
+                img.Image = Properties.Resources.new_message;
                 img.BackColor = Color.Transparent;
                 img.SizeMode = PictureBoxSizeMode.AutoSize;
             }

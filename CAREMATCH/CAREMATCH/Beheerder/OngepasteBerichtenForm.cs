@@ -85,7 +85,7 @@ namespace CAREMATCH
 
         private void btnLaatZien_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            
             Hulpvraag hulpvraag = null;
 
 
@@ -99,6 +99,7 @@ namespace CAREMATCH
             
             if(hulpvraag != null)
             {
+                this.Hide();
                 HulpvraagForm hulpvraagForm = new HulpvraagForm(hulpvraag, gebruiker, false);
                 hulpvraagForm.ShowDialog();
                 if (hulpvraagForm.DialogResult == DialogResult.OK || hulpvraagForm.DialogResult == DialogResult.Cancel)

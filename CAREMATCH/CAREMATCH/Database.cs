@@ -720,7 +720,7 @@ namespace CAREMATCH
             
             return gebruiker;
         }
-        public void GebruikerAccountToevoegen(string Gebruikersnaam, string Wachtwoord, string Approved, string Rol, string filenameFoto, string filenameVOG, string voornaam, string achternaam, string geslacht, DateTime geboortedatum)
+        public bool GebruikerAccountToevoegen(string Gebruikersnaam, string Wachtwoord, string Approved, string Rol, string filenameFoto, string filenameVOG, string voornaam, string achternaam, string geslacht, DateTime geboortedatum)
         {
 
             try
@@ -755,14 +755,20 @@ namespace CAREMATCH
                     command.Parameters.Add(new OracleParameter(":filenameVOG", OracleDbType.Varchar2)).Value = filenameVOG;
                 }
                 command.ExecuteNonQuery();
+                return true;
             }
             catch (OracleException)
             {
                 MessageBox.Show("kon de verbinding met de database niet tot stand brengen");
+                return false;
+            }
+            finally
+            {
+                con.Close();
             }
 
 
-            con.Close();
+            
         }
         public bool GebruikerControlleerUsername(string Gebruikersnaam)
         {
@@ -780,7 +786,7 @@ namespace CAREMATCH
             catch (OracleException)
             {
                 MessageBox.Show("kon de verbinding met de database niet tot stand brengen");
-                return false;
+                return true;
             }
 
 

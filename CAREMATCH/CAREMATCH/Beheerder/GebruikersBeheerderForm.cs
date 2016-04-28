@@ -63,11 +63,11 @@ namespace Login
             }
             else
             {
-                con.Open();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "UPDATE GEBRUIKER SET ROL ='" + dataGridView1.Rows[e.RowIndex].Cells["ROL"].Value.ToString() + "' WHERE GEBRUIKERID = " + Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERID"].Value);
-                cmd.ExecuteNonQuery();
-                con.Close();
+                //con.Open();
+                //cmd.CommandType = CommandType.Text;
+                //cmd.CommandText = "UPDATE GEBRUIKER SET ROL ='" + dataGridView1.Rows[e.RowIndex].Cells["ROL"].Value.ToString() + "' WHERE GEBRUIKERID = " + Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERID"].Value);
+                //cmd.ExecuteNonQuery();
+                //con.Close();
             }
 
 

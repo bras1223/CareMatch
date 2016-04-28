@@ -295,7 +295,7 @@ namespace CAREMATCH
         public int ChatCheckGelezen(int ontvangerid, int verzenderid)
         {
             int count = 0;
-            con.Open();
+            try{con.Open();} catch{};
             command = new OracleCommand("SELECT COUNT(*) FROM CHAT WHERE ONTVANGERID =:verzenderid AND VERZENDERID = :ontvangerid AND GELEZEN = 'N' ", con);
             command.Parameters.Add(new OracleParameter("verzenderid", OracleDbType.Int32)).Value =verzenderid;
             command.Parameters.Add(new OracleParameter("onvtvangerid", OracleDbType.Int32)).Value = ontvangerid;
@@ -313,7 +313,7 @@ namespace CAREMATCH
         public bool ChatNieuwBericht(Gebruiker gebruiker)
         {
             bool nieuwBericht = false;
-            con.Open();
+            try{con.Open();} catch{};
             command = new OracleCommand("SELECT Gelezen FROM Chat WHERE OntvangerID =:gebruikerID ", con);
             command.Parameters.Add(new OracleParameter("gebruikerid", OracleDbType.Int32)).Value = gebruiker.GebruikersID;
             reader = command.ExecuteReader();
@@ -332,7 +332,7 @@ namespace CAREMATCH
         //Bericht is gelezen
         public void ChatBerichtGelezen(int berichtid)
         {
-            con.Open();
+            try{con.Open();} catch{};
             command = new OracleCommand("UPDATE CHAT SET GELEZEN =:STATUS WHERE CHATID =:berichtid", con);
             command.Parameters.Add(new OracleParameter("STATUS", OracleDbType.Char)).Value = "Y";
             command.Parameters.Add(new OracleParameter("berichtid", OracleDbType.Int32)).Value = berichtid;
@@ -345,7 +345,7 @@ namespace CAREMATCH
         {
             string status = "";
 
-            con.Open();
+            try{con.Open();} catch{};
             command = new OracleCommand("SELECT onlinestatus FROM gebruiker WHERE gebruikerid = :id", con);
             command.Parameters.Add(new OracleParameter("id", OracleDbType.Int32)).Value = id;
             reader = command.ExecuteReader();
@@ -371,7 +371,7 @@ namespace CAREMATCH
         //Zet de gebruiker online
         public void ChatZetOnline(int gebruikerID)
         {
-            con.Open();
+            try{con.Open();} catch{};
             command = new OracleCommand("UPDATE Gebruiker SET ONLINESTATUS =:STATUS WHERE GebruikerID =:gebruikerid", con);
             command.Parameters.Add(new OracleParameter("STATUS", OracleDbType.Char)).Value = "Y";
             command.Parameters.Add(new OracleParameter("gebruikerid", OracleDbType.Int32)).Value = gebruikerID;
@@ -382,7 +382,7 @@ namespace CAREMATCH
         //Zet de gebruiker Offline
         public void ChatZetOffline(int gebruikerID)
         {
-            con.Open();
+            try{con.Open();} catch{};
             command = new OracleCommand("UPDATE Gebruiker SET ONLINESTATUS =:STATUS WHERE GebruikerID =:gebruikerid", con);
             command.Parameters.Add(new OracleParameter("STATUS", OracleDbType.Char)).Value = "N";
             command.Parameters.Add(new OracleParameter("gebruikerid", OracleDbType.Int32)).Value = gebruikerID;
@@ -396,7 +396,7 @@ namespace CAREMATCH
             List<string> vrijwilligerlijst;
             vrijwilligerlijst = new List<string>();
 
-            con.Open();
+            try{con.Open();} catch{};
             command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Vrijwilliger' ORDER BY Gebruikersnaam ASC", con);
             reader = command.ExecuteReader();
 
@@ -415,7 +415,7 @@ namespace CAREMATCH
             List<string> hulpbehoevendelijst;
             hulpbehoevendelijst = new List<string>();
 
-            con.Open();
+            try{con.Open();} catch{};
             command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Hulpbehoevende'  ORDER BY Gebruikersnaam ASC", con);
             reader = command.ExecuteReader();
 
@@ -432,7 +432,7 @@ namespace CAREMATCH
         public int ChatpartnerID(string naam)
         {
             int id = 0;
-            con.Open();
+            try{con.Open();} catch{};
             command = new OracleCommand("SELECT GebruikerID FROM gebruiker WHERE gebruikersnaam = :naam", con);
             command.Parameters.Add(new OracleParameter("naam", naam));
             reader = command.ExecuteReader();
@@ -450,7 +450,7 @@ namespace CAREMATCH
         {
             int Chatcount = 0;
 
-            con.Open();
+            try{con.Open();} catch{};
             command = new OracleCommand("SELECT COUNT(CHATID) as ChatIDCount FROM Chat", con);
             reader = command.ExecuteReader();
 
@@ -492,7 +492,7 @@ namespace CAREMATCH
             List<string> vrijwilligerlijst;
             vrijwilligerlijst = new List<string>();
 
-            con.Open();
+            try{con.Open();} catch{};
             command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Vrijwilliger' AND (GEBRUIKERID IN (SELECT ONTVANGERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id) OR GEBRUIKERID IN (SELECT VERZENDERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id)) ORDER BY Gebruikersnaam ASC ", con);
             command.Parameters.Add(new OracleParameter("id", OracleDbType.Int32)).Value = id;
             reader = command.ExecuteReader();
@@ -513,7 +513,7 @@ namespace CAREMATCH
             List<string> hulpbehoevendelijst;
             hulpbehoevendelijst = new List<string>();
 
-            con.Open();
+            try{con.Open();} catch{};
             command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Hulpbehoevende' AND (GEBRUIKERID IN (SELECT ONTVANGERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id) OR GEBRUIKERID IN (SELECT VERZENDERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id)) ORDER BY Gebruikersnaam ASC", con);
             command.Parameters.Add(new OracleParameter("id", OracleDbType.Int32)).Value = id;
             reader = command.ExecuteReader();
@@ -531,7 +531,7 @@ namespace CAREMATCH
         public List<Chatbericht> ChatLaden(string partnerNaam, string gebruikerNaam, int partnerID, int gebruikerID)
         {
             List<Chatbericht> berichtenlijst = new List<Chatbericht>();
-            con.Open();
+            try{con.Open();} catch{};
             command = new OracleCommand("SELECT CHATID, BERICHTINHOUD, DATUMTIJD, VERZENDERID FROM CHAT WHERE (VERZENDERID = :gebruikerID AND ONTVANGERID =  :partnerID) OR (VERZENDERID = :partnerID AND ONTVANGERID = :gebruikerID) ORDER BY CHATID ASC", con);
             command.Parameters.Add(new OracleParameter("partnerID", OracleDbType.Int32)).Value = partnerID;
             command.Parameters.Add(new OracleParameter("gebruikerID", OracleDbType.Int32)).Value = gebruikerID;
@@ -562,7 +562,7 @@ namespace CAREMATCH
         public int ControlleerMaxChatID()
         {
             int id = 0;
-            con.Open();
+            try{con.Open();} catch{};
             command = new OracleCommand("SELECT MAX(CHATID) as MAXID FROM CHAT", con);
             reader = command.ExecuteReader();
             while (reader.Read())

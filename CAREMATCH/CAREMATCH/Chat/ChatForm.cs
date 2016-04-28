@@ -58,10 +58,13 @@ namespace CAREMATCH
         {
             int id = gebruiker.GebruikersID;
             DateTime datum;
-            datum = DateTime.Now;            
+            datum = DateTime.Now;
             try
             {
-                database.ChatInvoegen(database.ControlleerMaxChatID() + 1, tbBericht.Text, partnerid, gebruiker.GebruikersID, datum.ToString("dd/MMM HH:mm"));
+                if(tbBericht.Text != "" && tbBericht.Text != @"\r\n")
+                {
+                    database.ChatInvoegen(database.ControlleerMaxChatID() + 1, tbBericht.Text, partnerid, gebruiker.GebruikersID, datum.ToString("dd/MMM HH:mm"));
+                }
             }
             catch { MessageBox.Show("Selecteer een Persoon"); }
             tbBericht.Clear();
@@ -133,7 +136,6 @@ namespace CAREMATCH
                     {
                         database.ChatBerichtGelezen(c.ID);
                     }
-                    string test = c.Inhoud;
                     lbChat.Items.Add(c);
                     lbChat.Items.Add(c.datumtijd.ToString("dd / MMM HH: mm"));
                     lbChat.Items.Add(" ");

@@ -202,7 +202,7 @@ namespace CAREMATCH
             reader = command.ExecuteReader();
             while (reader.Read())
             {
-                tempString = reader["Foto"].ToString();
+                tempString = gebruiker.GetLocalDropBox() + reader["Foto"].ToString();
             }
             con.Close();
             return tempString;
@@ -692,7 +692,7 @@ namespace CAREMATCH
                     }
                     try
                     {
-                        gebruiker.Pasfoto = reader["Foto"].ToString();
+                        gebruiker.Pasfoto = gebruiker.GetLocalDropBox() + reader["Foto"].ToString();
                     }
                     catch
                     {
@@ -837,7 +837,7 @@ namespace CAREMATCH
             command.ExecuteNonQuery();
             con.Close();
         }
-        public List<string> GebruikerProfielOpvragen(string gebruiker)
+        public List<string> GebruikerProfielOpvragen(string gebruikersnaam, Gebruiker gebruiker)
         {
             List<string> ProfielInfo = new List<string>();
             con.Open();
@@ -855,7 +855,7 @@ namespace CAREMATCH
                 ProfielInfo.Add(tempString);
                 tempString = reader["Voornaam"].ToString();
                 ProfielInfo.Add(tempString);
-                tempString = reader["Foto"].ToString();
+                tempString = gebruiker.GetLocalDropBox()+ reader["Foto"].ToString();
                 ProfielInfo.Add(tempString);
             }
             con.Close();

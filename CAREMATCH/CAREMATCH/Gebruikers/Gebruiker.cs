@@ -44,5 +44,9 @@ namespace CAREMATCH
         {
             return agendaPuntList;
         }
+        public string GetLocalDropBox()
+        {
+            return Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\DropBox\CareMatch\" + this.Gebruikersnaam;
+        }
     }
 }

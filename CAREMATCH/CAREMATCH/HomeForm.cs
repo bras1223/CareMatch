@@ -28,7 +28,7 @@ namespace CAREMATCH
             this.gebruiker = gebruiker;
             database = new Database();
             img = new PictureBox();
-
+            
             if (gebruiker.Rol.ToLower() == "hulpbehoevende")
             {
                 btnOngepasteBerichten.Visible = false;

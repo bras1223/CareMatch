@@ -37,30 +37,30 @@ namespace CAREMATCH.VrijwilligerSysteem
                 txtGebruikersInfo.Enabled = false;
                 cbAuto.Enabled = false;
 
-                if(database.GebruikerProfielOpvragen(gebruikerInfo)[2] != "")
+                if(database.GebruikerProfielOpvragen(gebruikerInfo, gebruiker)[2] != "")
                 {
-                    txtAchternaam.Text = database.GebruikerProfielOpvragen(gebruikerInfo)[2];
+                    txtAchternaam.Text = database.GebruikerProfielOpvragen(gebruikerInfo, gebruiker)[2];
                 }
-                if(database.GebruikerProfielOpvragen(gebruikerInfo)[3] != "")
+                if(database.GebruikerProfielOpvragen(gebruikerInfo, gebruiker)[3] != "")
                 {
-                    txtVoornaam.Text = database.GebruikerProfielOpvragen(gebruikerInfo)[3];
+                    txtVoornaam.Text = database.GebruikerProfielOpvragen(gebruikerInfo, gebruiker)[3];
                 }
-                if(database.GebruikerProfielOpvragen(gebruikerInfo)[1] != "")
+                if(database.GebruikerProfielOpvragen(gebruikerInfo, gebruiker)[1] != "")
                 {
-                    txtGebruikersInfo.Text = database.GebruikerProfielOpvragen(gebruikerInfo)[1];
+                    txtGebruikersInfo.Text = database.GebruikerProfielOpvragen(gebruikerInfo, gebruiker)[1];
                 }
-                if (database.GebruikerProfielOpvragen(gebruikerInfo)[4] != "")
+                if (database.GebruikerProfielOpvragen(gebruikerInfo, gebruiker)[4] != "")
                 {
                     try
                     {
-                        pbProfielFoto.Image = Image.FromFile(database.GebruikerProfielOpvragen(gebruikerInfo)[4]);
+                        pbProfielFoto.Image = Image.FromFile(database.GebruikerProfielOpvragen(gebruikerInfo, gebruiker)[4]);
                     }
                     catch
                     {
                         // als er geen profiel foto is hoeft er geen foutmelding weergeven te worden.
                     }
                 }
-                if (database.GebruikerProfielOpvragen(gebruikerInfo)[0] == "Y")
+                if (database.GebruikerProfielOpvragen(gebruikerInfo, gebruiker)[0] == "Y")
                 {
                     cbAuto.Checked = true;
                 }
@@ -104,17 +104,16 @@ namespace CAREMATCH.VrijwilligerSysteem
                 //Als er een afbeelding geopend is.
                 if (zoekFotoDialog.FileName != "")
                 {
-                    if (!File.Exists(gebruiker.Gebruikersnaam))
+                    if (!File.Exists(gebruiker.GetLocalDropBox()))
                     {
                         //Directory aanmaken als deze nog niet bestaat.
-                        System.IO.Directory.CreateDirectory(gebruiker.Gebruikersnaam);
+                        System.IO.Directory.CreateDirectory(gebruiker.GetLocalDropBox());
                     }
                     //Directory uitlezen
-                    System.IO.DirectoryInfo di = new DirectoryInfo(gebruiker.Gebruikersnaam + @"\");
+                    System.IO.DirectoryInfo di = new DirectoryInfo(gebruiker.GetLocalDropBox());
                     //Pasfoto bestand de naam geven van het aantal bestnanden in de directory. beste oplossing zonder fouten.
-                    File.Copy(zoekFotoDialog.FileName, gebruiker.Gebruikersnaam + @"\Pasfoto" + di.GetFiles().Length + Path.GetExtension(zoekFotoDialog.FileName));
-                    gebruiker.Pasfoto = gebruiker.Gebruikersnaam + @"\Pasfoto" + (di.GetFiles().Length - 1).ToString() + Path.GetExtension(zoekFotoDialog.FileName);
-
+                    File.Copy(zoekFotoDialog.FileName, gebruiker.GetLocalDropBox()+ @"\Pasfoto" + di.GetFiles().Length + Path.GetExtension(zoekFotoDialog.FileName));
+                    gebruiker.Pasfoto = @"\Pasfoto" + (di.GetFiles().Length - 1).ToString() + Path.GetExtension(zoekFotoDialog.FileName);
                 }
             }
             //Info opslaan
@@ -147,7 +146,6 @@ namespace CAREMATCH.VrijwilligerSysteem
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
-
         private void btnWijzig_Click(object sender, EventArgs e)
         {
             zoekFotoDialog = new OpenFileDialog();
@@ -157,7 +155,6 @@ namespace CAREMATCH.VrijwilligerSysteem
                 pbProfielFoto.Image = Image.FromFile(zoekFotoDialog.FileName);
             }
         }
-
         private void pbProfielFoto_Click(object sender, EventArgs e)
         {
 

@@ -1,6 +1,6 @@
 ﻿namespace CAREMATCH.Beheerder
 {
-    partial class ChatBeheer
+    partial class HulpvraagBeheerderForm
     {
         /// <summary>
         /// Required designer variable.
@@ -37,10 +37,10 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 11);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(788, 401);
-            this.dataGridView1.TabIndex = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(788, 197);
+            this.dataGridView1.TabIndex = 21;
             // 
             // cmbBeheer
             // 
@@ -48,35 +48,37 @@
             this.cmbBeheer.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBeheer.FormattingEnabled = true;
             this.cmbBeheer.Items.AddRange(new object[] {
-            "Alles"});
-            this.cmbBeheer.Location = new System.Drawing.Point(11, 418);
+            "Alles",
+            "Hulpvraag info"});
+            this.cmbBeheer.Location = new System.Drawing.Point(12, 213);
             this.cmbBeheer.Margin = new System.Windows.Forms.Padding(2);
             this.cmbBeheer.Name = "cmbBeheer";
             this.cmbBeheer.Size = new System.Drawing.Size(571, 33);
-            this.cmbBeheer.TabIndex = 23;
+            this.cmbBeheer.TabIndex = 20;
             // 
             // btnBack
             // 
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.Location = new System.Drawing.Point(586, 418);
+            this.btnBack.Location = new System.Drawing.Point(587, 213);
             this.btnBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(214, 33);
-            this.btnBack.TabIndex = 22;
+            this.btnBack.TabIndex = 19;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // ChatBeheer
+            // HulpvraagBeheerderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(809, 460);
+            this.ClientSize = new System.Drawing.Size(812, 257);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.cmbBeheer);
             this.Controls.Add(this.btnBack);
-            this.Name = "ChatBeheer";
-            this.Text = "ChatBeheer";
+            this.Name = "HulpvraagBeheerderForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "HulpvraagBeheerderForm";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

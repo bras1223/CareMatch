@@ -204,7 +204,7 @@ namespace CAREMATCH
             reader = command.ExecuteReader();
             while (reader.Read())
             {
-                tempString = reader["Foto"].ToString();
+                tempString = gebruiker.GetLocalDropBox() + reader["Foto"].ToString();
             }
             con.Close();
             return tempString;
@@ -742,7 +742,7 @@ namespace CAREMATCH
                     }
                     try
                     {
-                        gebruiker.Pasfoto = reader["Foto"].ToString();
+                        gebruiker.Pasfoto = gebruiker.GetLocalDropBox() + reader["Foto"].ToString();
                     }
                     catch
                     {
@@ -763,7 +763,7 @@ namespace CAREMATCH
             
             return gebruiker;
         }
-        public void GebruikerAccountToevoegen(string Gebruikersnaam, string Wachtwoord, string Approved, string Rol, string filenameFoto, string filenameVOG, string voornaam, string achternaam, string geslacht, DateTime geboortedatum)
+        public bool GebruikerAccountToevoegen(string Gebruikersnaam, string Wachtwoord, string Approved, string Rol, string filenameFoto, string filenameVOG, string voornaam, string achternaam, string geslacht, DateTime geboortedatum)
         {
 
             try
@@ -798,14 +798,20 @@ namespace CAREMATCH
                     command.Parameters.Add(new OracleParameter(":filenameVOG", OracleDbType.Varchar2)).Value = filenameVOG;
                 }
                 command.ExecuteNonQuery();
+                return true;
             }
             catch (OracleException)
             {
                 MessageBox.Show("kon de verbinding met de database niet tot stand brengen");
+                return false;
+            }
+            finally
+            {
+                con.Close();
             }
 
 
-            con.Close();
+            
         }
         public bool GebruikerControlleerUsername(string Gebruikersnaam)
         {
@@ -823,7 +829,7 @@ namespace CAREMATCH
             catch (OracleException)
             {
                 MessageBox.Show("kon de verbinding met de database niet tot stand brengen");
-                return false;
+                return true;
             }
 
 
@@ -890,7 +896,7 @@ namespace CAREMATCH
             command.ExecuteNonQuery();
             con.Close();
         }
-        public List<string> GebruikerProfielOpvragen(string gebruiker)
+        public List<string> GebruikerProfielOpvragen(string gebruikersnaam, Gebruiker gebruiker)
         {
             List<string> ProfielInfo = new List<string>();
             con.Open();
@@ -908,7 +914,7 @@ namespace CAREMATCH
                 ProfielInfo.Add(tempString);
                 tempString = reader["Voornaam"].ToString();
                 ProfielInfo.Add(tempString);
-                tempString = reader["Foto"].ToString();
+                tempString = gebruiker.GetLocalDropBox()+ reader["Foto"].ToString();
                 ProfielInfo.Add(tempString);
             }
             con.Close();

@@ -72,6 +72,7 @@
             this.btnSlaOP.Name = "btnSlaOP";
             this.btnSlaOP.Size = new System.Drawing.Size(75, 23);
             this.btnSlaOP.TabIndex = 10;
+            this.btnSlaOP.Visible = false;
             // 
             // pbStar1
             // 

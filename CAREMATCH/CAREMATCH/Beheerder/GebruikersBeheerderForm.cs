@@ -34,13 +34,18 @@ namespace Login
         private void btnBack_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
-            this.Close();
-            
+            this.Close();           
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            File.Open(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\DropBox\CareMatch\" + dataGridView1.Rows[e.RowIndex].Cells["Gebruikersnaam"].Value.ToString()+"\\" + dataGridView1.Rows[e.RowIndex].Cells["VOG"].Value.ToString(),FileMode.Open);
+            try
+            {
+                System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\DropBox\CareMatch\" + dataGridView1.Rows[e.RowIndex].Cells["Gebruikersnaam"].Value.ToString() + "\\" + dataGridView1.Rows[e.RowIndex].Cells["VOG"].Value.ToString());
+            }
+            catch
+            {
+            }             
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -113,7 +113,7 @@ namespace CAREMATCH.VrijwilligerSysteem
                     System.IO.DirectoryInfo di = new DirectoryInfo(gebruiker.GetLocalDropBox());
                     //Pasfoto bestand de naam geven van het aantal bestnanden in de directory. beste oplossing zonder fouten.
                     File.Copy(zoekFotoDialog.FileName, gebruiker.GetLocalDropBox()+ @"\Pasfoto" + di.GetFiles().Length + Path.GetExtension(zoekFotoDialog.FileName));
-                    gebruiker.Pasfoto = @"\Pasfoto" + (di.GetFiles().Length - 1).ToString() + Path.GetExtension(zoekFotoDialog.FileName);
+                    gebruiker.Pasfoto = @"\Pasfoto" + (di.GetFiles().Length).ToString() + Path.GetExtension(zoekFotoDialog.FileName);
                 }
             }
             //Info opslaan
@@ -149,6 +149,7 @@ namespace CAREMATCH.VrijwilligerSysteem
         private void btnWijzig_Click(object sender, EventArgs e)
         {
             zoekFotoDialog = new OpenFileDialog();
+            zoekFotoDialog.Filter = "Image Files (JPG, PNG, GIF)|*.JPG;*.PNG;*.GIF";
             DialogResult d = zoekFotoDialog.ShowDialog();
             if(d == DialogResult.OK)
             {

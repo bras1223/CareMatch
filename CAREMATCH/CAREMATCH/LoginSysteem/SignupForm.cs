@@ -18,18 +18,19 @@ namespace CAREMATCH.LoginSysteem
 {
     public partial class SignupForm : Form
     {
-        private RFID rfid;
+        private RFID rfidsignup;
         private Database database;
         private OpenFileDialog ofd;
         private OpenFileDialog zoekFotoDialog;
         private string vog;
         public SignupForm()
         {
+            
             InitializeComponent();
+            RFIDopen();
             database = new Database();
 
             cbRol.SelectedIndex = 0;
-
             btnUploadVOG.Visible = false;
             lblVOGPath.Visible = false;
             lblVOG.Visible = false;     
@@ -194,17 +195,15 @@ namespace CAREMATCH.LoginSysteem
             }
         }
         #region RFID
-        private void SignupForm_Load(object sender, EventArgs e)
-        {
+        private void RFIDopen() {
             
-            //rfid = new RFID(); //Krijg nogsteeds foutmelding. 
-            //rfid.open();
-            //rfid.Attach += new AttachEventHandler(rfid_Attach);
-            //rfid.Detach += new DetachEventHandler(rfid_Detach);
+            rfidsignup = new RFID(); //Krijg nogsteeds foutmelding. 
+            rfidsignup.Attach += new AttachEventHandler(rfid_Attach);
+            rfidsignup.Detach += new DetachEventHandler(rfid_Detach);
 
-            //rfid.Tag += new TagEventHandler(rfid_Tag);
-            //rfid.TagLost += new TagEventHandler(rfid_TagLost);
-            //openCmdLine(rfid);               
+            rfidsignup.Tag += new TagEventHandler(rfid_Tag);
+            rfidsignup.TagLost += new TagEventHandler(rfid_TagLost);
+            openCmdLine(rfidsignup);
         }
         void rfid_Tag(object sender, TagEventArgs e)
         {
@@ -212,12 +211,16 @@ namespace CAREMATCH.LoginSysteem
             {
                 MessageBox.Show("Deze tag is reeds aangemeld, klik op OK om u in te loggen.");
                 RFIDLogin login = new RFIDLogin();
+                login.Show();
                 this.Close();
                 this.Dispose();
-                login.Show();
+                
             }
             else
             {
+                tbGebruikersnaam.Text = e.Tag;
+                tbWachtwoord.Text = e.Tag;
+                tbHerhWachtwoord.Text = e.Tag;
                 tbGebruikersnaam.Visible = false;
                 tbWachtwoord.Visible = false;
                 tbHerhWachtwoord.Visible = false;
@@ -253,11 +256,14 @@ namespace CAREMATCH.LoginSysteem
         void rfid_Attach(object sender, AttachEventArgs e)
         {
             RFID attached = (RFID)sender;
+
+                rfidsignup.Antenna = true;
         }
 
         void rfid_Detach(object sender, DetachEventArgs e)
         {
             RFID detached = (RFID)sender;
+            rfidsignup.Antenna = false;
         }
 
 
@@ -348,16 +354,28 @@ namespace CAREMATCH.LoginSysteem
 
         private void RFIDClose()
         {
-            rfid.Attach -= new AttachEventHandler(rfid_Attach);
-            rfid.Detach -= new DetachEventHandler(rfid_Detach);
-            rfid.Tag -= new TagEventHandler(rfid_Tag);
-            rfid.TagLost -= new TagEventHandler(rfid_TagLost);
+            rfidsignup.Attach -= new AttachEventHandler(rfid_Attach);
+            rfidsignup.Detach -= new DetachEventHandler(rfid_Detach);
+            rfidsignup.Tag -= new TagEventHandler(rfid_Tag);
+            rfidsignup.TagLost -= new TagEventHandler(rfid_TagLost);
+
+            //run any events in the message queue - otherwise close will hang if there are any outstanding events
+
+            rfidsignup.close();
+        }
+        #endregion
+
+        private void SignupForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            rfidsignup.Attach -= new AttachEventHandler(rfid_Attach);
+            rfidsignup.Detach -= new DetachEventHandler(rfid_Detach);
+            rfidsignup.Tag -= new TagEventHandler(rfid_Tag);
+            rfidsignup.TagLost -= new TagEventHandler(rfid_TagLost);
 
             //run any events in the message queue - otherwise close will hang if there are any outstanding events
             Application.DoEvents();
 
-            rfid.close();
+            rfidsignup.close();
         }
-        #endregion
     }
 }

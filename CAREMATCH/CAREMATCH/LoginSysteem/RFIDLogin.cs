@@ -29,13 +29,13 @@ namespace CAREMATCH.LoginSysteem
         }
         private void RFID_Create()
         {
-            //rfid = new RFID(); -------------------------------------------------------
-
+            rfid = new RFID();
             rfid.Attach += new AttachEventHandler(rfid_Attach);
             rfid.Detach += new DetachEventHandler(rfid_Detach);
 
             rfid.Tag += new TagEventHandler(rfid_Tag);
             rfid.TagLost += new TagEventHandler(rfid_TagLost);
+
             openCmdLine(rfid);
         }
         void rfid_Tag(object sender, TagEventArgs e)
@@ -43,13 +43,14 @@ namespace CAREMATCH.LoginSysteem
             textBox1.Text = e.Tag;
           if (database.GebruikerLogin(e.Tag, e.Tag) == null)
             {
-               MessageBox.Show("Deze tag is nog niet aangemeld, klik op OK om u aan te melden.");
-                this.Hide();
+                MessageBox.Show("Deze tag is nog niet aangemeld, klik op OK om u aan te melden.");
                 SignupForm signup = new SignupForm();
+                this.Hide();
                 signup.ShowDialog();
                 if (signup.DialogResult == DialogResult.OK || signup.DialogResult == DialogResult.Cancel)
                 {
                     this.Show();
+                    signup.Dispose();
                 }
 
             }
@@ -66,9 +67,13 @@ namespace CAREMATCH.LoginSysteem
         {
             this.Hide();
             homeForm.ShowDialog();
+            rfid.close();
             if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
             {
                 this.Show();
+                RFID_Create();
+                homeForm.Dispose();
+                
             }
         }
         //Tag lost event handler...here we simply want to clear our tag field in the GUI
@@ -80,12 +85,27 @@ namespace CAREMATCH.LoginSysteem
         void rfid_Attach(object sender, AttachEventArgs e)
         {
             RFID attached = (RFID)sender;
+            switch (attached.ID)
+            {
+                case Phidget.PhidgetID.RFID_2OUTPUT_READ_WRITE:
+                    break;
+                case Phidget.PhidgetID.RFID:
+                case Phidget.PhidgetID.RFID_2OUTPUT:
+                default:
+                    break;
+            }
+
+            if (rfid.outputs.Count > 0)
+            {
+                rfid.Antenna = true;
+            }
         }
 
         //detach event handler...clear all the fields, display the attached status, and disable the checkboxes.
         void rfid_Detach(object sender, DetachEventArgs e)
         {
             RFID detached = (RFID)sender;
+
         }
 
 
@@ -176,15 +196,24 @@ namespace CAREMATCH.LoginSysteem
 
         private void RFIDLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
             rfid.Attach -= new AttachEventHandler(rfid_Attach);
             rfid.Detach -= new DetachEventHandler(rfid_Detach);
             rfid.Tag -= new TagEventHandler(rfid_Tag);
             rfid.TagLost -= new TagEventHandler(rfid_TagLost);
 
             //run any events in the message queue - otherwise close will hang if there are any outstanding events
-            Application.DoEvents();
 
+            rfid.close();
+            Application.DoEvents();
+        }
+        private void rfidclose()
+        {
+            rfid.Attach -= new AttachEventHandler(rfid_Attach);
+            rfid.Detach -= new DetachEventHandler(rfid_Detach);
+            rfid.Tag -= new TagEventHandler(rfid_Tag);
+            rfid.TagLost -= new TagEventHandler(rfid_TagLost);
+
+            //run any events in the message queue - otherwise close will hang if there are any outstanding events
             rfid.close();
         }
     }

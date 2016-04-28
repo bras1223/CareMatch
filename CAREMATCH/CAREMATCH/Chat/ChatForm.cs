@@ -91,7 +91,10 @@ namespace CAREMATCH
             partnernaam = lbGebruikerLijst.SelectedItem as string;
             lblGebruikersnaam.Text = partnernaam;
             partnerid = database.ChatpartnerID(partnernaam);
-            VeranderStatus(partnerid);
+            if(lblGebruikersnaam.Text != "")
+            {
+                VeranderStatus(partnerid);
+            }
             lbChat.Items.Clear();
             ChatGeschiedenisLaden();
             lbChat.SelectedIndex = lbChat.Items.Count - 1;

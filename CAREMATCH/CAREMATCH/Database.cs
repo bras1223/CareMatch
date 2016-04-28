@@ -307,6 +307,7 @@ namespace CAREMATCH
             con.Close();
             return count;
         }
+
         public bool ChatNieuwBericht(Gebruiker gebruiker)
         {
             bool nieuwBericht = false;
@@ -325,6 +326,7 @@ namespace CAREMATCH
             con.Close();
             return nieuwBericht;
         }
+        
         //Bericht is gelezen
         public void ChatBerichtGelezen(int berichtid)
         {
@@ -335,6 +337,7 @@ namespace CAREMATCH
             command.ExecuteNonQuery();
             con.Close();
         }
+        
         //Geeft de onlinestatus van je chatpartner
         public string ChatPartnerStatus(int id)
         {
@@ -362,6 +365,7 @@ namespace CAREMATCH
                 return "Offline";
             }
         }        
+        
         //Zet de gebruiker online
         public void ChatZetOnline(int gebruikerID)
         {
@@ -372,6 +376,7 @@ namespace CAREMATCH
             command.ExecuteNonQuery();
             con.Close();
         }
+        
         //Zet de gebruiker Offline
         public void ChatZetOffline(int gebruikerID)
         {
@@ -382,6 +387,7 @@ namespace CAREMATCH
             command.ExecuteNonQuery();
             con.Close();
         }
+        
         //Geeft een lijst van alle vrijwilligers
         public List<string> VrijwilligersLijst()
         {
@@ -408,7 +414,7 @@ namespace CAREMATCH
             hulpbehoevendelijst = new List<string>();
 
             con.Open();
-            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Hulpbehoevende'  Gebruikersnaam ASC", con);
+            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Hulpbehoevende'  ORDER BY Gebruikersnaam ASC", con);
             reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -485,7 +491,7 @@ namespace CAREMATCH
             vrijwilligerlijst = new List<string>();
 
             con.Open();
-            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Vrijwilliger' AND GEBRUIKERID IN (SELECT ONTVANGERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id) ORDER BY Gebruikersnaam ASC ", con);
+            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Vrijwilliger' AND (GEBRUIKERID IN (SELECT ONTVANGERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id) OR GEBRUIKERID IN (SELECT VERZENDERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id)) ORDER BY Gebruikersnaam ASC ", con);
             command.Parameters.Add(new OracleParameter("id", OracleDbType.Int32)).Value = id;
             reader = command.ExecuteReader();
 
@@ -506,7 +512,7 @@ namespace CAREMATCH
             hulpbehoevendelijst = new List<string>();
 
             con.Open();
-            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Hulpbehoevende' AND GEBRUIKERID IN (SELECT ONTVANGERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id) ORDER BY Gebruikersnaam ASC", con);
+            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Hulpbehoevende' AND (GEBRUIKERID IN (SELECT ONTVANGERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id) OR GEBRUIKERID IN (SELECT VERZENDERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id)) ORDER BY Gebruikersnaam ASC", con);
             command.Parameters.Add(new OracleParameter("id", OracleDbType.Int32)).Value = id;
             reader = command.ExecuteReader();
 

@@ -734,6 +734,7 @@ namespace CAREMATCH
                 {
                     //Nieuwe gebruiker aanmaken op basis van de rol
                     gebruiker = new Gebruiker();
+                    
                     if (reader["ROL"].ToString().ToLower() == "vrijwilliger")
                     {
                         //Kan niet vergelijken met string &char.Database approved column moet naar varchar2.alle gebruikers eerst verwijderen.

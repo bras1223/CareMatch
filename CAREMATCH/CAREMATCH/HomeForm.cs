@@ -45,6 +45,7 @@ namespace CAREMATCH
             else
             {
                 btnHulpvraagIndienen.Visible = false;
+                btnProfiel.Visible = false;
             }
             RefreshNieuwBerichtImg();
         }

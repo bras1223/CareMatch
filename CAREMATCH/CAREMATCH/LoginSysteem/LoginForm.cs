@@ -89,6 +89,7 @@ namespace CAREMATCH.LoginSysteem
         {
             RFIDLogin RfidLogin = new RFIDLogin();
             RfidLogin.ShowDialog();
+            this.Hide();
             if (RfidLogin.DialogResult == DialogResult.OK)
             {
                 this.Show();

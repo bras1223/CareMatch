@@ -72,6 +72,7 @@ namespace CAREMATCH.VrijwilligerSysteem
             //Als een gebruiker zijn eigen profiel bekijkt wordt het volgende uitgevoerd
             else
             {
+                btnCancel.Visible = false;
                 lblOverJezelf.Text = "Vertel iets over jezelf:";
                 txtGebruikersInfo.Text = gebruiker.GebruikerInfo;
                 txtAchternaam.Text = gebruiker.Achternaam;
@@ -103,29 +104,17 @@ namespace CAREMATCH.VrijwilligerSysteem
                 //Als er een afbeelding geopend is.
                 if (zoekFotoDialog.FileName != "")
                 {
-                    //passfoto property krijgt de string van de afbeeldingnaam.
-                    gebruiker.Pasfoto = gebruiker.Gebruikersnaam + @"\" + gebruiker.Gebruikersnaam + Path.GetExtension(zoekFotoDialog.FileName);
                     if (!File.Exists(gebruiker.Gebruikersnaam))
                     {
                         //Directory aanmaken als deze nog niet bestaat.
                         System.IO.Directory.CreateDirectory(gebruiker.Gebruikersnaam);
                     }
-                    //Gekozen afbeelding kopieren naar pasfoto directory. Foto = Gebruikersnaam\Gebruikersnaam + Bestandsextensie
-                    try
-                    {
-                        File.Copy(zoekFotoDialog.FileName, gebruiker.Gebruikersnaam + @"\" + gebruiker.Gebruikersnaam + Path.GetExtension(zoekFotoDialog.FileName));
-                    }
-                    catch
-                    {
-                        if(pbProfielFoto.Image != null) pbProfielFoto.Image.Dispose();
-                        //alle afbeeldingen verwijderen in de map. dan opnieuw bestand kopieren.
-                        System.IO.DirectoryInfo di = new DirectoryInfo(gebruiker.Gebruikersnaam + @"\");
-                        foreach (FileInfo file in di.GetFiles())
-                        {
-                            file.Delete();
-                        }
-                        File.Copy(zoekFotoDialog.FileName, gebruiker.Gebruikersnaam + @"\" + gebruiker.Gebruikersnaam + Path.GetExtension(zoekFotoDialog.FileName));
-                    }
+                    //Directory uitlezen
+                    System.IO.DirectoryInfo di = new DirectoryInfo(gebruiker.Gebruikersnaam + @"\");
+                    //Pasfoto bestand de naam geven van het aantal bestnanden in de directory. beste oplossing zonder fouten.
+                    File.Copy(zoekFotoDialog.FileName, gebruiker.Gebruikersnaam + @"\Pasfoto" + di.GetFiles().Length + Path.GetExtension(zoekFotoDialog.FileName));
+                    gebruiker.Pasfoto = gebruiker.Gebruikersnaam + @"\Pasfoto" + (di.GetFiles().Length - 1).ToString() + Path.GetExtension(zoekFotoDialog.FileName);
+
                 }
             }
             //Info opslaan
@@ -162,7 +151,11 @@ namespace CAREMATCH.VrijwilligerSysteem
         private void btnWijzig_Click(object sender, EventArgs e)
         {
             zoekFotoDialog = new OpenFileDialog();
-            zoekFotoDialog.ShowDialog();
+            DialogResult d = zoekFotoDialog.ShowDialog();
+            if(d == DialogResult.OK)
+            {
+                pbProfielFoto.Image = Image.FromFile(zoekFotoDialog.FileName);
+            }
         }
 
         private void pbProfielFoto_Click(object sender, EventArgs e)

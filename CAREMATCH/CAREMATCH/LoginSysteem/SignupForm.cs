@@ -12,6 +12,7 @@ using CAREMATCH;
 using System.IO;
 using Phidgets;
 using Phidgets.Events;
+using System.Text.RegularExpressions;
 
 namespace CAREMATCH.LoginSysteem
 {
@@ -106,12 +107,15 @@ namespace CAREMATCH.LoginSysteem
         //Wachtwoord controle
         private void txtHerhWachtwoord_TextChanged(object sender, EventArgs e)
         {
-            if (tbWachtwoord.Text.Length < 5)
+            if (tbWachtwoord.Text.Length < 6)
             {
                 lblZwakWW.Visible = true;
                 lblSterkWW.Visible = false;
             }
-            if (tbWachtwoord.Text.Length >= 5)
+            //Wachtwoord moet langer zijn dan 5 cijfers, hoofdletters en kleine letters bevatten.
+            if (tbWachtwoord.Text.Length >= 6 && 
+                tbWachtwoord.Text.Any(c => char.IsUpper(c)) && 
+                tbWachtwoord.Text.Any(c => char.IsLower(c)))
             {
                 lblZwakWW.Visible = false;
                 lblSterkWW.Visible = true;

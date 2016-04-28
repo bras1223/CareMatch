@@ -654,7 +654,7 @@ namespace CAREMATCH
             return reader;
         }
 
-        public OracleDataAdapter DataUpdateBeheerRol(string datagrid)
+        public OracleDataAdapter DataUpdateBeheerApproved(string datagrid)
         {
             con.Open();
             OracleCommand cmd = con.CreateCommand();
@@ -666,6 +666,20 @@ namespace CAREMATCH
 
             return reader;
         }
+
+        public OracleDataAdapter DataUpdateBeheerRol(string datagrid)
+        {
+            con.Open();
+            OracleCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "UPDATE GEBRUIKER SET ROL ='" + datagrid;
+            OracleDataAdapter reader = new OracleDataAdapter(tempString, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+            return reader;
+        }
+
 
 
 

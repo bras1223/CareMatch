@@ -161,17 +161,25 @@ namespace CAREMATCH.VrijwilligerSysteem
 
         private void btnStartChat_Click(object sender, EventArgs e)
         {
-            if(gebruiker.Rol == "Hulpbehoevende")
-            {
-                ChatForm form = new ChatForm(gebruiker, txtVrijwilliger.Text);
-                form.Show();
-            }
-            else if(gebruiker.Rol == "Vrijwilliger")
-            {
-                ChatForm form = new ChatForm(gebruiker, txtHulpvrager.Text);
-                form.Show();
-            }
-            
+
+                if (gebruiker.Rol == "Hulpbehoevende")
+                {
+                    if (txtVrijwilliger.Text != "")
+                    {
+                        ChatForm form = new ChatForm(gebruiker, txtVrijwilliger.Text);
+                        form.Show();
+                    }
+                    else
+                     {
+                        MessageBox.Show("Er is geen vrijwiliger gekoppeld aan deze hulpvraag");
+                     }
+                }
+                else if (gebruiker.Rol == "Vrijwilliger")
+                {
+                    ChatForm form = new ChatForm(gebruiker, txtHulpvrager.Text);
+                    form.Show();
+                }
+                 
         }
     }
 }

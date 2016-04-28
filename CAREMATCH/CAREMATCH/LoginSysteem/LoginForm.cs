@@ -67,11 +67,15 @@ namespace CAREMATCH.LoginSysteem
         }
         public void ShowDialogMethod()
         {
+            
             this.Hide();
             homeForm.ShowDialog();
             if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
             {
+                this.txtGebruikersnaam.Text = "";
+                this.txtWachtwoord.Text = "";
                 this.Show();
+                this.txtGebruikersnaam.Focus();
             }
         } 
         private void LoginForm_Load(object sender, EventArgs e)

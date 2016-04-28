@@ -30,7 +30,6 @@ namespace CAREMATCH.LoginSysteem
         private void RFID_Create()
         {
             rfid = new RFID();
-
             rfid.Attach += new AttachEventHandler(rfid_Attach);
             rfid.Detach += new DetachEventHandler(rfid_Detach);
 
@@ -45,14 +44,13 @@ namespace CAREMATCH.LoginSysteem
           if (database.GebruikerLogin(e.Tag, e.Tag) == null)
             {
                 MessageBox.Show("Deze tag is nog niet aangemeld, klik op OK om u aan te melden.");
-                rfidclose();
                 SignupForm signup = new SignupForm();
                 this.Hide();
                 signup.ShowDialog();
                 if (signup.DialogResult == DialogResult.OK || signup.DialogResult == DialogResult.Cancel)
                 {
                     this.Show();
-                    RFID_Create();
+                    signup.Dispose();
                 }
 
             }
@@ -68,12 +66,14 @@ namespace CAREMATCH.LoginSysteem
         public void ShowDialogMethod()
         {
             this.Hide();
-            rfidclose();
             homeForm.ShowDialog();
+            rfid.close();
             if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
             {
                 this.Show();
                 RFID_Create();
+                homeForm.Dispose();
+                
             }
         }
         //Tag lost event handler...here we simply want to clear our tag field in the GUI
@@ -105,6 +105,7 @@ namespace CAREMATCH.LoginSysteem
         void rfid_Detach(object sender, DetachEventArgs e)
         {
             RFID detached = (RFID)sender;
+
         }
 
 
@@ -195,8 +196,14 @@ namespace CAREMATCH.LoginSysteem
 
         private void RFIDLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
+            rfid.Attach -= new AttachEventHandler(rfid_Attach);
+            rfid.Detach -= new DetachEventHandler(rfid_Detach);
+            rfid.Tag -= new TagEventHandler(rfid_Tag);
+            rfid.TagLost -= new TagEventHandler(rfid_TagLost);
 
-            rfidclose();
+            //run any events in the message queue - otherwise close will hang if there are any outstanding events
+
+            rfid.close();
             Application.DoEvents();
         }
         private void rfidclose()
@@ -207,7 +214,6 @@ namespace CAREMATCH.LoginSysteem
             rfid.TagLost -= new TagEventHandler(rfid_TagLost);
 
             //run any events in the message queue - otherwise close will hang if there are any outstanding events
-
             rfid.close();
         }
     }

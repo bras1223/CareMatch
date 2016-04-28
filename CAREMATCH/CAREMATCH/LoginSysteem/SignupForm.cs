@@ -197,14 +197,14 @@ namespace CAREMATCH.LoginSysteem
         private void SignupForm_Load(object sender, EventArgs e)
         {
             
-            //rfid = new RFID(); //Krijg nogsteeds foutmelding. 
-            //rfid.open();
-            //rfid.Attach += new AttachEventHandler(rfid_Attach);
-            //rfid.Detach += new DetachEventHandler(rfid_Detach);
+            rfid = new RFID(); //Krijg nogsteeds foutmelding. 
+            rfid.open();
+            rfid.Attach += new AttachEventHandler(rfid_Attach);
+            rfid.Detach += new DetachEventHandler(rfid_Detach);
 
-            //rfid.Tag += new TagEventHandler(rfid_Tag);
-            //rfid.TagLost += new TagEventHandler(rfid_TagLost);
-            //openCmdLine(rfid);               
+            rfid.Tag += new TagEventHandler(rfid_Tag);
+            rfid.TagLost += new TagEventHandler(rfid_TagLost);
+            openCmdLine(rfid);               
         }
         void rfid_Tag(object sender, TagEventArgs e)
         {
@@ -253,6 +253,20 @@ namespace CAREMATCH.LoginSysteem
         void rfid_Attach(object sender, AttachEventArgs e)
         {
             RFID attached = (RFID)sender;
+            switch (attached.ID)
+            {
+                case Phidget.PhidgetID.RFID_2OUTPUT_READ_WRITE:
+                    break;
+                case Phidget.PhidgetID.RFID:
+                case Phidget.PhidgetID.RFID_2OUTPUT:
+                default:
+                    break;
+            }
+
+            if (rfid.outputs.Count > 0)
+            {
+                rfid.Antenna = true;
+            }
         }
 
         void rfid_Detach(object sender, DetachEventArgs e)

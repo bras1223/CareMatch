@@ -91,16 +91,16 @@ namespace CAREMATCH.LoginSysteem
                         //Als er een afbeelding geopend is.
                         if (ofd.FileName != "")
                         {
-                            if (!File.Exists(tbGebruikersnaam.Text))
+                            if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\DropBox\CareMatch\"+ tbGebruikersnaam.Text))
                             {
                                 //Directory aanmaken als deze nog niet bestaat.
-                                System.IO.Directory.CreateDirectory(tbGebruikersnaam.Text);
+                                System.IO.Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\DropBox\CareMatch\" + tbGebruikersnaam.Text);
                             }
                             //Gekozen afbeelding kopieren naar pasfoto directory. Foto = Gebruikersnaam\Gebruikersnaam + Bestandsextensie
                             try
                             {
-                                vog = tbGebruikersnaam.Text + @"\VOG" + Path.GetExtension(ofd.FileName);
-                                File.Copy(ofd.FileName, vog);
+                                vog = @"\VOG" + Path.GetExtension(ofd.FileName);
+                                File.Copy(ofd.FileName, Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\DropBox\CareMatch\" + tbGebruikersnaam.Text +"\\VOG"+Path.GetExtension(ofd.FileName));
                             }
                             catch
                             {
@@ -109,7 +109,7 @@ namespace CAREMATCH.LoginSysteem
                         }
                     }
                     PasfotoOpslaan();
-                    database.GebruikerAccountToevoegen(tbGebruikersnaam.Text, tbWachtwoord.Text, "Y", cbRol.Text, tbGebruikersnaam.Text + @"\" + tbGebruikersnaam.Text + Path.GetExtension(zoekFotoDialog.FileName), vog, tbVoornaam.Text, tbAchternaam.Text, cbGeslacht.Text, dtpGeboortedatum.Value);
+                    database.GebruikerAccountToevoegen(tbGebruikersnaam.Text, tbWachtwoord.Text, "Y", cbRol.Text, Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\DropBox\CareMatch\" + tbGebruikersnaam.Text + Path.GetExtension(zoekFotoDialog.FileName), vog, tbVoornaam.Text, tbAchternaam.Text, cbGeslacht.Text, dtpGeboortedatum.Value);
                     MessageBox.Show("Account aangemaakt. U moet wachten tot dat uw account is geactiveerd voordat u kunt inloggen.");
                     DialogResult = DialogResult.OK;
                     this.Close();
@@ -184,25 +184,12 @@ namespace CAREMATCH.LoginSysteem
                 if (zoekFotoDialog.FileName != "")
                 {
                     //Directory aanmaken als deze nog niet bestaat.
-                    if (!File.Exists(tbGebruikersnaam.Text))
+                    if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\DropBox\CareMatch\" + tbGebruikersnaam.Text))
                     {
-                        System.IO.Directory.CreateDirectory(tbGebruikersnaam.Text);
+                        System.IO.Directory.CreateDirectory(Environment.SpecialFolder.UserProfile.ToString() + @"\DropBox\CareMatch\" + tbGebruikersnaam.Text);
                     }
                     //Gekozen afbeelding kopieren naar pasfoto directory. Foto = Gebruikersnaam\Gebruikersnaam + Bestandsextensie
-                    try
-                    {
-                        File.Copy(zoekFotoDialog.FileName, tbGebruikersnaam.Text + @"\" + tbGebruikersnaam.Text + Path.GetExtension(zoekFotoDialog.FileName));
-                    }
-                    catch
-                    {
-                        //alle afbeeldingen verwijderen in de map. dan opnieuw bestand kopieren.
-                        System.IO.DirectoryInfo di = new DirectoryInfo(tbGebruikersnaam.Text + @"\");
-                        foreach (FileInfo file in di.GetFiles())
-                        {
-                            file.Delete();
-                        }
-                        File.Copy(zoekFotoDialog.FileName, tbGebruikersnaam.Text + @"\" + tbGebruikersnaam.Text + Path.GetExtension(zoekFotoDialog.FileName));
-                    }
+                    File.Copy(zoekFotoDialog.FileName, Environment.SpecialFolder.UserProfile.ToString() + @"\DropBox\CareMatch\" + tbGebruikersnaam.Text + @"\" + tbGebruikersnaam.Text + Path.GetExtension(zoekFotoDialog.FileName));
                 }
             }
         }

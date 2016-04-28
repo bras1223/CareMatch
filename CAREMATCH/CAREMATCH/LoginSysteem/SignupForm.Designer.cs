@@ -436,7 +436,7 @@
             this.MinimizeBox = false;
             this.Name = "SignupForm";
             this.Text = "Aanmelden - CareMatch";
-            this.Load += new System.EventHandler(this.SignupForm_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SignupForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

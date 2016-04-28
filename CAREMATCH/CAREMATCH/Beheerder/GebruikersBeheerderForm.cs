@@ -71,7 +71,7 @@ namespace Login
             cmd.CommandText = "UPDATE GEBRUIKER SET APPROVED ='" + dataGridView1.Rows[e.RowIndex].Cells["APPROVED"].Value.ToString() + "' WHERE GEBRUIKERID = " + Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERID"].Value);
             cmd.ExecuteNonQuery();
             con.Close();
-
+            
             if (dataGridView1.Rows[e.RowIndex].Cells["Rol"].Value.ToString().ToLower() != "beheerder" || dataGridView1.Rows[e.RowIndex].Cells["Rol"].Value.ToString().ToLower() != "vrijwilliger" || dataGridView1.Rows[e.RowIndex].Cells["Rol"].Value.ToString().ToLower() != "hulpbehoevende")
             {
                 MessageBox.Show("Incorrecte rol.");

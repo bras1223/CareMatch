@@ -204,7 +204,10 @@ namespace CAREMATCH
             reader = command.ExecuteReader();
             while (reader.Read())
             {
-                tempString = gebruiker.GetLocalDropBox() + reader["Foto"].ToString();
+                if(reader["Foto"].ToString() != "")
+                {
+                    tempString = gebruiker.GetLocalDropBox() + reader["Foto"].ToString();
+                }
             }
             con.Close();
             return tempString;
@@ -726,13 +729,9 @@ namespace CAREMATCH
                     {
                         gebruiker.Auto = false;
                     }
-                    try
+                    if(reader["Foto"].ToString() != "")
                     {
                         gebruiker.Pasfoto = gebruiker.GetLocalDropBox() + reader["Foto"].ToString();
-                    }
-                    catch
-                    {
-                        //Er hoeft niets afgevangen te worden als een gebruiker geen foto heeft.
                     }
                     gebruiker.Rol = reader["ROL"].ToString();
                 }

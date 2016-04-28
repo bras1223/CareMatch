@@ -40,6 +40,7 @@ namespace Login
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            File.Open(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\DropBox\CareMatch\" + dataGridView1.Rows[e.RowIndex].Cells["Gebruikersnaam"].Value.ToString()+"\\" + dataGridView1.Rows[e.RowIndex].Cells["VOG"].Value.ToString(),FileMode.Open);
         }
 
         private void button1_Click(object sender, EventArgs e)

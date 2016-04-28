@@ -61,7 +61,10 @@ namespace CAREMATCH
             datum = DateTime.Now;
             try
             {
-                database.ChatInvoegen(database.ControlleerMaxChatID() + 1, tbBericht.Text, partnerid, gebruiker.GebruikersID, datum.ToString("dd/MMM HH:mm"));
+                if(tbBericht.Text != "" && tbBericht.Text != @"\r\n")
+                {
+                    database.ChatInvoegen(database.ControlleerMaxChatID() + 1, tbBericht.Text, partnerid, gebruiker.GebruikersID, datum.ToString("dd/MMM HH:mm"));
+                }
             }
             catch { MessageBox.Show("Selecteer een Persoon"); }
             tbBericht.Clear();
@@ -91,7 +94,10 @@ namespace CAREMATCH
             partnernaam = lbGebruikerLijst.SelectedItem as string;
             lblGebruikersnaam.Text = partnernaam;
             partnerid = database.ChatpartnerID(partnernaam);
-            VeranderStatus(partnerid);
+            if(lblGebruikersnaam.Text != "")
+            {
+                VeranderStatus(partnerid);
+            }
             lbChat.Items.Clear();
             ChatGeschiedenisLaden();
             lbChat.SelectedIndex = lbChat.Items.Count - 1;
@@ -240,8 +246,7 @@ namespace CAREMATCH
                 {
                     myFont = new Font("Microsoft Sans Serif", 9);
                 }
-                e.Graphics.DrawString(lbChat.Items[e.Index].ToString(),
-                myFont, myBrush, e.Bounds, StringFormat.GenericDefault);
+                e.Graphics.DrawString(lbChat.Items[e.Index].ToString(), myFont, myBrush, e.Bounds, StringFormat.GenericDefault);
         }
             catch
             {

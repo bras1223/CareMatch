@@ -58,16 +58,21 @@ namespace CAREMATCH.LoginSysteem
             }
             else if (cbRol.Text == "Hulpbehoevende" && tbWachtwoord.Text == tbHerhWachtwoord.Text && GebruikNaam == true)
             {
+                bool oke;
                 PasfotoOpslaan();
                 try
                 {
-                    database.GebruikerAccountToevoegen(tbGebruikersnaam.Text, tbWachtwoord.Text, "Y", cbRol.Text, tbGebruikersnaam.Text + @"\" + tbGebruikersnaam.Text + Path.GetExtension(zoekFotoDialog.FileName), lblVOGPath.Text, tbVoornaam.Text, tbAchternaam.Text, cbGeslacht.Text, dtpGeboortedatum.Value);
+                   oke = database.GebruikerAccountToevoegen(tbGebruikersnaam.Text, tbWachtwoord.Text, "Y", cbRol.Text, tbGebruikersnaam.Text + @"\" + tbGebruikersnaam.Text + Path.GetExtension(zoekFotoDialog.FileName), lblVOGPath.Text, tbVoornaam.Text, tbAchternaam.Text, cbGeslacht.Text, dtpGeboortedatum.Value);
                 }
                 catch
                 {
-                    database.GebruikerAccountToevoegen(tbGebruikersnaam.Text, tbWachtwoord.Text, "Y", cbRol.Text, "", lblVOGPath.Text, tbVoornaam.Text, tbAchternaam.Text, cbGeslacht.Text, dtpGeboortedatum.Value);
+                   oke = database.GebruikerAccountToevoegen(tbGebruikersnaam.Text, tbWachtwoord.Text, "Y", cbRol.Text, "", lblVOGPath.Text, tbVoornaam.Text, tbAchternaam.Text, cbGeslacht.Text, dtpGeboortedatum.Value);
                 }
-                MessageBox.Show("Account aangemaakt. U kunt nu inloggen.");
+                if (oke)
+                {
+                    MessageBox.Show("Account aangemaakt. U kunt nu inloggen.");
+                }
+
                 DialogResult = DialogResult.OK;
                 this.Close();
             }

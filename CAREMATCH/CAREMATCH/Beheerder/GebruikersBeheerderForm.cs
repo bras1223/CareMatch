@@ -60,6 +60,9 @@ namespace Login
             if (dataGridView1.Rows[e.RowIndex].Cells["Rol"].Value.ToString().ToLower() != "beheerder" || dataGridView1.Rows[e.RowIndex].Cells["Rol"].Value.ToString().ToLower() != "vrijwilliger" || dataGridView1.Rows[e.RowIndex].Cells["Rol"].Value.ToString().ToLower() != "hulpbehoevende")
             {
                 MessageBox.Show("Incorrecte rol.");
+                DataTable dt = new DataTable();
+                database.GebruikerBeheer(cmbBeheer.Text).Fill(dt);
+                dataGridView1.DataSource = dt;
             }
             else
             {

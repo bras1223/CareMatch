@@ -94,10 +94,16 @@ namespace CAREMATCH
             partnernaam = lbGebruikerLijst.SelectedItem as string;
             lblGebruikersnaam.Text = partnernaam;
             partnerid = database.ChatpartnerID(partnernaam);
-            if(lblGebruikersnaam.Text != "")
+
+            if (lblGebruikersnaam.Text != "")
             {
                 VeranderStatus(partnerid);
             }
+            else
+            {
+                lblParterStatus.Text = "";
+            }
+
             lbChat.Items.Clear();
             ChatGeschiedenisLaden();
             lbChat.SelectedIndex = lbChat.Items.Count - 1;
@@ -108,6 +114,7 @@ namespace CAREMATCH
                 lbGebruikerLijst.Items.Clear();
                 LbVullen();
             }
+
             else
             {
 
@@ -118,9 +125,13 @@ namespace CAREMATCH
 
         private void tmrLaadberichten_Tick(object sender, EventArgs e)
         {
-            if(partnerid != -1)
+            if (partnerid != -1 && lblGebruikersnaam.Text != "")
             {
                 VeranderStatus(partnerid);
+            }
+            else
+            {
+                lblParterStatus.Text = "";
             }
 
             if (done)

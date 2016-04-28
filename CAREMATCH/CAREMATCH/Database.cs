@@ -637,6 +637,34 @@ namespace CAREMATCH
             con.Close();
             return reader;
         }
+        public OracleDataAdapter DataUpdateBeheerGebruiker(string datagrid)
+        {
+            con.Open();
+            OracleCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "UPDATE GEBRUIKER SET GEBRUIKERSNAAM ='" + datagrid;
+            cmd.ExecuteNonQuery();
+            OracleDataAdapter reader = new OracleDataAdapter(tempString, con);
+            con.Close();
+
+
+            return reader;
+        }
+
+        public OracleDataAdapter DataUpdateBeheerRol(string datagrid)
+        {
+            con.Open();
+            OracleCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "UPDATE GEBRUIKER SET APPROVED ='" + datagrid;
+            cmd.ExecuteNonQuery();
+            OracleDataAdapter reader = new OracleDataAdapter(tempString, con);
+            con.Close();
+
+            return reader;
+        }
+
+
 
 
         //Hulpvraag Queries

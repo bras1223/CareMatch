@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CAREMATCH.Agenda;
+using System.IO;
 
 namespace CAREMATCH
 {
@@ -43,11 +44,5 @@ namespace CAREMATCH
         {
             return agendaPuntList;
         }
-            //Maakt een nieuw chatbericht aan met de huidige tijd en de inhoud die word meegegeven
-        //public void Chatberichtmaken(string inhoud)
-        //{
-        //    Chatbericht bericht = new Chatbericht(inhoud);
-        //    //Bericht in database zetten
-        //}
     }
 }

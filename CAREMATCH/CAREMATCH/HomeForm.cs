@@ -19,7 +19,6 @@ namespace CAREMATCH
         private ProfielForm profielForm;
         private GebruikerBeheer GebruikerBeheerderForm;
         private AgendaBeheerderForm AgendaBeheerderForm;
-        private ChatBeheerdersForm ChatBeheerderForm;
         private OngepasteBerichtenForm OngepasteBerichtenForm;
 
         PictureBox img;
@@ -46,6 +45,7 @@ namespace CAREMATCH
             {
                 btnHulpvraagIndienen.Visible = false;
                 btnProfiel.Visible = false;
+                btnBerichten.Visible = false;
             }
             RefreshNieuwBerichtImg();
         }
@@ -91,7 +91,7 @@ namespace CAREMATCH
                 this.Hide();
                 AgendaBeheerderForm = new AgendaBeheerderForm(gebruiker);
                 AgendaBeheerderForm.ShowDialog();
-                if (AgendaBeheerderForm.DialogResult == DialogResult.OK || profielForm.DialogResult == DialogResult.Cancel)
+                if (AgendaBeheerderForm.DialogResult == DialogResult.OK || AgendaBeheerderForm.DialogResult == DialogResult.Cancel)
                 {
                     this.Show();
                 }
@@ -106,16 +106,6 @@ namespace CAREMATCH
                 if (chatForm.DialogResult == DialogResult.OK || chatForm.DialogResult == DialogResult.Cancel)
                 {
                     RefreshNieuwBerichtImg();
-                    this.Show();
-                }
-            }
-            else
-            {
-                this.Hide();
-                ChatBeheerderForm = new ChatBeheerdersForm(gebruiker);
-                ChatBeheerderForm.ShowDialog();
-                if (ChatBeheerderForm.DialogResult == DialogResult.OK || chatForm.DialogResult == DialogResult.Cancel)
-                {
                     this.Show();
                 }
             }
@@ -156,7 +146,7 @@ namespace CAREMATCH
             this.Hide();
             GebruikerBeheerderForm = new GebruikerBeheer(gebruiker);
             GebruikerBeheerderForm.ShowDialog();
-            if (GebruikerBeheerderForm.DialogResult == DialogResult.OK|| profielForm.DialogResult == DialogResult.Cancel)
+            if (GebruikerBeheerderForm.DialogResult == DialogResult.OK|| GebruikerBeheerderForm.DialogResult == DialogResult.Cancel)
             {
                 this.Show();
             }   

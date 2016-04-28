@@ -408,7 +408,7 @@ namespace CAREMATCH
             hulpbehoevendelijst = new List<string>();
 
             con.Open();
-            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Hulpbehoevende'  Gebruikersnaam ASC", con);
+            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Hulpbehoevende' ORDER BY Gebruikersnaam ASC", con);
             reader = command.ExecuteReader();
 
             while (reader.Read())

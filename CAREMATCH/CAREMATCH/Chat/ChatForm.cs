@@ -49,11 +49,6 @@ namespace CAREMATCH
             database.ChatZetOnline(gebruiker.GebruikersID);
 
             this.partnernaam = partnernaam;
-            //lblGebruikersnaam.Text = partnernaam;
-            //this.partnerid = database.ChatpartnerID(lblGebruikersnaam.Text);
-            //VeranderStatus(partnerid);
-            //lbChat.Items.Clear();
-            //ChatGeschiedenisLaden();
             tmrTest.Start();
 
 
@@ -358,6 +353,7 @@ namespace CAREMATCH
 
         private void tmrTest_Tick(object sender, EventArgs e)
         {
+            string test = partnernaam;
             int tset = lbGebruikerLijst.FindString(partnernaam);
             lbGebruikerLijst.SelectedIndex = tset;
             done = true;

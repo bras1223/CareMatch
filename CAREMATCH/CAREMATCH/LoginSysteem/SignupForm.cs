@@ -62,7 +62,7 @@ namespace CAREMATCH.LoginSysteem
                 PasfotoOpslaan();
                 try
                 {
-                   oke = database.GebruikerAccountToevoegen(tbGebruikersnaam.Text, tbWachtwoord.Text, "Y", cbRol.Text, tbGebruikersnaam.Text + @"\" + tbGebruikersnaam.Text + Path.GetExtension(zoekFotoDialog.FileName), lblVOGPath.Text, tbVoornaam.Text, tbAchternaam.Text, cbGeslacht.Text, dtpGeboortedatum.Value);
+                   oke = database.GebruikerAccountToevoegen(tbGebruikersnaam.Text, tbWachtwoord.Text, "Y", cbRol.Text, tbGebruikersnaam.Text + Path.GetExtension(zoekFotoDialog.FileName), lblVOGPath.Text, tbVoornaam.Text, tbAchternaam.Text, cbGeslacht.Text, dtpGeboortedatum.Value);
                 }
                 catch
                 {
@@ -197,14 +197,14 @@ namespace CAREMATCH.LoginSysteem
         private void SignupForm_Load(object sender, EventArgs e)
         {
             
-            rfid = new RFID(); //Krijg nogsteeds foutmelding. 
-            rfid.open();
-            rfid.Attach += new AttachEventHandler(rfid_Attach);
-            rfid.Detach += new DetachEventHandler(rfid_Detach);
+            //rfid = new RFID(); //Krijg nogsteeds foutmelding. 
+            //rfid.open();
+            //rfid.Attach += new AttachEventHandler(rfid_Attach);
+            //rfid.Detach += new DetachEventHandler(rfid_Detach);
 
-            rfid.Tag += new TagEventHandler(rfid_Tag);
-            rfid.TagLost += new TagEventHandler(rfid_TagLost);
-            openCmdLine(rfid);               
+            //rfid.Tag += new TagEventHandler(rfid_Tag);
+            //rfid.TagLost += new TagEventHandler(rfid_TagLost);
+            //openCmdLine(rfid);               
         }
         void rfid_Tag(object sender, TagEventArgs e)
         {

@@ -35,10 +35,8 @@ namespace CAREMATCH.Beheerder
 
         private void btnBack_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show("De gebruiker bestaat al.", "Ophaal fout", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
-
-            //DialogResult = DialogResult.OK;
-            //this.Close();
+            DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -99,11 +99,11 @@
     <Compile Include="Beheerder\AgendaBeheerderForm.Designer.cs">
       <DependentUpon>AgendaBeheerderForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Beheerder\ChatBeheerdersForm.cs">
+    <Compile Include="Beheerder\ChatBeheer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Beheerder\ChatBeheerdersForm.Designer.cs">
-      <DependentUpon>ChatBeheerdersForm.cs</DependentUpon>
+    <Compile Include="Beheerder\ChatBeheer.Designer.cs">
+      <DependentUpon>ChatBeheer.cs</DependentUpon>
     </Compile>
     <Compile Include="Beheerder\GebruikersBeheerderForm.cs">
       <SubType>Form</SubType>
@@ -191,8 +191,8 @@
     <EmbeddedResource Include="Beheerder\AgendaBeheerderForm.resx">
       <DependentUpon>AgendaBeheerderForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Beheerder\ChatBeheerdersForm.resx">
-      <DependentUpon>ChatBeheerdersForm.cs</DependentUpon>
+    <EmbeddedResource Include="Beheerder\ChatBeheer.resx">
+      <DependentUpon>ChatBeheer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Beheerder\GebruikersBeheerderForm.resx">
       <DependentUpon>GebruikersBeheerderForm.cs</DependentUpon>

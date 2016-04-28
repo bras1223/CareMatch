@@ -62,7 +62,7 @@ namespace Login
             con.Open();
             OracleCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "UPDATE GEBRUIKER SET GEBRUIKERSNAAM ='" +dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERSNAAM"].Value.ToString() + "' WHERE GEBRUIKERID = " + Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERID"].Value);
+            cmd.CommandText = "UPDATE GEBRUIKER SET GEBRUIKERSNAAM ='" + dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERSNAAM"].Value.ToString() + "' WHERE GEBRUIKERID = " + Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERID"].Value);
             cmd.ExecuteNonQuery();
             con.Close();
 

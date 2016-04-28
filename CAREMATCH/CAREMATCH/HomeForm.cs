@@ -19,7 +19,7 @@ namespace CAREMATCH
         private ProfielForm profielForm;
         private GebruikerBeheer GebruikerBeheerderForm;
         private AgendaBeheerderForm AgendaBeheerderForm;
-        private ChatBeheerdersForm ChatBeheerderForm;
+        private ChatBeheer ChatBeheerderForm;
         private OngepasteBerichtenForm OngepasteBerichtenForm;
 
         PictureBox img;
@@ -112,7 +112,7 @@ namespace CAREMATCH
             else
             {
                 this.Hide();
-                ChatBeheerderForm = new ChatBeheerdersForm(gebruiker);
+                ChatBeheerderForm = new ChatBeheer(gebruiker);
                 ChatBeheerderForm.ShowDialog();
                 if (ChatBeheerderForm.DialogResult == DialogResult.OK || chatForm.DialogResult == DialogResult.Cancel)
                 {

@@ -31,7 +31,7 @@ namespace CAREMATCH
             lvOngepasteBerichten.CheckBoxes = true;
             lvOngepasteBerichten.FullRowSelect = true;
 
-            //hulpvragen = database.HulpvragenOverzicht(gebruiker, "ongepaste hulpvragen");
+            this.hulpvragen = database.HulpvragenOverzicht(gebruiker, "ongepaste hulpvragen");
             CreateListView();
             VulListViewMetHulpvragen(hulpvragen);
         }
@@ -66,8 +66,8 @@ namespace CAREMATCH
                 hulpvragen.Clear();
             }
             
-            hulpvragen = database.HulpvragenOverzicht(gebruiker, "ongepaste hulpvragen");
-            foreach (Hulpvraag hulpvraag in hulpvragen)
+            this.hulpvragen = database.HulpvragenOverzicht(gebruiker, "ongepaste hulpvragen");
+            foreach (Hulpvraag hulpvraag in this.hulpvragen)
             {
                 ListViewItem item = new ListViewItem();
                 item.SubItems.Add(hulpvraag.HulpvraagID.ToString());
@@ -87,9 +87,14 @@ namespace CAREMATCH
         {
             this.Hide();
             Hulpvraag hulpvraag = null;
-            //geselecteerde hulpvraag openen.
 
-            hulpvraag = hulpvragen[lvOngepasteBerichten.FocusedItem.Index];
+
+            //geselecteerde hulpvraag openen.
+            if(lvOngepasteBerichten.FocusedItem != null)
+            {
+                hulpvraag = hulpvragen[lvOngepasteBerichten.FocusedItem.Index];
+            }
+            
             //werkt niet, misschien wel met een eventhandler? idk ik kijk zom thuis
             
             if(hulpvraag != null)
@@ -123,6 +128,7 @@ namespace CAREMATCH
                 if (item.Checked)
                 {
                     Hulpvraag toDelete = hulpvragen[item.Index];
+                    hulpvragen.RemoveAt(item.Index);
                     VerwijderGemarkeerdeHulpvraag(toDelete);
                 }
             }

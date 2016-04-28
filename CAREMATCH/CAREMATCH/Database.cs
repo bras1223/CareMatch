@@ -84,6 +84,7 @@ namespace CAREMATCH
             command = new OracleCommand("DELETE FROM Hulpvraag WHERE Hulpvraag.HulpvraagID =:id;", con);
             command.Parameters.Add(new OracleParameter(":id", OracleDbType.Int32)).Value = hulpvraagID;
             con.Close();
+            //volgens mij zit hier een fout, als ik deze uitvoer haal ik namelijk nogsteeds dezelfde lijst uit de database met hulpvraagoverzicht.
         }
         public void HulpvraagAanpassen(Gebruiker gebruiker, Hulpvragen.Hulpvraag hulpvraag)
         {

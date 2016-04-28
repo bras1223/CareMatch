@@ -110,7 +110,7 @@ namespace CAREMATCH.LoginSysteem
                         }
                     }
                     PasfotoOpslaan();
-                    database.GebruikerAccountToevoegen(tbGebruikersnaam.Text, tbWachtwoord.Text, "Y", cbRol.Text, Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\DropBox\CareMatch\" + tbGebruikersnaam.Text + Path.GetExtension(zoekFotoDialog.FileName), vog, tbVoornaam.Text, tbAchternaam.Text, cbGeslacht.Text, dtpGeboortedatum.Value);
+                    database.GebruikerAccountToevoegen(tbGebruikersnaam.Text, tbWachtwoord.Text, "N", cbRol.Text, Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\DropBox\CareMatch\" + tbGebruikersnaam.Text + Path.GetExtension(zoekFotoDialog.FileName), vog, tbVoornaam.Text, tbAchternaam.Text, cbGeslacht.Text, dtpGeboortedatum.Value);
                     MessageBox.Show("Account aangemaakt. U moet wachten tot dat uw account is geactiveerd voordat u kunt inloggen.");
                     DialogResult = DialogResult.OK;
                     this.Close();

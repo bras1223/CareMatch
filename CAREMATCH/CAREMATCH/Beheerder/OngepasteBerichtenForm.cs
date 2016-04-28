@@ -135,7 +135,7 @@ namespace CAREMATCH
         {
             if (lvOngepasteBerichten.CheckedItems.Count > 0)
             {
-
+               // MessageBox.Show("weet je zeker dat je" + lvOngepasteBerichten.CheckedItems.Count + "hulpvraag(en) wilt verwijderen?", "", MessageBoxButtons.OKCancel);
 
                 //verwijder alle aangevinkte items uit list
                 foreach (ListViewItem item in lvOngepasteBerichten.Items)

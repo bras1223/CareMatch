@@ -737,12 +737,17 @@ namespace CAREMATCH
                     
                     if (reader["ROL"].ToString().ToLower() == "vrijwilliger")
                     {
-                        //Kan niet vergelijken met string & char. Database approved column moet naar varchar2. alle gebruikers eerst verwijderen.
-                        //if(reader["Approved"].ToString() == 'Y')
-                        //{
+                        //Kan niet vergelijken met string &char.Database approved column moet naar varchar2.alle gebruikers eerst verwijderen.
+                        if (reader["Approved"].ToString() == "Y")
+                        {
+                            gebruiker.Approved = true;
 
-                        //}
-                        gebruiker.Approved = true;
+                        }
+                        else
+                        {
+                            gebruiker.Approved = false;
+                        }
+
                     }
                     //Properties toekennen aan gebruiken.
                     gebruiker.Achternaam = reader["Achternaam"].ToString();

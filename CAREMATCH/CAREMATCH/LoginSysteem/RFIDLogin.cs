@@ -70,7 +70,8 @@ namespace CAREMATCH.LoginSysteem
             rfid.close();
             if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
             {
-                this.Show();
+                this.Close();
+                DialogResult = DialogResult.OK;
                 RFID_Create();
                 homeForm.Dispose();
                 

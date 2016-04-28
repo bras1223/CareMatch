@@ -99,12 +99,6 @@
     <Compile Include="Beheerder\AgendaBeheerderForm.Designer.cs">
       <DependentUpon>AgendaBeheerderForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Beheerder\ChatBeheerdersForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Beheerder\ChatBeheerdersForm.Designer.cs">
-      <DependentUpon>ChatBeheerdersForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Beheerder\GebruikersBeheerderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +113,12 @@
       <DependentUpon>ChatForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Database.cs" />
+    <Compile Include="dialogBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dialogBox.Designer.cs">
+      <DependentUpon>dialogBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Enum.cs" />
     <Compile Include="Gebruikers\Beheerder.cs" />
     <Compile Include="Gebruikers\Gebruiker.cs" />
@@ -191,9 +191,6 @@
     <EmbeddedResource Include="Beheerder\AgendaBeheerderForm.resx">
       <DependentUpon>AgendaBeheerderForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Beheerder\ChatBeheerdersForm.resx">
-      <DependentUpon>ChatBeheerdersForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Beheerder\GebruikersBeheerderForm.resx">
       <DependentUpon>GebruikersBeheerderForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -202,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Chat\ChatForm.resx">
       <DependentUpon>ChatForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dialogBox.resx">
+      <DependentUpon>dialogBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>

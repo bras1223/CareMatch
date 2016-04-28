@@ -3,6 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 using CAREMATCH;
 using Oracle.ManagedDataAccess.Client;
+using System.IO;
 
 namespace Login
 {
@@ -18,6 +19,7 @@ namespace Login
             this.gebruiker = gebruiker;
 
             cmbBeheer.SelectedIndex = 0;
+            //File.Open("p\\VOG.dot", FileMode.Open);
         }
 
 
@@ -38,12 +40,12 @@ namespace Login
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            File.Open(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\DropBox\CareMatch\" + dataGridView1.Rows[e.RowIndex].Cells["Gebruikersnaam"].Value.ToString()+"\\" + dataGridView1.Rows[e.RowIndex].Cells["VOG"].Value.ToString(),FileMode.Open);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+           
 
            
         }
@@ -52,38 +54,22 @@ namespace Login
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            cmbBeheer.SelectedIndex = 0;
-            string constr = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=fhictora01.fhict.local)(PORT=1521)))"
-              + "(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=fhictora)));"
-              + "User ID=DBI327544; PASSWORD=CareMatch;";
-            OracleConnection con = new OracleConnection(constr);
+            database.DataUpdateBeheerGebruiker(dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERSNAAM"].Value.ToString() + "' WHERE GEBRUIKERID = " + Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERID"].Value));
+            database.DataUpdateBeheerApproved(dataGridView1.Rows[e.RowIndex].Cells["APPROVED"].Value.ToString() + "' WHERE GEBRUIKERID = " + Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERID"].Value));
 
 
-            con.Open();
-            OracleCommand cmd = con.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "UPDATE GEBRUIKER SET GEBRUIKERSNAAM ='" +dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERSNAAM"].Value.ToString() + "' WHERE GEBRUIKERID = " + Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERID"].Value);
-            cmd.ExecuteNonQuery();
-            con.Close();
-
-            con.Open();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "UPDATE GEBRUIKER SET APPROVED ='" + dataGridView1.Rows[e.RowIndex].Cells["APPROVED"].Value.ToString() + "' WHERE GEBRUIKERID = " + Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERID"].Value);
-            cmd.ExecuteNonQuery();
-            con.Close();
-
-            if(dataGridView1.Rows[e.RowIndex].Cells["ROL"].Value.ToString().ToLower() != "beheerder" || dataGridView1.Rows[e.RowIndex].Cells["ROL"].Value.ToString().ToLower() != "vrijwilliger" || dataGridView1.Rows[e.RowIndex].Cells["ROL"].Value.ToString().ToLower() != "hulpbehoevende")
+            if (dataGridView1.Rows[e.RowIndex].Cells["Rol"].Value.ToString().ToLower() != "beheerder" || dataGridView1.Rows[e.RowIndex].Cells["Rol"].Value.ToString().ToLower() != "vrijwilliger" || dataGridView1.Rows[e.RowIndex].Cells["Rol"].Value.ToString().ToLower() != "hulpbehoevende")
             {
-                MessageBox.Show("De rol moet gelijk zijn aan 'Beheerder', 'Vrijwilliger' of 'Hulpbehoevende'\n Het gaat om: "+dataGridView1.Rows[e.RowIndex].Cells["APPROVED"].Value.ToString());
+                MessageBox.Show("Incorrecte rol.");
+                DataTable dt = new DataTable();
+                database.GebruikerBeheer(cmbBeheer.Text).Fill(dt);
+                dataGridView1.DataSource = dt;
             }
             else
             {
-                con.Open();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "UPDATE GEBRUIKER SET ROL ='" + dataGridView1.Rows[e.RowIndex].Cells["ROL"].Value.ToString() + "' WHERE GEBRUIKERID = " + Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERID"].Value);
-                cmd.ExecuteNonQuery();
-                con.Close();
+                database.DataUpdateBeheerRol(dataGridView1.Rows[e.RowIndex].Cells["ROL"].Value.ToString() + "' WHERE GEBRUIKERID = " + Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["GEBRUIKERID"].Value));
             }
+
 
         }
 

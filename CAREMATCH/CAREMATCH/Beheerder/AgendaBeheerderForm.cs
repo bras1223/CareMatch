@@ -21,6 +21,8 @@ namespace CAREMATCH.Beheerder
             InitializeComponent();
             database = new Database();
             this.gebruiker = gebruiker;
+
+            cmbBeheer.SelectedIndex = 0;
         }
 
 
@@ -33,8 +35,15 @@ namespace CAREMATCH.Beheerder
 
         private void btnBack_Click_1(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
-            this.Close();
+            MessageBox.Show("De gebruiker bestaat al.", "Ophaal fout", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+
+            //DialogResult = DialogResult.OK;
+            //this.Close();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

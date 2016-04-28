@@ -49,11 +49,6 @@ namespace CAREMATCH
             database.ChatZetOnline(gebruiker.GebruikersID);
 
             this.partnernaam = partnernaam;
-            //lblGebruikersnaam.Text = partnernaam;
-            //this.partnerid = database.ChatpartnerID(lblGebruikersnaam.Text);
-            //VeranderStatus(partnerid);
-            //lbChat.Items.Clear();
-            //ChatGeschiedenisLaden();
             tmrTest.Start();
 
 
@@ -66,7 +61,10 @@ namespace CAREMATCH
             datum = DateTime.Now;
             try
             {
-                database.ChatInvoegen(database.ControlleerMaxChatID() + 1, tbBericht.Text, partnerid, gebruiker.GebruikersID, datum.ToString("dd/MMM HH:mm"));
+                if(tbBericht.Text != "" && tbBericht.Text != @"\r\n")
+                {
+                    database.ChatInvoegen(database.ControlleerMaxChatID() + 1, tbBericht.Text, partnerid, gebruiker.GebruikersID, datum.ToString("dd/MMM HH:mm"));
+                }
             }
             catch { MessageBox.Show("Selecteer een Persoon"); }
             tbBericht.Clear();
@@ -96,7 +94,16 @@ namespace CAREMATCH
             partnernaam = lbGebruikerLijst.SelectedItem as string;
             lblGebruikersnaam.Text = partnernaam;
             partnerid = database.ChatpartnerID(partnernaam);
-            VeranderStatus(partnerid);
+
+            if (lblGebruikersnaam.Text != "")
+            {
+                VeranderStatus(partnerid);
+            }
+            else
+            {
+                lblParterStatus.Text = "";
+            }
+
             lbChat.Items.Clear();
             ChatGeschiedenisLaden();
             lbChat.SelectedIndex = lbChat.Items.Count - 1;
@@ -107,6 +114,7 @@ namespace CAREMATCH
                 lbGebruikerLijst.Items.Clear();
                 LbVullen();
             }
+
             else
             {
 
@@ -117,9 +125,13 @@ namespace CAREMATCH
 
         private void tmrLaadberichten_Tick(object sender, EventArgs e)
         {
-            if(partnerid != -1)
+            if (partnerid != -1 && lblGebruikersnaam.Text != "")
             {
                 VeranderStatus(partnerid);
+            }
+            else
+            {
+                lblParterStatus.Text = "";
             }
 
             if (done)
@@ -245,8 +257,7 @@ namespace CAREMATCH
                 {
                     myFont = new Font("Microsoft Sans Serif", 9);
                 }
-                e.Graphics.DrawString(lbChat.Items[e.Index].ToString(),
-                myFont, myBrush, e.Bounds, StringFormat.GenericDefault);
+                e.Graphics.DrawString(lbChat.Items[e.Index].ToString(), myFont, myBrush, e.Bounds, StringFormat.GenericDefault);
         }
             catch
             {
@@ -358,6 +369,7 @@ namespace CAREMATCH
 
         private void tmrTest_Tick(object sender, EventArgs e)
         {
+            string test = partnernaam;
             int tset = lbGebruikerLijst.FindString(partnernaam);
             lbGebruikerLijst.SelectedIndex = tset;
             done = true;

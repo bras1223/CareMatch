@@ -139,7 +139,7 @@ namespace CAREMATCH.VrijwilligerSysteem
                 }
             }
             //Kijken of de profiel foto aangepast moet worden.
-            if(gebruiker.Pasfoto != @"\")
+            if(zoekFotoDialog != null)
             {
                 database.GebruikerProfielAanpassen(gebruiker, false, true);
             }

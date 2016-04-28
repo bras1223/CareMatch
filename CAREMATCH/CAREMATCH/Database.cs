@@ -204,7 +204,10 @@ namespace CAREMATCH
             reader = command.ExecuteReader();
             while (reader.Read())
             {
-                tempString = gebruiker.GetLocalDropBox() + reader["Foto"].ToString();
+                if(reader["Foto"].ToString() != "")
+                {
+                    tempString = gebruiker.GetLocalDropBox() + reader["Foto"].ToString();
+                }
             }
             con.Close();
             return tempString;
@@ -651,7 +654,7 @@ namespace CAREMATCH
             return reader;
         }
 
-        public OracleDataAdapter DataUpdateBeheerRol(string datagrid)
+        public OracleDataAdapter DataUpdateBeheerApproved(string datagrid)
         {
             con.Open();
             OracleCommand cmd = con.CreateCommand();
@@ -663,6 +666,20 @@ namespace CAREMATCH
 
             return reader;
         }
+
+        public OracleDataAdapter DataUpdateBeheerRol(string datagrid)
+        {
+            con.Open();
+            OracleCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "UPDATE GEBRUIKER SET ROL ='" + datagrid;
+            OracleDataAdapter reader = new OracleDataAdapter(tempString, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+            return reader;
+        }
+
 
 
 
@@ -726,13 +743,9 @@ namespace CAREMATCH
                     {
                         gebruiker.Auto = false;
                     }
-                    try
+                    if(reader["Foto"].ToString() != "")
                     {
                         gebruiker.Pasfoto = gebruiker.GetLocalDropBox() + reader["Foto"].ToString();
-                    }
-                    catch
-                    {
-                        //Er hoeft niets afgevangen te worden als een gebruiker geen foto heeft.
                     }
                     gebruiker.Rol = reader["ROL"].ToString();
                 }

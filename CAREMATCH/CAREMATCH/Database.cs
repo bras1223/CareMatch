@@ -81,8 +81,9 @@ namespace CAREMATCH
         {
             con.Open();
             
-            command = new OracleCommand("DELETE FROM Hulpvraag WHERE Hulpvraag.HulpvraagID =:id;", con);
+            command = new OracleCommand("DELETE FROM Hulpvraag WHERE HulpvraagID =:id", con);
             command.Parameters.Add(new OracleParameter(":id", OracleDbType.Int32)).Value = hulpvraagID;
+            command.ExecuteNonQuery();
             con.Close();
         }
         public void HulpvraagAanpassen(Gebruiker gebruiker, Hulpvragen.Hulpvraag hulpvraag)
@@ -585,23 +586,20 @@ namespace CAREMATCH
             }
             else if (query == "Afspraak")
             {
-                tempString = "SELECT TITEL, OMSCHRIJVING, HULPBEHOEVENDE, VRIJWILLIGER  FROM AGENDA";
+                tempString = "SELECT TITEL, OMSCHRIJVING FROM AGENDA";
             }
             OracleDataAdapter reader = new OracleDataAdapter(tempString, con);
             con.Close();
             return reader;
+
         }
         //Chat en Reactie Queries
         public OracleDataAdapter ChatBeheer(string query)
         {
             con.Open();
-            if (query == "Chat")
+            if (query == "Alles")
             {
-                tempString = "SELECT * FROM CHAT";
-            }
-            else if (query == "Reactie")
-            {
-                tempString = "SELECT * FROM REACTIE";
+                tempString = "SELECT * FROM GEBRUIKER";
             }
             OracleDataAdapter reader = new OracleDataAdapter(tempString, con);
             con.Close();

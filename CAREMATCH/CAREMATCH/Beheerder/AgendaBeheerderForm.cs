@@ -21,6 +21,8 @@ namespace CAREMATCH.Beheerder
             InitializeComponent();
             database = new Database();
             this.gebruiker = gebruiker;
+
+            cmbBeheer.SelectedIndex = 0;
         }
 
 
@@ -35,6 +37,11 @@ namespace CAREMATCH.Beheerder
         {
             DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

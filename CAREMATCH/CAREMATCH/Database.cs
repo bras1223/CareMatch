@@ -554,7 +554,6 @@ namespace CAREMATCH
         public int ControlleerMaxChatID()
         {
             int id = 0;
-
             con.Open();
             command = new OracleCommand("SELECT MAX(CHATID) as MAXID FROM CHAT", con);
             reader = command.ExecuteReader();

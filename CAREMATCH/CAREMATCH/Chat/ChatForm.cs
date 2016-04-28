@@ -58,7 +58,7 @@ namespace CAREMATCH
         {
             int id = gebruiker.GebruikersID;
             DateTime datum;
-            datum = DateTime.Now;
+            datum = DateTime.Now;            
             try
             {
                 database.ChatInvoegen(database.ControlleerMaxChatID() + 1, tbBericht.Text, partnerid, gebruiker.GebruikersID, datum.ToString("dd/MMM HH:mm"));
@@ -130,6 +130,7 @@ namespace CAREMATCH
                     {
                         database.ChatBerichtGelezen(c.ID);
                     }
+                    string test = c.Inhoud;
                     lbChat.Items.Add(c);
                     lbChat.Items.Add(c.datumtijd.ToString("dd / MMM HH: mm"));
                     lbChat.Items.Add(" ");
@@ -240,8 +241,7 @@ namespace CAREMATCH
                 {
                     myFont = new Font("Microsoft Sans Serif", 9);
                 }
-                e.Graphics.DrawString(lbChat.Items[e.Index].ToString(),
-                myFont, myBrush, e.Bounds, StringFormat.GenericDefault);
+                e.Graphics.DrawString(lbChat.Items[e.Index].ToString(), myFont, myBrush, e.Bounds, StringFormat.GenericDefault);
         }
             catch
             {

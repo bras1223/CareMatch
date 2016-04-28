@@ -26,6 +26,7 @@ namespace CAREMATCH.VrijwilligerSysteem
             if (gebruiker.Rol.ToLower() == "vrijwilliger")
             {
                 cbFilter.Items.Add("Alle hulpvragen");
+                cbFilter.Items.Add("Beoordelingen");
             }
             cbFilter.SelectedIndex = 0;
         }
@@ -49,7 +50,6 @@ namespace CAREMATCH.VrijwilligerSysteem
 
         private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int count = 0;
             lvHulpvragen.Clear();
             //Inlognaam weergeven links in de hoek
             lblGebruikersnaam.Text = gebruiker.Gebruikersnaam;
@@ -87,22 +87,15 @@ namespace CAREMATCH.VrijwilligerSysteem
                 item.SubItems.Add(hulpvraag.HulpvraagInhoud);
                 lvHulpvragen.Items.Add(item);
 
-                count++;
-                //Na de laatste hulpvraag de columns resizen. Performance niet optimaal.
-                if (hulpvraaglist.Count -1 == count)
+                foreach (ColumnHeader column in lvHulpvragen.Columns)
                 {
-                    //Autosize columns. column title < column inhoud = column title wordt weergeven. 
-                    //is inhoud groter dan title dan resizen op inhoud.
-                    foreach (ColumnHeader column in lvHulpvragen.Columns)
+                    if (column.Text.Length > item.Text.Length)
                     {
-                        if (column.Text.Length > item.Text.Length)
-                        {
-                            lvHulpvragen.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-                        }
-                        else
-                        {
-                            lvHulpvragen.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                        }
+                        lvHulpvragen.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                    }
+                    else
+                    {
+                        lvHulpvragen.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                     }
                 }
             }

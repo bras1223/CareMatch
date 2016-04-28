@@ -126,7 +126,6 @@ namespace CAREMATCH
         private void btnUitloggen_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
-            gebruiker = null;
             this.Close();
         }
 

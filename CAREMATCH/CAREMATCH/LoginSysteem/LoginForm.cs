@@ -11,7 +11,6 @@ namespace CAREMATCH.LoginSysteem
         private Login login;
         private Database database;
         HomeForm homeForm; 
-               
 
         public LoginForm()
         {
@@ -72,10 +71,13 @@ namespace CAREMATCH.LoginSysteem
             homeForm.ShowDialog();
             if (homeForm.DialogResult == DialogResult.OK || homeForm.DialogResult == DialogResult.Cancel)
             {
+                database = null;
+
                 this.txtGebruikersnaam.Text = "";
                 this.txtWachtwoord.Text = "";
                 this.Show();
                 this.txtGebruikersnaam.Focus();
+                database = new Database();
             }
         } 
         private void LoginForm_Load(object sender, EventArgs e)

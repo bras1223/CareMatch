@@ -21,7 +21,7 @@ namespace CAREMATCH
         //Constructor
         public Chatbericht(string inhoud, string verzender, int id, DateTime datum)
         {
-            Inhoud = inhoud;
+            Inhoud = inhoud.Replace(System.Environment.NewLine, "");
             VerzenderNaam = verzender;
             ID = id;
             datumtijd = datum;

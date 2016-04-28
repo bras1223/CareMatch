@@ -31,6 +31,8 @@ namespace CAREMATCH
 
             con = new OracleConnection(constr);
         }
+
+
         #region Hulpvragen Queries
         public void HulpvraagToevoegen(Hulpvragen.Hulpvraag hulpvraag, Gebruiker gebruiker)
         {
@@ -85,7 +87,6 @@ namespace CAREMATCH
             command.Parameters.Add(new OracleParameter(":id", OracleDbType.Int32)).Value = hulpvraagID;
             command.ExecuteNonQuery();
             con.Close();
-            //volgens mij zit hier een fout, als ik deze uitvoer haal ik namelijk nogsteeds dezelfde lijst uit de database met hulpvraagoverzicht.
         }
         public void HulpvraagAanpassen(Gebruiker gebruiker, Hulpvragen.Hulpvraag hulpvraag)
         {
@@ -308,6 +309,7 @@ namespace CAREMATCH
             con.Close();
             return count;
         }
+
         public bool ChatNieuwBericht(Gebruiker gebruiker)
         {
             bool nieuwBericht = false;
@@ -326,6 +328,7 @@ namespace CAREMATCH
             con.Close();
             return nieuwBericht;
         }
+        
         //Bericht is gelezen
         public void ChatBerichtGelezen(int berichtid)
         {
@@ -336,6 +339,7 @@ namespace CAREMATCH
             command.ExecuteNonQuery();
             con.Close();
         }
+        
         //Geeft de onlinestatus van je chatpartner
         public string ChatPartnerStatus(int id)
         {
@@ -363,6 +367,7 @@ namespace CAREMATCH
                 return "Offline";
             }
         }        
+        
         //Zet de gebruiker online
         public void ChatZetOnline(int gebruikerID)
         {
@@ -373,6 +378,7 @@ namespace CAREMATCH
             command.ExecuteNonQuery();
             con.Close();
         }
+        
         //Zet de gebruiker Offline
         public void ChatZetOffline(int gebruikerID)
         {
@@ -383,6 +389,7 @@ namespace CAREMATCH
             command.ExecuteNonQuery();
             con.Close();
         }
+        
         //Geeft een lijst van alle vrijwilligers
         public List<string> VrijwilligersLijst()
         {
@@ -409,7 +416,7 @@ namespace CAREMATCH
             hulpbehoevendelijst = new List<string>();
 
             con.Open();
-            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Hulpbehoevende' ORDER BY Gebruikersnaam ASC", con);
+            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Hulpbehoevende'  ORDER BY Gebruikersnaam ASC", con);
             reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -486,7 +493,7 @@ namespace CAREMATCH
             vrijwilligerlijst = new List<string>();
 
             con.Open();
-            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Vrijwilliger' AND GEBRUIKERID IN (SELECT ONTVANGERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id) ORDER BY Gebruikersnaam ASC ", con);
+            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Vrijwilliger' AND (GEBRUIKERID IN (SELECT ONTVANGERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id) OR GEBRUIKERID IN (SELECT VERZENDERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id)) ORDER BY Gebruikersnaam ASC ", con);
             command.Parameters.Add(new OracleParameter("id", OracleDbType.Int32)).Value = id;
             reader = command.ExecuteReader();
 
@@ -507,7 +514,7 @@ namespace CAREMATCH
             hulpbehoevendelijst = new List<string>();
 
             con.Open();
-            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Hulpbehoevende' AND GEBRUIKERID IN (SELECT ONTVANGERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id) ORDER BY Gebruikersnaam ASC", con);
+            command = new OracleCommand("SELECT Gebruikersnaam FROM gebruiker WHERE rol = 'Hulpbehoevende' AND (GEBRUIKERID IN (SELECT ONTVANGERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id) OR GEBRUIKERID IN (SELECT VERZENDERID FROM CHAT WHERE VERZENDERID = :id OR ONTVANGERID = :id)) ORDER BY Gebruikersnaam ASC", con);
             command.Parameters.Add(new OracleParameter("id", OracleDbType.Int32)).Value = id;
             reader = command.ExecuteReader();
 
@@ -555,7 +562,6 @@ namespace CAREMATCH
         public int ControlleerMaxChatID()
         {
             int id = 0;
-
             con.Open();
             command = new OracleCommand("SELECT MAX(CHATID) as MAXID FROM CHAT", con);
             reader = command.ExecuteReader();
@@ -721,41 +727,42 @@ namespace CAREMATCH
             try
             {
                 con.Open();
+                //Hulpbehoevende hoeft geen VOG te inserten.
+                if (Rol.ToLower() == "hulpbehoevende") 
+                {
+                    command = new OracleCommand(@"INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, VOORNAAM, ACHTERNAAM, FOTO, APPROVED, ROL)"+
+                                                      "VALUES(:gebruikersnaam, :wachtwoord, :voornaam, :achternaam, :filenamefoto, :Approved, :Rol)", con);
+                    command.Parameters.Add(new OracleParameter(":gebruikersnaam", OracleDbType.Varchar2)).Value = Gebruikersnaam;
+                    command.Parameters.Add(new OracleParameter(":wachtwoord", OracleDbType.Varchar2)).Value = EncryptString(Wachtwoord);
+                    command.Parameters.Add(new OracleParameter(":voornaam", OracleDbType.Varchar2)).Value = voornaam;
+                    command.Parameters.Add(new OracleParameter(":achternaam", OracleDbType.Varchar2)).Value = achternaam;
+                    command.Parameters.Add(new OracleParameter(":filenameFoto", OracleDbType.Varchar2)).Value = filenameFoto;
+                    command.Parameters.Add(new OracleParameter(":Approved", OracleDbType.Varchar2)).Value = Approved;
+                    command.Parameters.Add(new OracleParameter(":Rol", OracleDbType.Varchar2)).Value = Rol;
+
+                }
+                //Vrijwilliger wel.
+                else
+                {
+                    command = new OracleCommand(@"INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, VOORNAAM, ACHTERNAAM, FOTO, APPROVED, ROL, VOG)"+ 
+                                                        "VALUES(:gebruikersnaam, :wachtwoord, :voornaam, :achternaam, :filenamefoto, :Approved, :Rol, :filenameVOG)", con);
+                    command.Parameters.Add(new OracleParameter(":gebruikersnaam", OracleDbType.Varchar2)).Value = Gebruikersnaam;
+                    command.Parameters.Add(new OracleParameter(":wachtwoord", OracleDbType.Varchar2)).Value = EncryptString(Wachtwoord);
+                    command.Parameters.Add(new OracleParameter(":voornaam", OracleDbType.Varchar2)).Value = voornaam;
+                    command.Parameters.Add(new OracleParameter(":achternaam", OracleDbType.Varchar2)).Value = achternaam;
+                    command.Parameters.Add(new OracleParameter(":filenameFoto", OracleDbType.Varchar2)).Value = filenameFoto;
+                    command.Parameters.Add(new OracleParameter(":Approved", OracleDbType.Varchar2)).Value = Approved;
+                    command.Parameters.Add(new OracleParameter(":Rol", OracleDbType.Varchar2)).Value = Rol;
+                    command.Parameters.Add(new OracleParameter(":filenameVOG", OracleDbType.Varchar2)).Value = filenameVOG;
+                }
+                command.ExecuteNonQuery();
             }
             catch (OracleException)
             {
                 MessageBox.Show("kon de verbinding met de database niet tot stand brengen");
             }
 
-            //Hulpbehoevende hoeft geen VOG te inserten.
-            if (Rol.ToLower() == "hulpbehoevende") 
-            {
-                command = new OracleCommand(@"INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, VOORNAAM, ACHTERNAAM, FOTO, APPROVED, ROL)"+
-                                                  "VALUES(:gebruikersnaam, :wachtwoord, :voornaam, :achternaam, :filenamefoto, :Approved, :Rol)", con);
-                command.Parameters.Add(new OracleParameter(":gebruikersnaam", OracleDbType.Varchar2)).Value = Gebruikersnaam;
-                command.Parameters.Add(new OracleParameter(":wachtwoord", OracleDbType.Varchar2)).Value = EncryptString(Wachtwoord);
-                command.Parameters.Add(new OracleParameter(":voornaam", OracleDbType.Varchar2)).Value = voornaam;
-                command.Parameters.Add(new OracleParameter(":achternaam", OracleDbType.Varchar2)).Value = achternaam;
-                command.Parameters.Add(new OracleParameter(":filenameFoto", OracleDbType.Varchar2)).Value = filenameFoto;
-                command.Parameters.Add(new OracleParameter(":Approved", OracleDbType.Varchar2)).Value = Approved;
-                command.Parameters.Add(new OracleParameter(":Rol", OracleDbType.Varchar2)).Value = Rol;
 
-            }
-            //Vrijwilliger wel.
-            else
-            {
-                command = new OracleCommand(@"INSERT INTO GEBRUIKER(GEBRUIKERSNAAM, WACHTWOORD, VOORNAAM, ACHTERNAAM, FOTO, APPROVED, ROL, VOG)"+ 
-                                                    "VALUES(:gebruikersnaam, :wachtwoord, :voornaam, :achternaam, :filenamefoto, :Approved, :Rol, :filenameVOG)", con);
-                command.Parameters.Add(new OracleParameter(":gebruikersnaam", OracleDbType.Varchar2)).Value = Gebruikersnaam;
-                command.Parameters.Add(new OracleParameter(":wachtwoord", OracleDbType.Varchar2)).Value = EncryptString(Wachtwoord);
-                command.Parameters.Add(new OracleParameter(":voornaam", OracleDbType.Varchar2)).Value = voornaam;
-                command.Parameters.Add(new OracleParameter(":achternaam", OracleDbType.Varchar2)).Value = achternaam;
-                command.Parameters.Add(new OracleParameter(":filenameFoto", OracleDbType.Varchar2)).Value = filenameFoto;
-                command.Parameters.Add(new OracleParameter(":Approved", OracleDbType.Varchar2)).Value = Approved;
-                command.Parameters.Add(new OracleParameter(":Rol", OracleDbType.Varchar2)).Value = Rol;
-                command.Parameters.Add(new OracleParameter(":filenameVOG", OracleDbType.Varchar2)).Value = filenameVOG;
-            }
-            command.ExecuteNonQuery();
             con.Close();
         }
         public bool GebruikerControlleerUsername(string Gebruikersnaam)
@@ -763,19 +770,21 @@ namespace CAREMATCH
             try
             {
                 con.Open();
+                command = new OracleCommand("SELECT Gebruikersnaam FROM GEBRUIKER WHERE Gebruikersnaam =:gebruikersnaam", con);
+                command.Parameters.Add(new OracleParameter("Gebruikersnaam", Gebruikersnaam));
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    tempString = reader["Gebruikersnaam"].ToString();
+                }
             }
             catch (OracleException)
             {
                 MessageBox.Show("kon de verbinding met de database niet tot stand brengen");
+                return false;
             }
 
-            command = new OracleCommand("SELECT Gebruikersnaam FROM GEBRUIKER WHERE Gebruikersnaam =:gebruikersnaam", con);
-            command.Parameters.Add(new OracleParameter("Gebruikersnaam", Gebruikersnaam));
-            reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                tempString = reader["Gebruikersnaam"].ToString();
-            }
+
             con.Close();
             if (tempString == null)
             {

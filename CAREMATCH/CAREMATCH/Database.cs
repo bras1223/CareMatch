@@ -626,6 +626,7 @@ namespace CAREMATCH
             {
                 tempString = "SELECT * FROM GEBRUIKER WHERE ROL = 'vrijwilliger' AND VOG IS NULL";
             }
+
             OracleDataAdapter reader = new OracleDataAdapter(tempString, con);
             con.Close();
             return reader;

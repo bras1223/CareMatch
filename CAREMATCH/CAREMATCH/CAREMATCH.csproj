@@ -113,6 +113,12 @@
       <DependentUpon>ChatForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Database.cs" />
+    <Compile Include="dialogBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dialogBox.Designer.cs">
+      <DependentUpon>dialogBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Enum.cs" />
     <Compile Include="Gebruikers\Beheerder.cs" />
     <Compile Include="Gebruikers\Gebruiker.cs" />
@@ -193,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Chat\ChatForm.resx">
       <DependentUpon>ChatForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dialogBox.resx">
+      <DependentUpon>dialogBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>

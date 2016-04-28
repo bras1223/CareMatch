@@ -67,18 +67,28 @@ namespace CAREMATCH
             }
             
             this.hulpvragen = database.HulpvragenOverzicht(gebruiker, "ongepaste hulpvragen");
-            foreach (Hulpvraag hulpvraag in this.hulpvragen)
+            if(this.hulpvragen.Count > 0)
             {
-                ListViewItem item = new ListViewItem();
-                item.SubItems.Add(hulpvraag.HulpvraagID.ToString());
-                item.SubItems.Add(hulpvraag.Titel);
-                item.SubItems.Add(hulpvraag.HulpvraagInhoud);
-                item.SubItems.Add(hulpvraag.Hulpbehoevende);
-                item.SubItems.Add(hulpvraag.Beoordeling);
-                item.SubItems.Add(hulpvraag.Cijfer.ToString());
+                label1.Visible = false;
 
-                lvOngepasteBerichten.Items.Add(item);
+                foreach (Hulpvraag hulpvraag in this.hulpvragen)
+                {
+                    ListViewItem item = new ListViewItem();
+                    item.SubItems.Add(hulpvraag.HulpvraagID.ToString());
+                    item.SubItems.Add(hulpvraag.Titel);
+                    item.SubItems.Add(hulpvraag.HulpvraagInhoud);
+                    item.SubItems.Add(hulpvraag.Hulpbehoevende);
+                    item.SubItems.Add(hulpvraag.Beoordeling);
+                    item.SubItems.Add(hulpvraag.Cijfer.ToString());
+
+                    lvOngepasteBerichten.Items.Add(item);
+                }
             }
+            else
+            {
+                label1.Visible = true;
+            }
+
 
             
         }
@@ -123,17 +133,23 @@ namespace CAREMATCH
 
         private void btnDeleteSelection_Click(object sender, EventArgs e)
         {
-            //throw new NotImplementedException();
-            foreach(ListViewItem item in lvOngepasteBerichten.Items)
+            if (lvOngepasteBerichten.CheckedItems.Count > 0)
             {
-                if (item.Checked)
+
+
+                //verwijder alle aangevinkte items uit list
+                foreach (ListViewItem item in lvOngepasteBerichten.Items)
                 {
-                    Hulpvraag toDelete = hulpvragen[item.Index];
-                    hulpvragen.RemoveAt(item.Index);
-                    VerwijderGemarkeerdeHulpvraag(toDelete);
+                    if (item.Checked)
+                    {
+                        Hulpvraag toDelete = hulpvragen[item.Index];
+                        hulpvragen.RemoveAt(item.Index);
+                        VerwijderGemarkeerdeHulpvraag(toDelete);
+                    }
                 }
+                VulListViewMetHulpvragen(hulpvragen);
             }
-            VulListViewMetHulpvragen(hulpvragen);
+
         }
 
         private void OngepasteBerichtenForm_FormClosing(object sender, FormClosingEventArgs e)
